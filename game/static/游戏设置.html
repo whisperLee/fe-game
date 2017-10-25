@@ -13,12 +13,13 @@
 <meta name="format-detection"content="telephone=no">
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+<link rel="stylesheet" type="text/css" href="../css/global.css" />
+<link rel="stylesheet" type="text/css" href="../css/game_set.css" />
 <title>腾讯新闻</title>
 <style>
 body{background:  #5d9ad0; }
-.main{ background: url(../../image/day2.jpg) no-repeat center top #2a69a0; background-size: cover; position: absolute; left:0; top:0; width:100%; height: 100%; font-size: .16rem; line-height: 150%; color: #fff;}
-.main.night{background: url(../../image/night.jpg) no-repeat center top #2a69a0;}
+.main{ background: url(../image/day2.jpg) no-repeat center top #2a69a0; background-size: cover; position: absolute; left:0; top:0; width:100%; height: 100%; font-size: .16rem; line-height: 150%; color: #fff;}
+.main.night{background: url(../image/night.jpg) no-repeat center top #2a69a0;}
 .inner{position: relative; top:50%; width:100%; height:auto; -webkit-transform:translateY(-50%); overflow: hidden;}
 .main h2{font-size: .3rem; line-height: 200%; text-align: center;}
   
@@ -35,8 +36,8 @@ body{background:  #5d9ad0; }
 .num-set span,.num-set input{display: block; float: right; width:.3rem; height:.3rem; background-size: .2rem .2rem; background-repeat: no-repeat; background-position: center; background-color:rgba(36,74,111,0.5); box-sizing: border-box;}
 .num-set span{border-radius: 50%;}
 .num-set input{ border-radius: 3px; border:none; background: none; text-align: center; font-size: .16rem; line-height: .3rem;color: #fff; }
-.num-set span.add{background-image: url(../../image/add.png);}
-.num-set span.sub{background-image: url(../../image/sub.png);}
+.num-set span.add{background-image: url(../image/add.png);}
+.num-set span.sub{background-image: url(../image/sub.png);}
 .total{font-size: .2rem; padding-left: .15rem; }
 .btn{display: block; width:50%; height:.4rem; border-radius: 5px; margin: .3rem auto; line-height: .4rem; background:rgba(36,74,111,0.5); text-align: center; }
 .btn1{background: #bdc3c7;}
@@ -49,31 +50,31 @@ body{background:  #5d9ad0; }
 .user .level .head .num{position: absolute; height:30%; width:100%; left:0; bottom: 0; overflow: hidden; }
 .user .level .head .num b{position: absolute; left:0; top:50%; -webkit-transform:translateY(-50%); width:100%; height:.12rem;  z-index: 2; font-size: .12rem; line-height: 100%; color: #fff; text-align: center;}
 .user .level .head .num:before{content: ""; position: absolute; left: 0; bottom: 0; width:100%; padding-top: 100%; height:0%; background: #b2d0e5; border-radius: 50% 50%;}
-.user .level1{background-image: url(../../image/level/1.png);}
-.user .level1.level-back:before{background-image:url(../../image/level/1_0.png); }
-.user .level1-1:before{background-image: url(../../image/level/1_1.png);}
-.user .level1-2:before{background-image: url(../../image/level/1_2.png);}
-.user .level1-3:after{background-image: url(../../image/level/1_3.png);}
-.user .level2{background-image: url(../../image/level/2.png);}
-.user .level2.level-back:after{background-image:url(../../image/level/2_0.png); }
-.user .level2-1:before{background-image: url(../../image/level/2_1.png);}
-.user .level2-2:before{background-image: url(../../image/level/2_2.png);}
-.user .level2-3:before{background-image: url(../../image/level/2_3.png);}
-.user .level3{background-image: url(../../image/level/3.png);}
-.user .level3.level-back:after{background-image:url(../../image/level/3_0.png); }
-.user .level3-1:before{background-image: url(../../image/level/3_1.png);}
-.user .level3-2:before{background-image: url(../../image/level/3_2.png);}
-.user .level3-3:before{background-image: url(../../image/level/3_3.png);}
+.user .level1{background-image: url(../image/level/1.png);}
+.user .level1.level-back:before{background-image:url(../image/level/1_0.png); }
+.user .level1-1:before{background-image: url(../image/level/1_1.png);}
+.user .level1-2:before{background-image: url(../image/level/1_2.png);}
+.user .level1-3:after{background-image: url(../image/level/1_3.png);}
+.user .level2{background-image: url(../image/level/2.png);}
+.user .level2.level-back:after{background-image:url(../image/level/2_0.png); }
+.user .level2-1:before{background-image: url(../image/level/2_1.png);}
+.user .level2-2:before{background-image: url(../image/level/2_2.png);}
+.user .level2-3:before{background-image: url(../image/level/2_3.png);}
+.user .level3{background-image: url(../image/level/3.png);}
+.user .level3.level-back:after{background-image:url(../image/level/3_0.png); }
+.user .level3-1:before{background-image: url(../image/level/3_1.png);}
+.user .level3-2:before{background-image: url(../image/level/3_2.png);}
+.user .level3-3:before{background-image: url(../image/level/3_3.png);}
 .user .level4{background-image: url(../image/level/40.png);}
-.user .level4.level-back:after{background-image:url(../../image/level/4_0.png); }
+.user .level4.level-back:after{background-image:url(../image/level/4_0.png); }
 .user .level4-1:before{background-image: url(../image/level/40_1.png);}
 .user .level4-2:before{background-image: url(../image/level/40_2.png);}
 .user .level4-3:before{background-image: url(../image/level/40_3.png);}
-.user .level5{background-image: url(../../image/level/5.png);}
-.user .level5.level-back:after{background-image:url(../../image/level/5_0.png); }
-.user .level5-1:before{background-image: url(../../image/level/5_1.png);}
-.user .level5-2:before{background-image: url(../../image/level/5_2.png);}
-.user .level5-3:before{background-image: url(../../image/level/5_3.png);}
+.user .level5{background-image: url(../image/level/5.png);}
+.user .level5.level-back:after{background-image:url(../image/level/5_0.png); }
+.user .level5-1:before{background-image: url(../image/level/5_1.png);}
+.user .level5-2:before{background-image: url(../image/level/5_2.png);}
+.user .level5-3:before{background-image: url(../image/level/5_3.png);}
 .user img{width:100%; height:auto; margin: 0 auto;}
 
 .user-game{overflow: hidden;}
@@ -87,12 +88,12 @@ body{background:  #5d9ad0; }
 .user-game .center .mess{font-size: .16rem; color: #fff; line-height: 150%; padding-bottom: .3rem;}
 .user-self{position: absolute; left:0; bottom:0; width:100%;}
 .user-self .user{position: absolute; left:35%; bottom:0; width:30%;}
-.user-self .shenfen{position: absolute; left:.2rem; bottom:.2rem; width:.3rem; height:.45rem; background: url(../../image/shenfen.png) no-repeat center; background-size: contain; }
-.user-self .zhuozhang{position: absolute; right:.2rem; bottom:.2rem; width:.3rem; height:.45rem; background: url(../../image/zhuozhang.png) no-repeat center; background-size: contain; }
-.shop{display: block; float: right; margin-right: 20%; margin-top: -.6rem; width:.5rem; height:.5rem; background: url(../../image/shop.png) no-repeat center; background-size: contain;}
+.user-self .shenfen{position: absolute; left:.2rem; bottom:.2rem; width:.3rem; height:.45rem; background: url(../image/shenfen.png) no-repeat center; background-size: contain; }
+.user-self .zhuozhang{position: absolute; right:.2rem; bottom:.2rem; width:.3rem; height:.45rem; background: url(../image/zhuozhang.png) no-repeat center; background-size: contain; }
+.shop{display: block; float: right; margin-right: 20%; margin-top: -.6rem; width:.5rem; height:.5rem; background: url(../image/shop.png) no-repeat center; background-size: contain;}
 
 .layer{position: fixed; left:10%; top:10%; width:80%; height:80%; background: rgba(0,0,0,0.5); border-radius: .1rem; }
-.layer .identity{position: absolute; left:0; top:.2rem; bottom:.9rem; width:100%; background: url(../../image/shenfen.png) no-repeat center bottom; background-size: contain;}
+.layer .identity{position: absolute; left:0; top:.2rem; bottom:.9rem; width:100%; background: url(../image/shenfen.png) no-repeat center bottom; background-size: contain;}
 .layer .btn{position: absolute; left: 25%;  bottom: 0;}
 </style>
 <meta name="author" content="lynnenie"/>
@@ -161,21 +162,21 @@ body{background:  #5d9ad0; }
   <div class="inner ready" v-show="flow==3">
     <h2>等待进入游戏...</h2>
     <ul class="user-list">
-      <li class="user"><div class="level level1 level1-1"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-      <li class="user"><div class="level level1 level1-2"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-      <li class="user"><div class="level level1 level1-3"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-      <li class="user"><div class="level level2 level2-1"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-      <li class="user"><div class="level level2 level2-2"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-      <li class="user"><div class="level level2 level2-3"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-      <li class="user"><div class="level level3 level3-1"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-      <li class="user"><div class="level level3 level3-2"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-      <li class="user"><div class="level level3 level3-3"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-      <li class="user"><div class="level level4 level4-1"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-      <li class="user"><div class="level level4 level4-2"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-      <li class="user"><div class="level level4 level4-3"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-      <li class="user"><div class="level level5 level5-1"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-      <li class="user"><div class="level level5 level5-2"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-      <li class="user"><div class="level level5 level5-3"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+      <li class="user"><div class="level level1 level1-1"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+      <li class="user"><div class="level level1 level1-2"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+      <li class="user"><div class="level level1 level1-3"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+      <li class="user"><div class="level level2 level2-1"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+      <li class="user"><div class="level level2 level2-2"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+      <li class="user"><div class="level level2 level2-3"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+      <li class="user"><div class="level level3 level3-1"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+      <li class="user"><div class="level level3 level3-2"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+      <li class="user"><div class="level level3 level3-3"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+      <li class="user"><div class="level level4 level4-1"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+      <li class="user"><div class="level level4 level4-2"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+      <li class="user"><div class="level level4 level4-3"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+      <li class="user"><div class="level level5 level5-1"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+      <li class="user"><div class="level level5 level5-2"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+      <li class="user"><div class="level level5 level5-3"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
     </ul>
     <a class="btn" v-on:click="startGame">开始游戏</a>
     <a class="btn btn1" v-on:click="restart">重新配置</a>
@@ -183,34 +184,34 @@ body{background:  #5d9ad0; }
   <div class="game" v-show="flow==4">
     <div class="user-game">
       <ul class="top ">
-        <li class="user"><div class="level level2 level2-3"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-        <li class="user"><div class="level level3 level3-2"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-        <li class="user"><div class="level level3 level3-3"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-        <li class="user"><div class="level level3 level3-1"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-        <li class="user"><div class="level level4 level4-1"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+        <li class="user"><div class="level level2 level2-3"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+        <li class="user"><div class="level level3 level3-2"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+        <li class="user"><div class="level level3 level3-3"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+        <li class="user"><div class="level level3 level3-1"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+        <li class="user"><div class="level level4 level4-1"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
       </ul>
       <ul class="left">
-          <li class="user"><div class="level level1 level1-1"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-          <li class="user"><div class="level level1 level1-2"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-          <li class="user"><div class="level level1 level1-3"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-          <li class="user"><div class="level level2 level2-1"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-          <li class="user"><div class="level level2 level2-2"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+          <li class="user"><div class="level level1 level1-1"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+          <li class="user"><div class="level level1 level1-2"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+          <li class="user"><div class="level level1 level1-3"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+          <li class="user"><div class="level level2 level2-1"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+          <li class="user"><div class="level level2 level2-2"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
       </ul>
       <div class="center">
         <div class="mess">1 ,4 ,6 ,8 号玩家精选警长</div>
       </div>
       <ul class="right">
-          <li class="user"><div class="level level4 level4-2"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-          <li class="user"><div class="level level4 level4-3"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-          <li class="user"><div class="level level5 level5-1"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-          <li class="user"><div class="level level5 level5-2"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
-          <li class="user"><div class="level level5 level5-3"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+          <li class="user"><div class="level level4 level4-2"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+          <li class="user"><div class="level level4 level4-3"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+          <li class="user"><div class="level level5 level5-1"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+          <li class="user"><div class="level level5 level5-2"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
+          <li class="user"><div class="level level5 level5-3"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></li>
       </ul>
     </div>
     <a class="shop"></a>
     <div class="user-self">
       <a class="shenfen" v-on:click="showSelfIden"></a>
-      <div class="user"><div class="level level-back level1 level1-1"><div class="head"><img src="../../image/head.png"><div class="num"><b>1</b></div></div></div></div>
+      <div class="user"><div class="level level-back level1 level1-1"><div class="head"><img src="../image/head.png"><div class="num"><b>1</b></div></div></div></div>
       <a class="zhuozhang" v-on:click="leaderManage"></a>
     </div>
     
@@ -226,16 +227,14 @@ body{background:  #5d9ad0; }
       </div>
       <a class="btn" v-on:click="hideLayer">知道了</a>
   </div>
-
-  <div v-bind:class="classObject">可以用作头像旁边状态展示</div>
 </div>
 <style>
 
 
 </style>
-    <script type="text/javascript" src="../../../js/zepto.min.js"></script>
-    <script type="text/javascript" src="../../../js/touch.js"></script>
-    <script type="text/javascript" src="../../../js/vue.js"></script>
+    <script type="text/javascript" src="../../js/zepto.min.js"></script>
+    <script type="text/javascript" src="../../js/touch.js"></script>
+    <script type="text/javascript" src="../../js/vue.js"></script>
     <script>
     var example1 = new Vue({
       el: '#before',

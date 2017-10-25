@@ -64,8 +64,8 @@ var animate = {
             display:'block'
         })
         el.velocity({
-            scale:[1,0],
-            translateY:'-50%'
+            scale:[1,0]
+            //translateY:'-50%'
         }, {
             duration: 500,
             easing: 'ease-in-out'

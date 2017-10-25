@@ -5,30 +5,29 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
         <meta name="format-detection" content="telephone=no">
-        <link href="../../css/game.css" rel="stylesheet" type="text/css" media="screen" />
+        <link href="../css/game.css" rel="stylesheet" type="text/css" media="screen" />
         <title>游戏页面</title>
     </head>
 <body>
 <div class="main" id="game">
 <style>
-/*.layer{position: relative; top:0; display: block; -webkit-transform: translateY(0); margin-top: 10px;}*/
+.layer{position: relative; top:0; display: block; -webkit-transform: translateY(0); margin-top: 10px;}
 </style>
   <style>
     .layer .tips{color: #e74c3c; font-size: .16rem; text-align: center; line-height:.3rem;  }
     .longPress{position: relative; overflow: hidden}
     .longPress .process b{position: absolute; left:0; top:0; width:0%; height:100%; background: #1abc9c;}
     .longPress .text{position: relative; z-index: 2;}
-    .longPress.state-success .text{background: url("../../image/success.png") no-repeat left center; background-size: .2rem auto ; padding-left: .25rem;  -webkit-transition: all .5s ease-in-out;}
+    .longPress.state-success .text{background: url("../image/success.png") no-repeat left center; background-size: .2rem auto ; padding-left: .25rem;  -webkit-transition: all .5s ease-in-out;}
   </style>
 
   <div class="layer layerSixCenter  layerEventChoose">
-    <div class="inner">
       <h2 class="title">标题</h2>
       <div class="content">
         <p class="info">请XXXXXXXX</p>
         <ul class="voteList">
           <li>
-            <div num="7" class="user"><div class="level level0"><div class="inner"><div class="head"><img src="../../image/head.png"></div><i class="star star0"></i><div class="num num7"></div></div></div></div>
+            <div num="7" class="user"><div class="level level0"><div class="inner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num7"></div></div></div></div>
           </li>
           <li class="unchoose"></li>
         </ul>
@@ -41,10 +40,8 @@
           <div class="btn btn3" v-on:click="resetUserChoose">重置</div>
         </div>
       </div>
-    </div>
   </div>
     <div class="layer layerEventVoteResult">
-      <div class="inner">
         <h2 class="title">投票结果</h2>
         <div class="content">
           <p class="info">【1】号票数最多</p>
@@ -120,14 +117,12 @@
           </ul>
         </div>
         <div class="btnWrap"><a class="btn btn2" v-on:click="sfLayOut">知道了</a></div>
-      </div>
   </div>
     <div class="layer layerUserInfo" v-if="JSON.stringify(userinfo)!='{}'">
-      <div class="inner">
         <div class="user userBack">
           <div class="level level1">
             <div class="inner">
-              <div class="head"><img src="../../image/head.png"></div>
+              <div class="head"><img src="../image/head.png"></div>
               <i class="star star1"></i>
               <div class="num num1"></div>
             </div>
@@ -141,10 +136,8 @@
             <a class="btn btn2" v-on:click="addAtten">关注</a>
           </div>
         </div>
-      </div>
     </div>
     <div class="layer layerEventDecide">
-      <div class="inner">
         <h2 class="title">警长竞选</h2>
         <div class="content">
           <p class="info">是否参与警长竞选</p>
@@ -153,21 +146,17 @@
             <a class="btn btn3" v-on:click="runForCampaign(0)">放弃</a>
           </div>
         </div>
-      </div>
     </div>
 
 </div>
-<script type="application/javascript" src="../../../js/zepto.min.js"></script>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
 <script type="application/javascript" src="../../js/vue.js"></script>
-<script type="application/javascript" src="../../../js/velocity.min.js"></script>
+<script type="application/javascript" src="../../js/velocity.min.js"></script>
 <script type="application/javascript" src="../../js/sockjs.min.js"></script>
 <script type="application/javascript" src="../../js/stomp.js"></script>
 
-<script type="application/javascript" src="../../js/global.js"></script>
-<script type="application/javascript" src="../js/websocket.js"></script>
-<script type="application/javascript" src="../js/component.js"></script>
-<script type="application/javascript" src="../../js/animate.js"></script>
-<script type="application/javascript" src="../../js/game.js"></script>
+<script type="application/javascript" src="../js/global.js"></script>
+<script type="application/javascript" src="../js/animate.js"></script>
 <script>
 
     $(function(){

@@ -584,85 +584,79 @@ ul.flexBox1 {
 
 .layer {
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%; }
-  .layer .inner {
-    position: absolute;
-    left: 10%;
-    top: 50%;
-    width: 80%;
-    height: auto;
-    z-index: 99;
-    display: none;
-    -webkit-transform: translateY(-50%);
-    background: #fff;
-    border: 2px solid #1abc9c;
-    border-radius: 10px; }
-    .layer .inner .title {
-      background: #1abc9c;
-      color: #f1f1f1;
-      text-align: center; }
-    .layer .inner .info {
-      font-size: .16rem;
-      color: #1abc9c;
-      line-height: .2rem;
-      text-align: center;
-      padding: .1rem; }
-    .layer .inner .content {
-      overflow: hidden; }
-    .layer .inner .btn {
-      margin: .2rem auto; }
+  left: 10%;
+  top: 50%;
+  width: 80%;
+  height: auto;
+  z-index: 99;
+  display: none;
+  -webkit-transform: translateY(-50%);
+  background: #fff;
+  border: 2px solid #1abc9c;
+  border-radius: 10px; }
+  .layer .title {
+    background: #1abc9c;
+    color: #f1f1f1;
+    text-align: center; }
+  .layer .info {
+    font-size: .16rem;
+    color: #1abc9c;
+    line-height: .2rem;
+    text-align: center;
+    padding: .1rem; }
+  .layer .content {
+    overflow: hidden; }
+  .layer .btn {
+    margin: .2rem auto; }
 
-.layer.layerSixCenter .inner {
+.layer.layerSixCenter {
   left: 20%;
   width: 60%; }
 
-.layer.layerShenfen .inner {
+.layer.layerShenfen {
   top: 10%;
   height: 80%;
   -webkit-transform: translateY(0);
   background: none;
   border: none;
   border-radius: 10px; }
-  .layer.layerShenfen .inner .title {
+  .layer.layerShenfen .title {
     background: none; }
-  .layer.layerShenfen .inner .content {
+  .layer.layerShenfen .content {
     position: absolute;
     left: 0;
     top: .6rem;
     bottom: .6rem;
     width: 100%;
     height: auto; }
-  .layer.layerShenfen .inner .btnWrap {
+  .layer.layerShenfen .btnWrap {
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
     display: none; }
-    .layer.layerShenfen .inner .btnWrap .btn {
+    .layer.layerShenfen .btnWrap .btn {
       margin-top: 0;
       margin-bottom: 0; }
 
-.layer.layerEventChoose .inner {
+.layer.layerEventChoose {
   left: 20%;
   width: 60%; }
-  .layer.layerEventChoose .inner .voteList {
+  .layer.layerEventChoose .voteList {
     text-align: center; }
-    .layer.layerEventChoose .inner .voteList li {
+    .layer.layerEventChoose .voteList li {
       position: relative;
       width: 40%;
       height: 0;
       padding-top: 40%;
       display: inline-block; }
-      .layer.layerEventChoose .inner .voteList li .user {
+      .layer.layerEventChoose .voteList li .user {
         position: absolute;
         left: 0;
         top: 0;
         width: 100%;
         height: 100%; }
-    .layer.layerEventChoose .inner .voteList li.unchoose {
+    .layer.layerEventChoose .voteList li.unchoose {
       box-shadow: 0px 0px 1px 0px #34495e; }
 
 .layer.layerEventVoteResult .content .result {
@@ -715,7 +709,7 @@ ul.flexBox1 {
     top: 0;
     width: .15rem;
     height: 100%;
-    background: url(../../image/jiantou.png) no-repeat center;
+    background: url(../image/jiantou.png) no-repeat center;
     background-size: contain; }
 
 .layerUserInfo .infos {

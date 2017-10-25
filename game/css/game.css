@@ -582,7 +582,7 @@ ul.flexBox1 {
     width: 100%;
     position: relative; }
 
-.layer {
+.layer .inner {
   position: absolute;
   left: 10%;
   top: 50%;
@@ -594,27 +594,25 @@ ul.flexBox1 {
   background: #fff;
   border: 2px solid #1abc9c;
   border-radius: 10px; }
-  .layer .title {
+  .layer .inner .title {
     background: #1abc9c;
     color: #f1f1f1;
     text-align: center; }
-  .layer .info {
+  .layer .inner .info {
     font-size: .16rem;
     color: #1abc9c;
     line-height: .2rem;
     text-align: center;
     padding: .1rem; }
-  .layer .content {
+  .layer .inner .content {
     overflow: hidden; }
-  .layer .btn {
+  .layer .inner .btn {
     margin: .2rem auto; }
 
-/**
-.layer.layerNotice  通知类
-.layer.layerResult  结果展示类
-.layer.layerEvent   事件类
-.layer.layerConfirm 确认类
-*/
+.layer.layerSixCenter .inner {
+  left: 20%;
+  width: 60%; }
+
 .layer.layerShenfen {
   top: 10%;
   height: 80%;

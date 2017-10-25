@@ -21,131 +21,139 @@
     .longPress.state-success .text{background: url("../../image/success.png") no-repeat left center; background-size: .2rem auto ; padding-left: .25rem;  -webkit-transition: all .5s ease-in-out;}
   </style>
 
-  <div class="layer layerHalf  layerEventChoose">
-    <h2 class="title">标题</h2>
-    <div class="content">
-      <p class="info">请XXXXXXXX</p>
-      <ul class="voteList">
-        <li>
-          <div num="7" class="user"><div class="level level0"><div class="inner"><div class="head"><img src="../../image/head.png"></div><i class="star star0"></i><div class="num num7"></div></div></div></div>
-        </li>
-        <li class="unchoose"></li>
-      </ul>
-      <p class="tips">请长按提交按钮进行提交</p>
-      <div class="btnWrap">
-        <div class="btn btn2 longPress" v-on:click="submmitUserChoose">
-          <span class="process"><b></b></span>
-          <span class="text">提交</span>
+  <div class="layer layerSixCenter  layerEventChoose">
+    <div class="inner">
+      <h2 class="title">标题</h2>
+      <div class="content">
+        <p class="info">请XXXXXXXX</p>
+        <ul class="voteList">
+          <li>
+            <div num="7" class="user"><div class="level level0"><div class="inner"><div class="head"><img src="../../image/head.png"></div><i class="star star0"></i><div class="num num7"></div></div></div></div>
+          </li>
+          <li class="unchoose"></li>
+        </ul>
+        <p class="tips">请长按提交按钮进行提交</p>
+        <div class="btnWrap">
+          <div class="btn btn2 longPress" v-on:click="submmitUserChoose">
+            <span class="process"><b></b></span>
+            <span class="text">提交</span>
+          </div>
+          <div class="btn btn3" v-on:click="resetUserChoose">重置</div>
         </div>
-        <div class="btn btn3" v-on:click="resetUserChoose">重置</div>
       </div>
     </div>
   </div>
     <div class="layer layerEventVoteResult">
-      <h2 class="title">投票结果</h2>
-      <div class="content">
-        <p class="info">【1】号票数最多</p>
-        <ul class="resultList">
-          <li class="result">
-            <div class="left">
-              <b class="userNum">1</b>
-            </div>
-            <div class="right">
-              <ul>
-                    <li>
-                      <b class="userNum">1</b>
-                    </li>
-                    <li>
-                      <b class="userNum">1</b>
-                    </li>
-                    <li>
-                      <b class="userNum">1</b>
-                    </li>
-                    <li>
-                      <b class="userNum">1</b>
-                    </li>
-                    <li>
-                      <b class="userNum">1</b>
-                    </li>
-                    <li>
-                      <b class="userNum">1</b>
-                    </li>
-              </ul>
-              
-            </div>
-          </li>
-          <li class="result">
-            <div class="left">
-              <b class="userNum">1</b>
-            </div>
-            <div class="right">
-              <ul>
-               <li>
-                      <b class="userNum">1</b>
-                    </li>
-                    <li>
-                      <b class="userNum">1</b>
-                    </li>
-                    <li>
-                      <b class="userNum">1</b>
-                    </li>
-                    <li>
-                      <b class="userNum">1</b>
-                    </li>
-                    
-              </ul>
-              
-            </div>
-          </li>
-          <li class="result">
-            <div class="left">
-              <b class="userNum qi">弃</b>
-            </div>
-            <div class="right">
-              <ul>
-                <li>
-                      <b class="userNum">1</b>
-                    </li>
-                    <li>
-                      <b class="userNum">1</b>
-                    </li>
-                    
-              </ul>
-              
-            </div>
-          </li>
-        </ul>
+      <div class="inner">
+        <h2 class="title">投票结果</h2>
+        <div class="content">
+          <p class="info">【1】号票数最多</p>
+          <ul class="resultList">
+            <li class="result">
+              <div class="left">
+                <b class="userNum">1</b>
+              </div>
+              <div class="right">
+                <ul>
+                  <li>
+                    <b class="userNum">1</b>
+                  </li>
+                  <li>
+                    <b class="userNum">1</b>
+                  </li>
+                  <li>
+                    <b class="userNum">1</b>
+                  </li>
+                  <li>
+                    <b class="userNum">1</b>
+                  </li>
+                  <li>
+                    <b class="userNum">1</b>
+                  </li>
+                  <li>
+                    <b class="userNum">1</b>
+                  </li>
+                </ul>
+
+              </div>
+            </li>
+            <li class="result">
+              <div class="left">
+                <b class="userNum">1</b>
+              </div>
+              <div class="right">
+                <ul>
+                  <li>
+                    <b class="userNum">1</b>
+                  </li>
+                  <li>
+                    <b class="userNum">1</b>
+                  </li>
+                  <li>
+                    <b class="userNum">1</b>
+                  </li>
+                  <li>
+                    <b class="userNum">1</b>
+                  </li>
+
+                </ul>
+
+              </div>
+            </li>
+            <li class="result">
+              <div class="left">
+                <b class="userNum qi">弃</b>
+              </div>
+              <div class="right">
+                <ul>
+                  <li>
+                    <b class="userNum">1</b>
+                  </li>
+                  <li>
+                    <b class="userNum">1</b>
+                  </li>
+
+                </ul>
+
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="btnWrap"><a class="btn btn2" v-on:click="sfLayOut">知道了</a></div>
       </div>
-      <div class="btnWrap"><a class="btn btn2" v-on:click="sfLayOut">知道了</a></div>
   </div>
     <div class="layer layerUserInfo" v-if="JSON.stringify(userinfo)!='{}'">
-            <div class="user userBack">
-                <div class="level level1">
-                    <div class="inner">
-                        <div class="head"><img src="../../image/head.png"></div>
-                        <i class="star star1"></i>
-                        <div class="num num1"></div>
-                    </div>
-                </div>
-                <ul class="infos">
-                    <li><span>昵称：</span><p>刀狼</p></li>
-                    <li><span>称号：</span><p>狼里一枝花</p></li>
-                    <li><span>MVP：</span><p></p></li>
-                </ul>
-                <div class="btnWrap">
-                    <a class="btn btn2" v-on:click="addAtten">关注</a>
-                </div>    
+      <div class="inner">
+        <div class="user userBack">
+          <div class="level level1">
+            <div class="inner">
+              <div class="head"><img src="../../image/head.png"></div>
+              <i class="star star1"></i>
+              <div class="num num1"></div>
             </div>
+          </div>
+          <ul class="infos">
+            <li><span>昵称：</span><p>刀狼</p></li>
+            <li><span>称号：</span><p>狼里一枝花</p></li>
+            <li><span>MVP：</span><p></p></li>
+          </ul>
+          <div class="btnWrap">
+            <a class="btn btn2" v-on:click="addAtten">关注</a>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="layer layerEventDecide">
+      <div class="inner">
         <h2 class="title">警长竞选</h2>
         <div class="content">
-            <p class="info">是否参与警长竞选</p>
-            <div class="btnWrap twoCol">
-                <a class="btn btn2" v-on:click="runForCampaign(1)">竞选</a>
-                <a class="btn btn3" v-on:click="runForCampaign(0)">放弃</a>
-            </div>
+          <p class="info">是否参与警长竞选</p>
+          <div class="btnWrap twoCol">
+            <a class="btn btn2" v-on:click="runForCampaign(1)">竞选</a>
+            <a class="btn btn3" v-on:click="runForCampaign(0)">放弃</a>
+          </div>
         </div>
+      </div>
     </div>
 
 </div>

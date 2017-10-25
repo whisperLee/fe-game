@@ -1,0 +1,110 @@
+@charset "utf-8";
+.layer{
+  position: absolute; left:10%; top:50%; width:80%; height:auto;z-index: 99; display: none;
+  -webkit-transform:translateY(-50%); background: #fff; border:2px solid #1abc9c; border-radius: 10px;
+  .title{
+    background: $color7; color: $color; text-align: center;
+  }
+  .info{
+    font-size: .16rem; color: $color7; line-height: .2rem; text-align: center;padding: .1rem;
+  }
+  .content{overflow: hidden}
+  .btn{ margin: .2rem auto;}
+}
+/**
+.layer.layerNotice  通知类
+.layer.layerResult  结果展示类
+.layer.layerEvent   事件类
+.layer.layerConfirm 确认类
+*/
+.layer.layerShenfen{
+  top:10%; height:80%;
+  -webkit-transform:translateY(0); background: none; border:none; border-radius: 10px;
+  .title{background: none;}
+  .content{position: absolute; left:0; top:.6rem; bottom: .6rem; width:100%; height:auto;  }
+  .btnWrap{position: absolute; left:0; bottom:0; width: 100%;
+    display: none;
+    .btn{margin-top:0; margin-bottom: 0;}
+  }
+}
+//toupiao
+.layer.layerEventChoose {
+  left:20%;
+  width:60%;
+  .voteList {
+    text-align: center;
+    li {
+      position: relative;
+      width: 40%;
+      height:0;
+      padding-top:40%;
+      display: inline-block;
+      .user{
+        position: absolute;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+      }
+    }
+    li.unchoose{
+      box-shadow: 0px 0px 1px 0px $color5;
+    }
+  }
+}
+//toupiaojieguozhanshi
+.layer.layerEventVoteResult{
+  .content{
+    .result{
+      position: relative; overflow: hidden; border-bottom:  1px solid #1abc9c; padding: .1rem .05rem .1rem 20%;
+      .userNum{
+        font-size: .14rem; color: $color3; width:.24rem; height:.24rem; line-height: .24rem; border-radius: 50%; background: $color; display: block; text-align: center; border: 1px solid $color3;
+      }
+      .left{
+        position: absolute; left:0; top:0; width:20%; height:100%;
+        .userNum{
+          position: absolute; left:50%; top:50%; -webkit-transform: translate(-50%,-50%);
+        }
+        .userNum.qi{border-color: #34495e; color: #34495e;}
+      }
+      .right{
+        position: relative; width:100%;
+        ul{
+          overflow: hidden; margin-left: .2rem;
+          li{
+            float: left; width:20%;
+            .userNum{border-color: #1abc9c; color:#1abc9c;  margin: .08rem auto}
+          }
+        }
+      }
+      .right:before{
+        content: ""; position: absolute; left:0; top:0; width:.15rem; height:100%;
+        background: url(../../image/jiantou.png) no-repeat center; background-size: contain;
+      }
+
+
+    }
+  }
+}
+
+.layerUserInfo{
+  .infos{
+    width:75%; margin: 0 auto .1rem;
+    li{
+      font-size: .12rem; color: #000;
+      span{
+        width:.8rem; display: inline-block; text-align: left; color: #16a085; text-align: right; 
+      }
+      p{
+        display: inline-block; color: #34495e;
+      }
+    }
+  }
+} 
+
+
+
+
+
+
+            

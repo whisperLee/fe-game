@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<!--forbidden operators-->
+<!--<html><head><title></title></head></body></html>-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta itemprop="name" content="腾讯新闻"/>
+<meta itemprop="image" content="http://mat1.gtimg.com/news/2017/zt/htfc/share.jpg" />
+<meta name="description" itemprop="description" content="腾讯新闻" />
+<meta name="Keywords" content="腾讯新闻,腾讯网,QQ,Tencent" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<meta name="format-detection"content="telephone=no">
+<link href="../css/reset.css" rel="stylesheet" type="text/css" media="screen" />
+<title>腾讯新闻</title>
+<style>
+
+body{background: #072038; color: #fff; font-size: .16rem; line-height: 150%;}
+.inner{position: absolute; top:50%; width:100%; height:auto; -webkit-transform:translateY(-50%); overflow: hidden;}
+.list li{background: rgba(36,74,111,0.5); border-radius: 5px; width:50%; display: block; margin: .3rem auto; height:.44rem;  line-height: .44rem; font-size: .2rem;  text-align: center; }
+
+.comList{padding: .1rem;}
+.comList li{width:100%; height: 1rem; margin-bottom: .1rem; background:url(../../image/back/daozei.png) no-repeat right center #4ed2e7; background-size: auto 80%;  padding-top: .14rem;padding-left: .2rem; box-sizing: border-box; border-radius: 5px;}
+.comList li:nth-child(5n){background-color: #4ed2e7;  }
+.comList li:nth-child(5n+1){background-color: #07bda7; background-image:url(../../image/back/nvwu.png)}
+.comList li:nth-child(5n+2){background-color: #4196cf; background-image:url(../../image/back/daozei.png)}
+.comList li:nth-child(5n+3){background-color: #3bca7b;  background-image:url(../../image/back/baichi.png)}
+.comList li:nth-child(5n+4){background-color: #8d45a8; }
+.comList li p{   color: #fff; font-size: .14rem; line-height: .24rem;}
+
+
+.tab-box{margin: .15rem; overflow: hidden; font-size: .16rem; line-height: 150%; color: #fff;}
+.tab-box h3{font-size:.2rem; line-height: 150%; }
+.tab-box .tabs{clear: both; overflow: hidden;}
+.tab-box .tabs li{width:33.33%;  float: left;  }
+.tab-box .tabs li a{display: block; width:76%; height:100%; margin: .15rem auto 0; border: 2px solid transparent ;  line-height: .3rem;   border-radius: .15rem; text-align: center; background: rgba(36,74,111,0.5);}
+.tab-box .tabs li.active a{border: 2px solid #fff;}
+.num-set{position: relative; height:.3rem; padding-left: .2rem; margin-top: .15rem ;}
+.num-set .input{position: absolute; right:.15rem; top:0; height:100%;}
+.num-set span,.num-set input{display: block; float: right; width:.3rem; height:.3rem; background-size: .2rem .2rem; background-repeat: no-repeat; background-position: center; background-color:rgba(36,74,111,0.5); box-sizing: border-box;}
+.num-set span{border-radius: 50%;}
+.num-set input{ border-radius: 3px; border:none; background: none; text-align: center; font-size: .16rem; line-height: .3rem;color: #fff; }
+.num-set span.add{background-image: url(../../image/add.png);}
+.num-set span.sub{background-image: url(../../image/sub.png);}
+.total{font-size: .2rem; padding-left: .15rem; }
+.btn{display: block; width:50%; height:.4rem; border-radius: 5px; margin: .3rem auto; line-height: .4rem; background:rgba(36,74,111,0.5); text-align: center; font-size: .16rem; color: #fff;}
+</style>
+<meta name="author" content="lynne"/>
+</head>
+<body>
+
+  <div class="main" id="gameSet">
+    <div class="page" v-show="flow==0">
+      <div class="inner">
+        <ul class="list">
+          <li v-for="(item,idx) in combinats" v-on:click="chooseType" :typeid="idx">{{ item.name }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="page" v-show="flow==1">
+      <div class="inner" v-if="comType==0">
+        <ul class="comList">
+          <li v-for="content in combinats[0].content.combination" v-on:click="chooseBaseCom" :typeid="content.id" :playercount="content.playerCount">
+            <p v-for="item in content.list">
+              {{ item }}
+            </p>
+          </li>
+        </ul>
+      </div>
+      <div class="inner" v-else>
+        <div class="tab-box">
+            <h3>好人阵营</h3>
+            <div class="num-set" v-for="item in combinats[1].content.identity.pingmin" :typeId="item.id">
+                {{item.name}}
+                <div class="input"><span class="add" v-on:click="add(item)"></span><input type="number" :value="item.select"><span class="sub" v-on:click="sub(item)"></span></div>
+            </div>
+            <ul class="tabs">
+                <li v-for="item in combinats[1].content.identity.GOOD" :typeId="item.id" v-bind:class='{ "active" : item.select}'    v-on:click="toggle(item)" >
+                    <a>{{ item.name }}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-box">
+            <h3>狼人阵营</h3>
+            <div class="num-set" v-for="item in combinats[1].content.identity.langren" :typeId="item.id">
+                {{item.name}}
+                <div class="input"><span class="add" v-on:click="add(item)"></span><input type="number" :value="item.select"><span class="sub" v-on:click="sub(item)"></span></div>
+            </div>
+            <ul class="tabs">
+                <li v-for="item in combinats[1].content.identity.WEREWOLF" :typeId="item.id" v-bind:class='{ "active" : item.select}' v-on:click="toggle(item)">
+                    <a>{{ item.name }}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-box">
+            <h3>其它</h3>
+            <ul class="tabs">
+                <li v-for="item in combinats[1].content.identity.UNKNOWN" :typeId="item.id" v-bind:class='{ "active" : item.select}' v-on:click="toggle(item)">
+                    <a>{{ item.name }}</a>
+                </li>
+            </ul>
+        </div>
+        <p class="total">共计：{{combinats[1].content.total}}人</p> 
+        <a class="btn" v-on:click="addCombination">配置完成</a>
+      </div>
+    </div>
+    <div class="page" v-show="flow==2">
+      <div class="inner">
+        <ul class="list">
+          <li v-for="(item,idx) in selfs" v-on:click="chooseSelfs" :typeid="idx">{{ item }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="page" v-show="flow==3">
+      <div class="inner">
+        <ul class="list">
+          <li v-for="(item,idx) in victory" v-on:click="chooseVictory" :typeid="idx">{{ item }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+    <script type="text/javascript" src="../../../js/zepto.min.js"></script>
+    <script type="text/javascript" src="../../../js/touch.js"></script>
+    <script type="text/javascript" src="../../../js/vue.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+    <script>
+     $(function(){
+
+        var setGame = new Vue({
+            el: '#gameSet',
+            data: {
+                flow: 0,
+                combinats: [ 
+                    {
+                        name:'标准',
+                        content:{
+                           combination:[] 
+                        }
+                        
+                    },
+                    {
+                        name:'娱乐',
+                        content:{
+                           identity:{},
+                            total:0,
+                            min:9,
+                            max:15 
+                        }
+                        
+                    }
+                ],
+                comType:-1,
+                total:0,
+                selfs: ['全自助', '半自助', '手工'],
+                victory: ['屠城', '屠边'],
+                postData: {
+                    boxId: 1, // 包厢号
+                    combinationId: 0, // 板子id
+                    config: {}, // 人员配置
+                    gameModule: 0, // 游戏模式
+                    playerCount: 0, // 游戏人数
+                    type: 0 // 胜利条件
+                }
+            },
+            created:function(){
+                this.getAllCombination();
+                this.getAllIdentity();
+            },
+            methods: {
+                getAllCombination: function () {
+                    var _self = this;
+                    var d = {
+                        url:"http://liyn.me:8888/web-api/v1/game/play/getAllCombination",
+                        data:{prefabricateFlag: true},
+                        success:function(d){
+                            if(d.status.code=="OK"){
+                                var l = d.data.dataList
+                                var combination = []
+                                for(var i=0;i<l.length;i++){
+                                    var com = {
+                                        id:l[i].config,
+                                        playerCount: l[i].playerCount,
+                                        list:[
+                                            l[i].configMap['狼人']+'狼人',l[i].configMap['平民']+'平民',''
+                                        ]  
+                                    };
+                                    for(var k in l[i].configMap){
+                                        if(k!='狼人' && k!='平民'){
+                                            com.list[2]+=k+" "
+                                        }
+                                    }
+                                    combination.push(com);
+                                    
+                                } 
+                                _self.combinats[0].content.combination = combination;
+                            }
+                        }
+                    };
+                    main.ajax(d);
+                },
+                getAllIdentity: function () {
+                    var _self = this;
+                    var d = {
+                        url:'http://liyn.me:8888/web-api/v1/game/play/getAllIdentity',
+                        data:{},
+                        success:function(d){
+                            if(d.status.code === 'OK'){
+                                var identity = {}
+                                for(var k in d.data){
+                                    var obj = []
+                                    for(var i = 0;i < d.data[k].length;i++){
+                                        if(d.data[k][i].name === '平民'){
+                                            if(!identity["pingmin"]){
+                                                identity["pingmin"] = [];
+                                            }
+                                            identity["pingmin"].push({
+                                                id:d.data[k][i].id,
+                                                name:d.data[k][i].name,
+                                                select:3
+                                            })
+                                        }else if(d.data[k][i].name === '狼人'){
+                                            if(!identity["langren"]){
+                                                identity["langren"] = [];
+                                            }
+                                            identity["langren"].push({
+                                                id:d.data[k][i].id,
+                                                name:d.data[k][i].name,
+                                                select:3
+                                            })
+                                        }else{
+                                            if(!identity[k]){
+                                                identity[k] = [];
+                                            }
+                                            identity[k].push({
+                                                id:d.data[k][i].id,
+                                                name:d.data[k][i].name,
+                                                select:0
+                                            })
+                                        }
+                                    }
+                                }
+                                _self.combinats[1].content.identity = identity;
+                                _self.setTotal()
+                            }
+                        }
+                    };
+                    main.ajax(d);
+                },
+                chooseType: function () {
+                    this.flow = 1
+                    this.comType = parseInt(event.currentTarget.getAttribute('typeid'))
+                    console.log(this.flow)
+                    console.log(this.comType)
+                },
+                chooseBaseCom: function () {
+                    this.flow = 2
+                    this.postData.combinationId = parseInt(event.currentTarget.getAttribute('typeid'))
+                    this.postData.playerCount = event.currentTarget.getAttribute('playercount')
+                    console.log(this.postData.playerCount)
+                },
+                toggle: function (item) {
+                    item.select = !item.select
+                    this.setTotal()
+                },
+                add: function (item) {
+                    item.select++
+                    this.setTotal()
+                },
+                sub: function (item) {
+                    if(item.select>0){
+                        item.select--
+                        this.setTotal()
+                    }
+                },
+                setTotal:function(){
+                    var total  = 0;
+                    var s  = 0;
+                    for(var k in this.combinats[1].content.identity){
+                        for(var i=0;i<this.combinats[1].content.identity[k].length;i++){
+                            var s= this.combinats[1].content.identity[k][i].select;
+                            total += s?s:0
+                        }
+                    }
+                    this.combinats[1].content.total = total
+                },
+                addCombination: function(){
+                    var cus = this.combinats[1].content;
+                    if(cus.min<=cus.total && cus.total<=cus.max){
+                        var config = {}
+                        for(var k in cus.identity){
+                            for(var i=0;i<cus.identity[k].length;i++){
+                                var s= cus.identity[k][i].select
+                                s = s?s:0
+                                if(s){
+                                    config[cus.identity[k][i].id] = s
+                                }
+                                 
+                            }
+                        }
+                        this.postData = $.extend({},this.postData,{
+                            combinationId: null,
+                            playerCount: cus.total,
+                            config: config
+                        });
+                        this.flow = 2
+                    }else{
+                        alert("游戏人数请在"+cus.min+"和"+cus.max+"之间")
+                    }
+                },
+                chooseSelfs: function () {
+                    this.flow = 3
+                    this.postData.gameModule = parseInt(event.currentTarget.getAttribute('typeid'))
+                },
+                chooseVictory: function () {
+                    this.flow = 4
+                    this.postData.type = parseInt(event.currentTarget.getAttribute('typeid'))
+                    this.addScreeningByUser()
+                },
+                addScreeningByUser: function () {
+                    console.log(this.postData)
+                    var d = {
+                      url: 'http://liyn.me:8888/web-api/v1/game/play/addScreeningByUser',
+                      data: this.postData,
+                      success: function (d) {
+                        if (d.status.code === 'OK') {
+                          console.log(d)
+                        }
+                      }
+                    }
+                    main.ajax(d)
+                },
+              }
+
+        });
+
+     });   
+    </script>
+</body>
+</html>
+<!--<html><head><title></title></head></body></html>-->

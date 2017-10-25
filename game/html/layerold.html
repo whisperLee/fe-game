@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<!--forbidden operators-->
+<!--<html><head><title></title></head></body></html>-->
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' />
+<meta itemprop='name' content='腾讯新闻'/>
+<meta itemprop='image' content='http://mat1.gtimg.com/news/2017/zt/htfc/share.jpg' />
+<meta name='description' itemprop='description' content='腾讯新闻' />
+<meta name='Keywords' content='腾讯新闻,腾讯网,QQ,Tencent' />
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'/>
+<meta name='format-detection'content='telephone=no'>
+<meta name='apple-mobile-web-app-capable' content='yes' />
+<meta name='apple-mobile-web-app-status-bar-style' content='black' />
+<link rel='stylesheet' type='text/css' href='../css/reset.css' />
+<title>腾讯新闻</title>
+<style>
+body{background:  #fff; }
+.main{ background: #fff; background-size: cover; position: absolute; left:0; top:0; width:100%; height: 100%; font-size: .16rem; line-height: 150%; color: #fff;}
+.main h2.title{text-align: center; font-size: .2rem; color: #fff; line-height: .4rem; }
+/*身份抢夺*/
+.user{
+  position: relative; -webkit-transform-origin:center center;}
+.level{
+    width:100%;
+    height:100%;}
+.level .inner:before,.level .star,.level .star:before,.level .num, .level .num:before {
+      content: "";
+      position: absolute;
+      left:0; bottom:0; 
+      width:100%;
+      height:100%;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-position: center;
+}
+.level .inner{
+      position: relative;
+      text-align: center;
+      padding: 12%;
+      box-sizing: border-box;
+      line-height: 0;
+      background: none;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-position: center;
+      width:80%;
+      height:80%;
+      margin: .1rem auto;}
+.level .inner:before{
+      background-image: url(../image/level/1.png);
+    }
+
+      .star{background-image:url(../image/level/l_b.png); z-index: 2;}
+      .star:before{
+            background-image: url('../../static/image/level/1_0.png');
+          }
+      .num{background-image:url(../image/level/0_1_0.png); z-index: 2;}
+      .head{
+        width:100%;
+        height:100%;
+        
+      }
+      .head img{
+          width:100%;
+          height:auto;
+          margin: 0 auto;
+          z-index: 2;
+          position: relative
+        }
+
+
+
+.user{
+  position: relative;
+  opacity: 1;
+}
+.layer{position: absolute; left:10%; top:50%; width:80%; height:auto; -webkit-transform:translateY(-50%); background: rgba(36,74,111,0.8); border-radius: 10px;}
+.layer.voteResult .content{overflow: hidden;  }
+.layer.voteResult .content .result{position: relative; overflow: hidden; border-top:  2px solid #06213b; padding-left: 20%;}
+.layer.voteResult .content .left{position: absolute; left:0; width:20%; height:100%;}
+.layer.voteResult .content .left .user{position: absolute; left:50%; top:50%; -webkit-transform:translate(-50%,-50%); width:100%;}
+.layer.voteResult .content .right{position: relative; width:100%;}
+.layer.voteResult .content .right:before{content: ""; position: absolute; left:0; top:0; width:.2rem; height:100%; background: url(../image/jiantou.png) no-repeat center; background-size: contain;}
+.layer.voteResult .content .right ul{overflow: hidden; margin-left: .2rem;}
+.layer.voteResult .content .right li{float: left; width:25%;}
+</style>
+<meta name='author' content='lynnenie'/>
+</head>
+<body>
+<div class='main night' id='before'>
+  
+  <div class="layer voteResult">
+      <h2 class="title">投票结果：[1]号票数最多</h2>
+      <div class="content">
+        <ul class="resultList">
+          <li class="result">
+            <div class="left">
+              <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+            </div>
+            <div class="right">
+              <ul>
+                <li>
+                  <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                </li>
+                <li>
+                  <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                </li>
+                <li>
+                  <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                </li>
+                <li>
+                  <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                </li>
+                <li>
+                  <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                </li>
+              </ul>
+              
+            </div>
+          </li>
+          <li class="result">
+            <div class="left">
+              <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+            </div>
+            <div class="right">
+              <ul>
+                <li>
+                  <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                </li>
+                <li>
+                  <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                </li>
+                <li>
+                  <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                </li>
+              </ul>
+              
+            </div>
+          </li>
+          <li class="result">
+            <div class="left">
+              <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+            </div>
+            <div class="right">
+              <ul>
+                <li>
+                  <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                </li>
+                <li>
+                  <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                </li>
+              </ul>
+              
+            </div>
+          </li>
+        </ul>
+          
+
+      </div>
+      <div class="btnWrap"><a class="btn" v-on:click="sfLayOut">知道了</a></div>
+  </div>
+
+</div>
+    <script type='text/javascript' src='../../js/zepto.min.js'></script>
+    <script type='text/javascript' src='../../js/velocity.min.js'></script>
+    <script type='text/javascript' src='../../js/velocity.ui.js'></script>
+    <script type='text/javascript' src='../../js/touch.js'></script>
+    <script type='text/javascript' src='../../js/vue.js'></script>
+    <script type='text/javascript' src='animate.js'></script>
+    <script>
+    $(function(){
+      
+      var game = {
+        countDownTime: '',
+        shenfen_flow: 0,
+        data:{},
+        init: function(){
+          var _self = this;
+          _self.qiangInit()
+
+          $('.layerShenfen .btn').off().on('click',function () {
+            animate.sfLayerOuter()
+          })
+
+          $('.layerShenfen .shenfen').off().on("touchstart",function(){
+            var el = $(this);
+            if(_self.shenfen_flow == 0){//必须动画执行完成后才能开始查看动画
+              animate.fanzhuan(el,function () {
+                _self.shenfen_flow = 1;
+                el.addClass('on');
+              }, function () {
+                _self.shenfen_flow=2;
+              })
+            }
+          }).on("touchend",function(){
+            el = $(this);
+            if(_self.shenfen_flow==2){//如果已经查看完身份，则正常执行回返动画
+              animate.fanzhuan(el,function () {
+                el.removeClass('on');
+                _self.shenfen_flow=3;
+              }, function () {
+                _self.shenfen_flow=0;
+                animate.fadeIn($('.layerShenfen .btnWrap'))
+              })
+            }else{//查看过程中终止查看
+              animate.stopAll(el);//停止正在进行的一切动画
+              if(_self.shenfen_flow==0){//如果还没到90度，则直接翻转回来
+                el.velocity(
+                  {rotateY: "0deg"},
+                  {
+                    duration:300,
+                    easing: "ease-in-out",
+                    complete:function(){
+                      _self.shenfen_flow=0;
+                    }
+                  }
+                );
+              }else if(_self.shenfen_flow==1){//过了90度，查看到一部分身份牌时，需要先回转到90度，并将身份样式移除，在回转到0度
+                animate.fanzhuan(el,function () {
+                  el.removeClass('on');
+                  _self.shenfen_flow=3;
+                }, function () {
+                  _self.shenfen_flow=0;
+                })
+              }
+            }
+            
+          });
+
+          $('.shenfen.btn').off().on('click',function () {
+            animate.sfLayerInter()
+          })
+        },
+        //抢身份初始化
+        qiangInit: function () {
+          var _self = this;
+          _self.title('准备抢身份');
+          $('.qiang .shenfens li').each(function(idx){
+            var el = $(this)
+            el.velocity({
+              translateX:[0,(1-idx)*100+'%']
+            },{
+              duration: 500,
+              easing: 'ease-in-out',
+              complete: function () {
+                console.log(1)
+              }
+            });
+          })
+          setTimeout( function () {
+            _self.qiangStart()
+          }, 1000)
+        },
+        // 开始抢身份
+        qiangStart: function () {
+          var _self = this;
+          _self.title('请选择你想要的身份')
+          $('.qiang .shenfens li').each(function(idx){
+            var el = $(this)
+            animate.fanzhuan(el,function () {
+              el.find('.shenfen').addClass('on')
+            },function () {
+              _self.qiangSf(el)
+            })
+
+          })
+          // 倒计时
+          _self.countDown(5, $('.countDown'),function () {},function () {
+            _self.submitQiang()
+          })
+          
+        },
+        // 抢身份title
+        title: function (title) {
+          $('.qiang .title').html(title)
+        },
+        // 倒计时
+        countDown: function (time,el,fun1,fun2) {
+          var _self = this;
+          fun1 = fun1 || function () { }
+          fun2 = fun2 || function () { }
+          el.show().find('span').html(time)
+
+          _self.countDownTime = setInterval(function () {
+            if (time > 0) {
+              time--
+              el.find('span').html(time)
+              fun1(time)
+            } else {
+              _self.countDownStop()
+              fun2()
+            }
+          }, 1000)
+        },
+        // 停止倒计时
+        countDownStop: function (el) {
+          var _self = this
+          el = el || $('.countDown')
+          clearInterval(_self.countDownTime)
+          el.hide()
+        },
+        // 抢身份结束动画
+        submitQiang: function (el) {
+          var _self = this;
+
+          $('.qiang .shenfens li').off('click')
+
+          if(el){ // 选择身份
+            _self.countDownStop()
+            _self.title('您选择的身份是：' + el.attr('name'))
+            //未选择身份置灰，缩小
+            el.siblings().each(function () {
+              $(this).addClass('unselect')
+              animate.scale($(this),0.5)
+            })
+            // 选择的身份放大
+            el.addClass('select')
+            animate.scale(el,1.2)
+            this.data = {
+              id:el.attr('typeId')
+            }
+          }else{ // 未选择身份
+            _self.title('您没有选择任何身份')
+            $('.qiang .shenfens li').each(function () {
+              var el = $(this)
+              animate.fanzhuan(el,function () {
+                el.find('.shenfen').removeClass('on')
+              })
+            })
+          }
+          _self.websocketSubmit()
+        },
+        // 提交身份，并展示发放的身份
+        websocketSubmit: function () {
+          var _self = this;
+          // 身份提交
+          // XXXXXXXXX
+
+          // 获取身份，并展示身份
+          setTimeout(function () { // 即为有返回结果的时候执行
+            // 抢身份弹层隐藏
+            $('.qiang .shenfens li').each(function (idx) {
+                  var el = $(this)
+                  el.velocity(
+                    {
+                      translateX:[(1-idx)*100+'%',0],
+                      scale: 0,
+                      opacity: 0
+                    },
+                    {
+                      duration:400,
+                      easing: 'ease-in-out'
+                    }
+                  )
+              })
+            animate.fadeOut($('.qiang'))
+            // 身份弹层，弹出
+            animate.sfLayerInter($('.layerShenfen'), {
+              width:'10%',
+              height:'10%',
+              left:'50%',
+              top:'50%',
+              display:'block',
+              opacity: 0
+            });
+        },3000)
+          
+        },
+        qiangSf: function (el) {
+          var _self = this;
+          el.on('click', function () {
+            if(el.hasClass('no')){
+              alert('您的玉米不够，请选择其它身份')
+            }else{
+              _self.submitQiang(el)
+            }
+          })
+        }
+
+      };
+      
+      game.init();
+    }); 
+    </script>
+</body>
+</html>
+<!--<html><head><title></title></head></body></html>-->

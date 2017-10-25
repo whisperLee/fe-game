@@ -1,0 +1,152 @@
+.user-list{
+  position: relative; width:100%; height:auto; overflow: hidden;
+  li{
+    position: absolute;
+    -webkit-transform-origin: center center;
+    opacity: 0;
+    .user{
+      width: 100%;
+      height: 100%;
+      -webkit-transform-origin: center center;
+    }
+  }
+
+}
+.user{
+  position: relative;
+  .level{
+    width:100%;
+    height:100%;
+    .inner:before,.star,.star:before,.num, .num:before {
+      content: "";
+      position: absolute;
+      left:0; bottom:0; width:100%;
+      height:100%;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-position: center;
+    }
+    .inner{
+      position: relative;
+      text-align: center;
+      padding: 12%;
+      box-sizing: border-box;
+      line-height: 0;
+      background: none;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-position: center;
+      width:80%;
+      height:80%;
+      margin: .1rem auto;
+      .star{background-image:url(../image/level/l_b.png); z-index: 2;}
+      .num{background-image:url(../image/level/0_1_0.png); z-index: 2;}
+      @for $i from 1 through 15{
+        .num#{$i}:before{
+        background-image: url('../image/level/n#{$i}.png');
+        }
+      }
+      .head{
+        width:100%;
+        height:100%;
+        position: relative;
+        img{
+          width:100%;
+          height:auto;
+          margin: 0 auto;
+          z-index: 2;
+          position: relative
+        }
+      }
+    }
+    .inner:before{
+      background-image: url(../image/level/0.png);
+    }
+  }
+  @for $i from 1 through 5{
+    .level#{$i}{
+      .inner{
+        .num{background-image: url(../image/level/#{$i}_1_0.png);}
+        @for $j from 1 through 3{
+          .star#{$j}:before{
+            background-image: url('../image/level/1_#{$j}.png');
+          }
+        }
+      }
+      .inner:before{background-image: url(../image/level/#{$i}.png);}
+    }
+  }
+  .nick{
+    position: absolute;
+    left:0;
+    bottom: 0;
+    font-size:.12rem;
+    line-height: .12rem;
+  }
+  .designation{
+    position: absolute;
+    right:0;
+    bottom: 0;
+    font-size:.12rem;
+    line-height: .12rem;
+  }
+
+}
+.userBack.user{
+  .level{
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    .inner{
+      width:40%;
+      padding: 6%;
+    }
+  }
+  @for $i from 1 through 5{
+    .level#{$i}{
+      background-image:url(../image/level/#{$i}_0.png);
+    }
+  }
+}
+
+/*user dead*/
+.user.status .level{opacity: 0.8;}
+.user.status .head img{visibility: hidden; }
+.user.dead .head{background-image: url(../image/dead.png); }
+
+
+
+
+.mine{
+  position: absolute;
+  left:0;
+  bottom:.1rem;
+  width:100%;
+  height:auto;
+  .user{
+    width:50%;
+    margin:0 auto;
+    //.nick,.desig{
+    //  position: absolute;
+    //  bottom:0;
+    //  font-size: .16rem;
+    //  color: #fff;
+    //}
+  }
+  .identity,.leader{
+    position: absolute;
+
+    top:50%;
+    -webkit-transform:translateY(-50%);
+    width:.3rem;
+    height:.45rem;
+    background: url(../image/sf.png) no-repeat center;
+    background-size: contain;
+  }
+  .identity{
+    left:.2rem;
+  }
+  .leader{
+    right:.2rem;
+  }
+}

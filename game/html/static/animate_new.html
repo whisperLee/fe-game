@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<!--forbidden operators-->
+<!--<html><head><title></title></head></body></html>-->
+<html>
+<head>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' />
+<meta itemprop='name' content='腾讯新闻'/>
+<meta itemprop='image' content='http://mat1.gtimg.com/news/2017/zt/htfc/share.jpg' />
+<meta name='description' itemprop='description' content='腾讯新闻' />
+<meta name='Keywords' content='腾讯新闻,腾讯网,QQ,Tencent' />
+<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no'/>
+<meta name='format-detection'content='telephone=no'>
+<meta name='apple-mobile-web-app-capable' content='yes' />
+<meta name='apple-mobile-web-app-status-bar-style' content='black' />
+<link rel='stylesheet' type='text/css' href='../../css/global.css' />
+<title>腾讯新闻</title>
+<style>
+body{background:  #5d9ad0; }
+.main{ background: #2a69a0; background-size: cover; position: absolute; left:0; top:0; width:100%; height: 100%; font-size: .16rem; line-height: 150%; color: #fff;}
+/*身份抢夺*/
+.qiang{ position:absolute;width:100%;height:100%;left:0;top:0; background: rgba(0,0,0,0.5); z-index: 99;}
+.qiang .inner{ position: absolute; left:5%; top:50%; width:90%; height:auto;  -webkit-transform:translateY(-60%);}
+.qiang .inner h2{text-align: center; font-size: .2rem; color: #fff; padding: .3rem 0;}
+.qiang .inner ul{position: relative; text-align: center;}
+.qiang .inner ul li{width:33%; height:auto; float: left;}
+.qiang .inner ul li.unselect{opacity: 0.8}
+.qiang .inner ul li .shenfen{width:80%; padding-top: 120%; height:0; margin: 0 auto; }
+.qiang .inner .countDown{position: absolute; left:0; top:-0.2rem; width:100%; font-size: .2rem; color: #fff;  text-align: center; display: none;}
+.qiang .inner .countDown span{color: #f00; display: inline-block; width: .4rem;}
+.qiang .inner .price{text-align: center; margin-top: .1rem;}
+.qiang .inner .yumi{position: relative; padding-left: .35rem; font-size: .16rem; line-height: .3rem;  display: inline-block;}
+.qiang .inner .yumi:before{content: ''; position: absolute; left:0; top:0; width:.3rem; height:.3rem; background: url(../../static/image/yumi2.png) no-repeat center; background-size: contain;}
+
+
+
+.shenfen{background: url(../../image/sf.png) no-repeat center bottom; background-size: contain;}
+.shenfen.on.pingmin{background-image: url(../../image/shenfen/pingmin.png)}
+.shenfen.on.langren{background-image: url(../../image/shenfen/langren.png)}
+.shenfen.on.shouwei{background-image: url(../../image/shenfen/shouwei.png)}
+
+.btn{display: block; width:50%; height:.4rem; border-radius: 5px; margin: .3rem auto; line-height: .4rem; background:rgba(36,74,111,0.5); text-align: center; overflow: hidden; }
+.layer.layerShenfen{position: absolute; left:10%; top:10%; height:80%; width:80%; display: none; opacity: 0; z-index: 99;}
+.layer.layerShenfen .content{position: absolute; left:0; top:0; bottom: .6rem; width:100%; height:auto;}
+
+.layer.layerShenfen .btnWrap{position: absolute; left:0; bottom:0; width: 100%;}
+.layer.layerShenfen .btnWrap .btn{margin-top:0; margin-bottom: 0;}
+</style>
+<meta name='author' content='lynnenie'/>
+</head>
+<body>
+<div class='main night' id='before'>
+  <div class='qiang'>
+    <div class='inner'>
+      <h2 class="title">身份抢夺</h2>
+      <div class="countDown">倒计时:<span></span></div>
+      <ul class='shenfens'>
+        <li typeId='1' name='平民'><div class='shenfen pingmin'></div><div class='price'>20</div></li>
+        <li typeId='2' name='狼人'><div class='shenfen  langren'></div><div class='price'>20</div></li>
+        <li typeId='3' name='守卫'><div class='shenfen shouwei'></div><div class='price'>20</div></li>
+      </ul>
+    </div>
+  </div>
+  <div class="layer layerShenfen">
+      <div class="content shenfen pingmin"></div>
+      <div class="btnWrap"><a class="btn" v-on:click="sfLayOut">知道了</a></div>
+  </div>
+</div>
+    <script type='text/javascript' src='../../../js/zepto.min.js'></script>
+    <script type='text/javascript' src='../../../js/velocity.min.js'></script>
+    <script type='text/javascript' src='../../../js/velocity.ui.js'></script>
+    <script type='text/javascript' src='../../../js/touch.js'></script>
+    <script type='text/javascript' src='../../../js/vue.js'></script>
+    <script>
+    $(function(){
+      
+      var game = {
+        countDownTime: '',
+        data:{},
+        init: function(){
+          var _this = this;
+          _this.qiangInit()
+        },
+        qiangInit: function () {
+          var _self = this;
+          _self.title('准备抢身份');
+          $('.qiang .shenfens li').each(function(idx){
+            var el = $(this)
+            el.velocity({
+              translateX:[0,(1-idx)*100+'%']
+            },{
+              duration: 500,
+              easing: 'ease-in-out',
+              complete: function () {
+                console.log(1)
+              }
+            });
+          })
+          setTimeout( function () {
+            _self.qiangStart()
+          }, 1000)
+        },
+        qiangStart: function () {
+          var _self = this;
+          _self.title('请选择你想要的身份')
+          $('.qiang .shenfens li').each(function(idx){
+            var el = $(this)
+            animate.fanzhuan(el,function () {
+              el.find('.shenfen').addClass('on')
+            },function () {
+              _self.qiangSf(el)
+            })
+
+          })
+          // 倒计时
+          _self.countDown(5, $('.countDown'),function () {},function () {
+            _self.submitQiang()
+          })
+          
+        },
+        title: function (title) {
+          $('.qiang .title').html(title)
+        },
+        countDown: function (time,el,fun1,fun2) {
+          var _self = this;
+          fun1 = fun1 || function () { }
+          fun2 = fun2 || function () { }
+          el.show().find('span').html(time)
+
+          _self.countDownTime = setInterval(function () {
+            if (time > 0) {
+              time--
+              el.find('span').html(time)
+              fun1(time)
+            } else {
+              _self.countDownStop()
+              fun2()
+            }
+          }, 1000)
+        },
+        countDownStop: function (el) {
+          var _self = this
+          el = el || $('.countDown')
+          clearInterval(_self.countDownTime)
+          el.hide()
+        },
+        submitQiang: function (el) {
+          var _self = this;
+
+          $('.qiang .shenfens li').off('click')
+
+          if(el){ // 选择身份
+            _self.countDownStop()
+            _self.title('您选择的身份是：' + el.attr('name'))
+            //未选择身份置灰，缩小
+            el.siblings().each(function () {
+              $(this).addClass('unselect')
+              animate.scale($(this),0.5)
+            })
+            // 选择的身份放大
+            el.addClass('select')
+            animate.scale(el,1.2)
+            this.data = {
+              id:el.attr('typeId')
+            }
+          }else{ // 未选择身份
+            _self.title('您没有选择任何身份')
+            $('.qiang .shenfens li').each(function () {
+              var el = $(this)
+              animate.fanzhuan(el,function () {
+                el.find('.shenfen').removeClass('on')
+              })
+            })
+          }
+          _self.websocketSubmit()
+        },
+        websocketSubmit: function () {
+          var _self = this;
+
+          setTimeout(function () {
+            /*
+            if(_self.data.id && _self.data.id!=''){
+              $('.qiang .shenfens li').each(function (idx) {
+                var el = $(this)
+                if(el.hasClass('unselect')){
+                  el.velocity(
+                    {
+                      translateX:[(1-idx)*100+'%',0],
+                      scale: 0,
+                      opacity: 0
+                    },
+                    {
+                      duration:400,
+                      easing: 'ease-in-out'
+                    }
+                  )
+                }else{
+                  el.velocity(
+                    {
+                      translateX:[(1-idx)*100+'%',0],
+                      opacity: 0
+                    },
+                    {
+                      duration:400,
+                      easing: 'ease-in-out'
+                    }
+                  )
+                  el.find('.price').velocity({opacity:0},400)
+                }
+              })
+            }else{
+              $('.qiang .shenfens li').each(function (idx) {
+                  var el = $(this)
+                  el.velocity(
+                    {
+                      translateX:[(1-idx)*100+'%',0],
+                      scale: 0,
+                      opacity: 0
+                    },
+                    {
+                      duration:400,
+                      easing: 'ease-in-out'
+                    }
+                  )
+              })
+            }
+            */
+            $('.qiang .shenfens li').each(function (idx) {
+                  var el = $(this)
+                  el.velocity(
+                    {
+                      translateX:[(1-idx)*100+'%',0],
+                      scale: 0,
+                      opacity: 0
+                    },
+                    {
+                      duration:400,
+                      easing: 'ease-in-out'
+                    }
+                  )
+              })
+            var initStyle={
+              width:0,
+              height:0,
+              left:'50%',
+              top:'50%',
+              display:"block",
+              opacity: 1
+            };
+            animate.layerEnter($('.layerShenfen'),initStyle,function(){});
+        },3000)
+          
+        },
+        qiangSf: function (el) {
+          var _self = this;
+          el.on('click', function () {
+            if(el.hasClass('no')){
+              alert('您的玉米不够，请选择其它身份')
+            }else{
+              _self.submitQiang(el)
+            }
+          })
+        }
+      };
+      var animate = {
+        layerEnter:function(el,initStyle,fun){
+          el.css(initStyle);
+          el.velocity({
+            width:"80%",
+            height:"80%",
+            left:"10%",
+            top:"10%",
+            opacity:1
+          },{
+            duration: 500,
+            complete:fun
+          });
+        },
+        layerOuter:function(el,done){
+          el.velocity("reverse",{duration: 300,complete:done});
+        },
+        fanzhuan: function (el,fun1,fun2) {
+          fun1 = fun1 || function () { }
+          fun2 = fun2 || function () { }
+          el.velocity(
+            {rotateY: '90deg'},
+            {
+              duration:400,
+              easing: 'ease-in-out',
+              complete:fun1
+            }
+          ).velocity(
+            {rotateY: '0deg'},
+            {
+              duration:300,
+              easing: 'ease-in-out',
+              complete:fun2
+            }
+          );
+        },
+        scale: function (el,scale,fun) {
+          fun = fun || function () { }
+          el.velocity(
+            {scale: scale},
+            {
+              duration:400,
+              easing: 'ease-in-out',
+              complete:fun
+            }
+          )
+        },
+        scaleOut: function (el,fun) {
+          fun = fun || function () { }
+          
+        }
+      }
+      game.init();
+    }); 
+    </script>
+</body>
+</html>
+<!--<html><head><title></title></head></body></html>-->

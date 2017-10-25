@@ -1,0 +1,40 @@
+.num-set{
+  position: relative;
+  height:.3rem;
+  padding-left: .2rem;
+  margin-top: .15rem ;
+  .input{
+    position: absolute;
+    right:.15rem; top:0;
+    height:100%;
+  }
+  span,input{
+    display: block;
+    float: right;
+    width:.3rem;
+    height:.3rem;
+    background-size: .2rem .2rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color:$color6;
+    box-sizing: border-box;
+  }
+  span{
+    border-radius: 50%;
+  }
+  span.add{
+    background-image: url(../image/add.png);
+  }
+  span.sub{
+    background-image: url(../image/sub.png);
+  }
+  input{
+    border-radius: 3px;
+    border:none;
+    background: none;
+    text-align: center;
+    font-size: .16rem;
+    line-height: .3rem;
+  }
+}
+

@@ -1,0 +1,11 @@
+@import 'main';
+@import "userHead";
+.ready{
+  .top{text-align: center; padding-top: .2rem;}
+  .center{
+    overflow: hidden;
+    padding-left:.1rem;
+    padding-right: .1rem;
+  }
+}
+

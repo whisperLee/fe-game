@@ -1,0 +1,12 @@
+@charset "utf-8";
+/*flex 布局*/
+ul.flexBox1{
+  display: -webkit-flex;
+  display: flex;
+  justify-content:space-between;
+  li{
+    width:100%;
+    position: relative;
+  }
+}
+

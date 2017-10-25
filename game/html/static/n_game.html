@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!--forbidden operators-->
+<!--<html><head><title></title></head></body></html>-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta itemprop="name" content="腾讯新闻"/>
+<meta itemprop="image" content="http://mat1.gtimg.com/news/2017/zt/htfc/share.jpg" />
+<meta name="description" itemprop="description" content="腾讯新闻" />
+<meta name="Keywords" content="腾讯新闻,腾讯网,QQ,Tencent" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<meta name="format-detection"content="telephone=no">
+<link href="../css/reset.css" rel="stylesheet" type="text/css" media="screen" />
+<title>腾讯新闻</title>
+<style>
+.simple_tips{font-size: .16rem; color: #000; text-align: center; padding-top: .5rem;}
+.simple_tips{position:fixed;z-index:100;left:50%;top:50%; width:2.6rem; padding:0.2rem 0.1rem; line-height:0.2rem;text-align:center;background-color:rgba(36,74,111,.75);color:#FFF;border-radius:5px; font-size:0.14rem; margin:-0.2rem 0 0 -1.3rem; font-size: 0.14rem;}
+</style>
+<meta name="author" content="lynne"/>
+</head>
+<body>
+<div class="main" id="game">
+    <com_simple_tips v-bind:commessage="message"></com_simple_tips>
+    <a class="btn" v-on:click="quitSeat">推出作为</a>
+</div>
+    <script type="text/javascript" src="../../../js/zepto.min.js"></script>
+    <script type="text/javascript" src="../../../js/touch.js"></script>
+    <script type="text/javascript" src="../../../js/vue.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+    <script>
+     $(function(){
+
+        Vue.component('com_simple_tips', {
+          props: ['commessage'],//props参数commessage和页面中htmlv-bind:commessage=“XXX”是一个，具有指向性，XXX是vue中data的变量
+          template: '<div class="simple_tips">{{commessage}}</div>'
+        })
+        var check = new Vue({
+            el: '#game',
+            data: {
+                message:"入座中，请稍候..."
+            },
+            created: function () {
+                this.sit()
+            },
+            methods: {
+                sit: function () {
+                    var _self = this;
+                    var d = {
+                        url: 'http://liyn.me:8888/web-api/v1/game/play/sit',
+                        data: {
+                            boxId: parseInt(Request('boxId')) || 1,
+                            gameNumber: parseInt(Request('number')) || 1
+                        },
+                        success: function(d){
+                            if(d.status.code === 'OK'){
+                                _self.message = '入座成功';
+                            }else{
+                                _self.message = d.status.msg
+                            }
+                        }
+                    };
+                    main.ajax(d);
+                },
+                quitSeat: function () {
+                    var _self = this;
+                    var d = {
+                        url: 'http://liyn.me:8888/web-api/v1/game/play/quitSeat',
+                        data: {},
+                        success: function(d){
+                            if(d.status.code === 'OK'){
+                                _self.message = '退座成功';
+                            }else{
+                                _self.message = d.status.msg
+                            }
+                        }
+                    };
+                    main.ajax(d);
+                }
+            }
+
+
+        });
+
+
+        // Vue.component('com_simple_tips', {
+        //   template: '<div class="simple_tips">{{ message }}</div>',
+        //   props: ['message']
+        // })
+
+        
+        // new Vue({
+        //   el: '#check',
+        //   data:{
+        //     message:"12312"
+        //   },
+        //   created:function(){
+        //         // main.ajax({
+        //         //     url:"http://liyn.me:8888/web-api/v1/game/play/checkin",
+        //         //     data:{shopId: 0},
+        //         //     success:function(d){
+        //         //         console.log(JSON.stringify(d));
+        //         //     }
+        //         // });
+        //     }
+        // })
+        // var check = new Vue({
+        //     el: '#check',
+        //     data: {
+        //         messages:{0:"签到中，请稍候",1:"签到成功",2:"签到失败"}
+        //         message:"12"
+        //     },
+        //     created:function(){
+        //         main.ajax({
+        //             url:"http://liyn.me:8888/web-api/v1/game/play/checkin",
+        //             data:{shopId: 0},
+        //             success:function(d){
+        //                 console.log(JSON.stringify(d));
+        //             }
+        //         });
+        //     }
+        // });
+   
+        // var data = {prefabricateFlag: false};
+        // $.ajax({
+            
+        //     url: "http://liyn.me:8888/web-api/v1/game/play/getAllCombination",
+        //     data:
+        //         JSON.stringify(data)
+        //     ,
+        //     contentType:"application/json",
+        //     timeout: 1000,
+        //     type:"POST",
+        //     dataType: "json",
+        //     success: function(d) {
+        //         console.log(JSON.stringify(d));
+        //     }
+        // });
+
+     });   
+    </script>
+</body>
+</html>
+<!--<html><head><title></title></head></body></html>-->

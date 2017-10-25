@@ -1,0 +1,25 @@
+$fontStack:Helvetica,STHeiti,Droid Sans Fallback;
+$color: #f1f1f1;
+$color2: #666;
+$color3:#e74c3c;
+$color4:#16a085;
+$color5:#34495e;
+$color6:rgba(36,74,111,0.8);
+$color7:#1abc9c;
+
+._page{
+  position:absolute;
+  width:100%;
+  height:100%;
+  left:0;
+  top:0;
+}
+._verCenter{
+  position:absolute;
+  width:100%;
+  left:0;
+  top:50%;
+  -webkit-transform:translateY(-50%);
+}
+
+

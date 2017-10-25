@@ -1,0 +1,30 @@
+.btn{
+  display: block;
+  width:60%;
+  height:.4rem;
+  border-radius: 5px;
+  margin: .1rem auto;
+  line-height: .4rem;
+  background:$color6;
+  text-align: center;
+  font-size: .16rem;
+  color: $color;
+}
+.btn.btn2{
+  background: $color4;
+}
+.btn.btn3{
+  background: $color5;
+}
+
+.btnWrap.twoCol{
+  text-align: center;
+  .btn{
+    width:40%;
+    display: inline-block;
+    margin-left:2%;
+    margin-right:2%;
+  }
+}
+
+

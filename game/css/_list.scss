@@ -1,0 +1,86 @@
+.list li{
+  background: $color6;
+  border-radius: 5px; width:50%;
+  display: block;
+  margin: .3rem auto;
+  height:.44rem;
+  line-height: .44rem;
+  font-size: .2rem;
+  text-align: center;
+  color: $color;
+}
+.comList{
+  padding: .1rem;
+  li{
+    width:100%;
+    height: 1rem;
+    margin-bottom: .1rem;
+    background:url(../image/back/daozei.png) no-repeat right center #4ed2e7;
+    background-size: auto 80%;
+    padding-top: .14rem;
+    padding-left: .2rem;
+    box-sizing: border-box;
+    border-radius: 5px;
+    p{
+      color: #fff;
+      font-size: .14rem;
+      line-height: .24rem;
+    }
+  }
+  li:nth-child(5n){
+    background-color: #4ed2e7;
+  }
+  li:nth-child(5n+1){
+    background-color: #07bda7;
+    background-image:url(../image/back/nvwu.png)
+  }
+  li:nth-child(5n+2){
+    background-color: #4196cf;
+    background-image:url(../image/back/daozei.png)
+  }
+  li:nth-child(5n+3){
+    background-color: #3bca7b;
+    background-image:url(../image/back/baichi.png)
+  }
+  li:nth-child(5n+4){
+    background-color: #8d45a8;
+  }
+}
+
+.tab-box{
+  margin: .15rem;
+  overflow: hidden;
+  font-size: .16rem;
+  line-height: 150%;
+  color: $color;
+  h3{
+    font-size:.2rem;
+    line-height: 150%;
+  }
+  .tabs{
+    clear: both;
+    overflow: hidden;
+    li{
+      width:33.33%;
+      float: left;
+      a{
+        display: block;
+        width:76%;
+        height:100%;
+        margin: .15rem auto 0;
+        border: 2px solid transparent ;
+        line-height: .3rem;
+        border-radius: .15rem;
+        text-align: center;
+        background:$color6;
+      }
+    }
+    li.active{
+      a{border: 2px solid $color;}
+    }
+  }
+}
+
+
+
+

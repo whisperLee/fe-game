@@ -1,0 +1,54 @@
+@import "_g_reset";
+@import "_g_variable";
+body {
+  font-family: $fontStack;
+  color: $color;
+  .main{
+    @extend ._page;
+    background: url("../image/night.jpg") no-repeat center;
+    background-size: cover;
+    overflow-y: auto;
+    .page{
+      position: relative;
+      width:100%;
+      height:100%;
+      .inner{
+        @extend ._verCenter;
+        .total{
+          font-size: .2rem;
+          padding-left: .15rem;
+        }
+      }
+    }
+    h2{
+      font-size: .2rem;
+      padding: .2rem 0;
+      color: $color;
+      text-align: center;
+    }
+  }
+  .main.day{background-image:url(../image/d.jpg);}
+  .main.night{background-image:url(../image/n.jpg); }
+}
+
+.simple_tips{
+  position:fixed;
+  z-index:999;
+  left:50%;
+  top:50%;
+  width:2.6rem;
+  line-height:0.2rem;
+  -webkit-transform:translate(-50%,-50%);
+  padding:0.2rem;
+  box-sizing: border-box;
+  background-color:rgba(0,0,0,.75);
+  color:$color;
+  border-radius:5px;
+  font-size:0.14rem;
+  text-align:center;
+}
+
+
+
+
+

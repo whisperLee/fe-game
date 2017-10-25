@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+        <meta name="format-detection" content="telephone=no">
+        <link href="../css/game.css" rel="stylesheet" type="text/css" media="screen" />
+        <title>游戏页面</title>
+        <style>
+        /*a
+        按钮不可点：cbcfd3
+        按钮其他状态 34495e
+        */
+            .layer{position: absolute; left:10%; top:50%; width:80%; height:auto; -webkit-transform:translateY(-50%); background: #fff; border:2px solid #1abc9c; border-radius: 10px;}
+            .layer.layerVoteResult .title,.layer.layerVote .title{background: #1abc9c; text-align: #fff;}
+            .layer.layerVoteResult .info,.layer.layerVote .info{font-size: .16rem; color: #1abc9c; line-height: .2rem; text-align: center; padding: .1rem;}
+            .layer.layerVoteResult .content{overflow: hidden;  }
+            .layer.layerVoteResult .content .result{position: relative; overflow: hidden; border-bottom:  2px solid #1abc9c; padding: .1rem .05rem .1rem 20%;}
+            .layer.layerVoteResult .content .left{position: absolute; top:0; left:0; width:20%; height:100%;}
+            .layer.layerVoteResult .content .left .user{position: absolute; left:50%; top:50%; -webkit-transform:translate(-50%,-50%); width:100%;}
+            .layer.layerVoteResult .content .right{position: relative; width:100%;}
+            .layer.layerVoteResult .content .right:before{content: ""; position: absolute; left:0; top:0; width:.2rem; height:100%; background: url(../image/jiantou.png) no-repeat center; background-size: contain;}
+            .layer.layerVoteResult .content .right ul{overflow: hidden; margin-left: .2rem;}
+            .layer.layerVoteResult .content .right li{float: left; width:25%;}
+            .layer .btn{background: #16a085; margin: .2rem auto;}
+            .layer .btn1{background: #34495e;}
+            .layer.layerVote .voteList{text-align: center;}
+            .layer.layerVote .voteList li{width:40%; display: inline-block; }
+
+        </style>
+    </head>
+<body>
+<div class="main" id="game">
+    <h2 v-if="queueFlow == 1" class="readyTitle">游戏准备中，请稍候...</h2>
+    <ul class="user-list">
+        <li v-for="(user,idx) in users" v-on:click="userClick(user)" :userid="user.userId">
+            <user v-bind:user="user"></user>
+        </li>
+    </ul>
+    <div class="queueBtns" v-if="queueFlow >= 1 && queueFlow < 3">
+        <a class="btn"  v-on:click="quitSeat">退出座位</a>
+        <a class="btn js-start" v-if="queueFlow >= 2 && leaderFlag"   v-on:click="startGame">开始游戏</a>
+        <a class="btn" v-if="screeningId !== 0 && leaderFlag"  v-on:click="modifyGameSet">修改配置</a>
+    </div>
+    <a class="btn js-start" v-if="leaderFlag"   v-on:click="startGame">开始游戏</a>
+
+    <div class="mine" v-if="JSON.stringify(mine)!='{}'" >
+        <a class="btn identity" v-on:click="showSF"></a>
+        <div class="userWrap">
+            <usermine class="userBack" v-bind:user="mine"></usermine>
+        </div>
+        <a class="leader" v-if="leaderFlag" v-on:click=""></a>
+    </div>
+
+    <div class='qiang' v-if="gameEvent == 'EVENT_IDENTITY_PURCHASE' || gameEvent == 'EVENT_IDENTITY_CONFIRMATION'">
+        <qiangshenfen v-bind:shenfens = "shenfens" v-bind:mine = "mine"></qiangshenfen>
+    </div>
+    <div class="layerWrap" v-if="typeof(mine.identityId)!='{}'">
+        <identityLayer  v-bind:mine = "mine"></identityLayer>
+    </div>
+
+    <div class="layerWrap">
+        <div class="layer layerVote">
+            <h2 class="title">放逐投票</h2>
+            <p class="info">请选择你要放逐的玩家头像</p>
+            <div class="content">
+                <ul class="voteList">
+                    <li><div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div></li>
+                    <li><div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div></li>
+                </ul>
+            </div>
+            <div class="btnWrap"><a class="btn" v-on:click="sfLayOut">提交</a><a class="btn btn1" v-on:click="sfLayOut">重置</a></div>
+        </div>
+
+    </div>
+
+    <!-- <div class="layerWrap">
+        <div class="layer layerVoteResult">
+          <h2 class="title">投票结果</h2>
+          <p class="info">[1]号票数最多</p>
+          <div class="content">
+            <ul class="resultList">
+              <li class="result">
+                <div class="left">
+                  <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                </div>
+                <div class="right">
+                  <ul>
+                    <li>
+                      <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                    </li>
+                    <li>
+                      <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                    </li>
+                    <li>
+                      <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                    </li>
+                    <li>
+                      <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                    </li>
+                    <li>
+                      <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                    </li>
+                  </ul>
+                  
+                </div>
+              </li>
+              <li class="result">
+                <div class="left">
+                  <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                </div>
+                <div class="right">
+                  <ul>
+                    <li>
+                      <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                    </li>
+                    <li>
+                      <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                    </li>
+                    <li>
+                      <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                    </li>
+                  </ul>
+                  
+                </div>
+              </li>
+              <li class="result">
+                <div class="left">
+                  <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                </div>
+                <div class="right">
+                  <ul>
+                    <li>
+                      <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                    </li>
+                    <li>
+                      <div class="user"><div class="level level1"><div class="inner"><div class="head"><img src="../image/head.png"></div> <i class="star star3"></i> <div class="num num3"></div></div></div></div>
+                    </li>
+                  </ul>
+                  
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="btnWrap"><a class="btn" v-on:click="sfLayOut">知道了</a></div>
+      </div>
+    </div> -->
+
+    
+    
+
+
+    <!--<div class="layer layerLeader">-->
+        <!--<div class="content"></div>-->
+        <!--<div class="btnWrap"><a class="btn" v-on:click="leaderLayOut">知道了</a></div>-->
+    <!--</div>-->
+    <!--<div class="layer vote" style="opacity: 1; display: none">-->
+        <!--<div class="inner">-->
+            <!--<h2 class="title">{{vote.title}}</h2>-->
+            <!--<div class="content">-->
+                <!--<p>你可以<span>[点击选择左右两边头像]</span>{{vote.info}}</p>-->
+                <!--<ul>-->
+                    <!--<li v-for="(user,idx) in vote.user" :userid="user.userId">-->
+                        <!--<user  v-bind:user="user"></user>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="btnWrap"><a class="btn" v-on:click="leaderLayOut">知道了</a></div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<script type="application/javascript" src="../../js/vue.js"></script>
+<script type="application/javascript" src="../../js/velocity.min.js"></script>
+<script type="application/javascript" src="../../js/sockjs.min.js"></script>
+<script type="application/javascript" src="../../js/stomp.js"></script>
+
+<script type="application/javascript" src="../js/global.js"></script>
+<script type="application/javascript" src="../js/websocket.js"></script>
+<script type="application/javascript" src="../js/component.js"></script>
+<script type="application/javascript" src="../js/animate.js"></script>
+<script type="application/javascript" src="../js/game.js"></script>
+</body>
+</html>

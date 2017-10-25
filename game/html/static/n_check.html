@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--forbidden operators-->
+<!--<html><head><title></title></head></body></html>-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta itemprop="name" content="腾讯新闻"/>
+<meta itemprop="image" content="http://mat1.gtimg.com/news/2017/zt/htfc/share.jpg" />
+<meta name="description" itemprop="description" content="腾讯新闻" />
+<meta name="Keywords" content="腾讯新闻,腾讯网,QQ,Tencent" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<meta name="format-detection"content="telephone=no">
+<link href="../css/reset.css" rel="stylesheet" type="text/css" media="screen" />
+<title>腾讯新闻</title>
+<style>
+.simple_tips{font-size: .16rem; color: #000; text-align: center; padding-top: .5rem;}
+</style>
+<meta name="author" content="lynne"/>
+</head>
+<body>
+<div class="main" id="check">
+    <com_simple_tips v-bind:commessage="message"></com_simple_tips>
+</div>
+    <script type="text/javascript" src="../../../js/zepto.min.js"></script>
+    <script type="text/javascript" src="../../../js/touch.js"></script>
+    <script type="text/javascript" src="../../../js/vue.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+    <script>
+     $(function(){
+
+        Vue.component('com_simple_tips', {
+          props: ['commessage'],//props参数commessage和页面中htmlv-bind:commessage=“XXX”是一个，具有指向性，XXX是vue中data的变量
+          template: '<div class="simple_tips">{{commessage}}</div>'
+        })
+        var check = new Vue({
+            el: '#check',
+            data: {
+                message:"签到中，请稍候..."
+            },
+            created:function(){
+                var _self = this;
+                var d = {
+                    url:"http://liyn.me:8888/web-api/v1/game/play/checkin",
+                    data:{shopId: parseInt(Request("shopId"))},
+                    success:function(d){
+                        if(d.status.code=="OK"){
+                            _self.message = "签到成功！";
+                        }else{
+                            _self.message = "签到失败，请重新扫码签到！";
+                        }
+                    }
+                };
+                main.ajax(d);
+            }
+
+        });
+
+
+        // Vue.component('com_simple_tips', {
+        //   template: '<div class="simple_tips">{{ message }}</div>',
+        //   props: ['message']
+        // })
+
+        
+        // new Vue({
+        //   el: '#check',
+        //   data:{
+        //     message:"12312"
+        //   },
+        //   created:function(){
+        //         // main.ajax({
+        //         //     url:"http://liyn.me:8888/web-api/v1/game/play/checkin",
+        //         //     data:{shopId: 0},
+        //         //     success:function(d){
+        //         //         console.log(JSON.stringify(d));
+        //         //     }
+        //         // });
+        //     }
+        // })
+        // var check = new Vue({
+        //     el: '#check',
+        //     data: {
+        //         messages:{0:"签到中，请稍候",1:"签到成功",2:"签到失败"}
+        //         message:"12"
+        //     },
+        //     created:function(){
+        //         main.ajax({
+        //             url:"http://liyn.me:8888/web-api/v1/game/play/checkin",
+        //             data:{shopId: 0},
+        //             success:function(d){
+        //                 console.log(JSON.stringify(d));
+        //             }
+        //         });
+        //     }
+        // });
+   
+        // var data = {prefabricateFlag: false};
+        // $.ajax({
+            
+        //     url: "http://liyn.me:8888/web-api/v1/game/play/getAllCombination",
+        //     data:
+        //         JSON.stringify(data)
+        //     ,
+        //     contentType:"application/json",
+        //     timeout: 1000,
+        //     type:"POST",
+        //     dataType: "json",
+        //     success: function(d) {
+        //         console.log(JSON.stringify(d));
+        //     }
+        // });
+
+     });   
+    </script>
+</body>
+</html>
+<!--<html><head><title></title></head></body></html>-->

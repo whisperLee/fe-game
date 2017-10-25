@@ -1,5 +1,10 @@
 @charset "utf-8";
 .layer{
+  position: absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
   .inner{
     position: absolute; left:10%; top:50%; width:80%; height:auto;z-index: 99; display: none;
     -webkit-transform:translateY(-50%); background: #fff; border:2px solid #1abc9c; border-radius: 10px;
@@ -20,37 +25,41 @@
 }
 
 .layer.layerShenfen{
-  top:10%; height:80%;
-  -webkit-transform:translateY(0); background: none; border:none; border-radius: 10px;
-  .title{background: none;}
-  .content{position: absolute; left:0; top:.6rem; bottom: .6rem; width:100%; height:auto;  }
-  .btnWrap{position: absolute; left:0; bottom:0; width: 100%;
-    display: none;
-    .btn{margin-top:0; margin-bottom: 0;}
+  .inner{
+    top:10%; height:80%;
+    -webkit-transform:translateY(0); background: none; border:none; border-radius: 10px;
+    .title{background: none;}
+    .content{position: absolute; left:0; top:.6rem; bottom: .6rem; width:100%; height:auto;  }
+    .btnWrap{position: absolute; left:0; bottom:0; width: 100%;
+      display: none;
+      .btn{margin-top:0; margin-bottom: 0;}
+    }
   }
 }
 //投票
 .layer.layerEventChoose {
-  left:20%;
-  width:60%;
-  .voteList {
-    text-align: center;
-    li {
-      position: relative;
-      width: 40%;
-      height:0;
-      padding-top:40%;
-      display: inline-block;
-      .user{
-        position: absolute;
-        left:0;
-        top:0;
-        width:100%;
-        height:100%;
+  .inner{
+    left:20%;
+    width:60%;
+    .voteList {
+      text-align: center;
+      li {
+        position: relative;
+        width: 40%;
+        height:0;
+        padding-top:40%;
+        display: inline-block;
+        .user{
+          position: absolute;
+          left:0;
+          top:0;
+          width:100%;
+          height:100%;
+        }
       }
-    }
-    li.unchoose{
-      box-shadow: 0px 0px 1px 0px $color5;
+      li.unchoose{
+        box-shadow: 0px 0px 1px 0px $color5;
+      }
     }
   }
 }

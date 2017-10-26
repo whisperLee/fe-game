@@ -186,36 +186,40 @@ var game = new Vue({
             var count = info.chooseCount
             var el
 
+            if(info.eventType == 'EVENT_WITCH'){// 女巫
+                if(info.witchStatusEnum == 'PAPA'){
+                    el = $('.layerEventWitch')
 
-            if(count==-1){
-                el = $('.layerEventKnow')
-            }else if(count==0){
-                el = $('.layerEventDecide')
-            }else if(count>0){
-                el = $('.layerEventChoose')
+                }else if(){
 
-                var h = ''
-                for(var i=0;i<info.chooseCount;i++){
-                    h+='<li class="unchoose"></li>'
                 }
-                el.find(".content ul").html(h)
-                _self.isUserEvent = 1
+            }else{
+                if(count==-1){
+                    el = $('.layerEventKnow')
+                }else if(count==0){
+                    el = $('.layerEventDecide')
+                }else if(count>0){
+                    el = $('.layerEventChoose')
+
+                    var h = ''
+                    for(var i=0;i<info.chooseCount;i++){
+                        h+='<li class="unchoose"></li>'
+                    }
+                    el.find(".content ul").html(h)
+                    _self.isUserEvent = 1
+                }
+
+                info.eventName && el.find(".title").html(info.eventName)
+                info.eventDesc && el.find(".info").html(info.eventDesc)
+
+                el.attr('event',info.eventType)
+                if(info.eventSurplusTime){
+                    animate.layerEnter(el,info.eventSurplusTime)
+                }else{
+                    animate.layerEnter(el)
+                }
             }
 
-            info.eventName && el.find(".title").html(info.eventName)
-            info.eventDesc && el.find(".info").html(info.eventDesc)
-            if(info.eventType == 'EVENT_WITCH'){// 女巫毒人
-                el.attr('event','EVENT_POISON')
-            }
-            // else if(){// 女巫救人
-            //     el.attr('event','EVENT_SAVE')
-            // }
-            el.attr('event',info.eventType)
-            if(info.eventSurplusTime){
-                animate.layerEnter(el,info.eventSurplusTime)
-            }else{
-                animate.layerEnter(el)
-            }
 
         },
         gameInfo:function(info){
@@ -544,13 +548,9 @@ var game = new Vue({
                 nums+='【'+$(this).attr('num')+'】'
             })
 
-            info = '是否确认选择'+nums+'号玩家'
-            _self.confirmAgain(info,function(){
-                _self.isUserEvent = 0
-                _self.userEventSubmit(el,num)
-                  
-            })
-            
+            _self.isUserEvent = 0
+            _self.userEventSubmit(el,num)
+
         },
         // 重置用户选择
         userEventForResetUserChoose:function () {
@@ -623,7 +623,8 @@ var game = new Vue({
                     animate.sfLayerOuter()
             })
 
-            $('.layerShenfen .shenfen').on("touchstart",function(){
+            $('.layerShenfen .shenfen').on(
+                "touchstart",function(){
                     // $('.layerShenfen .shenfen').off().on("touchstart",function(){
                     var el = $(this);
                     if(shenfen_flow == 0){//必须动画执行完成后才能开始查看动画
@@ -634,9 +635,10 @@ var game = new Vue({
                         shenfen_flow=2;
                       })
                     }
-            }).on("touchend",function(){
+            }).on(
+                "touchend",function(){
                     el = $(this);
-                    if(shenfen_flow==2){//如果已经查看完身份，则正常执行回返动画
+                    if(shenfen_flow==2){ //如果已经查看完身份，则正常执行回返动画
                       animate.fanzhuan(el,function () {
                         el.removeClass('on')
                         if(!game.lookOverIdentity){
@@ -647,9 +649,9 @@ var game = new Vue({
                         shenfen_flow=0
                         animate.fadeIn($('.layerShenfen .btnWrap'))
                       })
-                    }else{//查看过程中终止查看
-                      animate.stopAll(el);//停止正在进行的一切动画
-                      if(shenfen_flow==0){//如果还没到90度，则直接翻转回来
+                    }else{ //查看过程中终止查看
+                      animate.stopAll(el) //停止正在进行的一切动画
+                      if(shenfen_flow==0){ //如果还没到90度，则直接翻转回来
                         el.velocity(
                           {rotateY: "0deg"},
                           {
@@ -659,18 +661,54 @@ var game = new Vue({
                               shenfen_flow=0;
                             }
                           }
-                        );
-                      }else if(shenfen_flow==1){//过了90度，查看到一部分身份牌时，需要先回转到90度，并将身份样式移除，在回转到0度
+                        )
+                      }else if(shenfen_flow==1){ //过了90度，查看到一部分身份牌时，需要先回转到90度，并将身份样式移除，在回转到0度
                         animate.fanzhuan(el,function () {
-                          el.removeClass('on');
-                          shenfen_flow=3;
+                          el.removeClass('on')
+                          shenfen_flow=3
                         }, function () {
-                          shenfen_flow=0;
+                          shenfen_flow=0
                         })
                       }
                     }
                     
-            });
+                 }
+            )
+
+            var press_flow = 0
+            $(".longPress.btn").off().on("touchstart",function(){
+                var _self = $(this)
+                var _pro = _self.find('.process b')
+                press_flow = 1
+                _pro.velocity({
+                    width:['100%','0%']
+                },{
+                    duration: 1000,
+                    easing: 'linear',
+                    complete: function(){
+                        console.log('complete')
+                        press_flow = 2
+                        _pro.width(0)
+                        _self.addClass('state-success')
+                        //方法提交
+                        _self.userEventForUserChoose()
+                    }
+                })
+            }).on("touchend",function(){
+                var _self = $(this)
+                var el = $(this).closest(".layer")
+                var _pro = _self.find('.process b')
+                if(press_flow==1){
+                    animate.stopAll(_pro)
+                    _pro.width(0)
+                }else{
+                    animate.layerOuter(el)
+                }
+                press_flow = 0
+
+            })
+
+
         }
     }
 });

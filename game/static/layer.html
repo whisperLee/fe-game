@@ -15,10 +15,6 @@
 </style>
   <style>
     .layer .tips{color: #e74c3c; font-size: .16rem; text-align: center; line-height:.3rem;  }
-    .longPress{position: relative; overflow: hidden}
-    .longPress .process b{position: absolute; left:0; top:0; width:0%; height:100%; background: #1abc9c;}
-    .longPress .text{position: relative; z-index: 2;}
-    .longPress.state-success .text{background: url("../image/success.png") no-repeat left center; background-size: .2rem auto ; padding-left: .25rem;  -webkit-transition: all .5s ease-in-out;}
   </style>
 
   <div class="layer layerSixCenter  layerEventChoose">
@@ -147,7 +143,16 @@
           </div>
         </div>
     </div>
-
+  <div class="layer layerEventSpeakSequence">
+    <h2 class="title">发言顺序</h2>
+    <div class="content">
+      <p class="info">请选择发言顺序</p>
+      <div class="btnWrap twoCol">
+        <a class="btn btn2" v-on:click="runForCampaign(1)">竞选</a>
+        <a class="btn btn3" v-on:click="runForCampaign(0)">放弃</a>
+      </div>
+    </div>
+  </div>
 </div>
 <script type="application/javascript" src="../../js/zepto.min.js"></script>
 <script type="application/javascript" src="../../js/vue.js"></script>

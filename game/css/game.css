@@ -35,7 +35,7 @@ html {
 body {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-user-select: none;
   overflow: auto;
   font-size: .16rem;
@@ -260,6 +260,26 @@ body {
     display: inline-block;
     margin-left: 2%;
     margin-right: 2%; }
+
+.longPress {
+  position: relative;
+  overflow: hidden; }
+  .longPress .process b {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0%;
+    height: 100%;
+    background: #1abc9c; }
+  .longPress .text {
+    position: relative;
+    z-index: 2; }
+
+.longPress.state-success .text {
+  background: url("../image/success.png") no-repeat left center;
+  background-size: 0.2rem auto;
+  padding-left: .25rem;
+  -webkit-transition: all .5s ease-in-out; }
 
 .user-list {
   position: relative;
@@ -604,6 +624,11 @@ ul.flexBox1 {
     line-height: .2rem;
     text-align: center;
     padding: .1rem; }
+  .layer .tips {
+    color: #e74c3c;
+    font-size: .16rem;
+    text-align: center;
+    line-height: .3rem; }
   .layer .content {
     overflow: hidden; }
   .layer .btn {
@@ -735,17 +760,15 @@ ul.flexBox1 {
   top: 1%;
   width: 60%;
   height: auto; }
-
-.messageCenter .message {
-  background: rgba(26, 188, 156, 0.8);
-  color: #fff;
-  width: 100%;
-  padding: .1rem;
-  font-size: .14rem;
-  box-sizing: border-box;
-  border-radius: 5px; }
-
-.messageCenter .message h3 {
-  font-size: .16rem; }
+  .messageCenter .message {
+    background: rgba(26, 188, 156, 0.8);
+    color: #fff;
+    width: 100%;
+    padding: .1rem;
+    font-size: .14rem;
+    box-sizing: border-box;
+    border-radius: 5px; }
+    .messageCenter .message h3 {
+      font-size: .16rem; }
 
 /*# sourceMappingURL=game.css.map */

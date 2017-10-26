@@ -27,4 +27,23 @@
   }
 }
 
+.longPress{
+  position: relative;
+  overflow: hidden;
+  .process {
+    b{position: absolute; left:0; top:0; width:0%; height:100%; background: #1abc9c;}
+  }
+  .text{position: relative; z-index: 2;}
+}
+
+.longPress.state-success{
+  .text{
+    background: url("../image/success.png") no-repeat left center;
+    background-size: .2rem auto ;
+    padding-left: .25rem;
+    -webkit-transition: all .5s ease-in-out;
+  }
+}
+
+
 

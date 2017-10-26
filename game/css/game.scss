@@ -6,6 +6,9 @@
 @import "shenfen";
 @import "_flex";
 @import "_layer";
-.messageCenter{position: absolute; left:20%; padding-top: 20%; top:1%; width: 60%; height:auto;}
-.messageCenter .message{background: rgba(26,188,156,0.8); color: #fff; width:100%; padding: .1rem; font-size: .14rem; box-sizing: border-box; border-radius: 5px;}
-.messageCenter .message h3{font-size: .16rem; }
+.messageCenter{
+  position: absolute; left:20%; padding-top: 20%; top:1%; width: 60%; height:auto;
+  .message{background: rgba(26,188,156,0.8); color: #fff; width:100%; padding: .1rem; font-size: .14rem; box-sizing: border-box; border-radius: 5px;
+    h3{font-size: .16rem; }
+  }
+}

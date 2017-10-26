@@ -119,31 +119,19 @@
         <div class="content">
             <p class="info"></p>
             <ul class="voteList"></ul>
+            <p class="tips">请长按提交按钮进行提交</p>
             <div class="btnWrap">
-                <div class="btn btn2" v-on:click="userEventForUserChoose">提交</div>
+              <div class="btn btn2 longPress">
+                <span class="process"><b></b></span>
+                <span class="text">提交</span>
+              </div>
                 <div class="btn btn3" v-on:click="userEventForResetUserChoose">重置</div>
             </div>
         </div>
     </div>
-    <!--用户事件二次确认-->
-    <div class="layer layerEventConfirmAgain">
-        <h2 class="title"></h2>
-        <div class="content">
-            <p class="info"></p>
-            <div class="btnWrap">
-                <div class="btn btn2" type="yes">确认提交</div>
-                <div class="btn btn3" type="no">我再想想</div>
-            </div>
-        </div>
-    </div>
-    
-    
     <div class="layer layerUserInfo" v-if="JSON.stringify(userinfo)!='{}'">
         <userinfo v-bind:user="userinfo"></userinfo>
     </div>
-
-    
-
 
 </div>
 <script type="application/javascript" src="../../js/zepto.min.js"></script>

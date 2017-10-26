@@ -102,6 +102,9 @@ var animate = {
     },
     layerOuter: function(el){
         var $time = el.find('.countDown span')
+
+        el.find('.longPress.state-success').removeClass('state-success')
+
         console.log("outer"+el+$time.attr('time'))
         if($time && $time.attr('time')>0){
             $time.attr('time'==-1)

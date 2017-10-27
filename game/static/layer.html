@@ -11,16 +11,42 @@
 <body>
 <div class="main" id="game">
 <style>
-.layer{position: relative; top:0; display: block; -webkit-transform: translateY(0); margin-top: 10px;}
+.layer{position: relative; top:0; display: block; -webkit-transform: translateY(0); margin-top: .3rem;}
 </style>
   <style>
     .layer .tips{color: #e74c3c; font-size: .16rem; text-align: center; line-height:.3rem;  }
   </style>
-
+  <div class="layer layerSixCenter layerEventWitch layerEventChoose">
+    <h2 class="title">女巫</h2>
+    <div class="content">
+      <p class="info"></p>
+      <ul class="voteList">
+        <li class="unchoose"></li>
+      </ul>
+      <p class="tips">请长按提交按钮进行提交</p>
+      <div class="btnWrap">
+        <div class="btn btn2 longPress">
+          <span class="process"><b></b></span>
+          <span class="text">提交</span>
+        </div>
+        <div class="btn btn3" v-on:click="userEventForResetUserChoose">重置</div>
+        <div class="btn btn3 js-reChoose">重新选择</div>
+        <div class="btn btn3" event="EVENT_WITCH">放弃</div>
+      </div>
+      <div class="decideContent">
+        <p class="decideInfo">请选择是救人还是毒人</p>
+        <div class="btnWrap">
+          <div class="btn btn2" event="EVENT_SAVE">救人</div>
+          <div class="btn btn4" event="EVENT_POISON">毒人</div>
+          <div class="btn btn3" event="EVENT_WITCH">放弃</div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="layer layerSixCenter  layerEventChoose">
-      <h2 class="title">标题</h2>
+      <h2 class="title"></h2>
       <div class="content">
-        <p class="info">请XXXXXXXX</p>
+        <p class="info"></p>
         <ul class="voteList">
           <li>
             <div num="7" class="user"><div class="level level0"><div class="inner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num7"></div></div></div></div>
@@ -143,16 +169,7 @@
           </div>
         </div>
     </div>
-  <div class="layer layerEventSpeakSequence">
-    <h2 class="title">发言顺序</h2>
-    <div class="content">
-      <p class="info">请选择发言顺序</p>
-      <div class="btnWrap twoCol">
-        <a class="btn btn2" v-on:click="runForCampaign(1)">竞选</a>
-        <a class="btn btn3" v-on:click="runForCampaign(0)">放弃</a>
-      </div>
-    </div>
-  </div>
+
 </div>
 <script type="application/javascript" src="../../js/zepto.min.js"></script>
 <script type="application/javascript" src="../../js/vue.js"></script>
@@ -168,6 +185,7 @@
         var press_flow = 0
         $(".longPress.btn").off().on("touchstart",function(){
             var _self = $(this)
+            var el = $(this).closest(".layer")
             var _pro = _self.find('.process b')
             press_flow = 1
             _pro.velocity({
@@ -181,6 +199,7 @@
                     _pro.width(0)
                     _self.addClass('state-success')
                     //方法提交
+
                 }
             })
         }).on("touchend",function(){
@@ -196,6 +215,54 @@
             press_flow = 0
 
         })
+        var event = 'EVENT_WITCH'
+        var info = {
+            witchStatusEnum:'PAPA'
+        }
+        function WITCH(){
+            if(event == 'EVENT_WITCH'){
+                var el = $('.layerEventWitch')
+                var dec = el.find('.decideContent')
+                if(info.witchStatusEnum == 'PAPA'){
+                    dec.show()
+                    dec.find('.info').html('请选择是救人还是毒人')
+                    dec.find('.btn').off().on('click',function(){
+                        var event =  $(this).attr('event')
+                        el.attr('event',event)
+                        if(event == 'EVENT_WITCH'){
+                            animate.layerOuter(el)
+                            setTimeout(function(){
+                                info.witchStatusEnum='SAVE'
+                                WITCH()
+                                animate.layerEnter($('.layerEventWitch'))
+
+                            },1000)
+                            //game.userEventSubmit(el,num)
+                        }else{
+                            el.find('.js-reChoose').show().off().on('click',function(){
+                                animate.fadeInDown(dec)
+                            })
+
+                            animate.fadeOutUp(dec)
+                        }
+                    })
+                }else{
+                    dec.hide()
+                    el.find('.js-reChoose').hide()
+                    if(info.witchStatusEnum == 'SAVE'){
+                        el.attr('event','EVENT_SAVE')
+                    }else if(info.witchStatusEnum == 'POISON'){
+                        el.attr('event','EVENT_WITCH')
+                    }
+                }
+            }
+
+        }
+        //animate.layerEnter($('.layerEventWitch'),10)
+        WITCH()
+        function userEventForReChoose(){
+
+        }
     })
 </script>
 </body>

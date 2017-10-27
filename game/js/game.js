@@ -140,6 +140,9 @@ var game = new Vue({
                     }
                     _self.gameInfo(d.gameInfo)
                 }
+                if(d.userInfoList){
+                    //_self.setUser(d.userInfoList)
+                }
             }
             else if(d.msgType == 'UPDATE_LEADER'){//需要获取leaderInfo
                 var btn = d.leaderInfo.leaderButton
@@ -186,18 +189,39 @@ var game = new Vue({
             var count = info.chooseCount
             var el
 
-            if(info.eventType == 'EVENT_WITCH'){// 女巫
+            if(e == 'EVENT_WITCH'){// 特殊事件----女巫
+                el = $('.layerEventWitch')
                 if(info.witchStatusEnum == 'PAPA'){
-                    el = $('.layerEventWitch')
-
-                }else if(){
-
+                    var dec = el.find('.decideContent')
+                    dec.show()
+                    dec.find('.btn').off().on('click',function(){
+                        var event =  $(this).attr('event')
+                        el.attr('event',event)
+                        if(event == 'EVENT_WITCH'){
+                            animate.layerOuter(el)
+                            //game.userEventSubmit(el,num)
+                        }else{
+                            animate.fadeOutUp(dec)
+                        }
+                    })
+                }else if(info.witchStatusEnum == 'SAVE'){
+                    el.attr('event','EVENT_SAVE')
+                    el.find('.info').html('请选择你要救的人')
+                }else if(info.witchStatusEnum == 'POISON'){
+                    el.attr('event','EVENT_WITCH')
                 }
-            }else{
+            }else{ // 其它事件
                 if(count==-1){
                     el = $('.layerEventKnow')
                 }else if(count==0){
                     el = $('.layerEventDecide')
+                    if(e == 'EVENT_CAMPAIGN_SERGEANT'){ // 特殊事件---警长精选
+                        el.find('.btn').eq(0).html('竞选')
+                        el.find('.btn').eq(0).html('放弃')
+                    }else{
+                        el.find('.btn').eq(0).html('是')
+                        el.find('.btn').eq(0).html('否')
+                    }
                 }else if(count>0){
                     el = $('.layerEventChoose')
 
@@ -235,24 +259,9 @@ var game = new Vue({
             if(global.isExit(info.gameStatusStr)){
                 _self.screenCenterMessage.gameStatusStr = info.gameStatusStr
             }
-            if(global.isExit(info.gameStatusStr)){
-                _self.screenCenterMessage.gameStatusStr = info.gameStatusStr
-            }
             if(global.isExit(info.showMsg)){
                 _self.screenCenterMessage.result = info.result
             }
-            else if(s == 'CAMPAIGN_RESULT'){
-                //？？？？？？？？？
-            }
-
-            var resultEvent = ['EVENT_RESULT']
-            if(resultEvent.indexOf(event) != -1){
-                _self.showMessage(d.eventInfo)
-            }
-
-                // if(d.userInfoList && d.userInfoList.length>0){
-                //     //_self.setUser(d)
-                // }
         },
         // 设置用户状态
         setUser: function (d) {
@@ -485,34 +494,23 @@ var game = new Vue({
             }
             animate.sfLayerInter($('.layerShenfen'),initStyle);
         },
-        EventCountDown:function(el,time,timeoutFun){
-            var _self = this
-            if(el.find('.countDown').length>0){
-                el.find('.countDown span').html(time)
-            }else{
-                el.append('<div class="countDown">倒计时:<span>'+time+'</span></div>')
-            }
-            
-            global.countDown(time,el.find('.countDown'),0,timeoutFun)
-        },
-        
         // 用户事件再次确认
-        confirmAgain:function(info,yesfun,nofun){
-            var el = $('.layerEventConfirmAgain')
-            el.find('.info').html(info)
-            animate.layerEnter(el)
-
-            yesfun = yesfun || function(){}
-            nofun = nofun || function(){}
-            el.find('.btn[type="yes"]').off().on('click',function(){
-                animate.layerOuter(el)
-                yesfun()
-            })
-            el.find('.btn[type="no"]').off().on('click',function(){
-                animate.layerOuter(el)
-                nofun()
-            })
-        },
+        // confirmAgain:function(info,yesfun,nofun){
+        //     var el = $('.layerEventConfirmAgain')
+        //     el.find('.info').html(info)
+        //     animate.layerEnter(el)
+        //
+        //     yesfun = yesfun || function(){}
+        //     nofun = nofun || function(){}
+        //     el.find('.btn[type="yes"]').off().on('click',function(){
+        //         animate.layerOuter(el)
+        //         yesfun()
+        //     })
+        //     el.find('.btn[type="no"]').off().on('click',function(){
+        //         animate.layerOuter(el)
+        //         nofun()
+        //     })
+        // },
         userEventSubmit:function(el,n){
             animate.layerOuter(el)
             var data = {
@@ -527,14 +525,17 @@ var game = new Vue({
             var el = $('.layerKnow')
             _self.userEventSubmit(el,null)
         },
-        // 提交选择事件
+        // 提交决定事件
         userEventForDecide:function(f){
             var _self = this
             var el = $('.layerEventDecide')
-            num = f?null:[0]
+            var e = el.attr('event')
+            if(e=='EVENT_CAMPAIGN_SERGEANT'){
+                num = f==1?null:[0]
+            }
             _self.userEventSubmit(el,num)
         },
-        //提交用户事件选择
+        // 提交用户事件选择
         userEventForUserChoose: function(){
             var _self = this
 
@@ -556,7 +557,7 @@ var game = new Vue({
         userEventForResetUserChoose:function () {
             $('.layerEventChoose .content li').html('').addClass("unchoose")
         },
-        //桌长事件
+        // 桌长事件
         eventForLeaderButton:function(){
             var el = $('.leaderButton')
             var data = {

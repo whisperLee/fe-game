@@ -40,6 +40,7 @@
         </div>
         <a class="btn leader" v-bind:event="leaderButton" v-if="leaderFlag && (leaderButton== '' || leaderButton!='EMPTY')" v-on:click="eventForLeaderButton">桌长按钮</a>
     </div>
+  <!--抢身份-->
     <div class="qiang">
       <div class="inner">
         <h2 class="title"></h2>
@@ -48,7 +49,7 @@
         </ul>
       </div>
     </div>
-
+    <!--查看身份-->
     <div class="layer layerShenfen">
       <h2 class="title">长按身份牌查看您的身份</h2>
       <div class="content shenfen"></div>
@@ -108,13 +109,13 @@
         <div class="content">
             <p class="info"></p>
             <div class="btnWrap twoCol">
-                <div class="btn btn2" v-on:click="userEventForDecide(1)">竞选</div>
                 <div class="btn btn3" v-on:click="userEventForDecide(0)">放弃</div>
+                <div class="btn btn2" v-on:click="userEventForDecide(1)">竞选</div>
             </div>
         </div>
     </div>
     <!--用户事件-选择-->
-    <div class="layer layerEventChoose">
+    <div class="layer layerSixCenter layerEventChoose">
         <h2 class="title"></h2>
         <div class="content">
             <p class="info"></p>
@@ -125,10 +126,38 @@
                 <span class="process"><b></b></span>
                 <span class="text">提交</span>
               </div>
-                <div class="btn btn3" v-on:click="userEventForResetUserChoose">重置</div>
+              <div class="btn btn3" v-on:click="userEventForResetUserChoose">重置</div>
             </div>
         </div>
     </div>
+  <!--用户事件-女巫-->
+  <div class="layer layerSixCenter layerEventWitch layerEventChoose">
+    <h2 class="title">女巫</h2>
+    <div class="content">
+      <p class="info"></p>
+      <ul class="voteList">
+        <li class="unchoose"></li>
+      </ul>
+      <p class="tips">请长按提交按钮进行提交</p>
+      <div class="btnWrap">
+        <div class="btn btn2 longPress">
+          <span class="process"><b></b></span>
+          <span class="text">提交</span>
+        </div>
+        <div class="btn btn3" v-on:click="userEventForResetUserChoose">重置</div>
+        <div class="btn btn3" v-on:click="userEventForReChoose">重新选择</div>
+      </div>
+      <div class="decideContent">
+        <p class="decideInfo">请选择是救人还是毒人</p>
+        <div class="btnWrap">
+          <div class="btn btn2" event="EVENT_SAVE">救人</div>
+          <div class="btn btn4" event="EVENT_POISON">毒人</div>
+          <div class="btn btn3" event="EVENT_WITCH">放弃</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <div class="layer layerUserInfo" v-if="JSON.stringify(userinfo)!='{}'">
         <userinfo v-bind:user="userinfo"></userinfo>
     </div>

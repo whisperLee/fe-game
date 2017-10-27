@@ -271,36 +271,7 @@ POISON(2),// 毒药
 RUBBISH(3);// 无药
 
 
-// {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"CUR_GAME_STATUS","XXXXXX":{"msgType":"UPDATE","gameInfo":{"nightFlag":true,"gameTime":1,"gameStatus":"DARK","gameStatusStr":"天黑请闭眼"}}}
 
-
-// {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"nightFlag":true,"gameTime":1,"gameStatus":"DARK","gameStatusStr":"天黑请闭眼"}}
-// {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"LIGHT","gameStatusStr":"天亮了"}}
-
-// {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"userId":101,"number":1,"sergeantFlag":true,"campaignFlag":false}],"gameInfo":{"gameStatus":"CAMPAIGN_RESULT","gameStatusStr":"竞选结果"},"showMsg":"只有1号玩家参选,'1'号玩家自动当选警长.拥有1.5票归票权."}
-
-
-// {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_SEER","eventName":"预言家验人","eventDesc":"选择一位玩家查验其身份.","chooseCount":1,"unifyFlag":false,"eventSurplusTime":6}}
-// {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_WEREWOLF","eventName":"狼刀","eventDesc":"选择一位玩家刀掉,所有狼人必须统一意见,否则视为空刀.","chooseCount":1,"unifyFlag":true,"eventSurplusTime":10}}
-// {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_HUNTER","eventName":"猎人上膛","eventDesc":"猎人,如果你天亮后死亡,你'可以'开枪.","chooseCount":0,"unifyFlag":false,"eventSurplusTime":6}}
-// {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","gameInfo":{"nightFlag":false,"gameTime":1,"gameStatus":"CAMPAIGN_SERGEANT","gameStatusStr":"竞选警长"},"eventInfo":{"eventType":"EVENT_CAMPAIGN_SERGEANT","eventName":"警长竞选","eventDesc":"准备竞选警长,请选择是否参选.","chooseCount":1,"unifyFlag":false,"eventSurplusTime":10}}
-
-// {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT_RESULT","eventResultInfo":{"eventDesc":"你选择了上警.","resultSurplusTime":3}}
-
-// {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT_GAMEOVER"}
-
-// {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","showMsg":"昨天晚上死亡的是:游戏结束,狼人阵营胜利"}
-// {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"userId":101,"number":1,"sergeantFlag":true,"campaignFlag":false}],"gameInfo":{"gameStatus":"CAMPAIGN_RESULT","gameStatusStr":"竞选结果"},"showMsg":"只有1号玩家参选,'1'号玩家自动当选警长.拥有1.5票归票权."}
-
-// {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT_RESULT","eventResultInfo":{"eventDesc":"你选择了上警.","resultSurplusTime":3}}
-
-// {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","gameInfo":{"nightFlag":false,"gameTime":1,"gameStatus":"CAMPAIGN_SERGEANT","gameStatusStr":"竞选警长"},"eventInfo":{"eventType":"EVENT_CAMPAIGN_SERGEANT","eventName":"警长竞选","eventDesc":"准备竞选警长,请选择是否参选.","chooseCount":1,"eventSurplusTime":10}}
-
-// {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_SEER","eventName":"预言家验人","eventDesc":"选择一位玩家查验其身份.","chooseCount":1,"eventSurplusTime":6}}
-
-// {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT_OK","eventResultInfo":{"eventResult":"还未执行操作的同伴:'2号'","eventDesc":"你刀掉的是'4'号,请等待其他队友操作.","targetNumber":"4"}}
-
-// {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_WEREWOLF","eventName":"狼刀","eventDesc":"选择一位玩家刀掉,所有狼人必须统一意见,否则视为空刀.","chooseCount":1,"unifyFlag":true,"eventSurplusTime":10}}
 
 
 

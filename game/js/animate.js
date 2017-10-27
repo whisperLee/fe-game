@@ -87,13 +87,15 @@ var animate = {
         if(time>0){
             console.log("countDown"+el+time)
             time--
-            $time.attr('time',time).html(time)
+            if(time>0){
+                $time.attr('time',time).html(time)
+            }else{
+                $time.attr('time',0).html('时间到！')
+            }
             setTimeout(function(){
                 _self.countDown(el)
             },1000)
         }else if(time==0){
-            $time.attr('time',0).html('时间到！')
-            console.log('时间到'+ time)
             if(el.hasClass('layerEventChoose')){
                 _self.layerOuter($('.layerEventConfirmAgain'))
             }
@@ -173,6 +175,37 @@ var animate = {
                 duration: 400,
                 easing: 'ease-in-out',
                 complete: fun
+            }
+        )
+    },
+    fadeOutUp:function (el, fun) {
+        fun = fun || function () { el.hide() }
+        el.velocity(
+            {
+                translateY:['-100%',0]
+            },
+            {
+                duration: 400,
+                easing: 'ease-in-out',
+                complete: function(){
+                    fun()
+                }
+            }
+        )
+    },
+    fadeInDown:function (el, fun) {
+        fun = fun || function () { }
+        el.show()
+        el.velocity(
+            {
+                translateY:[0,'-100%']
+            },
+            {
+                duration: 400,
+                easing: 'ease-in-out',
+                complete: function(){
+                    fun()
+                }
             }
         )
     },

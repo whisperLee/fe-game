@@ -7,7 +7,7 @@ var component = {
         template:
         ' <div class="user" v-bind:num="user.number || 0">'+
             '<div v-bind:class="`level level${user.stage || 0 }`">'+
-                '<div class="inner">'+
+                '<div class="userInner">'+
                     '<div class="head">'+
                         '<img v-bind:src="user.headImgUrl || `../image/head.png`">'+
                     '</div>'+
@@ -22,7 +22,7 @@ var component = {
         template:
         '<div class="user userBack">'+
         '<div v-bind:class="`level level${user.stage || 0 }`">'+
-        '<div class="inner">'+
+        '<div class="userInner">'+
         '<div class="head">'+
         '<img v-bind:src="user.headImgUrl || `../image/head.png`">'+
         '</div>'+
@@ -37,7 +37,7 @@ var component = {
         template:
         '<div class="user userBack">'+
         ' <div v-bind:class="`level level${user.stage || 0 }`">'+
-        '  <div class="inner">'+
+        '  <div class="userInner">'+
         '   <div class="head">'+
         '    <img v-bind:src="user.headImgUrl || `../image/head.png`">'+
         '   </div>'+
@@ -50,9 +50,6 @@ var component = {
         '  <li><span>称号：</span><p>狼里一枝花</p></li>'+
         '  <li><span>MVP：</span><p></p></li>'+
         ' </ul>'+
-        ' <div class="btnWrap">'+
-        '  <a class="btn btn2" v-on:click="addAtten">关注</a>'+
-        ' </div>'+
         '</div>',
         created: function () {
          

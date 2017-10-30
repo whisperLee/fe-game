@@ -33,9 +33,26 @@
   position: relative;
   overflow: hidden;
   .process {
-    b{position: absolute; left:0; top:0; width:0%; height:100%; background: #1abc9c;}
+    b{position: absolute; left:0; top:0; width:0%; height:100%;}
   }
   .text{position: relative; z-index: 2;}
+}
+
+.btn2.longPress{
+    .process{
+      b{
+        background: #1abc9c;
+      }
+    }
+
+}
+.btn4.longPress{
+    .process{
+      b{
+        background: #d34132;
+      }
+    }
+
 }
 
 .longPress.state-success{

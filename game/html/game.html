@@ -7,9 +7,6 @@
         <meta name="format-detection" content="telephone=no">
         <link href="../css/game.css" rel="stylesheet" type="text/css" media="screen" />
         <title>游戏页面</title>
-        <style>
-
-        </style>
     </head>
 <body>
 <div class="main" id="game" :class="screenCenterMessage.nightFlag==1? 'night' : screenCenterMessage.nightFlag==0?'day':'' ">
@@ -51,25 +48,31 @@
     </div>
     <!--查看身份-->
     <div class="layer layerShenfen">
-      <h2 class="title">长按身份牌查看您的身份</h2>
-      <div class="content shenfen"></div>
-      <div class="btnWrap"><a class="btn btn2">知道了</a></div>
+      <div class="inner">
+        <h2 class="title">长按身份牌查看您的身份</h2>
+        <div class="content shenfen"></div>
+        <div class="btnWrap"><a class="btn btn2">知道了</a></div>
+      </div>
     </div>
 
     <!--用户事件通知-->
-    <div class="layer layerEventKnow">
-        <h2 class="title"></h2>
-        <div class="content">
-            <p class="info"></p>
-            <div class="btnWrap">
-                <div class="btn btn2" v-on:click="userEventForKnow">知道了</div>
-            </div>
-        </div>
-    </div>
-    <div class="layer layerEventVoteResult">
-      <h2 class="title">投票结果</h2>
+  <div class="layer layerEventKnow">
+    <div class="inner">
+      <h2 class="title"></h2>
       <div class="content">
         <p class="info"></p>
+        <div class="btnWrap">
+          <div class="btn btn2 js-affirm">知道了</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 投票结果-->
+  <div class="layer layerEventVoteResult">
+    <div class="inner">
+      <h2 class="title">投票结果</h2>
+      <div class="content">
+        <p class="info">【1】号票数最多</p>
         <ul class="resultList">
           <li class="result">
             <div class="left">
@@ -78,10 +81,10 @@
             <div class="right">
               <ul>
                 <li>
-                    <b class="userNum">1</b>
+                  <b class="userNum">1</b>
                 </li>
               </ul>
-              
+
             </div>
           </li>
           <li class="result">
@@ -91,75 +94,82 @@
             <div class="right">
               <ul>
                 <li>
-                      <b class="userNum">1</b>
-                    </li>
-                    <li>
-                      <b class="userNum">1</b>
-                    </li>
+                  <b class="userNum">1</b>
+                </li>
+                <li>
+                  <b class="userNum">1</b>
+                </li>
               </ul>
             </div>
           </li>
         </ul>
       </div>
-      <div class="btnWrap"><div class="btn btn2" v-on:click="userEventForKnow">知道了</div></div>
-  </div>
-    <!--决定事件-->
-    <div class="layer layerEventDecide">
-        <h2 class="title"></h2>
-        <div class="content">
-            <p class="info"></p>
-            <div class="btnWrap twoCol">
-                <div class="btn btn3" v-on:click="userEventForDecide(0)">放弃</div>
-                <div class="btn btn2" v-on:click="userEventForDecide(1)">竞选</div>
-            </div>
-        </div>
+      <div class="btnWrap"><div class="btn btn2 js-affirm">知道了</div></div>
     </div>
+  </div>
+  <!--决定事件-->
+  <div class="layer layerEventDecide">
+    <div class="inner">
+      <h2 class="title"></h2>
+      <div class="content">
+        <p class="info"></p>
+        <div class="btnWrap twoCol">
+          <div class="btn btn3 js-withdraw" >放弃</div>
+          <div class="btn btn2 js-affirm">竞选</div>
+        </div>
+      </div>
+    </div>
+  </div>
     <!--用户事件-选择-->
     <div class="layer layerSixCenter layerEventChoose">
+      <div class="inner">
         <h2 class="title"></h2>
         <div class="content">
-            <p class="info"></p>
-            <ul class="voteList"></ul>
-            <p class="tips">请长按提交按钮进行提交</p>
-            <div class="btnWrap">
-              <div class="btn btn2 longPress">
-                <span class="process"><b></b></span>
-                <span class="text">提交</span>
-              </div>
-              <div class="btn btn3" v-on:click="userEventForResetUserChoose">重置</div>
+          <p class="info"></p>
+          <ul class="voteList"></ul>
+          <p class="tips">请长按提交按钮进行提交</p>
+          <div class="btnWrap">
+            <div class="btn btn2 longPress js-longPress">
+              <span class="process"><b></b></span>
+              <span class="text">提交</span>
             </div>
+            <div class="btn btn3 js-withdraw" >放弃</div>
+          </div>
         </div>
+      </div>
     </div>
   <!--用户事件-女巫-->
-  <div class="layer layerSixCenter layerEventWitch layerEventChoose">
-    <h2 class="title">女巫</h2>
-    <div class="content">
-      <p class="info"></p>
-      <ul class="voteList">
-        <li class="unchoose"></li>
-      </ul>
-      <p class="tips">请长按提交按钮进行提交</p>
-      <div class="btnWrap">
-        <div class="btn btn2 longPress">
-          <span class="process"><b></b></span>
-          <span class="text">提交</span>
-        </div>
-        <div class="btn btn3" v-on:click="userEventForResetUserChoose">重置</div>
-        <div class="btn btn3" v-on:click="userEventForReChoose">重新选择</div>
-      </div>
-      <div class="decideContent">
-        <p class="decideInfo">请选择是救人还是毒人</p>
+  <div class="layer layerSixCenter layerEventWitch">
+    <div class="inner">
+      <h2 class="title">女巫</h2>
+      <div class="content">
+        <p class="info"></p>
+        <ul class="voteList">
+          <li class="unchoose"></li>
+        </ul>
+        <p class="tips">请长按救人/毒人按钮进行提交</p>
         <div class="btnWrap">
-          <div class="btn btn2" event="EVENT_SAVE">救人</div>
-          <div class="btn btn4" event="EVENT_POISON">毒人</div>
-          <div class="btn btn3" event="EVENT_WITCH">放弃</div>
+          <div class="btn btn2 longPress" event="EVENT_SAVE">
+            <span class="process"><b></b></span>
+            <span class="text">救人</span>
+          </div>
+          <div class="btn btn4 longPress" event="EVENT_POISON">
+            <span class="process"><b></b></span>
+            <span class="text">毒人</span>
+          </div>
+          <div class="btn btn3 js-withdraw" event="EVENT_WITCH">放弃</div>
         </div>
       </div>
     </div>
   </div>
 
     <div class="layer layerUserInfo" v-if="JSON.stringify(userinfo)!='{}'">
+      <div class="inner">
         <userinfo v-bind:user="userinfo"></userinfo>
+        <div class="btnWrap">
+          <a class="btn btn2" v-on:click="addAtten">关注</a>
+        </div>
+      </div>
     </div>
 
 </div>

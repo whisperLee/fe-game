@@ -77,21 +77,21 @@ var game = new Vue({
         },
         // 离座
         quitSeat: function () {
-           var _self = this
-           var d = {
-             url: 'game/play/quitSeat',
-             data: {},
-             success: function (d) {
-               if (d.status.code === 'OK') {
-                 global.pop_tips('退座成功', function () {
-                   global.saoyisao()
-                 })
-               } else {
-                 global.pop_tips(d.status.msg)
-               }
-             }
-           }
-           global.ajax(d)
+            var _self = this
+            var d = {
+                url: 'game/play/quitSeat',
+                data: {},
+                success: function (d) {
+                    if (d.status.code === 'OK') {
+                        global.pop_tips('退座成功', function () {
+                            global.saoyisao()
+                        })
+                    } else {
+                        global.pop_tips(d.status.msg)
+                    }
+                }
+            }
+            global.ajax(d)
 
         },
         // 修改游戏配置
@@ -110,7 +110,7 @@ var game = new Vue({
             var _self = this
             console.log('得到返回数据:' + new Date())
             var d = JSON.parse(data.body)
-            
+
             _self.gameEvent = d.msgType
             // 队列
             if (d.msgType === 'QUEUE') {
@@ -135,7 +135,7 @@ var game = new Vue({
                     }else if(d.gameInfo.gameStatus == 'LOOK_IDENTITY'){
                         _self.$set(_self.mine,'identityName',d.personalInfo.identityName)
                         _self.$set(_self.mine,'identityId',d.personalInfo.identityId)
-                        $(".layerShenfen .shenfen").addClass('shenfen'+d.personalInfo.identityId)
+                        $('.layerShenfen .shenfen').addClass('shenfen'+d.personalInfo.identityId)
                         _self.showSF()
                     }
                     _self.gameInfo(d.gameInfo)
@@ -180,7 +180,7 @@ var game = new Vue({
                 if(d.gameInfo){
                     _self.gameInfo(d.gameInfo)
                 }
-                
+
             }
         },
         eventInfo:function(info){
@@ -192,23 +192,14 @@ var game = new Vue({
             if(e == 'EVENT_WITCH'){// 特殊事件----女巫
                 el = $('.layerEventWitch')
                 if(info.witchStatusEnum == 'PAPA'){
-                    var dec = el.find('.decideContent')
-                    dec.show()
-                    dec.find('.btn').off().on('click',function(){
-                        var event =  $(this).attr('event')
-                        el.attr('event',event)
-                        if(event == 'EVENT_WITCH'){
-                            animate.layerOuter(el)
-                            //game.userEventSubmit(el,num)
-                        }else{
-                            animate.fadeOutUp(dec)
-                        }
-                    })
+                    el.find('.btn[event=="EVENT_SAVE"]').show()
+                    el.find('.btn[event=="EVENT_POISON"]').show()
                 }else if(info.witchStatusEnum == 'SAVE'){
-                    el.attr('event','EVENT_SAVE')
-                    el.find('.info').html('请选择你要救的人')
+                    el.find('.btn[event=="EVENT_SAVE"]').show()
+                    el.find('.btn[event=="EVENT_POISON"]').hide()
                 }else if(info.witchStatusEnum == 'POISON'){
-                    el.attr('event','EVENT_WITCH')
+                    el.find('.btn[event=="EVENT_SAVE"]').hide()
+                    el.find('.btn[event=="EVENT_POISON"]').show()
                 }
             }else{ // 其它事件
                 if(count==-1){
@@ -229,12 +220,12 @@ var game = new Vue({
                     for(var i=0;i<info.chooseCount;i++){
                         h+='<li class="unchoose"></li>'
                     }
-                    el.find(".content ul").html(h)
+                    el.find('.content ul').html(h)
                     _self.isUserEvent = 1
                 }
 
-                info.eventName && el.find(".title").html(info.eventName)
-                info.eventDesc && el.find(".info").html(info.eventDesc)
+                info.eventName && el.find('.title').html(info.eventName)
+                info.eventDesc && el.find('.info').html(info.eventDesc)
 
                 el.attr('event',info.eventType)
                 if(info.eventSurplusTime){
@@ -289,7 +280,7 @@ var game = new Vue({
                     _self.queueFlow = 1
                 }
             }
-            
+
         },
         // 队列页面用户样式设置
         setUserQueueStyle: function () {
@@ -376,100 +367,100 @@ var game = new Vue({
             _self.qiangStart()
         },
         qiangStart: function (){
-                var _self = this
-                var el = $('.qiang')
-                $('.simple_tips').remove()
-                el.show()
-                el.find('.title').html('准备抢身份')
-                $('.qiang .shenfens li').each(function(idx){
-                    var el = $(this)
-                    el.velocity({
-                        translateX:[0,(1-idx)*100+'%']
-                    },{
-                        duration: 500,
-                        easing: 'ease-in-out',
-                        complete: function () {
-                            animate.fanzhuan(el,function () {
-                                el.find('.shenfen').addClass('on')
-                            },function () {
-                                _self.qiangSf(el)
-                            })
-                        }
-                    });
+            var _self = this
+            var el = $('.qiang')
+            $('.simple_tips').remove()
+            el.show()
+            el.find('.title').html('准备抢身份')
+            $('.qiang .shenfens li').each(function(idx){
+                var el = $(this)
+                el.velocity({
+                    translateX:[0,(1-idx)*100+'%']
+                },{
+                    duration: 500,
+                    easing: 'ease-in-out',
+                    complete: function () {
+                        animate.fanzhuan(el,function () {
+                            el.find('.shenfen').addClass('on')
+                        },function () {
+                            _self.qiangSf(el)
+                        })
+                    }
+                });
 
+            })
+            setTimeout(function (){
+                el.find('.title').html('请选择你想要的身份')
+                // 倒计时
+                global.countDown(5, $('.countDown'),function () {},function () {
+                    console.log('qiangsubmit')
+                    _self.submitQiang()
                 })
-                setTimeout(function (){
-                    el.find('.title').html('请选择你想要的身份')
-                    // 倒计时
-                    global.countDown(5, $('.countDown'),function () {},function () {
-                        console.log('qiangsubmit')
-                        _self.submitQiang()
-                    })
-                },500)
+            },500)
         },
         qiangSf: function (el) {
-                var _self = this;
-                el.on('click', function () {
-                    if(el.hasClass('no')){
-                        alert('您的玉米不够，请选择其它身份')
-                    }else{
-                        _self.submitQiang(el)
-                    }
-                })
+            var _self = this;
+            el.on('click', function () {
+                if(el.hasClass('no')){
+                    alert('您的玉米不够，请选择其它身份')
+                }else{
+                    _self.submitQiang(el)
+                }
+            })
         },
         submitQiang: function (el) {
-                var _self = this;
-                $('.shenfens li').off('click')
-                if(el){ // 选择身份
-                    global.countDownStop()
-                    _self.title = '您选择的身份是：' + el.attr('name')
-                    //未选择身份置灰，缩小
-                    el.siblings().each(function () {
-                        $(this).addClass('unselect')
-                        animate.scale($(this),0.5)
+            var _self = this;
+            $('.shenfens li').off('click')
+            if(el){ // 选择身份
+                global.countDownStop()
+                _self.title = '您选择的身份是：' + el.attr('name')
+                //未选择身份置灰，缩小
+                el.siblings().each(function () {
+                    $(this).addClass('unselect')
+                    animate.scale($(this),0.5)
+                })
+                // 选择的身份放大
+                el.addClass('select')
+                animate.scale(el,1.2)
+                websocket.userChooseIdentity({identityId:el.attr('identityId')})
+            }else{ // 未选择身份
+                _self.title = '您没有选择任何身份'
+                $('.shenfens li').each(function () {
+                    var el = $(this)
+                    animate.fanzhuan(el,function () {
+                        el.find('.shenfen').removeClass('on')
                     })
-                    // 选择的身份放大
-                    el.addClass('select')
-                    animate.scale(el,1.2)
-                    websocket.userChooseIdentity({identityId:el.attr('identityId')})
-                }else{ // 未选择身份
-                    _self.title = '您没有选择任何身份'
-                    $('.shenfens li').each(function () {
-                        var el = $(this)
-                        animate.fanzhuan(el,function () {
-                            el.find('.shenfen').removeClass('on')
-                        })
-                    })
-                }
+                })
+            }
         },
         showSF: function () {
             var _self = this
-            if($(".qiang").length>0){ // 抢身份结束后查看身份
+            if($('.qiang').length>0){ // 抢身份结束后查看身份
                 $('.shenfens li').each(function (idx) {
-                        var el = $(this)
-                        el.velocity(
-                            {
-                                translateX:[(1-idx)*100+'%',0],
-                                scale: 0,
-                                opacity: 0
-                            },
-                            {
-                                duration:400,
-                                easing: 'ease-in-out',
-                                complete: function () {
-                                    $('.qiang').hide()
-                                }
+                    var el = $(this)
+                    el.velocity(
+                        {
+                            translateX:[(1-idx)*100+'%',0],
+                            scale: 0,
+                            opacity: 0
+                        },
+                        {
+                            duration:400,
+                            easing: 'ease-in-out',
+                            complete: function () {
+                                $('.qiang').hide()
                             }
-                        )
-                    })
-                    var initStyle={
-                        width:0,
-                        height:0,
-                        left:'50%',
-                        top:'50%',
-                        display:"block",
-                        opacity: 1
-                    };
+                        }
+                    )
+                })
+                var initStyle={
+                    width:0,
+                    height:0,
+                    left:'50%',
+                    top:'50%',
+                    display:'block',
+                    opacity: 1
+                };
             }else{ // 其它时间查看身份
                 var btn = $('.mine .btn.identity')
                 if($('.mine .btn.identity').length>0){
@@ -494,68 +485,28 @@ var game = new Vue({
             }
             animate.sfLayerInter($('.layerShenfen'),initStyle);
         },
-        // 用户事件再次确认
-        // confirmAgain:function(info,yesfun,nofun){
-        //     var el = $('.layerEventConfirmAgain')
-        //     el.find('.info').html(info)
-        //     animate.layerEnter(el)
-        //
-        //     yesfun = yesfun || function(){}
-        //     nofun = nofun || function(){}
-        //     el.find('.btn[type="yes"]').off().on('click',function(){
-        //         animate.layerOuter(el)
-        //         yesfun()
-        //     })
-        //     el.find('.btn[type="no"]').off().on('click',function(){
-        //         animate.layerOuter(el)
-        //         nofun()
-        //     })
-        // },
-        userEventSubmit:function(el,n){
-            animate.layerOuter(el)
+        // event 事件提交websocket
+        userEventSubmit:function(el,n,notOuter){
+            if(!notOuter){
+                animate.layerOuter(el)
+            }
             var data = {
                 targetNumberList:n,
                 eventType:el.attr('event')
             }
+            console.log(JSON.stringify(data))
             websocket.receiveUserEvent(data)
         },
-        // 用户需要确认的消息
-        userEventForKnow:function(){
+        // 提交用户事件选择 --选人
+        userEventForUserChoose: function(el){
             var _self = this
-            var el = $('.layerKnow')
-            _self.userEventSubmit(el,null)
-        },
-        // 提交决定事件
-        userEventForDecide:function(f){
-            var _self = this
-            var el = $('.layerEventDecide')
-            var e = el.attr('event')
-            if(e=='EVENT_CAMPAIGN_SERGEANT'){
-                num = f==1?null:[0]
-            }
-            _self.userEventSubmit(el,num)
-        },
-        // 提交用户事件选择
-        userEventForUserChoose: function(){
-            var _self = this
-
-            var el = $('.layerEventChoose')
-            var eventType = el.attr('event')
             var num = []
-            var nums = ''
-            var info = ''
             el.find('.user').each(function(){
                 num.push($(this).attr('num'))
-                nums+='【'+$(this).attr('num')+'】'
             })
 
             _self.isUserEvent = 0
-            _self.userEventSubmit(el,num)
-
-        },
-        // 重置用户选择
-        userEventForResetUserChoose:function () {
-            $('.layerEventChoose .content li').html('').addClass("unchoose")
+            _self.userEventSubmit(el,num,1)
         },
         // 桌长事件
         eventForLeaderButton:function(){
@@ -593,7 +544,7 @@ var game = new Vue({
                 }
             }
             console.log(style)
-            return {"style":style,"className":className}
+            return {'style':style,'className':className}
         },
         // 用户点击
         userClick: function (item,event) {
@@ -601,113 +552,136 @@ var game = new Vue({
             console.log(item)
             //if(_self.isUserEvent){
             if(1){
-                var li = $(".layerEventChoose .content ul li.unchoose")
-                if(li.length>0){
+                var li = $('.layerSixCenter.active .content ul li.unchoose')
+                if(li.length>0 || $('.layerSixCenter.active .content ul li').length==1){
                     li.eq(0).html($(event.currentTarget).html())
                     li.eq(0).find('.user').attr('style','')
+                    li.find('.user').off().on('click',function(){
+                        $(this).remove()
+                        $(this).closest('li').addClass('unchoose')
+                    })
                     li.eq(0).removeClass('unchoose')
                 }else{
-                    global.pop_tips("请重置选择后再次点选")
+                    global.pop_tips('请删除选择后再次点选')
                 }
             }else{
                 _self.userinfo = item
                 setTimeout(function(){
-                    animate.layerEnter($(".layerUserInfo"))
+                    animate.layerEnter($('.layerUserInfo'))
                 },10)
             }
             //_self.vote.user.push(item)
+        },
+        addAtten: function(){
+
         },
         active:function(){
             var _self = this
             var shenfen_flow = 0
             $('.layerShenfen .btn').off().on('click',function () {
-                    animate.sfLayerOuter()
+                animate.sfLayerOuter()
             })
 
-            $('.layerShenfen .shenfen').on(
-                "touchstart",function(){
-                    // $('.layerShenfen .shenfen').off().on("touchstart",function(){
+            $('.layerShenfen .shenfen').off().on(
+                'touchstart',function(){
+                    // $('.layerShenfen .shenfen').off().on('touchstart',function(){
                     var el = $(this);
                     if(shenfen_flow == 0){//必须动画执行完成后才能开始查看动画
-                      animate.fanzhuan(el,function () {
-                        shenfen_flow = 1;
-                        el.addClass('on');
-                      }, function () {
-                        shenfen_flow=2;
-                      })
+                        animate.fanzhuan(el,function () {
+                            shenfen_flow = 1;
+                            el.addClass('on');
+                        }, function () {
+                            shenfen_flow=2;
+                        })
                     }
-            }).on(
-                "touchend",function(){
+                }).on(
+                'touchend',function(){
                     el = $(this);
                     if(shenfen_flow==2){ //如果已经查看完身份，则正常执行回返动画
-                      animate.fanzhuan(el,function () {
-                        el.removeClass('on')
-                        if(!game.lookOverIdentity){
-                            websocket.userLookIdentity()
-                            game.lookOverIdentity = 1
-                        }
-                      }, function () {
-                        shenfen_flow=0
-                        animate.fadeIn($('.layerShenfen .btnWrap'))
-                      })
-                    }else{ //查看过程中终止查看
-                      animate.stopAll(el) //停止正在进行的一切动画
-                      if(shenfen_flow==0){ //如果还没到90度，则直接翻转回来
-                        el.velocity(
-                          {rotateY: "0deg"},
-                          {
-                            duration:300,
-                            easing: "ease-in-out",
-                            complete:function(){
-                              shenfen_flow=0;
-                            }
-                          }
-                        )
-                      }else if(shenfen_flow==1){ //过了90度，查看到一部分身份牌时，需要先回转到90度，并将身份样式移除，在回转到0度
                         animate.fanzhuan(el,function () {
-                          el.removeClass('on')
-                          shenfen_flow=3
+                            el.removeClass('on')
+                            if(!game.lookOverIdentity){
+                                websocket.userLookIdentity()
+                                game.lookOverIdentity = 1
+                            }
                         }, function () {
-                          shenfen_flow=0
+                            shenfen_flow=0
+                            animate.fadeIn($('.layerShenfen .btnWrap'))
                         })
-                      }
+                    }else{ //查看过程中终止查看
+                        animate.stopAll(el) //停止正在进行的一切动画
+                        if(shenfen_flow==0){ //如果还没到90度，则直接翻转回来
+                            el.velocity(
+                                {rotateY: '0deg'},
+                                {
+                                    duration:300,
+                                    easing: 'ease-in-out',
+                                    complete:function(){
+                                        shenfen_flow=0;
+                                    }
+                                }
+                            )
+                        }else if(shenfen_flow==1){ //过了90度，查看到一部分身份牌时，需要先回转到90度，并将身份样式移除，在回转到0度
+                            animate.fanzhuan(el,function () {
+                                el.removeClass('on')
+                                shenfen_flow=3
+                            }, function () {
+                                shenfen_flow=0
+                            })
+                        }
                     }
-                    
-                 }
+
+                }
             )
 
             var press_flow = 0
-            $(".longPress.btn").off().on("touchstart",function(){
-                var _self = $(this)
-                var _pro = _self.find('.process b')
-                press_flow = 1
-                _pro.velocity({
-                    width:['100%','0%']
-                },{
-                    duration: 1000,
-                    easing: 'linear',
-                    complete: function(){
-                        console.log('complete')
-                        press_flow = 2
-                        _pro.width(0)
-                        _self.addClass('state-success')
-                        //方法提交
-                        _self.userEventForUserChoose()
-                    }
-                })
-            }).on("touchend",function(){
-                var _self = $(this)
-                var el = $(this).closest(".layer")
-                var _pro = _self.find('.process b')
-                if(press_flow==1){
-                    animate.stopAll(_pro)
-                    _pro.width(0)
-                }else{
-                    animate.layerOuter(el)
-                }
-                press_flow = 0
+            $('.layer').each(function(){
+                var el = $(this)
+                el.find('.longPress.btn').off().on(
+                    'touchstart',function(){
+                    var _btn = $(this)
+                    var _pro = _btn.find('.process b')
+                    press_flow = 1
+                    _pro.velocity({
+                        width:['100%','0%']
+                    },{
+                        duration: 1000,
+                        easing: 'linear',
+                        complete: function(){
 
+                            press_flow = 2
+                            _pro.width(0)
+                            _btn.addClass('state-success')
+                            _btn.attr('event') && el.attr('event',_btn.attr('event'))
+                            //方法提交
+                            _self.userEventForUserChoose(el)
+                        }
+                    })
+                }).on(
+                    'touchend',function(){
+                        var _self = $(this)
+                        var _pro = _self.find('.process b')
+                        if(press_flow==1){
+                            animate.stopAll(_pro)
+                            _pro.width(0)
+                        }else{
+                            animate.layerOuter(el)
+                        }
+                        press_flow = 0
+
+                    })
+                el.find('.js-withdraw').off().on('click',function(){
+                    _self.userEventSubmit(el,[0])
+                })
+                el.find('.js-affirm').off().on('click',function(){
+                    _self.userEventSubmit(el,null)
+                })
             })
+
+            $('.layerUserInfo .close').off().on('click',function(){
+                animate.layerOuter($('.layerUserInfo'))
+            })
+
 
 
         }

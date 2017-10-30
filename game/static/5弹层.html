@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no">
+    <link href="../css/game.css" rel="stylesheet" type="text/css" media="screen" />
+    <title>游戏页面</title>
+    <style>
+        .user-list{position: fixed; top:0}
+
+    </style>
+</head>
+<body>
+<div class="main" id="game" :class="screenCenterMessage.nightFlag==1? 'night' : screenCenterMessage.nightFlag==0?'day':'' ">
+    <ul class="user-list" style="height: 320px;"><li userid="101" class="left" style="top: 256px; height: 64px; width: 64px; opacity: 1; left: 0px;"><div num="1" class="user"><div class="level level1"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star1"></i><div class="num num1"></div></div></div></div></li><li userid="101" class="left" style="top: 192px; height: 64px; width: 64px; opacity: 1; left: 0px;"><div num="2" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num2"></div></div></div></div></li><li userid="102" class="left" style="top: 128px; height: 64px; width: 64px; opacity: 1; left: 0px;"><div num="3" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num3"></div></div></div></div></li><li userid="103" class="left" style="top: 64px; height: 64px; width: 64px; opacity: 1; left: 0px;"><div num="4" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num4"></div></div></div></div></li><li userid="104" class="left" style="height: 64px; width: 64px; opacity: 1; left: 0px; top: 0px;"><div num="5" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num5"></div></div></div></div></li><li userid="105" class="center" style="left: 85.3333px; height: 64px; width: 64px; opacity: 1; top: 0px;"><div num="6" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num6"></div></div></div></div></li><li userid="106" class="center" style="left: 170.667px; height: 64px; width: 64px; opacity: 1; top: 0px;"><div num="7" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num7"></div></div></div></div></li><li userid="107" class="right" style="left: 256px; height: 64px; width: 64px; opacity: 1; top: 0px;"><div num="8" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num8"></div></div></div></div></li><li userid="108" class="right" style="left: 256px; top: 64px; height: 64px; width: 64px; opacity: 1;"><div num="9" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num9"></div></div></div></div></li><li userid="109" class="right" style="left: 256px; top: 128px; height: 64px; width: 64px; opacity: 1;"><div num="10" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num10"></div></div></div></div></li><li userid="1010" class="right" style="left: 256px; top: 192px; height: 64px; width: 64px; opacity: 1;"><div num="11" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num11"></div></div></div></div></li><li userid="1011" class="right" style="left: 256px; top: 256px; height: 64px; width: 64px; opacity: 1;"><div num="12" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num12"></div></div></div></div></li></ul>
+    <!--查看身份-->
+    <div class="layer layerShenfen">
+        <div class="inner">
+            <h2 class="title">长按身份牌查看您的身份</h2>
+            <div class="content shenfen shenfen1"></div>
+            <div class="btnWrap"><a class="btn btn2">知道了</a></div>
+        </div>
+    </div>
+
+    <!--用户事件通知-->
+    <div class="layer layerEventKnow">
+        <div class="inner">
+            <h2 class="title"></h2>
+            <div class="content">
+                <p class="info"></p>
+                <div class="btnWrap">
+                    <div class="btn btn2 js-affirm">知道了</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 投票结果-->
+    <div class="layer layerEventVoteResult">
+        <div class="inner">
+            <h2 class="title">投票结果</h2>
+            <div class="content">
+                <p class="info">【1】号票数最多</p>
+                <ul class="resultList">
+                    <li class="result">
+                        <div class="left">
+                            <b class="userNum">1</b>
+                        </div>
+                        <div class="right">
+                            <ul>
+                                <li>
+                                    <b class="userNum">1</b>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </li>
+                    <li class="result">
+                        <div class="left">
+                            <b class="userNum qi">弃</b>
+                        </div>
+                        <div class="right">
+                            <ul>
+                                <li>
+                                    <b class="userNum">1</b>
+                                </li>
+                                <li>
+                                    <b class="userNum">1</b>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="btnWrap"><div class="btn btn2 js-affirm">知道了</div></div>
+        </div>
+    </div>
+    <!--决定事件-->
+    <div class="layer layerEventDecide">
+        <div class="inner">
+            <h2 class="title"></h2>
+            <div class="content">
+                <p class="info"></p>
+                <div class="btnWrap twoCol">
+                    <div class="btn btn3 js-withdraw" >放弃</div>
+                    <div class="btn btn2 js-affirm">竞选</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--用户事件-选择-->
+    <div class="layer layerSixCenter layerEventChoose">
+        <div class="inner">
+            <h2 class="title"></h2>
+            <div class="content">
+                <p class="info"></p>
+                <ul class="voteList"></ul>
+                <p class="tips">请长按提交按钮进行提交</p>
+                <div class="btnWrap">
+                    <div class="btn btn2 longPress js-longPress">
+                        <span class="process"><b></b></span>
+                        <span class="text">提交</span>
+                    </div>
+                    <div class="btn btn3 js-withdraw" >放弃</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--用户事件-女巫-->
+    <div class="layer layerSixCenter layerEventWitch">
+        <div class="inner">
+            <h2 class="title">女巫</h2>
+            <div class="content">
+                <p class="info"></p>
+                <ul class="voteList">
+                    <li class="unchoose"></li>
+                </ul>
+                <p class="tips">请长按救人/毒人按钮进行提交</p>
+                <div class="btnWrap">
+                    <div class="btn btn2 longPress" event="EVENT_SAVE">
+                        <span class="process"><b></b></span>
+                        <span class="text">救人</span>
+                    </div>
+                    <div class="btn btn4 longPress" event="EVENT_POISON">
+                        <span class="process"><b></b></span>
+                        <span class="text">毒人</span>
+                    </div>
+                    <div class="btn btn3 js-withdraw" event="EVENT_WITCH">放弃</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layer layerUserInfo">
+        <div class="inner">
+            <div class="user userBack">
+                <div class="level level1">
+                    <div class="userInner">
+                        <div class="head"><img src="../image/head.png"></div>
+                        <i class="star star1"></i>
+                        <div class="num num1"></div>
+                    </div>
+                </div>
+                <ul class="infos">
+                    <li><span>昵称：</span><p>刀狼</p></li>
+                    <li><span>称号：</span><p>狼里一枝花</p></li>
+                    <li><span>MVP：</span><p></p></li>
+                </ul>
+
+            </div>
+            <div class="btnWrap">
+                <a class="btn btn2" v-on:click="addAtten">关注</a>
+            </div>
+            <b class="close"></b>
+        </div>
+    </div>
+    .layer
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<script type="application/javascript" src="../../js/vue.js"></script>
+<script type="application/javascript" src="../../js/velocity.min.js"></script>
+<script type="application/javascript" src="../../js/sockjs.min.js"></script>
+<script type="application/javascript" src="../../js/stomp.js"></script>
+
+<script type="application/javascript" src="../js/global.js"></script>
+<script type="application/javascript" src="../js/websocket.js"></script>
+<script type="application/javascript" src="../js/component.js"></script>
+<script type="application/javascript" src="../js/animate.js"></script>
+<script type="application/javascript" src="../js/game.js"></script>
+<script>
+    $(function(){
+
+        game.active()
+        var el = $('.layer')
+        var el = $('.layerShenfen')
+        var el = $('.layerEventVoteResult')
+        var el = $('.layerUserInfo')
+        animate.layerEnter(el)
+    });
+
+</script>
+</body>
+</html>

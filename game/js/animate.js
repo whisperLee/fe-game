@@ -9,15 +9,16 @@ var animate = {
         el.find('.title').hide()
         el.css(initStyle)
         el.velocity({
-            width: '80%',
-            height: '80%',
-            left: '10%',
-            top: '10%',
+            width: '100%',
+            height: '100%',
+            left: '0',
+            top: '0',
             opacity: 1
         }, {
             duration: 500,
             easing: 'ease-in-out',
             complete: function(){
+                el.addClass('active')
               el.find('.title,.btn').show()
             }
         })
@@ -25,6 +26,7 @@ var animate = {
     sfLayerOuter: function (el, fun) {
         var btn = $('.mine .btn.identity')
         el = el || $('.layerShenfen')
+        el.removeClass('active')
         el.find('.title,.btn').hide()
         el.velocity({
             width: btn.width(),
@@ -68,7 +70,10 @@ var animate = {
             //translateY:'-50%'
         }, {
             duration: 500,
-            easing: 'ease-in-out'
+            easing: 'ease-in-out',
+            complete:function(){
+                el.addClass('active')
+            }
         })
         if(time && time>0){
             console.log("enter"+el+time)
@@ -106,7 +111,7 @@ var animate = {
         var $time = el.find('.countDown span')
 
         el.find('.longPress.state-success').removeClass('state-success')
-
+        el.removeClass('active')
         console.log("outer"+el+$time.attr('time'))
         if($time && $time.attr('time')>0){
             $time.attr('time'==-1)
@@ -175,37 +180,6 @@ var animate = {
                 duration: 400,
                 easing: 'ease-in-out',
                 complete: fun
-            }
-        )
-    },
-    fadeOutUp:function (el, fun) {
-        fun = fun || function () { el.hide() }
-        el.velocity(
-            {
-                translateY:['-100%',0]
-            },
-            {
-                duration: 400,
-                easing: 'ease-in-out',
-                complete: function(){
-                    fun()
-                }
-            }
-        )
-    },
-    fadeInDown:function (el, fun) {
-        fun = fun || function () { }
-        el.show()
-        el.velocity(
-            {
-                translateY:[0,'-100%']
-            },
-            {
-                duration: 400,
-                easing: 'ease-in-out',
-                complete: function(){
-                    fun()
-                }
             }
         )
     },

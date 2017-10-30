@@ -17,7 +17,7 @@
   .level{
     width:100%;
     height:100%;
-    .inner:before,.star,.star:before,.num, .num:before {
+    .userInner:before,.star,.star:before,.num, .num:before {
       content: "";
       position: absolute;
       left:0; bottom:0; width:100%;
@@ -26,7 +26,7 @@
       background-size: 100% 100%;
       background-position: center;
     }
-    .inner{
+    .userInner{
       position: relative;
       text-align: center;
       padding: 12%;
@@ -59,13 +59,13 @@
         }
       }
     }
-    .inner:before{
+    .userInner:before{
       background-image: url(../image/level/0.png);
     }
   }
   @for $i from 1 through 5{
     .level#{$i}{
-      .inner{
+      .userInner{
         .num{background-image: url(../image/level/#{$i}_1_0.png);}
         @for $j from 1 through 3{
           .star#{$j}:before{
@@ -73,7 +73,7 @@
           }
         }
       }
-      .inner:before{background-image: url(../image/level/#{$i}.png);}
+      .userInner:before{background-image: url(../image/level/#{$i}.png);}
     }
   }
   .nick{
@@ -97,7 +97,7 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center center;
-    .inner{
+    .userInner{
       width:40%;
       padding: 6%;
     }

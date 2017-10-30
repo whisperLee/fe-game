@@ -510,9 +510,9 @@ var game = new Vue({
         },
         // 桌长事件
         eventForLeaderButton:function(){
-            var el = $('.leaderButton')
+            var el = $('.leader.btn')
             var data = {
-                //targetNumberList:null,
+                targetNumberList:null,
                 eventType:el.attr('event')
             }
             websocket.receiveUserEvent(data)

@@ -272,37 +272,6 @@ RUBBISH(3);// 无药
 
 
 
-
-
-
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"nightFlag":true,"gameTime":1,"gameStatus":"DARK","gameStatusStr":"天黑请闭眼"}}
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"nightFlag":false,"gameTime":1,"gameStatus":"LIGHT","gameStatusStr":"天亮了"}}
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"nightFlag":true,"gameTime":2,"gameStatus":"LIGHT","gameStatusStr":"天亮了"}}
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"nightFlag":false,"gameTime":2,"gameStatus":"LIGHT","gameStatusStr":"天亮了"}}
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"LAST_NIGHT_INFO","gameStatusStr":"昨天情况公布"},"showMsg":"昨天晚上是,平安夜"}
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"userId":104,"number":4,"sergeantFlag":true,"campaignFlag":false}],"gameInfo":{"gameStatus":"CAMPAIGN_RESULT","gameStatusStr":"竞选结果"},"showMsg":"只有4号玩家参选,'4'号玩家自动当选警长.拥有1.5票归票权."}
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[],"gameInfo":{"gameStatus":"COMMON_SPEAK","gameStatusStr":"白天放逐发言"},"showMsg":"请警长:4号玩家,指定从'警'左或'警'右开始发言.指定之后直接发言,无需在手机上操作.发言结束后,由当前存活最小号:1号玩家在手机上点击发言结束."}
-{"retcode":0,"code":"OK"},"msgType":"UPDATE_LEADER","leaderInfo":{"leaderFlag":true,"leaderButton":["SPEAK_END"]}}
-
-{"retcode":0,"code":"OK"},"msgType":"UPDATE_LEADER","leaderInfo":{"leaderFlag":true,"leaderButton":["EMPTY"]}}
-
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"SERGEANT_SAME","gameStatusStr":"警长归票"}}
-
-
-
-{"retcode":0,"code":"OK"},"msgType":"EVENT_RESULT","eventResultInfo":{"eventDesc":"女巫,你放弃了操作.","targetNumber":"0","resultSurplusTime":3}}
-{"retcode":0,"code":"OK"},"msgType":"EVENT_RESULT","eventResultInfo":{"eventDesc":"你选择了上警.","resultSurplusTime":3}}
-
-
-
-
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_WITCH","witchStatusEnum":"PAPA","eventName":"女巫救人/毒人","eventDesc":"昨天狼队空刀,是否使用毒药,要毒谁?","chooseCount":1,"eventSurplusTime":6}}
-
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","gameInfo":{"nightFlag":false,"gameTime":1,"gameStatus":"CAMPAIGN_SERGEANT","gameStatusStr":"竞选警长"},"eventInfo":{"eventType":"EVENT_CAMPAIGN_SERGEANT","eventName":"警长竞选","eventDesc":"准备竞选警长,请选择是否参选.","chooseCount":0,"eventSurplusTime":10}}
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_WEREWOLF","eventName":"狼刀","eventDesc":"选择一位玩家刀掉,所有狼人必须统一意见,否则视为空刀.","chooseCount":1,"unifyFlag":true,"eventSurplusTime":10}}
-
-
-
 自爆按钮显示 狼人(2),白狼王(8),狼王(7):  
 以下状态显示:
 LIGHT 
@@ -322,6 +291,40 @@ DIE_SPEAK
 普通狼人:自爆 不选择目标 EVENT_SELF_DESTRUCT
 白狼王:自爆 选择目标 带走 EVENT_WHITE_SHOOT  
 自爆之后直接天黑离场
+
+
+{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"QUEUE","leaderInfo":{"leaderFlag":true,"leaderButton":[]},"boxInfo":{"boxName":"ggg"},"userInfoList":[{"userId":101,"nickName":"aaa","number":1,"sex":1,"stage":1,"star":1},{"userId":102,"nickName":"bbb","number":2,"stage":1,"star":1},{"userId":103,"nickName":"ccc","number":3,"stage":1,"star":1},{"userId":104,"nickName":"ddd","number":4,"stage":1,"star":1},{"userId":105,"nickName":"eee","number":5,"stage":1,"star":1},{"userId":106,"nickName":"fff","number":6,"stage":1,"star":1},{"userId":107,"nickName":"ggg","number":7,"stage":1,"star":1},{"userId":108,"nickName":"xxx","number":8,"stage":1,"star":1},{"userId":109,"nickName":"zzz","number":9,"stage":1,"star":1}],"screeningInfo":{"combinationConfigStr":"预言家 女巫 猎人 守卫 白痴 白狼王","combinationName":"什么都有","playerCount":12},"personalInfo":{"userId":101,"nickName":"aaa","number":1,"sex":1,"stage":1,"star":1,"consumptionScore":946}}
+
+{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","showMsg":"欢迎光临遇见狼人杀俱乐部"}
+
+{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"READY_ROB_IDENTITY","gameStatusStr":"准备抢身份"}}
+
+{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","identityInfoList":[{"identityId":3,"name":"预言家","cost":1},{"identityId":4,"name":"女巫","cost":1},{"identityId":5,"name":"猎人","cost":1}],"gameInfo":{"gameStatus":"ROB_IDENTITY","gameStatusStr":"开始抢身份"}}
+
+{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT_RESULT","eventResultInfo":{"eventType":"EVENT_IDENTITY_PURCHASE_OK","resultSurplusTime":0}}
+
+{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"LOOK_IDENTITY","gameStatusStr":"查看身份"},"personalInfo":{"identityName":"猎人","identityId":5}}
+
+{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT_START"}
+
+{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"nightFlag":true,"gameTime":1,"gameStatus":"DARK","gameStatusStr":"天黑请闭眼"}}
+
+{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_HUNTER","eventName":"猎人上膛","eventDesc":"猎人,如果你天亮后死亡,你'可以'开枪.","chooseCount":0,"eventSurplusTime":6}}
+
+{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"nightFlag":true,"gameTime":2,"gameStatus":"LIGHT","gameStatusStr":"天亮了"}}
+
+{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"LAST_NIGHT_INFO","gameStatusStr":"昨天情况公布"},"showMsg":"昨天晚上是,平安夜"}
+
+{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[],"gameInfo":{"gameStatus":"COMMON_SPEAK","gameStatusStr":"白天放逐发言"},"showMsg":"从'1'号玩家开始,'顺'序发言.发言结束后,由当前存活最小号:1号玩家在手机上点击发言结束.1->2->3->4->6->7"}
+
+{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE_LEADER","leaderInfo":{"leaderFlag":true,"leaderButton":["SPEAK_END"]}}
+
+{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_WEREWOLF","eventName":"狼刀","eventDesc":"选择一位玩家刀掉,所有狼人必须统一意见,否则视为空刀.","chooseCount":1,"unifyFlag":true,"eventSurplusTime":10}}
+
+
+
+
+
 
 
 

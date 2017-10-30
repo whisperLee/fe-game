@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection"content="telephone=no">
+    <link href="../css/global.css" rel="stylesheet" type="text/css" media="screen" />
+    <title>游戏结束</title>
+</head>
+<body>
+<div class="main" id="end">
+    <div class="result">
+        <div class="win">
+            <h2 class="title"></h2>
+            <ul>
+
+            </ul>
+        </div>
+
+    </div>
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<script type="application/javascript" src="../../js/vue.js"></script>
+<script type="application/javascript" src="../js/global.js"></script>
+<script>
+    var end = new Vue({
+        el: '#game',
+        data: {
+            win:[
+                {"userId":101,"nickName":"aaa","number":1,"sex":1,"stage":1,"star":1}
+            ],
+            lose:[
+                {"userId":101,"nickName":"aaa","number":1,"sex":1,"stage":1,"star":1}
+            ]
+        },
+        created: function () {
+        },
+        methods: {
+
+        }
+    });
+
+</script>
+</body>
+</html>

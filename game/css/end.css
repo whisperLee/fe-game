@@ -387,335 +387,42 @@ body {
   .mine .leader {
     right: .2rem; }
 
-.shenfen {
-  background: url(../image/sf.png) no-repeat center bottom;
-  background-size: contain; }
-
-.shenfen.on.shenfen1 {
-  background-image: url(../image/shenfen/pingmin.png); }
-
-.shenfen.on.shenfen2 {
-  background-image: url(../image/shenfen/langren.png); }
-
-.shenfen.on.shenfen3 {
-  background-image: url(../image/shenfen/yuyanjia.png); }
-
-.shenfen.on.shenfen4 {
-  background-image: url(../image/shenfen/nvwu.png); }
-
-.shenfen.on.shenfen5 {
-  background-image: url(../image/shenfen/lieren.png); }
-
-.shenfen.on.shenfen6 {
-  background-image: url(../image/shenfen/shouwei.png); }
-
-.shenfen.on.shenfen7 {
-  background-image: url(../image/shenfen/langwang.png); }
-
-.shenfen.on.shenfen8 {
-  background-image: url(../image/shenfen/bailangwang.png); }
-
-.shenfen.on.shenfen9 {
-  background-image: url(../image/shenfen/baichi.png); }
-
-.shenfen.on.shenfen10 {
-  background-image: url(../image/shenfen/qiubite.png); }
-
-.shenfen.on.shenfen11 {
-  background-image: url(../image/shenfen/daozei.png); }
-
-/*qiangshenfen*/
-.qiang {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 99;
-  display: none; }
-  .qiang .inner {
-    position: absolute;
-    left: 5%;
-    top: 50%;
-    width: 90%;
-    height: auto;
-    -webkit-transform: translateY(-60%); }
-    .qiang .inner h2 {
+.result h3.title {
+  text-align: center; }
+  .result h3.title span {
+    font-size: .16rem;
+    line-height: 150%;
+    color: #e74c3c;
+    display: inline-block; }
+.result .userList {
+  overflow: hidden;
+  margin-bottom: .2rem; }
+  .result .userList li {
+    position: relative;
+    width: 25%;
+    float: left;
+    padding-bottom: 3%;
+    text-align: center; }
+    .result .userList li p {
       text-align: center;
-      font-size: .2rem;
-      color: #fff;
-      padding: .3rem 0; }
-    .qiang .inner ul {
-      position: relative;
-      text-align: center; }
-      .qiang .inner ul li {
-        width: 33%;
-        height: auto;
-        float: left; }
-        .qiang .inner ul li .shenfen {
-          width: 80%;
-          padding-top: 120%;
-          height: 0;
-          margin: 0 auto; }
-        .qiang .inner ul li .price {
-          text-align: center;
-          margin-top: .1rem; }
-          .qiang .inner ul li .price .yumi {
-            position: relative;
-            padding-left: .35rem;
-            font-size: .16rem;
-            line-height: .3rem;
-            display: inline-block; }
-          .qiang .inner ul li .price .yumi:before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: .3rem;
-            height: .3rem;
-            background: url(../image/yumi2.png) no-repeat center;
-            background-size: contain; }
-      .qiang .inner ul li.unselect {
-        opacity: 0.8; }
-      .qiang .inner ul li.no {
-        opacity: 0.7; }
-        .qiang .inner ul li.no .price {
-          color: #888; }
-    .qiang .inner .countDown {
       position: absolute;
       left: 0;
-      top: -0.2rem;
-      width: 100%;
-      font-size: .2rem;
-      color: #fff;
-      text-align: center;
-      display: none; }
-      .qiang .inner .countDown span {
-        color: #f00;
-        display: inline-block;
-        width: .4rem; }
-
-.layer {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 99;
-  display: none; }
-  .layer .inner {
-    position: absolute;
-    left: 10%;
-    top: 50%;
-    width: 80%;
-    height: auto;
-    z-index: 99;
-    -webkit-transform: translateY(-50%);
-    background: #fff;
-    border: 2px solid #1abc9c;
-    border-radius: 10px; }
-    .layer .inner .title {
-      background: #1abc9c;
-      color: #f1f1f1;
-      text-align: center; }
-    .layer .inner .info {
-      font-size: .16rem;
-      color: #1abc9c;
-      line-height: .2rem;
-      text-align: center;
-      padding: .2rem .1rem 0; }
-    .layer .inner .tips {
-      color: #e74c3c;
-      font-size: .16rem;
-      text-align: center;
-      line-height: .3rem; }
-    .layer .inner .content {
-      position: relative;
-      overflow: hidden; }
-      .layer .inner .content .voteList {
-        text-align: center; }
-        .layer .inner .content .voteList li {
-          position: relative;
-          width: 40%;
-          height: 0;
-          padding-top: 40%;
-          display: inline-block; }
-          .layer .inner .content .voteList li .user {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%; }
-          .layer .inner .content .voteList li .user:before {
-            content: "";
-            position: absolute;
-            right: 5%;
-            top: 5%;
-            background: url(../image/delete.png) no-repeat center;
-            background-size: 100% 100%;
-            width: 20%;
-            height: 20%; }
-        .layer .inner .content .voteList li.unchoose {
-          background: url("../image/level/0_0.png") no-repeat center;
-          background-size: 80% 80%; }
-    .layer .inner .btn {
-      margin: .2rem auto; }
-    .layer .inner .countDown {
-      position: absolute;
-      left: 0;
-      top: -.3rem;
+      top: 80%;
       width: 100%;
       height: .2rem;
-      line-height: .2rem;
-      text-align: center;
-      font-size: .2rem;
-      font-weight: bold;
-      color: #e74c3c; }
+      line-height: .2rem; }
+      .result .userList li p span {
+        display: inline-block; }
+.result .win h3.title span {
+  color: #16a085;
+  padding-left: .3rem;
+  background: url("../image/win.png") no-repeat left center;
+  background-size: contain; }
+.result .win .userList li.zan span, .result .win .userList li.zaned span {
+  padding-left: .2rem;
+  background: url("../image/mvp.png") no-repeat left center;
+  background-size: contain; }
+.result .win .userList li.zaned p span {
+  background-image: url("../image/mvp_a.png"); }
 
-.layer.active {
-  background: rgba(0, 0, 0, 0.8); }
-
-.layer.layerSixCenter {
-  position: absolute;
-  left: 20%;
-  top: 50%;
-  width: 60%;
-  height: auto;
-  background: none;
-  -webkit-transform: translateY(-50%); }
-  .layer.layerSixCenter .inner {
-    width: 100%;
-    height: auto;
-    top: 50%;
-    left: 0;
-    -webkit-transform: translateY(-50%); }
-
-.layer.layerEventChoose .content .info {
-  padding-bottom: .1rem; }
-
-.layer.layerShenfen .inner {
-  top: 10%;
-  height: 80%;
-  -webkit-transform: translateY(0);
-  background: none;
-  border: none;
-  border-radius: 10px; }
-  .layer.layerShenfen .inner .title {
-    background: none; }
-  .layer.layerShenfen .inner .content {
-    position: absolute;
-    left: 0;
-    top: .6rem;
-    bottom: .6rem;
-    width: 100%;
-    height: auto; }
-  .layer.layerShenfen .inner .btnWrap {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    display: none; }
-    .layer.layerShenfen .inner .btnWrap .btn {
-      margin-top: 0;
-      margin-bottom: 0; }
-
-.layer.layerEventVoteResult .content .result {
-  position: relative;
-  overflow: hidden;
-  border-bottom: 1px solid #1abc9c;
-  padding: .1rem .05rem .1rem 20%; }
-  .layer.layerEventVoteResult .content .result .userNum {
-    font-size: .14rem;
-    color: #e74c3c;
-    width: .24rem;
-    height: .24rem;
-    line-height: .24rem;
-    border-radius: 50%;
-    background: #f1f1f1;
-    display: block;
-    text-align: center;
-    border: 1px solid #e74c3c; }
-  .layer.layerEventVoteResult .content .result .left {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 20%;
-    height: 100%; }
-    .layer.layerEventVoteResult .content .result .left .userNum {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      -webkit-transform: translate(-50%, -50%); }
-    .layer.layerEventVoteResult .content .result .left .userNum.qi {
-      border-color: #34495e;
-      color: #34495e; }
-  .layer.layerEventVoteResult .content .result .right {
-    position: relative;
-    width: 100%; }
-    .layer.layerEventVoteResult .content .result .right ul {
-      overflow: hidden;
-      margin-left: .2rem; }
-      .layer.layerEventVoteResult .content .result .right ul li {
-        float: left;
-        width: 20%; }
-        .layer.layerEventVoteResult .content .result .right ul li .userNum {
-          border-color: #1abc9c;
-          color: #1abc9c;
-          margin: .08rem auto; }
-  .layer.layerEventVoteResult .content .result .right:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: .15rem;
-    height: 100%;
-    background: url(../image/jiantou.png) no-repeat center;
-    background-size: contain; }
-
-.layerUserInfo .inner {
-  margin-top: -.3rem; }
-  .layerUserInfo .inner .infos {
-    width: 75%;
-    margin: 0 auto .1rem; }
-    .layerUserInfo .inner .infos li {
-      font-size: .12rem;
-      color: #000; }
-      .layerUserInfo .inner .infos li span {
-        width: .8rem;
-        display: inline-block;
-        text-align: left;
-        color: #16a085;
-        text-align: right; }
-      .layerUserInfo .inner .infos li p {
-        display: inline-block;
-        color: #34495e; }
-  .layerUserInfo .inner .close {
-    position: absolute;
-    bottom: -.6rem;
-    left: 50%;
-    width: .4rem;
-    height: .4rem;
-    margin-left: -.2rem;
-    background: url("../image/close.png") no-repeat center;
-    background-size: .4rem auto; }
-
-.messageCenter {
-  position: absolute;
-  left: 20%;
-  padding-top: 20%;
-  top: 1%;
-  width: 60%;
-  height: auto; }
-  .messageCenter .message {
-    background: rgba(26, 188, 156, 0.8);
-    color: #fff;
-    width: 100%;
-    padding: .1rem;
-    font-size: .14rem;
-    box-sizing: border-box;
-    border-radius: 5px; }
-    .messageCenter .message h3 {
-      font-size: .16rem; }
-
-/*# sourceMappingURL=game.css.map */
+/*# sourceMappingURL=end.css.map */

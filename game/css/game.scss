@@ -1,10 +1,7 @@
 @import "global";
-@import "list";
-@import "_num_set";
 @import "_btns";
 @import "_users";
-@import "shenfen";
-@import "_flex";
+@import "_shenfen";
 @import "_layer";
 .messageCenter{
   position: absolute; left:20%; padding-top: 20%; top:1%; width: 60%; height:auto;

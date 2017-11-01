@@ -5,7 +5,7 @@ body {
   color: $color;
   .main{
     @extend ._page;
-    background: url("../image/n1.jpg") no-repeat center;
+    background: url("../image/n1.jpg") no-repeat center top;
     background-size: cover;
     overflow-y: auto;
     .page{
@@ -27,8 +27,8 @@ body {
       text-align: center;
     }
   }
-  .main.day{background-image:url(../image/d1.jpg);}
-  .main.night{background-image:url(../image/n1.jpg); }
+  .main.day{background-image:url(../image/d.jpg);}
+  .main.night{background-image:url(../image/n.jpg); }
 }
 
 .simple_tips{

@@ -94,7 +94,7 @@ body {
   font-family: Helvetica, STHeiti, Droid Sans Fallback;
   color: #f1f1f1; }
   body .main {
-    background: url("../image/n1.jpg") no-repeat center;
+    background: url("../image/n1.jpg") no-repeat center top;
     background-size: cover;
     overflow-y: auto; }
     body .main .page {
@@ -110,9 +110,9 @@ body {
       color: #f1f1f1;
       text-align: center; }
   body .main.day {
-    background-image: url(../image/d1.jpg); }
+    background-image: url(../image/d.jpg); }
   body .main.night {
-    background-image: url(../image/n1.jpg); }
+    background-image: url(../image/n.jpg); }
 
 .simple_tips {
   position: fixed;

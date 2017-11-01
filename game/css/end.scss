@@ -1,62 +1,87 @@
 @import "global";
 @import "_btns";
 @import "_users";
-.result{
-  h2{
+body{
+  .main{
+    background-image: url("../image/3.jpg");
+    padding-top: .2rem;
+      .result{
+        position: relative;
+        width:74%;
+        margin: .6rem auto 0;
+        background: #fff;
+        border-radius: 5px;
+        box-sizing: border-box;
+        border: 1px solid #a3cfff;
+        h3.title{
+          position: absolute;
+          top:0;
+          left:8%;
+          width:84%;
+          text-align: center;
+          background: url("../image/t1.png") no-repeat center top;
+          background-size: contain;
+          color: #fff;
+          height:0;
+          padding-top: 15%;
+          margin-top: -9.7%;
+          span{
+            font-size: .16rem;
+            line-height: 100%;
+            position: absolute;
+            left:0;
+            top:37%;
+            width:100%;
+            text-align: center;
+            -webkit-transform:translateY(-50%)
+          }
+        }
+        .userList{
+          overflow: hidden;
+          padding: .2rem;
+          li{
+            position: relative;
+            width:25%;
+            float: left;
+            padding-bottom: 5%;
+            text-align: center;
+            p{
+              text-align: center;
+              position: absolute;
+              left:0;
+              top: 78%;
+              width:100%;
+              height:.2rem;
+              line-height: .2rem;
+              span{
+                display: inline-block;
+                color: $color2;
+                font-size: .14rem;
+              }
+            }
+          }
 
-  }
-  h3.title{
-    text-align: center;
-    span{
-      font-size: .16rem;
-      line-height: 150%;
-      color: $color3;
-      display: inline-block;
-    }
-  }
-  .userList{
-    overflow: hidden;
-    margin-bottom: .2rem;
-    li{
-      position: relative;
-      width:25%;
-      float: left;
-      padding-bottom: 3%;
-      text-align: center;
-      p{
-        text-align: center;
-        position: absolute;
-        left:0;
-        top: 80%;
-        width:100%;
-        height:.2rem;
-        line-height: .2rem;
-        span{
-          display: inline-block;
+        }
+      }
+
+      .win{
+        width:82%;
+        border-color:#e8685b ;
+        h3.title{
+          background-image: url("../image/t2.png");
+        }
+        .userList{
+          li.zan span,li.zaned span{
+            padding-left: .2rem;
+            background: url("../image/zan.png") no-repeat left center;
+            background-size: contain;
+          }
+          li.zaned p span{
+            background-image:url("../image/zan_a.png") ;
+          }
         }
       }
     }
-
-  }
-  .win{
-    h3.title{
-      span{
-        color:$color4 ;
-        padding-left: .3rem;
-        background: url("../image/win.png") no-repeat left center;
-        background-size: contain;
-      }
-    }
-    .userList{
-      li.zan span,li.zaned span{
-        padding-left: .2rem;
-        background: url("../image/mvp.png") no-repeat left center;
-        background-size: contain;
-      }
-      li.zaned p span{
-        background-image:url("../image/mvp_a.png") ;
-      }
-    }
-  }
 }
+
 

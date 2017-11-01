@@ -32,6 +32,20 @@ var component = {
         '</div>'+
         '<p class="nick">昵称：user.nickName</p><p class="designation">称号：狼里一枝花</p></div>'
     },
+    userend : {
+        props: ['user'],
+        template:
+        '<div class="user userBack">'+
+        '<div v-bind:class="`level level${user.thisStage || 0 }`">'+
+        '<div class="userInner">'+
+        '<div class="head">'+
+        '<img v-bind:src="user.headImgUrl || `../image/head.png`">'+
+        '</div>'+
+        '<i v-bind:class="`star star${user.thisStar || 0 }`"></i>'+
+        '<div v-bind:class="`num num${user.number || 0 }`"></div>'+
+        '</div>'+
+        '</div>'
+    },
     userinfo:{
         props: ['user'],
         template:

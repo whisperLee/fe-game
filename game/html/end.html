@@ -7,11 +7,18 @@
     <meta name="format-detection"content="telephone=no">
     <link href="../css/end.css" rel="stylesheet" type="text/css" media="screen" />
     <title>游戏结束</title>
+    <style>
+        .resultInfo{color: #666; width:82%; margin: 0 auto; line-height: .2rem;}
+        .costTime{ padding-left: .25rem; background: url("../image/close.png") no-repeat left center; background-size: contain;}
+        .resultInfo .endTime{float:right; padding-left: .25rem; background: url("../image/close.png") no-repeat left center; background-size: contain;}
+        .userAccount{position: absolute; left:8%; top:10%; width:84%; height:60%; background: #fff; border: 1px solid #cccc;z-index: 2; padding-top: .3rem; }
+        .userAccount .mvp{position: absolute; left:10%; width:80%; top:-.25rem; height:.5rem;  background: url("../image/mvp1.png") no-repeat center; background-size: contain;}
+    </style>
 </head>
 <body>
 <div class="main" id="end">
-        <p class="resultInfo">游戏用时：{{costTime}}</p>
-        <p class="resultInfo">结束时间：{{endTime}}</p>
+    <div class="layer gameEnd">
+        <p class="resultInfo"><span class="costTime">{{costTime}}</span><span class="endTime">{{endTime}}</span></p>
         <div class="result win">
             <h3 class="title"><span>{{gameStatusStr}}</span></h3>
             <ul class="userList">
@@ -31,6 +38,8 @@
                 </li>
             </ul>
         </div>
+    </div>
+
     <div class="layer userAccount">
         <div :class="personalAccountInfo.mvpFlag? 'mvp' : '' "></div>
         <userend class="userBack" v-bind:user="personalAccountInfo"></userend>

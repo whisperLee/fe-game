@@ -5,6 +5,12 @@ body{
   .main{
     background-image: url("../image/3.jpg");
     padding-top: .2rem;
+    .gameEnd{
+      .resultInfo{
+        span{
+          color: #666;
+        }
+      }
       .result{
         position: relative;
         width:74%;
@@ -81,6 +87,8 @@ body{
           }
         }
       }
+    }
+
     }
 }
 

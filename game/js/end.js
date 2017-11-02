@@ -148,7 +148,9 @@ new Vue({
             }
         },
         userAccountChange: function(){
-
+            setTimeout(function(){
+                animate.layerEnter($('.userAccount'))
+            },3000)
         }
     }
 });

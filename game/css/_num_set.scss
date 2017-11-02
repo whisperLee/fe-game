@@ -21,13 +21,14 @@
   }
   span{
     border-radius: 50%;
+    &.add{
+      background-image: url(../image/add.png);
+    }
+    &.sub{
+      background-image: url(../image/sub.png);
+    }
   }
-  span.add{
-    background-image: url(../image/add.png);
-  }
-  span.sub{
-    background-image: url(../image/sub.png);
-  }
+
   input{
     border-radius: 3px;
     border:none;

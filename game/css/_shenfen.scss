@@ -1,21 +1,24 @@
-.shenfen{background: url(../image/sf.png) no-repeat center bottom; background-size: contain;}
-.shenfen.on.shenfen1{background-image: url(../image/shenfen/pingmin.png)}
-.shenfen.on.shenfen2{background-image: url(../image/shenfen/langren.png)}
-.shenfen.on.shenfen3{background-image: url(../image/shenfen/yuyanjia.png)}
-.shenfen.on.shenfen4{background-image: url(../image/shenfen/nvwu.png)}
-.shenfen.on.shenfen5{background-image: url(../image/shenfen/lieren.png)}
-.shenfen.on.shenfen6{background-image: url(../image/shenfen/shouwei.png)}
-.shenfen.on.shenfen7{background-image: url(../image/shenfen/langwang.png)}
-.shenfen.on.shenfen8{background-image: url(../image/shenfen/bailangwang.png)}
-.shenfen.on.shenfen9{background-image: url(../image/shenfen/baichi.png)}
-.shenfen.on.shenfen10{background-image: url(../image/shenfen/qiubite.png)}
-.shenfen.on.shenfen11{background-image: url(../image/shenfen/daozei.png)}
-//.shenfen.on.shenfen12{background-image: url(../image/shenfen/jinyanzhanglao.png)}
-//.shenfen.on.shenfen13{background-image: url(../image/shenfen/zhadanren.png)}
-//.shenfen.on.shenfen14{background-image: url(../image/shenfen/moshushi.png)}
-//.shenfen.on.shenfen15{background-image: url(../image/shenfen/hunhun.png)}
-//.shenfen.on.shenfen16{background-image: url(../image/shenfen/emo.png)}
-//.shenfen.on.shenfen17{background-image: url(../image/shenfen/jiuweiyaohu.png)}
+.shenfen{
+  background: url(../image/sf.png) no-repeat center bottom; background-size: contain;
+  &.on.shenfen1{background-image: url(../image/shenfen/pingmin.png)}
+  &.on.shenfen2{background-image: url(../image/shenfen/langren.png)}
+  &.on.shenfen3{background-image: url(../image/shenfen/yuyanjia.png)}
+  &.on.shenfen4{background-image: url(../image/shenfen/nvwu.png)}
+  &.on.shenfen5{background-image: url(../image/shenfen/lieren.png)}
+  &.on.shenfen6{background-image: url(../image/shenfen/shouwei.png)}
+  &.on.shenfen7{background-image: url(../image/shenfen/langwang.png)}
+  &.on.shenfen8{background-image: url(../image/shenfen/bailangwang.png)}
+  &.on.shenfen9{background-image: url(../image/shenfen/baichi.png)}
+  &.on.shenfen10{background-image: url(../image/shenfen/qiubite.png)}
+  &.on.shenfen11{background-image: url(../image/shenfen/daozei.png)}
+  //&.on.shenfen12{background-image: url(../image/shenfen/jinyanzhanglao.png)}
+  //&.on.shenfen13{background-image: url(../image/shenfen/zhadanren.png)}
+  //&.on.shenfen14{background-image: url(../image/shenfen/moshushi.png)}
+  //&.on.shenfen15{background-image: url(../image/shenfen/hunhun.png)}
+  //&.on.shenfen16{background-image: url(../image/shenfen/emo.png)}
+  //&.on.shenfen17{background-image: url(../image/shenfen/jiuweiyaohu.png)}
+}
+
 /*qiangshenfen*/
 .qiang{
   position:absolute;
@@ -42,17 +45,18 @@
           text-align: center; margin-top: .1rem;
           .yumi{
             position: relative; padding-left: .35rem; font-size: .16rem; line-height: .3rem;  display: inline-block;
-          }
-          .yumi:before{
-            content: ''; position: absolute; left:0; top:0; width:.3rem; height:.3rem; background: url(../image/yumi2.png) no-repeat center; background-size: contain;
+            &:before{
+              content: ''; position: absolute; left:0; top:0; width:.3rem; height:.3rem; background: url(../image/yumi2.png) no-repeat center; background-size: contain;
+            }
           }
         }
+        &.unselect{opacity: 0.8}
+        &.no{
+          opacity: 0.7;
+          .price{  color:#888;  }
+        }
       }
-      li.unselect{opacity: 0.8}
-      li.no{
-        opacity: 0.7;
-        .price{  color:#888;  }
-      }
+
     }
     .countDown{
       position: absolute; left:0; top:-0.2rem; width:100%; font-size: .2rem; color: #fff;  text-align: center; display: none;

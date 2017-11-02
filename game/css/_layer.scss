@@ -7,6 +7,9 @@
   height:100%;
   z-index: 99;
   display: none;
+  &.active{
+    background: rgba(0,0,0,0.8);
+  }
   .inner{
     position: absolute; left:10%; top:50%; width:80%; height:auto;z-index: 99;
     -webkit-transform:translateY(-50%); background: #fff; border:2px solid #1abc9c; border-radius: 10px;
@@ -71,9 +74,7 @@
   }
 
 }
-.layer.active{
-  background: rgba(0,0,0,0.8);
-}
+
 .layer.layerSixCenter{
   position: absolute; left:20%; top:50%; width:60%; height:auto; background: none;
   -webkit-transform:translateY(-50%);
@@ -123,6 +124,10 @@
       }
       .right{
         position: relative; width:100%;
+        &:before{
+          content: ""; position: absolute; left:0; top:0; width:.15rem; height:100%;
+          background: url(../image/jiantou.png) no-repeat center; background-size: contain;
+        }
         ul{
           overflow: hidden; margin-left: .2rem;
           li{
@@ -131,12 +136,6 @@
           }
         }
       }
-      .right:before{
-        content: ""; position: absolute; left:0; top:0; width:.15rem; height:100%;
-        background: url(../image/jiantou.png) no-repeat center; background-size: contain;
-      }
-
-
     }
   }
 }

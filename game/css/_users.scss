@@ -58,10 +58,11 @@
           position: relative
         }
       }
+      &:before{
+        background-image: url(../image/level/0.png);
+      }
     }
-    .userInner:before{
-      background-image: url(../image/level/0.png);
-    }
+
   }
   @for $i from 1 through 5{
     .level#{$i}{
@@ -72,8 +73,8 @@
             background-image: url('../image/level/1_#{$j}.png');
           }
         }
+        &:before{background-image: url(../image/level/#{$i}.png);}
       }
-      .userInner:before{background-image: url(../image/level/#{$i}.png);}
     }
   }
   .nick{
@@ -90,23 +91,22 @@
     font-size:.12rem;
     line-height: .12rem;
   }
-
+  &.userBack{
+    .level{
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+      .userInner{
+        width:40%;
+        padding: 6%;
+      }
+    }
+    @for $i from 1 through 5{
+      .level#{$i}{
+        background-image:url(../image/level/#{$i}_0.png);
+      }
+    }
 }
-.userBack.user{
-  .level{
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center center;
-    .userInner{
-      width:40%;
-      padding: 6%;
-    }
-  }
-  @for $i from 1 through 5{
-    .level#{$i}{
-      background-image:url(../image/level/#{$i}_0.png);
-    }
-  }
 }
 
 /*user dead*/

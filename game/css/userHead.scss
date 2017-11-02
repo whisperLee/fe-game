@@ -44,13 +44,16 @@
   opacity: 0.8;
 }
 
-.level.head:before{content: ""; position: absolute; left:0; top:-.25rem; height:.3rem; width:100%; background: url("image/level1.png") no-repeat center bottom; background-size:contain; }
-.level1.head:before{background-image:url("../image/level/1.png") }
-.level2.head:before{background-image:url("../image/level/2.png") }
-.level3.head:before{background-image:url("../image/level/3.png") }
-.level4.head:before{background-image:url("../image/level/4.png") }
-.level5.head:before{background-image:url("../image/level/5.png") }
-.level6.head:before{background-image:url("../image/level/6.png") }
+.level.head:before{
+  content: ""; position: absolute; left:0; top:-.25rem; height:.3rem; width:100%; background: url("image/level1.png") no-repeat center bottom; background-size:contain;
+  &.level1.head:before{background-image:url("../image/level/1.png") }
+  &.level2.head:before{background-image:url("../image/level/2.png") }
+  &.level3.head:before{background-image:url("../image/level/3.png") }
+  &.level4.head:before{background-image:url("../image/level/4.png") }
+  &.level5.head:before{background-image:url("../image/level/5.png") }
+  &.level6.head:before{background-image:url("../image/level/6.png") }
+}
+
 .no-in{
   .level.head:before{
     display: none;

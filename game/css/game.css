@@ -109,10 +109,10 @@ body {
       padding: .2rem 0;
       color: #f1f1f1;
       text-align: center; }
-  body .main.day {
-    background-image: url(../image/d.jpg); }
-  body .main.night {
-    background-image: url(../image/n.jpg); }
+    body .main.day {
+      background-image: url(../image/d.jpg); }
+    body .main.night {
+      background-image: url(../image/n.jpg); }
 
 .simple_tips {
   position: fixed;
@@ -141,15 +141,12 @@ body {
   text-align: center;
   font-size: .16rem;
   color: #f1f1f1; }
-
-.btn.btn2 {
-  background: #16a085; }
-
-.btn.btn3 {
-  background: #34495e; }
-
-.btn.btn4 {
-  background: #e74c3c; }
+  .btn.btn2 {
+    background: #16a085; }
+  .btn.btn3 {
+    background: #34495e; }
+  .btn.btn4 {
+    background: #e74c3c; }
 
 .btnWrap.twoCol {
   text-align: center; }
@@ -171,18 +168,15 @@ body {
   .longPress .text {
     position: relative;
     z-index: 2; }
-
-.btn2.longPress .process b {
-  background: #1abc9c; }
-
-.btn4.longPress .process b {
-  background: #d34132; }
-
-.longPress.state-success .text {
-  background: url("../image/success.png") no-repeat left center;
-  background-size: 0.2rem auto;
-  padding-left: .25rem;
-  -webkit-transition: all .5s ease-in-out; }
+  .longPress.state-success .text {
+    background: url("../image/success.png") no-repeat left center;
+    background-size: 0.2rem auto;
+    padding-left: .25rem;
+    -webkit-transition: all .5s ease-in-out; }
+  .longPress.btn2 .process b {
+    background: #1abc9c; }
+  .longPress.btn4 .process b {
+    background: #d34132; }
 
 .user-list {
   position: relative;
@@ -272,8 +266,8 @@ body {
           margin: 0 auto;
           z-index: 2;
           position: relative; }
-    .user .level .userInner:before {
-      background-image: url(../image/level/0.png); }
+      .user .level .userInner:before {
+        background-image: url(../image/level/0.png); }
   .user .level1 .userInner .num {
     background-image: url(../image/level/1_1_0.png); }
   .user .level1 .userInner .star1:before {
@@ -336,24 +330,23 @@ body {
     bottom: 0;
     font-size: .12rem;
     line-height: .12rem; }
-
-.userBack.user .level {
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center center; }
-  .userBack.user .level .userInner {
-    width: 40%;
-    padding: 6%; }
-.userBack.user .level1 {
-  background-image: url(../image/level/1_0.png); }
-.userBack.user .level2 {
-  background-image: url(../image/level/2_0.png); }
-.userBack.user .level3 {
-  background-image: url(../image/level/3_0.png); }
-.userBack.user .level4 {
-  background-image: url(../image/level/4_0.png); }
-.userBack.user .level5 {
-  background-image: url(../image/level/5_0.png); }
+  .user.userBack .level {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center; }
+    .user.userBack .level .userInner {
+      width: 40%;
+      padding: 6%; }
+  .user.userBack .level1 {
+    background-image: url(../image/level/1_0.png); }
+  .user.userBack .level2 {
+    background-image: url(../image/level/2_0.png); }
+  .user.userBack .level3 {
+    background-image: url(../image/level/3_0.png); }
+  .user.userBack .level4 {
+    background-image: url(../image/level/4_0.png); }
+  .user.userBack .level5 {
+    background-image: url(../image/level/5_0.png); }
 
 /*user dead*/
 .user.status .level {
@@ -390,39 +383,28 @@ body {
 .shenfen {
   background: url(../image/sf.png) no-repeat center bottom;
   background-size: contain; }
-
-.shenfen.on.shenfen1 {
-  background-image: url(../image/shenfen/pingmin.png); }
-
-.shenfen.on.shenfen2 {
-  background-image: url(../image/shenfen/langren.png); }
-
-.shenfen.on.shenfen3 {
-  background-image: url(../image/shenfen/yuyanjia.png); }
-
-.shenfen.on.shenfen4 {
-  background-image: url(../image/shenfen/nvwu.png); }
-
-.shenfen.on.shenfen5 {
-  background-image: url(../image/shenfen/lieren.png); }
-
-.shenfen.on.shenfen6 {
-  background-image: url(../image/shenfen/shouwei.png); }
-
-.shenfen.on.shenfen7 {
-  background-image: url(../image/shenfen/langwang.png); }
-
-.shenfen.on.shenfen8 {
-  background-image: url(../image/shenfen/bailangwang.png); }
-
-.shenfen.on.shenfen9 {
-  background-image: url(../image/shenfen/baichi.png); }
-
-.shenfen.on.shenfen10 {
-  background-image: url(../image/shenfen/qiubite.png); }
-
-.shenfen.on.shenfen11 {
-  background-image: url(../image/shenfen/daozei.png); }
+  .shenfen.on.shenfen1 {
+    background-image: url(../image/shenfen/pingmin.png); }
+  .shenfen.on.shenfen2 {
+    background-image: url(../image/shenfen/langren.png); }
+  .shenfen.on.shenfen3 {
+    background-image: url(../image/shenfen/yuyanjia.png); }
+  .shenfen.on.shenfen4 {
+    background-image: url(../image/shenfen/nvwu.png); }
+  .shenfen.on.shenfen5 {
+    background-image: url(../image/shenfen/lieren.png); }
+  .shenfen.on.shenfen6 {
+    background-image: url(../image/shenfen/shouwei.png); }
+  .shenfen.on.shenfen7 {
+    background-image: url(../image/shenfen/langwang.png); }
+  .shenfen.on.shenfen8 {
+    background-image: url(../image/shenfen/bailangwang.png); }
+  .shenfen.on.shenfen9 {
+    background-image: url(../image/shenfen/baichi.png); }
+  .shenfen.on.shenfen10 {
+    background-image: url(../image/shenfen/qiubite.png); }
+  .shenfen.on.shenfen11 {
+    background-image: url(../image/shenfen/daozei.png); }
 
 /*qiangshenfen*/
 .qiang {
@@ -467,21 +449,21 @@ body {
             font-size: .16rem;
             line-height: .3rem;
             display: inline-block; }
-          .qiang .inner ul li .price .yumi:before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: .3rem;
-            height: .3rem;
-            background: url(../image/yumi2.png) no-repeat center;
-            background-size: contain; }
-      .qiang .inner ul li.unselect {
-        opacity: 0.8; }
-      .qiang .inner ul li.no {
-        opacity: 0.7; }
-        .qiang .inner ul li.no .price {
-          color: #888; }
+            .qiang .inner ul li .price .yumi:before {
+              content: '';
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: .3rem;
+              height: .3rem;
+              background: url(../image/yumi2.png) no-repeat center;
+              background-size: contain; }
+        .qiang .inner ul li.unselect {
+          opacity: 0.8; }
+        .qiang .inner ul li.no {
+          opacity: 0.7; }
+          .qiang .inner ul li.no .price {
+            color: #888; }
     .qiang .inner .countDown {
       position: absolute;
       left: 0;
@@ -504,6 +486,8 @@ body {
   height: 100%;
   z-index: 99;
   display: none; }
+  .layer.active {
+    background: rgba(0, 0, 0, 0.8); }
   .layer .inner {
     position: absolute;
     left: 10%;
@@ -572,9 +556,6 @@ body {
       font-size: .2rem;
       font-weight: bold;
       color: #e74c3c; }
-
-.layer.active {
-  background: rgba(0, 0, 0, 0.8); }
 
 .layer.layerSixCenter {
   position: absolute;
@@ -653,6 +634,15 @@ body {
   .layer.layerEventVoteResult .content .result .right {
     position: relative;
     width: 100%; }
+    .layer.layerEventVoteResult .content .result .right:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: .15rem;
+      height: 100%;
+      background: url(../image/jiantou.png) no-repeat center;
+      background-size: contain; }
     .layer.layerEventVoteResult .content .result .right ul {
       overflow: hidden;
       margin-left: .2rem; }
@@ -663,15 +653,6 @@ body {
           border-color: #1abc9c;
           color: #1abc9c;
           margin: .08rem auto; }
-  .layer.layerEventVoteResult .content .result .right:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: .15rem;
-    height: 100%;
-    background: url(../image/jiantou.png) no-repeat center;
-    background-size: contain; }
 
 .layerUserInfo .inner {
   margin-top: -.3rem; }

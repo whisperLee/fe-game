@@ -26,9 +26,10 @@ body {
       color: $color;
       text-align: center;
     }
+    &.day{background-image:url(../image/d.jpg);}
+    &.night{background-image:url(../image/n.jpg); }
   }
-  .main.day{background-image:url(../image/d.jpg);}
-  .main.night{background-image:url(../image/n.jpg); }
+
 }
 
 .simple_tips{

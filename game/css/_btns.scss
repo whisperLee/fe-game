@@ -9,16 +9,17 @@
   text-align: center;
   font-size: .16rem;
   color: $color;
+  &.btn2{
+    background: $color4;
+  }
+  &.btn3{
+    background: $color5;
+  }
+  &.btn4{
+    background: $color3;
+  }
 }
-.btn.btn2{
-  background: $color4;
-}
-.btn.btn3{
-  background: $color5;
-}
-.btn.btn4{
-  background: $color3;
-}
+
 .btnWrap.twoCol{
   text-align: center;
   .btn{
@@ -36,33 +37,35 @@
     b{position: absolute; left:0; top:0; width:0%; height:100%;}
   }
   .text{position: relative; z-index: 2;}
-}
-
-.btn2.longPress{
+  &.state-success{
+    .text{
+      background: url("../image/success.png") no-repeat left center;
+      background-size: .2rem auto ;
+      padding-left: .25rem;
+      -webkit-transition: all .5s ease-in-out;
+    }
+  }
+  &.btn2{
     .process{
       b{
         background: #1abc9c;
       }
     }
 
-}
-.btn4.longPress{
+  }
+  &.btn4{
     .process{
       b{
         background: #d34132;
       }
     }
 
-}
-
-.longPress.state-success{
-  .text{
-    background: url("../image/success.png") no-repeat left center;
-    background-size: .2rem auto ;
-    padding-left: .25rem;
-    -webkit-transition: all .5s ease-in-out;
   }
 }
+
+
+
+
 
 
 

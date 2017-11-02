@@ -123,7 +123,7 @@ new Vue({
             "oldScore": 0,
             "newScore": 0,
             "thisNeedScore": 0,
-            "thisStar": 1,
+            "thisStar": 3,
             "thisStage": 1,
             "nextNeedScore": 100,
             "nextStar": 2,

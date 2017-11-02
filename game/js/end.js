@@ -132,7 +132,7 @@ new Vue({
             "costTime": "02:48",
             "gameStatus": "GOOD_WIN",
             "gameStatusStr": "好人阵营胜利",
-            "mvpFlag": false
+            "mvpFlag": true
         }
     },
     created: function () {

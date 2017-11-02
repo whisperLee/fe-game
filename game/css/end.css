@@ -390,7 +390,9 @@ body {
 body .main {
   background-image: url("../image/3.jpg");
   padding-top: .2rem; }
-  body .main .result {
+  body .main .gameEnd .resultInfo span {
+    color: #666; }
+  body .main .gameEnd .result {
     position: relative;
     width: 74%;
     margin: .6rem auto 0;
@@ -398,7 +400,7 @@ body .main {
     border-radius: 5px;
     box-sizing: border-box;
     border: 1px solid #a3cfff; }
-    body .main .result h3.title {
+    body .main .gameEnd .result h3.title {
       position: absolute;
       top: 0;
       left: 8%;
@@ -410,7 +412,7 @@ body .main {
       height: 0;
       padding-top: 15%;
       margin-top: -9.7%; }
-      body .main .result h3.title span {
+      body .main .gameEnd .result h3.title span {
         font-size: .16rem;
         line-height: 100%;
         position: absolute;
@@ -419,16 +421,16 @@ body .main {
         width: 100%;
         text-align: center;
         -webkit-transform: translateY(-50%); }
-    body .main .result .userList {
+    body .main .gameEnd .result .userList {
       overflow: hidden;
       padding: .2rem; }
-      body .main .result .userList li {
+      body .main .gameEnd .result .userList li {
         position: relative;
         width: 25%;
         float: left;
         padding-bottom: 5%;
         text-align: center; }
-        body .main .result .userList li p {
+        body .main .gameEnd .result .userList li p {
           text-align: center;
           position: absolute;
           left: 0;
@@ -436,20 +438,20 @@ body .main {
           width: 100%;
           height: .2rem;
           line-height: .2rem; }
-          body .main .result .userList li p span {
+          body .main .gameEnd .result .userList li p span {
             display: inline-block;
             color: #666;
             font-size: .14rem; }
-  body .main .win {
+  body .main .gameEnd .win {
     width: 82%;
     border-color: #e8685b; }
-    body .main .win h3.title {
+    body .main .gameEnd .win h3.title {
       background-image: url("../image/t2.png"); }
-    body .main .win .userList li.zan span, body .main .win .userList li.zaned span {
+    body .main .gameEnd .win .userList li.zan span, body .main .gameEnd .win .userList li.zaned span {
       padding-left: .2rem;
       background: url("../image/zan.png") no-repeat left center;
       background-size: contain; }
-    body .main .win .userList li.zaned p span {
+    body .main .gameEnd .win .userList li.zaned p span {
       background-image: url("../image/zan_a.png"); }
 
 /*# sourceMappingURL=end.css.map */

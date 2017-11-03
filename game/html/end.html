@@ -13,33 +13,33 @@
 </head>
 <body>
 <div class="main" id="end">
-    <div class="gameEnd">
-        <p class="resultInfo"><span class="costTime">{{costTime}}</span><span class="endTime">{{endTime}}</span></p>
-        <div class="result win">
-            <h3 class="title"><span>{{gameStatusStr}}</span></h3>
-            <ul class="userList">
-                <li v-for="(user,idx) in winUsers" v-on:click="mvp($event)" :userid="user.userId" class="zan">
-                    <userwin v-bind:user="user"></userwin>
-                    <p><span>{{user.identityName}}</span></p>
-                </li>
+    <!--<div class="gameEnd">-->
+        <!--<p class="resultInfo"><span class="costTime">{{costTime}}</span><span class="endTime">{{endTime}}</span></p>-->
+        <!--<div class="result win">-->
+            <!--<h3 class="title"><span>{{gameStatusStr}}</span></h3>-->
+            <!--<ul class="userList">-->
+                <!--<li v-for="(user,idx) in winUsers" v-on:click="voteMvp($event)" :userid="user.userId" class="zan">-->
+                    <!--<userwin v-bind:user="user"></userwin>-->
+                    <!--<p><span>{{user.identityName}}</span></p>-->
+                <!--</li>-->
 
-            </ul>
-        </div>
-        <div class="result lose">
-            <h3 class="title"><span>失败</span></h3>
-            <ul class="userList">
-                <li v-for="(user,idx) in loseUsers" v-on:click="mvp($event)" :userid="user.userId">
-                    <userlose v-bind:user="user"></userlose>
-                    <p><span>{{user.identityName}}</span></p>
-                </li>
-            </ul>
-        </div>
-    </div>
+            <!--</ul>-->
+        <!--</div>-->
+        <!--<div class="result lose">-->
+            <!--<h3 class="title"><span>失败</span></h3>-->
+            <!--<ul class="userList">-->
+                <!--<li v-for="(user,idx) in loseUsers" v-on:click="mvp($event)" :userid="user.userId">-->
+                    <!--<userlose v-bind:user="user"></userlose>-->
+                    <!--<p><span>{{user.identityName}}</span></p>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
 
     <div class="layer userAccount">
         <div class="inner">
             <div :class="personalAccountInfo.mvpFlag? 'mvp' : '' "></div>
-            <userend class="userBack" v-bind:user="personalAccountInfo"></userend>
+            <!--<userend class="userBack" v-bind:user="personalAccountInfo"></userend>-->
             <ul class="levelChange" v-bind:class="`level${personalAccountInfo.thisStage || 0 }`">
                 <li>
                     <span class="left">等级：</span><div class="right"><p>一级</p></div>
@@ -48,7 +48,15 @@
                     <span class="left">星级：</span><div class="right"><b class="star" v-for="(user,idx) in personalAccountInfo.thisStar"></b></div>
                 </li>
                 <li>
-                    <span class="left">积分：</span><div class="right"><div class="pro"><b></b></div><span class="per">30%</span></div>
+                    <span class="left">积分：</span>
+                    <div class="right">
+                        <div class="pro">
+                            <b></b>
+                            <span v-bind:class="`pre bound level${personalAccountInfo.preStage || 0 }`"><i class="star" v-for="(user,idx) in personalAccountInfo.preStar"></i></span>
+                            <span v-bind:class="`next bound level${personalAccountInfo.preStage || 0 }`"><i class="star" v-for="(user,idx) in personalAccountInfo.nextStar"></i></span>
+                            <span v-bind:class="{{personalAccountInfo.upFlag?'subcount':'addcount'}}">{{personalAccountInfo.newScore-personalAccountInfo.oldScore}}分</span>
+                        </div>
+                        <span class="totalAccount">{{personalAccountInfo.oldScore}}分</span></div>
                 </li>
 
             </ul>

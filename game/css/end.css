@@ -583,6 +583,26 @@ body {
     background: url("../image/close.png") no-repeat center;
     background-size: .4rem auto; }
 
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
 @-webkit-keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -639,6 +659,34 @@ body {
   100% {
     opacity: 1;
     transform: scale(1); } }
+@-webkit-keyframes seal {
+  0% {
+    opacity: .5;
+    transform: translate(-20%, -20%) scale(3) rotate(-23deg); }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(-23deg); } }
+@-moz-keyframes seal {
+  0% {
+    opacity: .5;
+    transform: translate(-20%, -20%) scale(3) rotate(-23deg); }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(-23deg); } }
+@-o-keyframes seal {
+  0% {
+    opacity: .5;
+    transform: translate(-20%, -20%) scale(3) rotate(-23deg); }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(-23deg); } }
+@keyframes seal {
+  0% {
+    opacity: .5;
+    transform: translate(-20%, -20%) scale(3) rotate(-23deg); }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(-23deg); } }
 body .main {
   background-image: url("../image/3.jpg");
   padding-top: .2rem; }
@@ -704,6 +752,17 @@ body .main {
             display: inline-block;
             color: #666;
             font-size: .14rem; }
+        body .main .gameEnd .result .userList li.mvp:before {
+          content: "";
+          position: absolute;
+          right: 0;
+          bottom: 25%;
+          width: 60%;
+          height: 25%;
+          background: url("../image/mvp2.png") no-repeat right bottom;
+          background-size: contain;
+          z-index: 9;
+          -webkit-animation: seal .5s forwards; }
         body .main .gameEnd .result .userList li.zan span, body .main .gameEnd .result .userList li.zaned span {
           padding-left: .2rem;
           background: url("../image/zan.png") no-repeat left center;
@@ -765,11 +824,12 @@ body .main {
           width: .2rem;
           height: .4rem;
           display: block;
-          margin-right: .2rem;
+          margin-right: .15rem;
           float: left; }
         .layer.userAccount .inner .levelChange li div.right .pro {
           position: absolute;
-          border: 1px solid #16a085;
+          background: url("../image/pro.png") no-repeat center;
+          background-size: 100% 100%;
           left: 0;
           right: .5rem;
           height: .2rem;
@@ -777,16 +837,50 @@ body .main {
           box-sizing: border-box; }
           .layer.userAccount .inner .levelChange li div.right .pro b {
             background: #16a085;
-            width: 30%;
+            width: 0;
             height: 100%;
             position: absolute;
             left: 0;
             top: 0; }
-        .layer.userAccount .inner .levelChange li div.right .per {
+          .layer.userAccount .inner .levelChange li div.right .pro .bound {
+            font-size: .12rem;
+            padding-top: 4px;
+            line-height: 100%;
+            position: absolute;
+            top: .2rem;
+            width: .3rem;
+            height: .1rem;
+            text-align: center;
+            margin-left: -.15rem; }
+            .layer.userAccount .inner .levelChange li div.right .pro .bound:before {
+              content: "";
+              position: absolute;
+              left: 50%;
+              height: 4px;
+              width: 1px;
+              top: 0;
+              background: #16a085; }
+            .layer.userAccount .inner .levelChange li div.right .pro .bound.pre {
+              left: 10%; }
+            .layer.userAccount .inner .levelChange li div.right .pro .bound.next {
+              left: 90%; }
+            .layer.userAccount .inner .levelChange li div.right .pro .bound i {
+              width: .1rem;
+              height: .1rem;
+              display: inline-block;
+              float: none;
+              margin: 0; }
+        .layer.userAccount .inner .levelChange li div.right .totalAccount {
           display: block;
           width: .5rem;
           text-align: center;
           float: right; }
+        .layer.userAccount .inner .levelChange li div.right .count {
+          position: absolute;
+          right: 0;
+          top: -.15rem;
+          font-size: .12rem;
+          line-height: .15rem; }
     .layer.userAccount .inner .levelChange.level1 .star {
       background: url("../image/level/start1.png") no-repeat center;
       background-size: contain; }

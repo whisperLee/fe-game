@@ -8,7 +8,18 @@
     <link href="../css/end.css" rel="stylesheet" type="text/css" media="screen" />
     <title>游戏结束</title>
     <style>
-
+        .count{
+            position: absolute;
+            right:0;
+            top:-.15rem;
+            font-size: .12rem;
+            line-height: .15rem;
+            color: $color4;
+            opacity: 0;
+        }
+        .subcount{
+            color: #e74c3c;
+        }
     </style>
 </head>
 <body>
@@ -54,7 +65,7 @@
                             <b></b>
                             <span v-bind:class="`pre bound level${personalAccountInfo.preStage || 0 }`"><i class="star" v-for="(user,idx) in personalAccountInfo.preStar"></i></span>
                             <span v-bind:class="`next bound level${personalAccountInfo.preStage || 0 }`"><i class="star" v-for="(user,idx) in personalAccountInfo.nextStar"></i></span>
-                            <span v-bind:class="{{personalAccountInfo.upFlag?'subcount':'addcount'}}">{{personalAccountInfo.newScore-personalAccountInfo.oldScore}}分</span>
+                            <span v-bind:class="`count ${personalAccountInfo.upFlag?'addcount':'subcount'}`">{{personalAccountInfo.newScore-personalAccountInfo.oldScore}}分</span>
                         </div>
                         <span class="totalAccount">{{personalAccountInfo.oldScore}}分</span></div>
                 </li>

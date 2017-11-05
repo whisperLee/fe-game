@@ -119,19 +119,100 @@ new Vue({
             "identityId": 2,
             "identityName": "狼人",
 
-            "changeLevelFlag": false,
-            "upFlag": false,
-            "oldScore": 60,
-            "newScore": 90,
-            "thisNeedScore": 50,
-            "thisStar": 2,
-            "thisStage": 1,
-            "nextNeedScore": 100,
-            "nextStar":3,
-            "nextStage": 1,
-            "preNeedScore": 0,
-            "preStar": 1,
-            "preStage": 1,
+            // 模拟数据 +30
+            // "changeLevelFlag": false,
+            // "upFlag": true,
+            // "oldScore": 60,
+            // "newScore": 90,
+            // "thisNeedScore": 40,
+            // "thisStar": 2,
+            // "thisStage": 1,
+            // "nextNeedScore": 100,
+            // "nextStar":3,
+            // "nextStage": 1,
+            // "preNeedScore": 0,
+            // "preStar": 1,
+            // "preStage": 1,
+            // 0-40,40-100,100-200,200-350
+
+            // 模拟数据 -30
+            // "changeLevelFlag": false,
+            // "upFlag": false,
+            // "oldScore": 90,
+            // "newScore": 60,
+            // "thisNeedScore": 40,
+            // "thisStar": 2,
+            // "thisStage": 1,
+            // "nextNeedScore": 100,
+            // "nextStar":3,
+            // "nextStage": 1,
+            // "preNeedScore": 0,
+            // "preStar": 1,
+            // "preStage": 1,
+
+            // 模拟数据 +30 +*
+            //  "changeLevelFlag": true,
+            //  "upFlag": true,
+            //  "oldScore": 30,
+            //  "newScore": 60,
+            //  "thisNeedScore": 40,
+            //  "thisStar": 2,
+            //  "thisStage": 1,
+            //  "nextNeedScore": 100,
+            //  "nextStar":3,
+            //  "nextStage": 1,
+            //  "preNeedScore": 0,
+            //  "preStar": 1,
+            //  "preStage": 1,
+
+
+            // 模拟数据 -30 -*
+             "changeLevelFlag": true,
+             "upFlag": false,
+             "oldScore": 110,
+             "newScore": 80,
+             "thisNeedScore": 40,
+             "thisStar": 2,
+             "thisStage": 1,
+             "nextNeedScore": 100,
+             "nextStar":3,
+             "nextStage": 1,
+             "preNeedScore": 0,
+             "preStar": 1,
+             "preStage": 1,
+
+
+            /*// 模拟数据 +30 +*l
+             "changeLevelFlag": true,
+             "upFlag": true,
+             "oldScore": 180,
+             "newScore": 210,
+             "thisNeedScore": 200,
+             "thisStar": 1,
+             "thisStage": 2,
+             "nextNeedScore": 350,
+             "nextStar":2,
+             "nextStage": 2,
+             "preNeedScore": 100,
+             "preStar": 3,
+             "preStage": 1,
+             */
+
+            /*// 模拟数据 -30 -*l
+             "changeLevelFlag": true,
+             "upFlag": false,
+             "oldScore": 210,
+             "newScore": 180,
+             "thisNeedScore": 100,
+             "thisStar": 3,
+             "thisStage": 1,
+             "nextNeedScore": 200,
+             "nextStar":1,
+             "nextStage": 2,
+             "preNeedScore": 40,
+             "preStar": 2,
+             "preStage": 1,
+             */
 
             "endTime": "2017-10-23 00:53",
             "costTime": "02:48",
@@ -170,63 +251,52 @@ new Vue({
             var oldPre,newPre
             var _per = el.find('.pro b')
 
-
-
             newPre = (d.newScore-d.thisNeedScore)*100/(d.nextNeedScore-d.thisNeedScore)
             newPre = newPre*0.8+10 // 样式的问题，当前星级在整个进度条的80%，所以在*0.8之后，加上上一星级的10%
             console.log(newPre)
-            if(_self.changeLevelFlag){
-                if(upFlag){
+            if(d.changeLevelFlag){
+                if(d.upFlag){
+                    oldPre = 5;
+                    if(d.thisStar == 1){
+                        // 升等
+                    }else{
 
+                    }
                 }else{
+                    oldPre = 95;
+                    if(d.thisStar == 3){
+                        // 降等
+                    }else{
 
+                    }
                 }
             }else{
                 oldPre = (d.oldScore-d.thisNeedScore)*100/(d.nextNeedScore-d.thisNeedScore)
                 oldPre = parseInt(oldPre*0.8)+10
                 console.log(oldPre)
-
-
-
             }
             _per.css({'width':oldPre+'%'})
             animate.layerEnter($('.userAccount'))
 
-
-            _per.velocity({
-                width:newPre
+            el.find('.count').velocity({
+                translateY: ['0','100%'],
+                opacity:[1,0]
             },{
                 duration: 1000,
                 delay:3000,
                 complete: function() {
+                    _per.velocity({
+                        width:newPre+'%'
+                    },{
+                        duration: 500,
+                        complete: function() {
 
+                        }
+                    })
                 }
             })
 
 
-
-            //if(_self.upFlag){
-            //     el.find('.pro b').victory({
-            //         width:'50%'
-            //     },{
-            //         duration: 1000,
-            //         complete: function() {
-            //
-            //         }
-            //     })
-
-            // "changeLevelFlag": false,
-            //     "upFlag": false,
-            //     "oldScore": 0,
-            //     "newScore": 0,
-            //     "thisNeedScore": 0,
-            //     "thisStar": 3,
-            //     "thisStage": 1,
-            //     "nextNeedScore": 100,
-            //     "nextStar": 2,
-            //     "nextStage": 1,
-
-            //}
         }
     }
 });

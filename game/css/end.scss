@@ -222,7 +222,14 @@ body{
             top:-.15rem;
             font-size: .12rem;
             line-height: .15rem;
+            color: #16a085;
+            opacity: 0;
           }
+          .subcount{
+            color: $color3;
+          }
+
+
         }
       }
       @for $i from 1 through 5{

@@ -20,6 +20,25 @@
         .subcount{
             color: #e74c3c;
         }
+        .layer.userAccount .inner .user,.layer.userAccount .inner .levelChange li div.right .star{-webkit-transform-style: preserve-3d; -webkit-backface-visibility: hidden; -webkit-transition: all 1.0s ease-in-out;}
+
+        .layer.userAccount .inner .levelChange .level1 .star{
+            background: url(../image/level/start1.png) no-repeat center;
+            background-size: contain;
+        }
+        .layer.userAccount .inner .levelChange .level2 .star{
+            background: url(../image/level/start2.png) no-repeat center;
+            background-size: contain;
+        }
+        .layer.userAccount .inner .levelChange .level3 .star{
+            background: url(../image/level/start3.png) no-repeat center;
+            background-size: contain;
+        }
+        .layer.userAccount .inner .levelChange .level4 .star{
+            background: url(../image/level/start4.png) no-repeat center;
+            background-size: contain;
+        }
+
     </style>
 </head>
 <body>
@@ -50,13 +69,13 @@
     <div class="layer userAccount">
         <div class="inner">
             <div :class="personalAccountInfo.mvpFlag? 'mvp' : '' "></div>
-            <!--<userend class="userBack" v-bind:user="personalAccountInfo"></userend>-->
-            <ul class="levelChange" v-bind:class="`level${personalAccountInfo.thisStage || 0 }`">
+            <userend class="userBack" v-bind:user="myAccountInfo"></userend>
+            <ul class="levelChange" >
                 <li>
-                    <span class="left">等级：</span><div class="right"><p>一级</p></div>
+                    <span class="left">等级：</span><div class="right"><p>{{myAccountInfo.thisStage}}阶</p></div>
                 </li>
-                <li>
-                    <span class="left">星级：</span><div class="right"><b class="star" v-for="(user,idx) in personalAccountInfo.thisStar"></b></div>
+                <li v-bind:class="`level${myAccountInfo.thisStage || 0 }`">
+                    <span class="left">星级：</span><div class="right"><b class="star" v-for="(user,idx) in myAccountInfo.thisStar"></b></div>
                 </li>
                 <li>
                     <span class="left">积分：</span>
@@ -64,7 +83,7 @@
                         <div class="pro">
                             <b></b>
                             <span v-bind:class="`pre bound level${personalAccountInfo.preStage || 0 }`"><i class="star" v-for="(user,idx) in personalAccountInfo.preStar"></i></span>
-                            <span v-bind:class="`next bound level${personalAccountInfo.preStage || 0 }`"><i class="star" v-for="(user,idx) in personalAccountInfo.nextStar"></i></span>
+                            <span v-bind:class="`next bound level${personalAccountInfo.thisStage || 0 }`"><i class="star" v-for="(user,idx) in personalAccountInfo.thisStar"></i></span>
                             <span v-bind:class="`count ${personalAccountInfo.upFlag?'addcount':'subcount'}`">{{personalAccountInfo.newScore-personalAccountInfo.oldScore}}分</span>
                         </div>
                         <span class="totalAccount">{{personalAccountInfo.oldScore}}分</span></div>

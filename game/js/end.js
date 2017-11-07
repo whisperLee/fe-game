@@ -119,6 +119,7 @@ new Vue({
             "identityId": 2,
             "identityName": "狼人",
 
+
             // 模拟数据 +30
             // "changeLevelFlag": false,
             // "upFlag": true,
@@ -167,22 +168,22 @@ new Vue({
 
 
             // 模拟数据 -30 -*
-             "changeLevelFlag": true,
-             "upFlag": false,
-             "oldScore": 110,
-             "newScore": 80,
-             "thisNeedScore": 40,
-             "thisStar": 2,
-             "thisStage": 1,
-             "nextNeedScore": 100,
-             "nextStar":3,
-             "nextStage": 1,
-             "preNeedScore": 0,
-             "preStar": 1,
-             "preStage": 1,
+            //  "changeLevelFlag": true,
+            //  "upFlag": false,
+            //  "oldScore": 110,
+            //  "newScore": 80,
+            //  "thisNeedScore": 40,
+            //  "thisStar": 2,
+            //  "thisStage": 1,
+            //  "nextNeedScore": 100,
+            //  "nextStar":3,
+            //  "nextStage": 1,
+            //  "preNeedScore": 0,
+            //  "preStar": 1,
+            //  "preStage": 1,
 
 
-            /*// 模拟数据 +30 +*l
+            // 模拟数据 +30 +*l
              "changeLevelFlag": true,
              "upFlag": true,
              "oldScore": 180,
@@ -196,7 +197,7 @@ new Vue({
              "preNeedScore": 100,
              "preStar": 3,
              "preStage": 1,
-             */
+
 
             /*// 模拟数据 -30 -*l
              "changeLevelFlag": true,
@@ -219,10 +220,24 @@ new Vue({
             "gameStatus": "GOOD_WIN",
             "gameStatusStr": "好人阵营胜利",
             "mvpFlag": false
-        }
+        },
+        "myAccountInfo":{}
+
     },
     created: function () {
         var _self = this
+        _self.myAccountInfo = {}
+
+        _self.myAccountInfo=JSON.parse(JSON.stringify(_self.personalAccountInfo))
+        if(_self.personalAccountInfo.changeLevelFlag){
+            if(_self.personalAccountInfo.upFlag){
+                _self.myAccountInfo.thisStage = _self.personalAccountInfo.preStage
+                _self.myAccountInfo.thisStar = _self.personalAccountInfo.preStar
+            }else{
+                _self.myAccountInfo.thisStage = _self.personalAccountInfo.nextStage
+                _self.myAccountInfo.thisStar = _self.personalAccountInfo.nextStar
+            }
+        }
         setTimeout(function(){
             //
             //setTimeout(function(){
@@ -248,7 +263,7 @@ new Vue({
             var _self = this
             var el = $('.userAccount')
             var d = _self.personalAccountInfo
-            var oldPre,newPre
+            var oldPre,newPre,oldStar,old
             var _per = el.find('.pro b')
 
             newPre = (d.newScore-d.thisNeedScore)*100/(d.nextNeedScore-d.thisNeedScore)
@@ -257,18 +272,18 @@ new Vue({
             if(d.changeLevelFlag){
                 if(d.upFlag){
                     oldPre = 5;
-                    if(d.thisStar == 1){
-                        // 升等
-                    }else{
-
-                    }
+                    // if(d.thisStar == 1){
+                    //     // 升等
+                    // }else{
+                    //
+                    // }
                 }else{
                     oldPre = 95;
-                    if(d.thisStar == 3){
-                        // 降等
-                    }else{
-
-                    }
+                    // if(d.thisStar == 3){
+                    //     // 降等
+                    // }else{
+                    //
+                    // }
                 }
             }else{
                 oldPre = (d.oldScore-d.thisNeedScore)*100/(d.nextNeedScore-d.thisNeedScore)
@@ -290,7 +305,8 @@ new Vue({
                     },{
                         duration: 500,
                         complete: function() {
-
+                            _self.myAccountInfo = {}
+                            _self.myAccountInfo = d;
                         }
                     })
                 }

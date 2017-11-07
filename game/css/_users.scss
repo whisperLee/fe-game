@@ -70,7 +70,7 @@
         .num{background-image: url(../image/level/#{$i}_1_0.png);}
         @for $j from 1 through 3{
           .star#{$j}:before{
-            background-image: url('../image/level/1_#{$j}.png');
+            background-image: url('../image/level/#{$i}_#{$j}.png');
           }
         }
         &:before{background-image: url(../image/level/#{$i}.png);}

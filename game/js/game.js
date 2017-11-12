@@ -110,6 +110,7 @@ var game = new Vue({
             var _self = this
             console.log('得到返回数据:' + new Date())
             var d = JSON.parse(data.body)
+            //var d = data
 
             _self.gameEvent = d.msgType
             // 队列
@@ -143,6 +144,9 @@ var game = new Vue({
                 if(d.userInfoList){
                     //_self.setUser(d.userInfoList)
                 }
+                if(d.personalInfo){
+                    // button
+                }
             }
             else if(d.msgType == 'UPDATE_LEADER'){//需要获取leaderInfo
                 var btn = d.leaderInfo.leaderButton
@@ -151,7 +155,7 @@ var game = new Vue({
                 console.log(_self.leaderButton)
             }
             else if(d.msgType == 'DEAD'){//该玩家挂了,黑屏,不在接受事件 除了gameover
-
+                _self.dead()
             }
             else if(d.msgType == 'EVENT_GAMEOVER'){ //游戏结束 获取gameResult字段 TODO
 
@@ -684,6 +688,10 @@ var game = new Vue({
 
 
 
+        },
+        dead:function () {
+            var _self = this
+            animate.layerEnter($('.layerDead'))
         }
     }
 });

@@ -5,7 +5,7 @@ var component = {
     user : {
         props: ['user'],
         template:
-        ' <div class="user" v-bind:num="user.number || 0">'+
+        ' <div class="user" v-bind:num="user.number || 0" v-bind:status="user.identityStatus">'+
             '<div v-bind:class="`level level${user.stage || 0 }`">'+
                 '<div class="userInner">'+
                     '<div class="head">'+
@@ -13,6 +13,8 @@ var component = {
                     '</div>'+
                     '<i v-bind:class="`star star${user.star || 0 }`"></i>'+
                     '<div v-bind:class="`num num${user.number || 0 }`"></div>'+
+                    '<b v-if="user.campaignFlag" class="campaign"></b>'+
+                    '<b v-if="user.sergeantFlag" class="sergeant"></b>'+
                 '</div>'+
             '</div>'+
         '</div>'

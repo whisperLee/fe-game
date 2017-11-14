@@ -10,7 +10,6 @@
       -webkit-transform-origin: center center;
     }
   }
-
 }
 .user{
   position: relative;
@@ -112,11 +111,9 @@
 /*user dead*/
 .user.status .level{opacity: 0.8;}
 .user.status .head img{visibility: hidden; }
-.user.dead .head{background-image: url(../image/dead.png); }
-
-
-
-
+.user.dead .head{
+  background-image: url(../image/dead.png);
+}
 .mine{
   position: absolute;
   left:0;

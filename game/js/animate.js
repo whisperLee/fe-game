@@ -78,7 +78,7 @@ var animate = {
         if(time && time>0){
             console.log("enter"+el+time)
             if(el.find('.countDown').length<=0){
-                el.append('<div class="countDown"><span time='+parseInt(time+1)+'></span></div>')
+                el.find('.inner').append('<div class="countDown"><span time='+parseInt(time+1)+'></span></div>')
             }else{
                 el.find('.countDown span').attr('time',time+1)
             }

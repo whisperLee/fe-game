@@ -13,7 +13,8 @@ var game = new Vue({
         queueFlow: 0, // 0是入座，1是游戏准备，2是入座完成，3是抢身份
         screeningId: 0,
         leaderFlag: 0,
-        leaderButton:'',
+        leaderButton:[],
+        personalButton:[],
         users: [],
         mine: { },
         userinfo:{},//查看用户个人信息
@@ -110,7 +111,6 @@ var game = new Vue({
             var _self = this
             console.log('得到返回数据:' + new Date())
             var d = JSON.parse(data.body)
-            //var d = data
 
             _self.gameEvent = d.msgType
             // 队列
@@ -129,30 +129,16 @@ var game = new Vue({
             }
 
             // 游戏开始后事件
-            else if(d.msgType == 'UPDATE'){ //需要获取GameInfo和userInfoList
-                if(d.gameInfo){
-                    if(d.gameInfo.gameStatus == 'ROB_IDENTITY'){
-                        _self.showQiang(d.identityInfoList)
-                    }else if(d.gameInfo.gameStatus == 'LOOK_IDENTITY'){
-                        _self.$set(_self.mine,'identityName',d.personalInfo.identityName)
-                        _self.$set(_self.mine,'identityId',d.personalInfo.identityId)
-                        $('.layerShenfen .shenfen').addClass('shenfen'+d.personalInfo.identityId)
-                        _self.showSF()
-                    }
-                    _self.gameInfo(d.gameInfo)
-                }
-                if(d.userInfoList){
-                    //_self.setUser(d.userInfoList)
-                }
-                if(d.personalInfo){
-                    // button
-                }
+            if(d.msgType == 'UPDATE'){ //需要获取GameInfo和userInfoList
+                _self.gameInfo(d)
             }
             else if(d.msgType == 'UPDATE_LEADER'){//需要获取leaderInfo
                 var btn = d.leaderInfo.leaderButton
-                //_self.leaderButton = btn[0].toLocaleLowerCase()
-                _self.leaderButton = btn[0]
-                console.log(_self.leaderButton)
+                if(btn.length==1 && btn[0]=='EMPTY'){
+                    _self.leaderButton = []
+                }else{
+                    _self.leaderButton = d.leaderInfo.leaderButton
+                }
             }
             else if(d.msgType == 'DEAD'){//该玩家挂了,黑屏,不在接受事件 除了gameover
                 _self.dead()
@@ -164,7 +150,7 @@ var game = new Vue({
                 _self.eventInfo(d.eventInfo)
             }
             else if(d.msgType == 'UPDATE_AND_EVENT'){
-                _self.gameInfo(d.gameInfo)
+                _self.gameInfo(d)
                 _self.eventInfo(d.eventInfo)
             }
             else if(d.msgType == 'EVENT_RESULT'){ // 游戏事件返回结果,需要获取eventResultInfo
@@ -196,14 +182,14 @@ var game = new Vue({
             if(e == 'EVENT_WITCH'){// 特殊事件----女巫
                 el = $('.layerEventWitch')
                 if(info.witchStatusEnum == 'PAPA'){
-                    el.find('.btn[event=="EVENT_SAVE"]').show()
-                    el.find('.btn[event=="EVENT_POISON"]').show()
+                    el.find('.btn[event="EVENT_SAVE"]').show()
+                    el.find('.btn[event="EVENT_POISON"]').show()
                 }else if(info.witchStatusEnum == 'SAVE'){
-                    el.find('.btn[event=="EVENT_SAVE"]').show()
-                    el.find('.btn[event=="EVENT_POISON"]').hide()
+                    el.find('.btn[event="EVENT_SAVE"]').show()
+                    el.find('.btn[event="EVENT_POISON"]').hide()
                 }else if(info.witchStatusEnum == 'POISON'){
-                    el.find('.btn[event=="EVENT_SAVE"]').hide()
-                    el.find('.btn[event=="EVENT_POISON"]').show()
+                    el.find('.btn[event="EVENT_SAVE"]').hide()
+                    el.find('.btn[event="EVENT_POISON"]').show()
                 }
             }else{ // 其它事件
                 if(count==-1){
@@ -211,11 +197,11 @@ var game = new Vue({
                 }else if(count==0){
                     el = $('.layerEventDecide')
                     if(e == 'EVENT_CAMPAIGN_SERGEANT'){ // 特殊事件---警长精选
-                        el.find('.btn').eq(0).html('竞选')
-                        el.find('.btn').eq(0).html('放弃')
+                        el.find('.btn[type="yes"]').html('竞选')
+                        el.find('.btn[type="no"]').html('放弃')
                     }else{
-                        el.find('.btn').eq(0).html('是')
-                        el.find('.btn').eq(0).html('否')
+                        el.find('.btn[type="yes"]').eq(0).html('是')
+                        el.find('.btn[type="no"]').eq(0).html('否')
                     }
                 }else if(count>0){
                     el = $('.layerEventChoose')
@@ -228,35 +214,63 @@ var game = new Vue({
                     _self.isUserEvent = 1
                 }
 
-                info.eventName && el.find('.title').html(info.eventName)
-                info.eventDesc && el.find('.info').html(info.eventDesc)
+                
+            }
+            info.eventName && el.find('.title').html(info.eventName)
+            info.eventDesc && el.find('.info').html(info.eventDesc)
 
-                el.attr('event',info.eventType)
-                if(info.eventSurplusTime){
-                    animate.layerEnter(el,info.eventSurplusTime)
-                }else{
-                    animate.layerEnter(el)
-                }
+            el.attr('event',info.eventType)
+            if(info.eventSurplusTime){
+                animate.layerEnter(el,info.eventSurplusTime)
+            }else{
+                animate.layerEnter(el)
             }
 
 
         },
-        gameInfo:function(info){
+        gameInfo:function(d){
             var _self = this
-            var s = info.gameStatus
-            if(global.isExit(info.nightFlag)){
-                console.log(info.nightFlag)
-                _self.screenCenterMessage.nightFlag = info.nightFlag?1:0
+            //var s = d.gameInfo.gameStatus
+            if(d.gameInfo){
+                    if(d.gameInfo.gameStatus == 'ROB_IDENTITY'){
+                        _self.showQiang(d.identityInfoList)
+                    }else if(d.gameInfo.gameStatus == 'LOOK_IDENTITY'){
+                        _self.$set(_self.mine,'identityName',d.personalInfo.identityName)
+                        _self.$set(_self.mine,'identityId',d.personalInfo.identityId)
+                        $('.layerShenfen .shenfen').addClass('shenfen'+d.personalInfo.identityId)
+                        _self.showSF()
+                    }
+                    if(global.isExit(d.gameInfo.nightFlag)){
+                        console.log(d.gameInfo.nightFlag)
+                        _self.screenCenterMessage.nightFlag = d.gameInfo.nightFlag?1:0
+                    }
+                    if(global.isExit(d.gameInfo.gameTime)){
+                        _self.screenCenterMessage.gameTime = d.gameInfo.gameTime
+                    }
+                    if(global.isExit(d.gameInfo.gameStatusStr)){
+                        _self.screenCenterMessage.gameStatusStr = d.gameInfo.gameStatusStr
+                    }
+                    if(global.isExit(d.gameInfo.showMsg)){
+                        _self.screenCenterMessage.result = d.gameInfo.result
+                    }
+                    
             }
-            if(global.isExit(info.gameTime)){
-                _self.screenCenterMessage.gameTime = info.gameTime
+            if(d.userInfoList){
+                for(var i=0;i<d.userInfoList.length; i++){
+                    var num = d.userInfoList[i].number
+                    _self.users[num] =  $.extend({}, d.userInfoList[i], _self.users[num])
+                }
+                console.log(JSON.stringify(_self.users))
             }
-            if(global.isExit(info.gameStatusStr)){
-                _self.screenCenterMessage.gameStatusStr = info.gameStatusStr
+            if(d.personalInfo && d.personalInfo.buttons){
+                if(d.personalInfo.buttons.length==0 && d.personalInfo.buttons[0]=='EMPTY'){
+                    _self.personalButton = []
+                }else{
+                    _self.personalButton = d.personalInfo.buttons
+                }
             }
-            if(global.isExit(info.showMsg)){
-                _self.screenCenterMessage.result = info.result
-            }
+
+            
         },
         // 设置用户状态
         setUser: function (d) {
@@ -513,13 +527,30 @@ var game = new Vue({
             _self.userEventSubmit(el,num,1)
         },
         // 桌长事件
-        eventForLeaderButton:function(){
+        eventForLeaderButton:function(event){
+            var _self = this
+            var el = $('.leaderBtn')
+            var data = {
+                targetNumberList:null,
+                eventType:el.attr('event')
+            }
+            _self.leaderButton = []
+            console.log(JSON.stringify(data))
+            websocket.receiveUserEvent(data)
+        },
+        // 桌长事件
+        eventForpersonalButton:function(){
             var el = $('.leader.btn')
             var data = {
                 targetNumberList:null,
                 eventType:el.attr('event')
             }
+            console.log(JSON.stringify(data))
             websocket.receiveUserEvent(data)
+        },
+        dead:function(){
+            var _self = this
+            animate.layerEnter($('.layerDead'))
         },
         // 返回每个用户坐标
         returnUserStyle: function (total,row,col,width,height,center_user) {
@@ -688,10 +719,6 @@ var game = new Vue({
 
 
 
-        },
-        dead:function () {
-            var _self = this
-            animate.layerEnter($('.layerDead'))
         }
     }
 });

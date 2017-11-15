@@ -5,7 +5,7 @@ var component = {
     user : {
         props: ['user'],
         template:
-        ' <div class="user" v-bind:num="user.number || 0" v-bind:status="user.identityStatus">'+
+        ' <div v-bind:class="`user ${user.identityStatus || ``}`" v-bind:num="user.number || 0">'+
             '<div v-bind:class="`level level${user.stage || 0 }`">'+
                 '<div class="userInner">'+
                     '<div class="head">'+

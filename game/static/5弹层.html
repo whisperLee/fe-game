@@ -12,7 +12,49 @@
         .user-list li{position: relative; width:25%; float:left; opacity: 1;}
         .layerDead .content{width:80%; height:100%; margin: 0 auto; background: url(../image/dead1.png) no-repeat center; background-size: contain;}
         .layer .countDown{position: absolute; left:0; top:-.2rem; color: #f00;line-height: .2rem;}
-        
+
+
+        .user.DEAD .head img,.user.LOVE_DEAD .head img,.user.EXILE .head img,.user.SHOOT .head img,.user.SELF_DESTRUCT .head img,.user.BOMBERMAN .head img,.user.IDIOT_TIMEOUT .head img,.user.WHITE_SHOOT .head img,.user.WHITE_SELF_DESTRUCT .head img{visibility: hidden; }
+.user.DEAD .level,.user.LOVE_DEAD .level,.user.EXILE .head img,.user.SHOOT .level,.user.SELF_DESTRUCT .level,.user.BOMBERMAN .level,.user.IDIOT_TIMEOUT .level,.user.WHITE_SHOOT .level,.user.WHITE_SELF_DESTRUCT .level{opacity: 0.8;}
+.user.SURVIVAL .head{ /* 存活*/
+
+}
+.user.SHUTUP .head{/*禁言*/
+}
+.user.IDIOT .head{/*白痴翻牌*/
+}
+.user.DEAD .head,.user.LOVE_DEAD .head,.user.EXILE .head,.user.SHOOT .head,.user.SELF_DESTRUCT .head,.user.BOMBERMAN .head,.user.IDIOT_TIMEOUT .head,.user.WHITE_SHOOT .head,.user.WHITE_SELF_DESTRUCT .head{
+  background: url(../image/dead.png) no-repeat center; background-size: contain;
+}
+
+.user.LOVE_DEAD .head{
+  background-image: url(../image/dead.png);
+}
+.user.EXILE .head{
+  background-image: url(../image/fangzu.png);
+}
+.user.SHOOT .head{
+  background-image: url(../image/kq.png);
+}
+.user.SELF_DESTRUCT .head{
+  background-image: url(../image/b.png);
+}
+.user.BOMBERMAN .head{
+  background-image: url(../image/dead.png);
+}
+.user.IDIOT_TIMEOUT .head{
+  background-image: url(../image/b.png);
+}
+.user.WHITE_SHOOT .head{
+  background-image: url(../image/kq.png);
+}
+.user.WHITE_SELF_DESTRUCT .head{
+  background-image: url(../image/blwzb.png);
+}
+   
+.user .level .userInner b.campaign,.user .level .userInner b.sergeant{position: absolute; right:2%; top:6%; width:25%; height:25%; z-index: 10;} 
+.user .level .userInner b.campaign{background: url(../image/1/shangjing.png) no-repeat center; background-size: contain;}    
+.user .level .userInner b.sergeant{background: url(../image/jing.png) no-repeat center; background-size: contain;}  
     </style>
 </head>
 <body>
@@ -227,7 +269,7 @@
             {userId:110,nickName:"ggg",number:7,stage:1,star:1},
             {userId:111,nickName:"xxx",number:8,stage:1,star:1},
             {userId:112,nickName:"zzz",number:9,stage:1,star:1}]
-        data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"number":1,"campaignFlag":true},{"number":2,"campaignFlag":true},{"number":5,"campaignFlag":true}],"gameInfo":{"gameStatus":"CAMPAIGN_SPEAK","gameStatusStr":"竞选警长发言"},"personalInfo":{"buttons":["GIVE_UP","SELF_DESTRUCT"]},"showMsg":"1号,2号,5号玩家参与竞选.请从2号玩家开始,逆序发言.2->1->5"}'
+        data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"number":1,"campaignFlag":true},{"number":2,"sergeantFlag":true,"campaignFlag":true},{"number":3,"identityStatus":"IDIOT_TIMEOUT"},{"number":4,"identityStatus":"WHITE_SHOOT"},{"number":5,"campaignFlag":true},{"number":6,"identityStatus":"EXILE"},{"number":7,"identityStatus":"SHOOT"},{"number":8,"identityStatus":"IDIOT"},{"number":9,"identityStatus":"DEAD"},{"number":10,"identityStatus":"SHUTUP"},{"number":11,"identityStatus":"SELF_DESTRUCT"},{"number":12,"identityStatus":"WHITE_SELF_DESTRUCT"}],"gameInfo":{"gameStatus":"CAMPAIGN_SPEAK","gameStatusStr":"竞选警长发言"},"personalInfo":{"buttons":["GIVE_UP","SELF_DESTRUCT"]},"showMsg":"1号,2号,5号玩家参与竞选.请从2号玩家开始,逆序发言.2->1->5"}'
         game.socketCallback(data)
     });
 </script>

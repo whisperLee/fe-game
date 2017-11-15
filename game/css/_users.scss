@@ -57,6 +57,9 @@
           position: relative
         }
       }
+      b.campaign,b.sergeant{position: absolute; right:2%; top:6%; width:25%; height:25%; z-index: 10;}
+      b.campaign{background: url(../image/shangjing.png) no-repeat center; background-size: contain;}
+      b.sergeant{background: url(../image/jing.png) no-repeat center; background-size: contain;}
       &:before{
         background-image: url(../image/level/0.png);
       }
@@ -109,11 +112,44 @@
 }
 
 /*user dead*/
-.user.status .level{opacity: 0.8;}
-.user.status .head img{visibility: hidden; }
-.user.dead .head{
+.user.DEAD .head img,.user.LOVE_DEAD .head img,.user.EXILE .head img,.user.SHOOT .head img,.user.SELF_DESTRUCT .head img,.user.BOMBERMAN .head img,.user.IDIOT_TIMEOUT .head img,.user.WHITE_SHOOT .head img,.user.WHITE_SELF_DESTRUCT .head img{visibility: hidden; }
+.user.DEAD .level,.user.LOVE_DEAD .level,.user.EXILE .head img,.user.SHOOT .level,.user.SELF_DESTRUCT .level,.user.BOMBERMAN .level,.user.IDIOT_TIMEOUT .level,.user.WHITE_SHOOT .level,.user.WHITE_SELF_DESTRUCT .level{opacity: 0.8;}
+.user.SURVIVAL .head{ // 存活
+
+}
+.user.SHUTUP .head{// 禁言
+}
+.user.IDIOT .head{// 白痴翻牌
+}
+.user.DEAD .head,.user.LOVE_DEAD .head,.user.EXILE .head,.user.SHOOT .head,.user.SELF_DESTRUCT .head,.user.BOMBERMAN .head,.user.IDIOT_TIMEOUT .head,.user.WHITE_SHOOT .head,.user.WHITE_SELF_DESTRUCT .head{
+  background: url(../image/dead.png) no-repeat center; background-size: contain;
+}
+
+.user.LOVE_DEAD .head{
   background-image: url(../image/dead.png);
 }
+.user.EXILE .head{
+  background-image: url(../image/fangzu.png);
+}
+.user.SHOOT .head{
+  background-image: url(../image/kq.png);
+}
+.user.SELF_DESTRUCT .head{
+  background-image: url(../image/b.png);
+}
+.user.BOMBERMAN .head{
+  background-image: url(../image/dead.png);
+}
+.user.IDIOT_TIMEOUT .head{
+  background-image: url(../image/b.png);
+}
+.user.WHITE_SHOOT .head{
+  background-image: url(../image/kq.png);
+}
+.user.WHITE_SELF_DESTRUCT .head{
+  background-image: url(../image/blwzb.png);
+}
+
 .mine{
   position: absolute;
   left:0;

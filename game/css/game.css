@@ -266,6 +266,21 @@ body {
           margin: 0 auto;
           z-index: 2;
           position: relative; }
+      .user .level .userInner b.campaign, .user .level .userInner b.sergeant {
+        position: absolute;
+        right: 2%;
+        top: 6%;
+        width: 25%;
+        height: 25%;
+        z-index: 10;
+        opacity: 0;
+        -webkit-animation: fadeInRight 1s forwards; }
+      .user .level .userInner b.campaign {
+        background: url(../image/shangjing.png) no-repeat center;
+        background-size: contain; }
+      .user .level .userInner b.sergeant {
+        background: url(../image/jing.png) no-repeat center;
+        background-size: contain; }
       .user .level .userInner:before {
         background-image: url(../image/level/0.png); }
   .user .level1 .userInner .num {
@@ -281,41 +296,41 @@ body {
   .user .level2 .userInner .num {
     background-image: url(../image/level/2_1_0.png); }
   .user .level2 .userInner .star1:before {
-    background-image: url("../image/level/1_1.png"); }
+    background-image: url("../image/level/2_1.png"); }
   .user .level2 .userInner .star2:before {
-    background-image: url("../image/level/1_2.png"); }
+    background-image: url("../image/level/2_2.png"); }
   .user .level2 .userInner .star3:before {
-    background-image: url("../image/level/1_3.png"); }
+    background-image: url("../image/level/2_3.png"); }
   .user .level2 .userInner:before {
     background-image: url(../image/level/2.png); }
   .user .level3 .userInner .num {
     background-image: url(../image/level/3_1_0.png); }
   .user .level3 .userInner .star1:before {
-    background-image: url("../image/level/1_1.png"); }
+    background-image: url("../image/level/3_1.png"); }
   .user .level3 .userInner .star2:before {
-    background-image: url("../image/level/1_2.png"); }
+    background-image: url("../image/level/3_2.png"); }
   .user .level3 .userInner .star3:before {
-    background-image: url("../image/level/1_3.png"); }
+    background-image: url("../image/level/3_3.png"); }
   .user .level3 .userInner:before {
     background-image: url(../image/level/3.png); }
   .user .level4 .userInner .num {
     background-image: url(../image/level/4_1_0.png); }
   .user .level4 .userInner .star1:before {
-    background-image: url("../image/level/1_1.png"); }
+    background-image: url("../image/level/4_1.png"); }
   .user .level4 .userInner .star2:before {
-    background-image: url("../image/level/1_2.png"); }
+    background-image: url("../image/level/4_2.png"); }
   .user .level4 .userInner .star3:before {
-    background-image: url("../image/level/1_3.png"); }
+    background-image: url("../image/level/4_3.png"); }
   .user .level4 .userInner:before {
     background-image: url(../image/level/4.png); }
   .user .level5 .userInner .num {
     background-image: url(../image/level/5_1_0.png); }
   .user .level5 .userInner .star1:before {
-    background-image: url("../image/level/1_1.png"); }
+    background-image: url("../image/level/5_1.png"); }
   .user .level5 .userInner .star2:before {
-    background-image: url("../image/level/1_2.png"); }
+    background-image: url("../image/level/5_2.png"); }
   .user .level5 .userInner .star3:before {
-    background-image: url("../image/level/1_3.png"); }
+    background-image: url("../image/level/5_3.png"); }
   .user .level5 .userInner:before {
     background-image: url(../image/level/5.png); }
   .user .nick {
@@ -349,14 +364,39 @@ body {
     background-image: url(../image/level/5_0.png); }
 
 /*user dead*/
-.user.status .level {
-  opacity: 0.8; }
-
-.user.status .head img {
+.user.DEAD .head img, .user.LOVE_DEAD .head img, .user.EXILE .head img, .user.SHOOT .head img, .user.SELF_DESTRUCT .head img, .user.BOMBERMAN .head img, .user.IDIOT_TIMEOUT .head img, .user.WHITE_SHOOT .head img, .user.WHITE_SELF_DESTRUCT .head img {
   visibility: hidden; }
 
-.user.dead .head {
+.user.DEAD .level, .user.LOVE_DEAD .level, .user.EXILE .head img, .user.SHOOT .level, .user.SELF_DESTRUCT .level, .user.BOMBERMAN .level, .user.IDIOT_TIMEOUT .level, .user.WHITE_SHOOT .level, .user.WHITE_SELF_DESTRUCT .level {
+  opacity: 0.8; }
+
+.user.DEAD .head, .user.LOVE_DEAD .head, .user.EXILE .head, .user.SHOOT .head, .user.SELF_DESTRUCT .head, .user.BOMBERMAN .head, .user.IDIOT_TIMEOUT .head, .user.WHITE_SHOOT .head, .user.WHITE_SELF_DESTRUCT .head {
+  background: url(../image/dead.png) no-repeat center;
+  background-size: contain; }
+
+.user.LOVE_DEAD .head {
   background-image: url(../image/dead.png); }
+
+.user.EXILE .head {
+  background-image: url(../image/fangzu.png); }
+
+.user.SHOOT .head {
+  background-image: url(../image/kq.png); }
+
+.user.SELF_DESTRUCT .head {
+  background-image: url(../image/b.png); }
+
+.user.BOMBERMAN .head {
+  background-image: url(../image/dead.png); }
+
+.user.IDIOT_TIMEOUT .head {
+  background-image: url(../image/b.png); }
+
+.user.WHITE_SHOOT .head {
+  background-image: url(../image/kq.png); }
+
+.user.WHITE_SELF_DESTRUCT .head {
+  background-image: url(../image/blwzb.png); }
 
 .mine {
   position: absolute;
@@ -681,6 +721,138 @@ body {
     background: url("../image/close.png") no-repeat center;
     background-size: .4rem auto; }
 
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-webkit-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+@-moz-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+@-o-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+@-webkit-keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateX(100%); }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0); } }
+@-moz-keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateX(100%); }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0); } }
+@-o-keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateX(100%); }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0); } }
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateX(100%); }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0); } }
+@-webkit-keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0); }
+  100% {
+    opacity: 1;
+    transform: scale(1); } }
+@-moz-keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0); }
+  100% {
+    opacity: 1;
+    transform: scale(1); } }
+@-o-keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0); }
+  100% {
+    opacity: 1;
+    transform: scale(1); } }
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0); }
+  100% {
+    opacity: 1;
+    transform: scale(1); } }
+@-webkit-keyframes seal {
+  0% {
+    opacity: .5;
+    transform: translate(-20%, -20%) scale(3) rotate(-23deg); }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(-23deg); } }
+@-moz-keyframes seal {
+  0% {
+    opacity: .5;
+    transform: translate(-20%, -20%) scale(3) rotate(-23deg); }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(-23deg); } }
+@-o-keyframes seal {
+  0% {
+    opacity: .5;
+    transform: translate(-20%, -20%) scale(3) rotate(-23deg); }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(-23deg); } }
+@keyframes seal {
+  0% {
+    opacity: .5;
+    transform: translate(-20%, -20%) scale(3) rotate(-23deg); }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(-23deg); } }
 .messageCenter {
   position: absolute;
   left: 20%;
@@ -698,5 +870,10 @@ body {
     border-radius: 5px; }
     .messageCenter .message h3 {
       font-size: .16rem; }
+
+.userBtns {
+  position: absolute;
+  right: 0;
+  bottom: 0; }
 
 /*# sourceMappingURL=game.css.map */

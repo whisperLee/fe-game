@@ -118,39 +118,201 @@ new Vue({
             "number": 1,
             "identityId": 2,
             "identityName": "狼人",
-            "changeLevelFlag": false,
-            "upFlag": false,
-            "oldScore": 0,
-            "newScore": 0,
-            "thisNeedScore": 0,
-            "thisStar": 3,
-            "thisStage": 1,
-            "nextNeedScore": 100,
-            "nextStar": 2,
-            "nextStage": 1,
+
+
+            // 模拟数据 +30
+            // "changeLevelFlag": false,
+            // "upFlag": true,
+            // "oldScore": 60,
+            // "newScore": 90,
+            // "thisNeedScore": 40,
+            // "thisStar": 2,
+            // "thisStage": 1,
+            // "nextNeedScore": 100,
+            // "nextStar":3,
+            // "nextStage": 1,
+            // "preNeedScore": 0,
+            // "preStar": 1,
+            // "preStage": 1,
+            // 0-40,40-100,100-200,200-350
+
+            // 模拟数据 -30
+            // "changeLevelFlag": false,
+            // "upFlag": false,
+            // "oldScore": 90,
+            // "newScore": 60,
+            // "thisNeedScore": 40,
+            // "thisStar": 2,
+            // "thisStage": 1,
+            // "nextNeedScore": 100,
+            // "nextStar":3,
+            // "nextStage": 1,
+            // "preNeedScore": 0,
+            // "preStar": 1,
+            // "preStage": 1,
+
+            // 模拟数据 +30 +*
+            //  "changeLevelFlag": true,
+            //  "upFlag": true,
+            //  "oldScore": 30,
+            //  "newScore": 60,
+            //  "thisNeedScore": 40,
+            //  "thisStar": 2,
+            //  "thisStage": 1,
+            //  "nextNeedScore": 100,
+            //  "nextStar":3,
+            //  "nextStage": 1,
+            //  "preNeedScore": 0,
+            //  "preStar": 1,
+            //  "preStage": 1,
+
+
+            // 模拟数据 -30 -*
+            //  "changeLevelFlag": true,
+            //  "upFlag": false,
+            //  "oldScore": 110,
+            //  "newScore": 80,
+            //  "thisNeedScore": 40,
+            //  "thisStar": 2,
+            //  "thisStage": 1,
+            //  "nextNeedScore": 100,
+            //  "nextStar":3,
+            //  "nextStage": 1,
+            //  "preNeedScore": 0,
+            //  "preStar": 1,
+            //  "preStage": 1,
+
+
+            // 模拟数据 +30 +*l
+             "changeLevelFlag": true,
+             "upFlag": true,
+             "oldScore": 180,
+             "newScore": 210,
+             "thisNeedScore": 200,
+             "thisStar": 1,
+             "thisStage": 2,
+             "nextNeedScore": 350,
+             "nextStar":2,
+             "nextStage": 2,
+             "preNeedScore": 100,
+             "preStar": 3,
+             "preStage": 1,
+
+
+            /*// 模拟数据 -30 -*l
+             "changeLevelFlag": true,
+             "upFlag": false,
+             "oldScore": 210,
+             "newScore": 180,
+             "thisNeedScore": 100,
+             "thisStar": 3,
+             "thisStage": 1,
+             "nextNeedScore": 200,
+             "nextStar":1,
+             "nextStage": 2,
+             "preNeedScore": 40,
+             "preStar": 2,
+             "preStage": 1,
+             */
+
             "endTime": "2017-10-23 00:53",
             "costTime": "02:48",
             "gameStatus": "GOOD_WIN",
             "gameStatusStr": "好人阵营胜利",
-            "mvpFlag": true
-        }
+            "mvpFlag": false
+        },
+        "myAccountInfo":{}
+
     },
     created: function () {
         var _self = this
-        _self.userAccountChange()
+        _self.myAccountInfo = {}
+
+        _self.myAccountInfo=JSON.parse(JSON.stringify(_self.personalAccountInfo))
+        if(_self.personalAccountInfo.changeLevelFlag){
+            if(_self.personalAccountInfo.upFlag){
+                _self.myAccountInfo.thisStage = _self.personalAccountInfo.preStage
+                _self.myAccountInfo.thisStar = _self.personalAccountInfo.preStar
+            }else{
+                _self.myAccountInfo.thisStage = _self.personalAccountInfo.nextStage
+                _self.myAccountInfo.thisStar = _self.personalAccountInfo.nextStar
+            }
+        }
+        setTimeout(function(){
+            //
+            //setTimeout(function(){
+            _self.userAccountChange()
+            //},1000)
+            _self.mvp(203)
+        },1000)
+
     },
     methods: {
-        mvp: function (event) {
+        voteMvp: function (event) {
             var el = $(event.currentTarget)
             if(el.hasClass('zan')){
                 el.addClass('zaned')
                 el.closest('.win').find('.zan').removeClass('zan')
             }
         },
+        mvp:function(num){
+            var _self = this
+            $('.gameEnd .result .userList li[userid="'+num+'"]').addClass('mvp')
+        },
         userAccountChange: function(){
-            setTimeout(function(){
-                animate.layerEnter($('.userAccount'))
-            },3000)
+            var _self = this
+            var el = $('.userAccount')
+            var d = _self.personalAccountInfo
+            var oldPre,newPre,oldStar,old
+            var _per = el.find('.pro b')
+
+            newPre = (d.newScore-d.thisNeedScore)*100/(d.nextNeedScore-d.thisNeedScore)
+            newPre = newPre*0.8+10 // 样式的问题，当前星级在整个进度条的80%，所以在*0.8之后，加上上一星级的10%
+            console.log(newPre)
+            if(d.changeLevelFlag){
+                if(d.upFlag){
+                    oldPre = 5;
+                    // if(d.thisStar == 1){
+                    //     // 升等
+                    // }else{
+                    //
+                    // }
+                }else{
+                    oldPre = 95;
+                    // if(d.thisStar == 3){
+                    //     // 降等
+                    // }else{
+                    //
+                    // }
+                }
+            }else{
+                oldPre = (d.oldScore-d.thisNeedScore)*100/(d.nextNeedScore-d.thisNeedScore)
+                oldPre = parseInt(oldPre*0.8)+10
+                console.log(oldPre)
+            }
+            _per.css({'width':oldPre+'%'})
+            animate.layerEnter($('.userAccount'))
+
+            el.find('.count').velocity({
+                translateY: ['0','100%'],
+                opacity:[1,0]
+            },{
+                duration: 1000,
+                delay:3000,
+                complete: function() {
+                    _per.velocity({
+                        width:newPre+'%'
+                    },{
+                        duration: 500,
+                        complete: function() {
+                            _self.myAccountInfo = {}
+                            _self.myAccountInfo = d;
+                        }
+                    })
+                }
+            })
+
+
         }
     }
 });

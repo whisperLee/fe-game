@@ -9,12 +9,46 @@
     <title>游戏页面</title>
     <style>
         .user-list{position: fixed; top:0}
+        .user-list li{position: relative; width:25%; float:left; opacity: 1;}
+        .layerDead .content{width:80%; height:100%; margin: 0 auto; background: url(../image/dead1.png) no-repeat center; background-size: contain;}
+        .layer .countDown{position: absolute; left:0; top:-.2rem; color: #f00;line-height: .2rem;}
 
     </style>
 </head>
 <body>
 <div class="main" id="game" :class="screenCenterMessage.nightFlag==1? 'night' : screenCenterMessage.nightFlag==0?'day':'' ">
-    <ul class="user-list" style="height: 320px;"><li userid="101" class="left" style="top: 256px; height: 64px; width: 64px; opacity: 1; left: 0px;"><div num="1" class="user"><div class="level level1"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star1"></i><div class="num num1"></div></div></div></div></li><li userid="101" class="left" style="top: 192px; height: 64px; width: 64px; opacity: 1; left: 0px;"><div num="2" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num2"></div></div></div></div></li><li userid="102" class="left" style="top: 128px; height: 64px; width: 64px; opacity: 1; left: 0px;"><div num="3" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num3"></div></div></div></div></li><li userid="103" class="left" style="top: 64px; height: 64px; width: 64px; opacity: 1; left: 0px;"><div num="4" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num4"></div></div></div></div></li><li userid="104" class="left" style="height: 64px; width: 64px; opacity: 1; left: 0px; top: 0px;"><div num="5" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num5"></div></div></div></div></li><li userid="105" class="center" style="left: 85.3333px; height: 64px; width: 64px; opacity: 1; top: 0px;"><div num="6" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num6"></div></div></div></div></li><li userid="106" class="center" style="left: 170.667px; height: 64px; width: 64px; opacity: 1; top: 0px;"><div num="7" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num7"></div></div></div></div></li><li userid="107" class="right" style="left: 256px; height: 64px; width: 64px; opacity: 1; top: 0px;"><div num="8" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num8"></div></div></div></div></li><li userid="108" class="right" style="left: 256px; top: 64px; height: 64px; width: 64px; opacity: 1;"><div num="9" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num9"></div></div></div></div></li><li userid="109" class="right" style="left: 256px; top: 128px; height: 64px; width: 64px; opacity: 1;"><div num="10" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num10"></div></div></div></div></li><li userid="1010" class="right" style="left: 256px; top: 192px; height: 64px; width: 64px; opacity: 1;"><div num="11" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num11"></div></div></div></div></li><li userid="1011" class="right" style="left: 256px; top: 256px; height: 64px; width: 64px; opacity: 1;"><div num="12" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num12"></div></div></div></div></li></ul>
+    
+    <!-- <ul class="user-list" style="height: 320px;">
+        <li userid="101" class="left" style="top: 256px; height: 64px; width: 64px; opacity: 1; left: 0px;" v-on:click="userClick(user,$event)"><div num="1" class="user"><div class="level level1"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star1"></i><div class="num num1"></div></div></div></div></li><li userid="101" class="left" style="top: 192px; height: 64px; width: 64px; opacity: 1; left: 0px;"><div num="2" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num2"></div></div></div></div></li><li userid="102" class="left" style="top: 128px; height: 64px; width: 64px; opacity: 1; left: 0px;"><div num="3" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num3"></div></div></div></div></li><li userid="103" class="left" style="top: 64px; height: 64px; width: 64px; opacity: 1; left: 0px;"><div num="4" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num4"></div></div></div></div></li><li userid="104" class="left" style="height: 64px; width: 64px; opacity: 1; left: 0px; top: 0px;" v-on:click="userClick(user,$event)"><div num="5" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num5"></div></div></div></div></li><li userid="105" class="center" style="left: 85.3333px; height: 64px; width: 64px; opacity: 1; top: 0px;"><div num="6" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num6"></div></div></div></div></li><li userid="106" class="center" style="left: 170.667px; height: 64px; width: 64px; opacity: 1; top: 0px;"><div num="7" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num7"></div></div></div></div></li><li userid="107" class="right" style="left: 256px; height: 64px; width: 64px; opacity: 1; top: 0px;"><div num="8" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num8"></div></div></div></div></li><li userid="108" class="right" style="left: 256px; top: 64px; height: 64px; width: 64px; opacity: 1;"><div num="9" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num9"></div></div></div></div></li><li userid="109" class="right" style="left: 256px; top: 128px; height: 64px; width: 64px; opacity: 1;"><div num="10" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num10"></div></div></div></div></li><li userid="1010" class="right" style="left: 256px; top: 192px; height: 64px; width: 64px; opacity: 1;"><div num="11" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num11"></div></div></div></div></li><li userid="1011" class="right" style="left: 256px; top: 256px; height: 64px; width: 64px; opacity: 1;"><div num="12" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num12"></div></div></div></div></li>
+    </ul> -->
+
+    <ul class="user-list">
+        <li v-for="(user,idx) in users" v-on:click="userClick(user,$event)" :userid="user.userId">
+            <user v-bind:user="user"></user>
+        </li>
+    </ul>
+
+    <div class="messageCenter">
+        <div class="top" v-if="screenCenterMessage.nightFlag!=-1">第<span>{{ screenCenterMessage.gameTime }}</span>天<span v-if="screenCenterMessage.nightFlag">黑天</span><span v-else>白天</span></div>
+        <div class="message" v-if="screenCenterMessage.gameStatusStr!=''">{{ screenCenterMessage.gameStatusStr }}</div>
+        <div class="result" v-if="screenCenterMessage.result!=''">{{ screenCenterMessage.result }}</div>
+    </div>
+
+    <div class="mine" >
+        <a class="btn identity" v-on:click="showSF"></a>
+        <div class="userWrap">
+            <usermine class="userBack" v-bind:user="mine"></usermine>
+        </div>
+        <div class='userBtns'>
+            <a v-for="(btn,idx) in leaderButton" class="leaderBtn btn" v-bind:event="btn" v-on:click="eventForLeaderButton($event)">
+              {{btn}}  
+            </a>
+            <a v-for="(btn,idx) in personalButton" class="personBtn btn" v-bind:event="btn" v-on:click="eventForpersonalButton($event)" >
+              {{btn}}  
+            </a>
+        </div>
+    </div>
+
     <!--查看身份-->
     <div class="layer layerShenfen">
         <div class="inner">
@@ -83,8 +117,8 @@
             <div class="content">
                 <p class="info"></p>
                 <div class="btnWrap twoCol">
-                    <div class="btn btn3 js-withdraw" >放弃</div>
-                    <div class="btn btn2 js-affirm">竞选</div>
+                    <div class="btn btn3 js-withdraw" type='no' >放弃</div>
+                    <div class="btn btn2 js-affirm" type='yes'>竞选</div>
                 </div>
             </div>
         </div>
@@ -155,6 +189,11 @@
             <b class="close"></b>
         </div>
     </div>
+    <div class="layer layerDead">
+        <div class="content"></div>
+    </div>
+
+    
 
 </div>
 <script type="application/javascript" src="../../js/zepto.min.js"></script>
@@ -170,16 +209,32 @@
 <script type="application/javascript" src="../js/game.js"></script>
 <script>
     $(function(){
-
         game.active()
         var el = $('.layer')
         var el = $('.layerShenfen')
         var el = $('.layerEventVoteResult')
         var el = $('.layerUserInfo')
         var el = $('.layerEventVoteResult')
-        animate.layerEnter(el)
+        //var el = $('.layerDead')
+        //animate.layerEnter(el)
+        var data = {}
+        game.users = [
+            {userId:101,nickName:"aaa",number:1,sex:1,stage:1,star:1},
+            {userId:102,nickName:"bbb",number:2,stage:1,star:1},
+            {userId:103,nickName:"ccc",number:3,stage:1,star:1},
+            {userId:104,nickName:"ddd",number:4,stage:1,star:1},
+            {userId:105,nickName:"eee",number:5,stage:1,star:1},
+            {userId:106,nickName:"fff",number:6,stage:1,star:1},
+            {userId:107,nickName:"ggg",number:7,stage:1,star:1},
+            {userId:108,nickName:"xxx",number:8,stage:1,star:1},
+            {userId:109,nickName:"zzz",number:9,stage:1,star:1},
+            {userId:110,nickName:"ggg",number:7,stage:1,star:1},
+            {userId:111,nickName:"xxx",number:8,stage:1,star:1},
+            {userId:112,nickName:"zzz",number:9,stage:1,star:1}]
+        //data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"number":1,"campaignFlag":true},{"number":2,"sergeantFlag":true},{"number":3,"identityStatus":"IDIOT_TIMEOUT"},{"number":4,"identityStatus":"WHITE_SHOOT"},{"number":6,"identityStatus":"EXILE"},{"number":7,"identityStatus":"SHOOT"},{"number":8,"identityStatus":"IDIOT"},{"number":9,"identityStatus":"DEAD"},{"number":10,"identityStatus":"SHUTUP"},{"number":11,"identityStatus":"SELF_DESTRUCT"},{"number":12,"identityStatus":"WHITE_SELF_DESTRUCT"}],"gameInfo":{"gameStatus":"CAMPAIGN_SPEAK","gameStatusStr":"竞选警长发言"},"personalInfo":{"buttons":["GIVE_UP","SELF_DESTRUCT"]},"showMsg":"1号,2号,5号玩家参与竞选.请从2号玩家开始,逆序发言.2->1->5"}'
+       data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"GAME_ACCOUNT","gameStatusStr":"游戏结算"},"gameAccountInfo":{"endTime":"2017-11-13 23:08","costTime":"01:14:16","winUsers":[{"userId":203,"nickName":"203","number":3,"identityName":"平民","identityId":1,"identityStatus":"EXILE","stage":1,"star":2},{"userId":204,"nickName":"204","number":4,"identityName":"女巫","identityId":4,"identityStatus":"SURVIVAL","stage":1,"star":1,"likeTime":1},{"userId":205,"nickName":"205","number":5,"identityName":"猎人","identityId":5,"identityStatus":"EXILE","stage":1,"star":1},{"userId":206,"nickName":"206","number":6,"identityName":"平民","identityId":1,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":207,"nickName":"207","number":7,"identityName":"白痴","identityId":9,"identityStatus":"IDIOT","stage":1,"star":1},{"userId":208,"nickName":"208","number":8,"identityName":"平民","identityId":1,"identityStatus":"EXILE","stage":1,"star":1},{"userId":209,"nickName":"209","number":9,"identityName":"预言家","identityId":3,"identityStatus":"SHOOT","stage":1,"star":1},{"userId":210,"nickName":"210","number":10,"identityName":"守卫","identityId":6,"identityStatus":"EXILE","stage":1,"star":1},{"userId":211,"nickName":"211","number":11,"identityName":"平民","identityId":1,"identityStatus":"SURVIVAL","stage":1,"star":1}],"loseUsers":[{"userId":201,"nickName":"201","number":1,"identityName":"狼人","identityId":2,"identityStatus":"EXILE","stage":1,"star":1},{"userId":202,"nickName":"202","number":2,"identityName":"白狼王","identityId":8,"identityStatus":"EXILE","stage":1,"star":1},{"userId":212,"nickName":"212","number":12,"identityName":"狼王","identityId":7,"identityStatus":"EXILE","stage":1,"star":1}],"gameStatus":"GOOD_WIN","gameStatusStr":"好人阵营胜利","surplusTime":10},"personalInfo":{"userId":204,"number":4,"buttons":[]}}'
+        game.socketCallback(data)
     });
-
 </script>
 </body>
 </html>

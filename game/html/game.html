@@ -27,16 +27,22 @@
         <div class="message" v-if="screenCenterMessage.gameStatusStr!=''">{{ screenCenterMessage.gameStatusStr }}</div>
         <div class="result" v-if="screenCenterMessage.result!=''">{{ screenCenterMessage.result }}</div>
     </div>
-
     <a class="btn js-start" v-if="leaderFlag"   v-on:click="startGame">开始游戏</a>
 
-    <div class="mine" v-if="JSON.stringify(mine)!='{}'" >
-        <a class="btn identity" v-on:click="showSF"></a>
-        <div class="userWrap">
-            <usermine class="userBack" v-bind:user="mine"></usermine>
-        </div>
-        <a class="btn leader" v-bind:event="leaderButton" v-if="leaderFlag && (leaderButton== '' || leaderButton!='EMPTY')" v-on:click="eventForLeaderButton">桌长按钮</a>
+  <div class="mine" >
+    <a class="btn identity" v-on:click="showSF"></a>
+    <div class="userWrap">
+      <usermine class="userBack" v-bind:user="mine"></usermine>
     </div>
+    <div class='userBtns'>
+      <a v-for="(btn,idx) in leaderButton" class="leaderBtn btn" v-bind:event="btn" v-on:click="eventForLeaderButton($event)">
+        {{btn}}
+      </a>
+      <a v-for="(btn,idx) in personalButton" class="personBtn btn" v-bind:event="btn" v-on:click="eventForpersonalButton($event)" >
+        {{btn}}
+      </a>
+    </div>
+  </div>
   <!--抢身份-->
     <div class="qiang">
       <div class="inner">
@@ -72,36 +78,8 @@
     <div class="inner">
       <h2 class="title">投票结果</h2>
       <div class="content">
-        <p class="info">【1】号票数最多</p>
+        <p class="info"></p>
         <ul class="resultList">
-          <li class="result">
-            <div class="left">
-              <b class="userNum">1</b>
-            </div>
-            <div class="right">
-              <ul>
-                <li>
-                  <b class="userNum">1</b>
-                </li>
-              </ul>
-
-            </div>
-          </li>
-          <li class="result">
-            <div class="left">
-              <b class="userNum qi">弃</b>
-            </div>
-            <div class="right">
-              <ul>
-                <li>
-                  <b class="userNum">1</b>
-                </li>
-                <li>
-                  <b class="userNum">1</b>
-                </li>
-              </ul>
-            </div>
-          </li>
         </ul>
       </div>
       <div class="btnWrap"><div class="btn btn2 js-affirm">知道了</div></div>
@@ -114,8 +92,8 @@
       <div class="content">
         <p class="info"></p>
         <div class="btnWrap twoCol">
-          <div class="btn btn3 js-withdraw" >放弃</div>
-          <div class="btn btn2 js-affirm">竞选</div>
+            <div class="btn btn3 js-withdraw" type='no' >放弃</div>
+            <div class="btn btn2 js-affirm" type='yes'>竞选</div>
         </div>
       </div>
     </div>
@@ -170,6 +148,12 @@
           <a class="btn btn2" v-on:click="addAtten">关注</a>
         </div>
       </div>
+    </div>
+
+    <div class="layer layerDead">
+        <div class="content">
+            你已死亡！
+        </div>
     </div>
 
 </div>

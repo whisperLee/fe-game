@@ -4,7 +4,14 @@
   @-o-keyframes #{$animationName} { @content; }
   @keyframes #{$animationName} { @content; }
 }
-
+@include keyframes(fadeIn) {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 @include keyframes(fadeInUp) {
   0% {
     opacity: 0;
@@ -13,6 +20,16 @@
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+@include keyframes(fadeInRight) {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0);
   }
 }
 @include keyframes(bounceIn) {
@@ -25,3 +42,17 @@
     transform: scale(1);
   }
 }
+@include keyframes(seal) {
+  0% {
+    opacity: .5;
+    transform:translate(-20%,-20%) scale(3) rotate(-23deg);
+  }
+  100% {
+    opacity: 1;
+    transform:translate(0,0) scale(1) rotate(-23deg);
+  }
+}
+
+
+
+

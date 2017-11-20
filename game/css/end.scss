@@ -71,6 +71,19 @@ body{
                 font-size: .14rem;
               }
             }
+            &.mvp:before{
+              content: "";
+              position: absolute;
+              right:0;
+              bottom:25%;
+              width:60%;
+              height:25%;
+              background: url("../image/mvp2.png") no-repeat right bottom;
+              background-size: contain;
+              z-index: 9;
+              -webkit-animation:seal .5s forwards;
+
+            }
             &.zan span,&.zaned span{
               padding-left: .2rem;
               background: url("../image/zan.png") no-repeat left center;
@@ -142,12 +155,13 @@ body{
             width:.2rem;
             height:.4rem;
             display: block;
-            margin-right:.2rem;
+            margin-right:.15rem;
             float: left;
           }
           .pro{
             position: absolute;
-            border: 1px solid $color4;
+            background: url("../image/pro.png") no-repeat center;
+            background-size: 100% 100%;
             left:0;
             right: .5rem;
             height:.2rem;
@@ -155,23 +169,71 @@ body{
             box-sizing: border-box;
             b {
               background: $color4;
-              width:30%;
+              width:0;
               height:100%;
               position: absolute;
               left:0;
               top:0;
             }
+            .bound{
+              font-size: .12rem;
+              padding-top: 4px;
+              line-height: 100%;
+              position: absolute;
+              top:.2rem;
+              width:.3rem;
+              height:.1rem;
+              text-align: center;
+              margin-left: -.15rem;
+              &:before{
+                content: "";
+                position: absolute;
+                left:50%;
+                height:4px;
+                width:1px;
+                top:0;
+                background: $color4;
+              }
+              &.pre{
+                left:10%;
+              }
+              &.next{
+                left:90%;
+              }
+              i{
+                width:.1rem;
+                height:.1rem;
+                display: inline-block;
+                float: none;
+                margin: 0;
+
+              }
+            }
           }
-          .per{
+          .totalAccount{
             display: block;
             width:.5rem;
             text-align: center;
             float: right;
           }
+          .count{
+            position: absolute;
+            right:0;
+            top:-.15rem;
+            font-size: .12rem;
+            line-height: .15rem;
+            color: #16a085;
+            opacity: 0;
+          }
+          .subcount{
+            color: $color3;
+          }
+
+
         }
       }
       @for $i from 1 through 5{
-        &.level#{$i}{
+        .level#{$i}{
           .star{
             background: url('../image/level/start#{$i}.png') no-repeat center;
             background-size: contain;

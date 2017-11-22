@@ -22,21 +22,27 @@
         <a class="btn" v-if="screeningId !== 0 && leaderFlag"  v-on:click="modifyGameSet">修改配置</a>
     </div>
 
-    <div class="messageCenter">
+    <div class="messageCenter" >
         <div class="top" v-if="screenCenterMessage.nightFlag!=-1">第<span>{{ screenCenterMessage.gameTime }}</span>天<span v-if="screenCenterMessage.nightFlag">黑天</span><span v-else>白天</span></div>
         <div class="message" v-if="screenCenterMessage.gameStatusStr!=''">{{ screenCenterMessage.gameStatusStr }}</div>
         <div class="result" v-if="screenCenterMessage.result!=''">{{ screenCenterMessage.result }}</div>
     </div>
-
     <a class="btn js-start" v-if="leaderFlag"   v-on:click="startGame">开始游戏</a>
 
-    <div class="mine" v-if="JSON.stringify(mine)!='{}'" >
-        <a class="btn identity" v-on:click="showSF"></a>
-        <div class="userWrap">
-            <usermine class="userBack" v-bind:user="mine"></usermine>
-        </div>
-        <a class="btn leader" v-bind:event="leaderButton" v-if="leaderFlag && (leaderButton== '' || leaderButton!='EMPTY')" v-on:click="eventForLeaderButton">桌长按钮</a>
+  <div class="mine">
+    <a class="btn identity" v-on:click="showSF"></a>
+    <div class="userWrap">
+      <usermine class="userBack" v-bind:user="mine"></usermine>
     </div>
+    <div class='userBtns'>
+      <a v-for="(btn,idx) in leaderButton" class="leaderBtn btn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'leader')">
+        {{btn}}
+      </a>
+      <a v-for="(btn,idx) in personalButton" class="personBtn btn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'person')" >
+        {{btn}}
+      </a>
+    </div>
+  </div>
   <!--抢身份-->
     <div class="qiang">
       <div class="inner">
@@ -72,36 +78,8 @@
     <div class="inner">
       <h2 class="title">投票结果</h2>
       <div class="content">
-        <p class="info">【1】号票数最多</p>
+        <p class="info"></p>
         <ul class="resultList">
-          <li class="result">
-            <div class="left">
-              <b class="userNum">1</b>
-            </div>
-            <div class="right">
-              <ul>
-                <li>
-                  <b class="userNum">1</b>
-                </li>
-              </ul>
-
-            </div>
-          </li>
-          <li class="result">
-            <div class="left">
-              <b class="userNum qi">弃</b>
-            </div>
-            <div class="right">
-              <ul>
-                <li>
-                  <b class="userNum">1</b>
-                </li>
-                <li>
-                  <b class="userNum">1</b>
-                </li>
-              </ul>
-            </div>
-          </li>
         </ul>
       </div>
       <div class="btnWrap"><div class="btn btn2 js-affirm">知道了</div></div>
@@ -174,10 +152,56 @@
 
     <div class="layer layerDead">
         <div class="content">
-            你已死亡！
         </div>
     </div>
+    <div class="gameEnd" >
+      <p class="resultInfo"><span class="costTime">{{accountInfo.costTime}}</span><span class="endTime">{{accountInfo.endTime}}</span></p>
+      <div class="result win">
+        <h3 class="title"><span>{{accountInfo.gameStatusStr}}</span></h3>
+        <ul class="userList">
+          <li v-for="(user,idx) in accountInfo.winUsers" v-on:click="voteMvp($event)" :userid="user.userId" class="zan">
+            <userwin v-bind:user="user"></userwin>
+            <p><span>{{user.identityName}}</span></p>
+          </li>
 
+        </ul>
+      </div>
+      <div class="result lose">
+        <h3 class="title"><span>失败</span></h3>
+        <ul class="userList">
+          <li v-for="(user,idx) in accountInfo.loseUsers" v-on:click="mvp($event)" :userid="user.userId">
+            <userlose v-bind:user="user"></userlose>
+            <p><span>{{user.identityName}}</span></p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="layer userAccount">
+      <div class="inner">
+        <div :class="myAccountInfo.mvpFlag? 'mvp' : '' "></div>
+        <userend class="userBack" v-bind:user="myAccountInfo"></userend>
+        <ul class="levelChange" >
+          <li>
+            <span class="left">等级：</span><div class="right"><p>{{myAccountInfo.showStage}}阶</p></div>
+          </li>
+          <li v-bind:class="`level${myAccountInfo.showStage || 0 }`">
+            <span class="left">星级：</span><div class="right"><b class="star" v-for="(user,idx) in myAccountInfo.showStar"></b></div>
+          </li>
+          <li>
+            <span class="left">积分：</span>
+            <div class="right">
+              <div class="pro">
+                <b></b>
+                <span v-bind:class="`pre bound level${myAccountInfo.preStage || 0 }`"><i class="star" v-for="(user,idx) in myAccountInfo.preStar"></i></span>
+                <span v-bind:class="`next bound level${myAccountInfo.thisStage || 0 }`"><i class="star" v-for="(user,idx) in myAccountInfo.thisStar"></i></span>
+                <span v-bind:class="`count ${myAccountInfo.upFlag?'addcount':'subcount'}`">{{myAccountInfo.newScore-myAccountInfo.oldScore}}分</span>
+              </div>
+              <span class="totalAccount">{{myAccountInfo.showScore}}分</span></div>
+          </li>
+
+        </ul>
+      </div>
+    </div>
 </div>
 <script type="application/javascript" src="../../js/zepto.min.js"></script>
 <script type="application/javascript" src="../../js/vue.js"></script>

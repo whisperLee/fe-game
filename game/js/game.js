@@ -4,6 +4,9 @@
 Vue.component('user',component.user)
 Vue.component('usermine',component.usermine)
 Vue.component('userinfo',component.userinfo)
+Vue.component('userwin',component.user)
+Vue.component('userlose',component.user)
+Vue.component('userend',component.userend)
 // Vue.component('qiangshenfen', component.qiangshenfen)
 // Vue.component('identitylayer', component.identitylayer)
 
@@ -25,7 +28,10 @@ var game = new Vue({
             nightFlag: -1,
             gameStatusStr:'',
             result:''
-        }
+        },
+        accountInfo:{},
+        personalAccountInfo:{},
+        myAccountInfo:{}
     },
     created: function () {
         var _self = this
@@ -163,12 +169,13 @@ var game = new Vue({
                 }, 10)
                 // 设置自己的身份
                 _self.mine = d.personalInfo
+                $('.layerShenfen .shenfen').addClass('shenfen'+d.personalInfo.identityId)
                 // 设置自己的游戏信息
                 if(d.eventInfo){
                     _self.eventInfo(d.eventInfo)
                 }
                 if(d.gameInfo){
-                    _self.gameInfo(d.gameInfo)
+                    _self.gameInfo(d)
                 }
 
             }
@@ -205,7 +212,6 @@ var game = new Vue({
                     }
                 }else if(count>0){
                     el = $('.layerEventChoose')
-
                     var h = ''
                     for(var i=0;i<info.chooseCount;i++){
                         h+='<li class="unchoose"></li>'
@@ -213,11 +219,21 @@ var game = new Vue({
                     el.find('.content ul').html(h)
                     _self.isUserEvent = 1
                 }
-
-                
             }
             info.eventName && el.find('.title').html(info.eventName)
             info.eventDesc && el.find('.info').html(info.eventDesc)
+
+            if(global.isExit(info.targetNumbers) && info.targetNumbers.length>0 ){
+                for(var i=0;i<info.targetNumbers.length;i++){
+                    $('.user-list li .user[num="'+info.targetNumbers[i]+'"]').addClass('canVote')
+                }
+            }else{
+                $('.user-list li .user').each(function(){
+                    if(!$(this).attr('dead')){
+                        $(this).addClass('canVote')
+                    }
+                })
+            }
 
             el.attr('event',info.eventType)
             if(info.eventSurplusTime){
@@ -225,8 +241,6 @@ var game = new Vue({
             }else{
                 animate.layerEnter(el)
             }
-
-
         },
         gameInfo:function(d){
             var _self = this
@@ -239,7 +253,30 @@ var game = new Vue({
                         _self.$set(_self.mine,'identityId',d.personalInfo.identityId)
                         $('.layerShenfen .shenfen').addClass('shenfen'+d.personalInfo.identityId)
                         _self.showSF()
+                    }else if(d.gameInfo.gameStatus == 'GAME_ACCOUNT'){
+                        _self.account(d.gameAccountInfo)
+                    }else if(d.gameInfo.gameStatus == 'MVP_RESULT'){
+                        _self.mvp(d.gameAccountInfo.mvpNumber)
+                    }else if(d.gameInfo.gameStatus == 'GAME_REPLAY'){
+                        if(d.personalAccountInfo.changeLevelFlag){
+                            if(d.personalAccountInfo.upFlag){
+                                d.personalAccountInfo.showStage = d.personalAccountInfo.preStage
+                                d.personalAccountInfo.showStar = d.personalAccountInfo.preStar
+                            }else{
+                                d.personalAccountInfo.showStage = d.personalAccountInfo.nextStage
+                                d.personalAccountInfo.showStar = d.personalAccountInfo.nextStar
+                            }
+                        }else{
+                            d.personalAccountInfo.showStage = d.personalAccountInfo.thisStage
+                            d.personalAccountInfo.showStar = d.personalAccountInfo.thisStar
+                        }
+                        d.personalAccountInfo.showScore = d.personalAccountInfo.oldScore
+                        _self.myAccountInfo = {}
+                        _self.myAccountInfo=d.personalAccountInfo
+
+                        _self.userAccountChange(d.personalAccountInfo)
                     }
+
                     if(global.isExit(d.gameInfo.nightFlag)){
                         console.log(d.gameInfo.nightFlag)
                         _self.screenCenterMessage.nightFlag = d.gameInfo.nightFlag?1:0
@@ -253,12 +290,14 @@ var game = new Vue({
                     if(global.isExit(d.gameInfo.showMsg)){
                         _self.screenCenterMessage.result = d.gameInfo.result
                     }
-                    
+                    if(global.isExit(d.gameInfo.voteInfoList) && d.gameInfo.voteInfoList.length>0){
+                        _self.showVoteList(d.gameInfo.voteInfoList[0])
+                    }
             }
             if(d.userInfoList){
                 for(var i=0;i<d.userInfoList.length; i++){
                     var num = d.userInfoList[i].number
-                    _self.users[num] =  $.extend({}, d.userInfoList[i], _self.users[num])
+                    _self.users[num-1] =  $.extend({}, d.userInfoList[i], _self.users[num-1])
                 }
                 console.log(JSON.stringify(_self.users))
             }
@@ -269,8 +308,6 @@ var game = new Vue({
                     _self.personalButton = d.personalInfo.buttons
                 }
             }
-
-            
         },
         // 设置用户状态
         setUser: function (d) {
@@ -526,24 +563,19 @@ var game = new Vue({
             _self.isUserEvent = 0
             _self.userEventSubmit(el,num,1)
         },
-        // 桌长事件
-        eventForLeaderButton:function(event){
+        // 按钮事件
+        eventForPersonalButton:function(event,idx,type){
             var _self = this
-            var el = $('.leaderBtn')
+            var el = $(event.currentTarget)
+            var event = el.attr('event')
             var data = {
                 targetNumberList:null,
-                eventType:el.attr('event')
+                eventType:event
             }
-            _self.leaderButton = []
-            console.log(JSON.stringify(data))
-            websocket.receiveUserEvent(data)
-        },
-        // 桌长事件
-        eventForpersonalButton:function(){
-            var el = $('.leader.btn')
-            var data = {
-                targetNumberList:null,
-                eventType:el.attr('event')
+            if(type=='leader'){
+                _self.leaderButton.splice(idx,1);
+            }else if(type=='person'){
+                _self.personalButton.splice(idx,1)
             }
             console.log(JSON.stringify(data))
             websocket.receiveUserEvent(data)
@@ -551,6 +583,115 @@ var game = new Vue({
         dead:function(){
             var _self = this
             animate.layerEnter($('.layerDead'))
+        },
+        showVoteList:function(d){
+            var el = $('.layerEventVoteResult')
+            el.find('.title').html(d.voteTitle)
+            var info = []
+            for(var f = 0; f<d.maxNumbers.length; f++){
+                info.push(' 【'+d.maxNumbers[f]+'】')
+            }
+            el.find('.info').html(info.join(',')+'号票数最多')
+            var h = ''
+            for(var i = 0; i < d.voteDetailList.length; i++){
+                var voteN = d.voteDetailList[i].votedNumber
+                h+='<li class="result"><div class="left">'
+                if(voteN==0){
+                    h+='<b class="userNum qi">弃</b>'
+                }else{
+                    h+='<b class="userNum">'+voteN+'</b>'
+                }
+                h+='</div><div class="right"><ul>'
+                for(var j = 0; j< d.voteDetailList[i].voteNumberList.length; j++){
+                    h+='<li><b class="userNum">'+d.voteDetailList[i].voteNumberList[j]+'</b></li>'
+                }
+                h+='</ul> </div> </li>'
+            }
+            el.find('.resultList').html(h)
+            animate.layerEnter(el)
+        },
+        account:function(d){
+            var _self = this
+            $('.user-list,.messageCenter,.mine').hide()
+            $('.gameEnd').show()
+            _self.accountInfo = {}
+            _self.accountInfo = d;
+        },
+        voteMvp: function (event) {
+            var el = $(event.currentTarget)
+            if(el.hasClass('zan')){
+                el.addClass('zaned')
+                el.closest('.win').find('.zan').removeClass('zan')
+                //mvp 事件提交
+                var data = {
+                    targetNumberList:[el.find('.user').attr('num')],
+                    eventType:'EVENT_LIKE'
+                }
+                console.log(JSON.stringify(data))
+                websocket.receiveUserEvent(data)
+            }
+        },
+        mvp:function(num){
+            var _self = this
+            $('.gameEnd .result .userList li .user[num="'+num+'"]').closest('li').addClass('mvp')
+
+        },
+        userAccountChange: function(d){
+            var _self = this
+            var el = $('.userAccount')
+            var oldPre,newPre,oldStar,old
+            var _per = el.find('.pro b')
+
+            newPre = (d.newScore-d.thisNeedScore)*100/(d.nextNeedScore-d.thisNeedScore)
+            newPre = newPre*0.8+10 // 样式的问题，当前星级在整个进度条的80%，所以在*0.8之后，加上上一星级的10%
+            console.log(newPre)
+            if(d.changeLevelFlag){
+                if(d.upFlag){
+                    oldPre = 5;
+                    // if(d.thisStar == 1){
+                    //     // 升等
+                    // }else{
+                    //
+                    // }
+                }else{
+                    oldPre = 95;
+                    // if(d.thisStar == 3){
+                    //     // 降等
+                    // }else{
+                    //
+                    // }
+                }
+            }else{
+                oldPre = (d.oldScore-d.thisNeedScore)*100/(d.nextNeedScore-d.thisNeedScore)
+                oldPre = parseInt(oldPre*0.8)+10
+                console.log(oldPre)
+            }
+            _per.css({'width':oldPre+'%'})
+            animate.layerEnter($('.userAccount'))
+
+            el.find('.count').velocity({
+                translateY: ['0','100%'],
+                opacity:[1,0]
+            },{
+                duration: 1000,
+                delay:3000,
+                complete: function() {
+                    _per.velocity({
+                        width:newPre+'%'
+                    },{
+                        duration: 500,
+                        complete: function() {
+                            _self.myAccountInfo = {}
+                            d.showStage = d.thisStage
+                            d.showStar = d.thisStar
+                            d.showScore = d.newScore 
+                            _self.myAccountInfo = d;
+                        }
+                    })
+                }
+            })
+
+
         },
         // 返回每个用户坐标
         returnUserStyle: function (total,row,col,width,height,center_user) {
@@ -584,21 +725,28 @@ var game = new Vue({
         // 用户点击
         userClick: function (item,event) {
             var _self = this
+            var el = $(event.currentTarget)
             console.log(item)
             //if(_self.isUserEvent){
             if(1){
-                var li = $('.layerSixCenter.active .content ul li.unchoose')
-                if(li.length>0 || $('.layerSixCenter.active .content ul li').length==1){
-                    li.eq(0).html($(event.currentTarget).html())
-                    li.eq(0).find('.user').attr('style','')
-                    li.find('.user').off().on('click',function(){
-                        $(this).remove()
-                        $(this).closest('li').addClass('unchoose')
-                    })
-                    li.eq(0).removeClass('unchoose')
+                if(el.find('.user').hasClass('canVote')){
+                    var li = $('.layerSixCenter.active .content ul li.unchoose')
+                    if(li.length>0 || $('.layerSixCenter.active .content ul li').length==1){
+                        li = li.length>0?li.eq(0):$('.layerSixCenter.active .content ul li').eq(0)
+                        li.html(el.html())
+                        li.find('.user').attr('style','')
+                        li.find('.user').off().on('click',function(){
+                            $(this).closest('li').addClass('unchoose')
+                            $(this).remove()
+                        })
+                        li.eq(0).removeClass('unchoose')
+                    }else{
+                        global.pop_tips('请删除选择后再次点选')
+                    }
                 }else{
-                    global.pop_tips('请删除选择后再次点选')
+                     global.pop_tips('请选择正确玩家')
                 }
+                
             }else{
                 _self.userinfo = item
                 setTimeout(function(){

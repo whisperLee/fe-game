@@ -8,6 +8,7 @@ body{
     background-image: url("../image/3.jpg");
     padding-top: .2rem;
     .gameEnd{
+      display: none;
       .resultInfo{
         color: #666; width:82%; margin: 0 auto; line-height: .2rem;
         span{

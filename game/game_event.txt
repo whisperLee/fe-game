@@ -43,12 +43,12 @@ http://note.youdao.com/noteshare?id=e6ab57892697c23970d222c5bcc4ca58
 
 竞选发言:
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"number":1,"campaignFlag":true},{"number":2,"campaignFlag":true},{"number":5,"campaignFlag":true}],"gameInfo":{"gameStatus":"CAMPAIGN_SPEAK","gameStatusStr":"竞选警长发言"},"personalInfo":{"buttons":["GIVE_UP","SELF_DESTRUCT"]},"showMsg":"1号,2号,5号玩家参与竞选.请从'2'号玩家开始,'逆'序发言.2->1->5"}
-*******************  buttons,userInfoList
+///*******************  buttons,userInfoList
 
 更新桌长按钮:
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE_LEADER","leaderInfo":{"leaderFlag":true,"leaderButton":["SPEAK_END"]}}
 ===={"targetNumberList":null,"eventType":"SPEAK_END"}
-*******************  button
+///*******************  button
 
 竞选投票准备:
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"CAMPAIGN_CONFIRM_GIVEUP","gameStatusStr":"竞选警长投票准备"}}
@@ -57,12 +57,13 @@ http://note.youdao.com/noteshare?id=e6ab57892697c23970d222c5bcc4ca58
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT_RESULT","eventResultInfo":{"eventDesc":"你选择了退水.","resultSurplusTime":3}}
 退水之后更新玩家状态:
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"userId":201,"number":1,"campaignFlag":false}]}
-*******************  userInfoList
+///*******************  userInfoList
 
 竞选投票
 (可以投票):
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE_AND_EVENT","gameInfo":{"gameStatus":"CAMPAIGN_VOTE","gameStatusStr":"竞选警长投票"},"personalInfo":{"buttons":["EMPTY"]},"eventInfo":{"eventType":"EVENT_CAMPAIGN_VOTE","eventName":"警长投票","eventDesc":"请选择你心目中的警长玩家.","chooseCount":1,"eventSurplusTime":10,"targetNumbers":[2,5]}}
 *******************  targetNumbers
+
 (不可以投票):
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"CAMPAIGN_VOTE","gameStatusStr":"竞选警长投票"},"personalInfo":{"buttons":["EMPTY"]}}
 
@@ -78,11 +79,13 @@ http://note.youdao.com/noteshare?id=e6ab57892697c23970d222c5bcc4ca58
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"CAMPAIGN_PK_CONFIRM_GIVEUP","gameStatusStr":"竞选PK投票准备"}}
 
 警上pk投票(也分可以投票和不可以投票,同警上投票):
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"CAMPAIGN_PK_VOTE","gameStatusStr":"竞选PK投票"},"personalInfo":{"buttons":["EMPTY"]},"eventInfo":{"eventType":"EVENT_CAMPAIGN_PK_VOTE","eventName":"警长投票","eventDesc":"请选择你心目中的警长玩家.","chooseCount":1,"eventSurplusTime":10,"targetNumbers":[2,5]}}
+{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE_AND_EVENT","gameInfo":{"gameStatus":"CAMPAIGN_VOTE","gameStatusStr":"竞选警长投票"},"personalInfo":{"buttons":["EMPTY"]},"eventInfo":{"eventType":"EVENT_CAMPAIGN_VOTE","eventName":"警长投票","eventDesc":"请选择你心目中的警长玩家.","chooseCount":1,"eventSurplusTime":10,"targetNumbers":[2,5]}}
 *******************  targetNumbers
 警上pk结果:
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"number":2,"campaignFlag":true},{"number":5,"campaignFlag":true}],"gameInfo":{"gameStatus":"CAMPAIGN_OUT_PK_SPEAK","gameStatusStr":"竞选场外PK发言","voteInfoList":[{"voteTitle":"警上PK投票","voteDetailList":[{"votedNumber":2,"voteNumberList":[10]},{"votedNumber":5,"voteNumberList":[4]},{"votedNumber":0,"voteNumberList":[1,3,6,7,8,9,11,12]}]}],"voteShowType":"LAST"},"showMsg":"2号,5号玩家平票,进入警上场外PK环节.请从'1'号玩家开始,'逆'序发言.2->5投票详情可以在手机上查看."}
-*******************  voteInfoList
+
+{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"number":2,"campaignFlag":true},{"number":5,"campaignFlag":true}],"gameInfo":{"gameStatus":"CAMPAIGN_OUT_PK_SPEAK","gameStatusStr":"竞选场外PK发言","voteInfoList":[{"maxNumbers":[2,5],"voteTitle":"警上PK投票","voteDetailList":[{"votedNumber":2,"voteNumberList":[10]},{"votedNumber":5,"voteNumberList":[4]},{"votedNumber":0,"voteNumberList":[1,3,6,7,8,9,11,12]}]}],"voteShowType":"LAST"},"showMsg":"2号,5号玩家平票,进入警上场外PK环节.请从'1'号玩家开始,'逆'序发言.2->5投票详情可以在手机上查看."}
+///*******************  voteInfoList
 
 场外pk投票准备:
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"CAMPAIGN_OUT_PK_CONFIRM_GIVEUP","gameStatusStr":"竞选场外PK投票准备"}}
@@ -110,7 +113,7 @@ http://note.youdao.com/noteshare?id=e6ab57892697c23970d222c5bcc4ca58
 
 放逐遗言:
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"number":2,"identityStatus":"EXILE"}],"gameInfo":{"gameStatus":"EXILE_DIE_SPEAK","gameStatusStr":"放逐遗言"},"personalInfo":{"buttons":["EMPTY"]},"showMsg":"请2号玩家发表遗言.如果可以发动技能,请在手机上操作.发言结束后,由当前存活最小号:1号玩家在手机上点击发言结束."}
-*******************  userInfoList
+///*******************  userInfoList
 
 移交警徽:
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE_AND_EVENT","userInfoList":[{"number":2,"identityStatus":"DEAD"}],"gameInfo":{"gameStatus":"CHANGE_SERGEANT","gameStatusStr":"移交警长"},"personalInfo":{"buttons":["EMPTY"]},"eventInfo":{"eventType":"EVENT_CHANGE_SERGEANT","eventName":"移交警徽","eventDesc":"请选择一位玩家将警徽移交给他.","chooseCount":1}}
@@ -127,7 +130,7 @@ http://note.youdao.com/noteshare?id=e6ab57892697c23970d222c5bcc4ca58
 
 白痴被放逐:
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"number":7,"identityStatus":"IDIOT"}],"gameInfo":{"gameStatus":"EXILE_DIE_SPEAK","gameStatusStr":"放逐遗言"},"personalInfo":{"buttons":["EMPTY"]},"showMsg":"7号玩家是白痴牌,免疫放逐,但失去投票权.请7号玩家发表遗言.发言结束后,由当前存活最小号:1号玩家在手机上点击发言结束."}
-*******************  userInfoList
+///*******************  userInfoList
 
 猎人开枪(晚上死的):
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE_AND_EVENT","userInfoList":[{"number":5,"identityStatus":"DEAD"}],"gameInfo":{"gameStatus":"LAST_NIGHT_INFO","gameStatusStr":"昨天情况公布"},"personalInfo":{"buttons":["EMPTY"]},"eventInfo":{"eventType":"EVENT_SHOOT","eventName":"开枪带人","eventDesc":"请选择一位玩家开枪将其带走.","chooseCount":1}}
@@ -138,6 +141,9 @@ http://note.youdao.com/noteshare?id=e6ab57892697c23970d222c5bcc4ca58
 ===={"targetNumberList":["1"],"eventType":"EVENT_SHOOT"}
 白天放逐发言:
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"number":5,"identityStatus":"DEAD"},{"number":9,"identityStatus":"SHOOT"}],"gameInfo":{"gameStatus":"COMMON_SPEAK","gameStatusStr":"白天放逐发言"},"personalInfo":{"buttons":["EMPTY"]},"showMsg":"遗言结束.请5号,9号玩家灭灯.请警长:4号玩家,指定从'警'左或'警'右开始发言.指定之后直接发言,无需在手机上操作.发言结束后,由当前存活最小号:1号玩家在手机上点击发言结束."}
+
+
+
 
 玩家死亡:
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"DEAD","showMsg":"你被12号玩家开枪带走..."}
@@ -172,10 +178,10 @@ destination:/gameUser/receiveUserEvent
 上警按钮事件:
 {"eventType":"EVENT_CAMPAIGN_SERGEANT","targetNumberList":[""]}
 
-退水按钮事件:
+退水按钮事件:?????
 {"eventType":"EVENT_CAMPAIGN_GIVEUP"}
 
-投票选警按钮事件:
+投票选警按钮事件:????????
 {"eventType":"EVENT_CAMPAIGN_VOTE","targetNumberList":["2"]}
 
 放逐投票按钮事件:

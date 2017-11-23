@@ -22,7 +22,6 @@ var game = new Vue({
         mine: { },
         userinfo:{},//查看用户个人信息
         lookOverIdentity:0,//判定用户是否已经查看身份
-        isUserEvent:0,// event 状态下点击用户头像可以进行点选
         screenCenterMessage: {
             gameTime:0,
             nightFlag: -1,
@@ -139,12 +138,7 @@ var game = new Vue({
                 _self.gameInfo(d)
             }
             else if(d.msgType == 'UPDATE_LEADER'){//需要获取leaderInfo
-                var btn = d.leaderInfo.leaderButton
-                if(btn.length==1 && btn[0]=='EMPTY'){
-                    _self.leaderButton = []
-                }else{
-                    _self.leaderButton = d.leaderInfo.leaderButton
-                }
+                _self.setLeaderBtn(d.leaderInfo)
             }
             else if(d.msgType == 'DEAD'){//该玩家挂了,黑屏,不在接受事件 除了gameover
                 _self.dead()
@@ -177,6 +171,9 @@ var game = new Vue({
                 if(d.gameInfo){
                     _self.gameInfo(d)
                 }
+                if(global.isExit(d.leaderInfo)){
+                    _self.setLeaderBtn(d.leaderInfo)
+                }
 
             }
         },
@@ -191,12 +188,15 @@ var game = new Vue({
                 if(info.witchStatusEnum == 'PAPA'){
                     el.find('.btn[event="EVENT_SAVE"]').show()
                     el.find('.btn[event="EVENT_POISON"]').show()
+                    $('.user-list').addClass('choosing')//?????
                 }else if(info.witchStatusEnum == 'SAVE'){
                     el.find('.btn[event="EVENT_SAVE"]').show()
                     el.find('.btn[event="EVENT_POISON"]').hide()
+                    $('.user-list').addClass('choosing')//?????
                 }else if(info.witchStatusEnum == 'POISON'){
                     el.find('.btn[event="EVENT_SAVE"]').hide()
                     el.find('.btn[event="EVENT_POISON"]').show()
+                    $('.user-list').addClass('choosing')//?????
                 }
             }else{ // 其它事件
                 if(count==-1){
@@ -217,9 +217,13 @@ var game = new Vue({
                         h+='<li class="unchoose"></li>'
                     }
                     el.find('.content ul').html(h)
-                    _self.isUserEvent = 1
+                    $('.user-list').addClass('choosing')
                 }
             }
+            _self.setEventLayer(el,info)
+        },
+        setEventLayer:function(el,info){
+            var _self = this
             info.eventName && el.find('.title').html(info.eventName)
             info.eventDesc && el.find('.info').html(info.eventDesc)
 
@@ -233,6 +237,9 @@ var game = new Vue({
                         $(this).addClass('canVote')
                     }
                 })
+            }
+            if(info.eventType=='EVENT_SHOOT' || info.eventType=='EVENT_WHITE_SELF_DESTRUCT'){ //猎人开抢带走和白狼王自爆的时候不能选择自己
+                $('.user-list li .user[num="'+_self.mine.number+'"]').removeClass('canVote')
             }
 
             el.attr('event',info.eventType)
@@ -302,7 +309,7 @@ var game = new Vue({
                 console.log(JSON.stringify(_self.users))
             }
             if(d.personalInfo && d.personalInfo.buttons){
-                if(d.personalInfo.buttons.length==0 && d.personalInfo.buttons[0]=='EMPTY'){
+                if(d.personalInfo.buttons.length==0 || d.personalInfo.buttons[0]=='EMPTY'){
                     _self.personalButton = []
                 }else{
                     _self.personalButton = d.personalInfo.buttons
@@ -390,6 +397,7 @@ var game = new Vue({
             $('.user-list').velocity({
                 height: row * width
             }, 500)
+            $('.messageCenter').css({'top':width+'px'})
 
             $('.user-list li').each(function (idx) {
                 var f = $(this)
@@ -559,26 +567,55 @@ var game = new Vue({
             el.find('.user').each(function(){
                 num.push($(this).attr('num'))
             })
-
-            _self.isUserEvent = 0
+            $('.user-list').removeClass('choosing')
             _self.userEventSubmit(el,num,1)
+        },
+        setLeaderBtn:function(info){
+            var _self = this
+            var btn = info.leaderButton
+            if(btn.length==0 || btn[0]=='EMPTY'){
+                _self.leaderButton = []
+            }else{
+                _self.leaderButton = info.leaderButton
+            }
         },
         // 按钮事件
         eventForPersonalButton:function(event,idx,type){
             var _self = this
             var el = $(event.currentTarget)
-            var event = el.attr('event')
-            var data = {
-                targetNumberList:null,
-                eventType:event
+            var e = el.attr('event')
+            var buttonEvents = {
+                'SPEAK_END':'SPEAK_END',
+                'GIVE_UP':'EVENT_CAMPAIGN_GIVEUP',
+                'SELF_DESTRUCT':'EVENT_SELF_DESTRUCT'
             }
-            if(type=='leader'){
-                _self.leaderButton.splice(idx,1);
-            }else if(type=='person'){
-                _self.personalButton.splice(idx,1)
+
+            if(e == 'SELF_DESTRUCT' && _self.mine.identityId==8){
+                var el = $('.layerEventChoose')
+                el.find('.content ul').html('<li class="unchoose"></li>')
+                var info = {
+                    eventName:'白狼王自爆',
+                    eventDesc:'请选择你要带走的人',
+                    eventType:'EVENT_WHITE_SELF_DESTRUCT',
+                    eventSurplusTime:10
+                }
+                _self.setEventLayer(el,info)
+                
+                $('.user-list').addClass('choosing')
+            }else{
+                if(type=='leader'){
+                    _self.leaderButton.splice(idx,1);
+                }else if(type=='person'){
+                    _self.personalButton.splice(idx,1)
+                }
+                e = buttonEvents[e]
+                var data = {
+                    targetNumberList:null,
+                    eventType:e
+                }
+                console.log(JSON.stringify(data))
+                websocket.receiveUserEvent(data)
             }
-            console.log(JSON.stringify(data))
-            websocket.receiveUserEvent(data)
         },
         dead:function(){
             var _self = this
@@ -727,8 +764,7 @@ var game = new Vue({
             var _self = this
             var el = $(event.currentTarget)
             console.log(item)
-            //if(_self.isUserEvent){
-            if(1){
+            if($('.user-list').hasClass('choosing')){
                 if(el.find('.user').hasClass('canVote')){
                     var li = $('.layerSixCenter.active .content ul li.unchoose')
                     if(li.length>0 || $('.layerSixCenter.active .content ul li').length==1){
@@ -753,9 +789,8 @@ var game = new Vue({
                     animate.layerEnter($('.layerUserInfo'))
                 },10)
             }
-            //_self.vote.user.push(item)
         },
-        addAtten: function(){
+        addAtten:function(){
 
         },
         active:function(){

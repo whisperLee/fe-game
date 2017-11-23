@@ -8,11 +8,27 @@
       width: 100%;
       height: 100%;
       -webkit-transform-origin: center center;
-      &.canVote{
-        background: #f00;
+
+      &[dead=true]{
+        opacity:0.8;
+        .head img{
+          visibility: hidden;
+        }
       }
     }
   }
+  &.choosing{
+    .user{
+      opacity: 0.5;
+      &.canVote{
+        opacity: 1;
+        -webkit-animation: flash 1s infinite;
+      }
+    }
+  }
+}
+.choosing .user{
+  opacity: 0.5;
 }
 .user{
   position: relative;
@@ -60,22 +76,21 @@
           position: relative
         }
       }
-      b.state{
-        position: absolute; right:2%; top:6%; width:25%; height:25%; z-index: 10;
-        opacity:0;
-        -webkit-animation:fadeInRight 1s forwards;
-        //&.left{
-        //  -webkit-animation: fadeInRight 1s forwards;
-        //}
-        //&.top{
-        //  -webkit-animation: fadeInBottom 1s forwards;
-        //}
-        //&.right{
-        //  -webkit-animation: fadeInLeft 1s forwards;
-        //}
+      .status{
+        b.state{
+          position: absolute; right:2%; top:6%; width:25%; height:25%; z-index: 10;
+          opacity:0;
+          -webkit-animation:fadeInRight 1s forwards;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+        b.campaign{background-image: url(../image/shangjing.png); }
+        b.sergeant{background-image: url(../image/jing.png);}
+        b.DEAD,b.LOVE_DEAD,b.EXILE,b.SHOOT,b.SELF_DESTRUCT,b.BOMBERMAN,b.IDIOT_TIMEOUT,b.WHITE_SHOOT,b.WHITE_SELF_DESTRUCT,b.SURVIVAL,b.SHUTUP,b.IDIOT{
+          background-image: url(../image/jing.png);
+        }
       }
-      b.campaign{background: url(../image/shangjing.png) no-repeat center; background-size: contain; }
-      b.sergeant{background: url(../image/jing.png) no-repeat center; background-size: contain;}
       &:before{
         background-image: url(../image/level/0.png);
       }
@@ -128,8 +143,8 @@
 }
 
 /*user dead*/
-.user.DEAD .head img,.user.LOVE_DEAD .head img,.user.EXILE .head img,.user.SHOOT .head img,.user.SELF_DESTRUCT .head img,.user.BOMBERMAN .head img,.user.IDIOT_TIMEOUT .head img,.user.WHITE_SHOOT .head img,.user.WHITE_SELF_DESTRUCT .head img{visibility: hidden; }
-.user.DEAD .level,.user.LOVE_DEAD .level,.user.EXILE .head img,.user.SHOOT .level,.user.SELF_DESTRUCT .level,.user.BOMBERMAN .level,.user.IDIOT_TIMEOUT .level,.user.WHITE_SHOOT .level,.user.WHITE_SELF_DESTRUCT .level{opacity: 0.8;}
+//.user.DEAD .head img,.user.LOVE_DEAD .head img,.user.EXILE .head img,.user.SHOOT .head img,.user.SELF_DESTRUCT .head img,.user.BOMBERMAN .head img,.user.IDIOT_TIMEOUT .head img,.user.WHITE_SHOOT .head img,.user.WHITE_SELF_DESTRUCT .head img{visibility: hidden; }
+//.user.DEAD .level,.user.LOVE_DEAD .level,.user.EXILE .head img,.user.SHOOT .level,.user.SELF_DESTRUCT .level,.user.BOMBERMAN .level,.user.IDIOT_TIMEOUT .level,.user.WHITE_SHOOT .level,.user.WHITE_SELF_DESTRUCT .level{opacity: 0.8;}
 .user.SURVIVAL .head{ // 存活
 
 }
@@ -180,21 +195,5 @@
     //  font-size: .16rem;
     //  color: #fff;
     //}
-  }
-  .identity,.leader{
-    position: absolute;
-
-    top:50%;
-    -webkit-transform:translateY(-50%);
-    width:.3rem;
-    height:.45rem;
-    background: url(../image/sf.png) no-repeat center;
-    background-size: contain;
-  }
-  .identity{
-    left:.2rem;
-  }
-  .leader{
-    right:.2rem;
   }
 }

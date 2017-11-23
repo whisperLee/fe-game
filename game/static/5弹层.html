@@ -8,8 +8,8 @@
     <link href="../css/game.css" rel="stylesheet" type="text/css" media="screen" />
     <title>游戏页面</title>
     <style>
-        /*.user-list{position: fixed; top:0}
-        .user-list li{position: relative; width:25%; float:left; opacity: 1;}*/
+        .user-list{position: fixed; top:0}
+        .user-list li{position: relative; width:25%; float:left; opacity: 1;}
         
 
     </style>
@@ -34,17 +34,13 @@
     </div>
 
     <div class="mine" >
-        <a class="btn identity" v-on:click="showSF"></a>
+        <a class="identity" v-on:click="showSF"></a>
         <div class="userWrap">
             <usermine class="userBack" v-bind:user="mine"></usermine>
         </div>
         <div class='userBtns'>
-          <a v-for="(btn,idx) in leaderButton" class="leaderBtn btn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'leader')">
-            {{btn}}
-          </a>
-          <a v-for="(btn,idx) in personalButton" class="personBtn btn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'person')" >
-            {{btn}}
-          </a>
+          <a v-for="(btn,idx) in leaderButton" class="leaderBtn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'leader')"></a>
+          <a v-for="(btn,idx) in personalButton" class="personBtn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'person')" ></a>
         </div>
     </div>
 
@@ -192,25 +188,27 @@
         <div class="content"></div>
     </div>
     <div class="gameEnd" >
-        <p class="resultInfo"><span class="costTime">{{accountInfo.costTime}}</span><span class="endTime">{{accountInfo.endTime}}</span></p>
-        <div class="result win">
-            <h3 class="title"><span>{{accountInfo.gameStatusStr}}</span></h3>
-            <ul class="userList">
-                <li v-for="(user,idx) in accountInfo.winUsers" v-on:click="voteMvp($event)" :userid="user.userId" class="zan">
-                    <userwin v-bind:user="user"></userwin>
-                    <p><span>{{user.identityName}}</span></p>
-                </li>
+        <div class="endInner">
+            <p class="resultInfo"><span class="costTime">{{accountInfo.costTime}}</span><span class="endTime">{{accountInfo.endTime}}</span></p>
+            <div class="result win">
+                <h3 class="title"><span>{{accountInfo.gameStatusStr}}</span></h3>
+                <ul class="userList">
+                    <li v-for="(user,idx) in accountInfo.winUsers" v-on:click="voteMvp($event)" :userid="user.userId" class="zan">
+                        <userwin v-bind:user="user"></userwin>
+                        <p><span>{{user.identityName}}</span></p>
+                    </li>
 
-            </ul>
-        </div>
-        <div class="result lose">
-            <h3 class="title"><span>失败</span></h3>
-            <ul class="userList">
-                <li v-for="(user,idx) in accountInfo.loseUsers" v-on:click="mvp($event)" :userid="user.userId">
-                    <userlose v-bind:user="user"></userlose>
-                    <p><span>{{user.identityName}}</span></p>
-                </li>
-            </ul>
+                </ul>
+            </div>
+            <div class="result lose">
+                <h3 class="title"><span>失败</span></h3>
+                <ul class="userList">
+                    <li v-for="(user,idx) in accountInfo.loseUsers" v-on:click="mvp($event)" :userid="user.userId">
+                        <userlose v-bind:user="user"></userlose>
+                        <p><span>{{user.identityName}}</span></p>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
     <div class="layer userAccount">
@@ -278,13 +276,15 @@
             {userId:111,nickName:"xxx",number:8,stage:1,star:1},
             {userId:112,nickName:"zzz",number:9,stage:1,star:1}]
         data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"number":1,"campaignFlag":true},{"number":2,"sergeantFlag":true},{"number":3,"identityStatus":"IDIOT_TIMEOUT","deadFlag":true},{"number":4,"identityStatus":"WHITE_SHOOT"},{"number":6,"identityStatus":"EXILE"},{"number":7,"identityStatus":"SHOOT"},{"number":8,"identityStatus":"IDIOT"},{"number":9,"identityStatus":"DEAD"},{"number":10,"identityStatus":"SHUTUP"},{"number":11,"identityStatus":"SELF_DESTRUCT"},{"number":12,"identityStatus":"WHITE_SELF_DESTRUCT"}],"gameInfo":{"gameStatus":"CAMPAIGN_SPEAK","gameStatusStr":"竞选警长发言"},"personalInfo":{"buttons":["GIVE_UP","SELF_DESTRUCT"]},"showMsg":"1号,2号,5号玩家参与竞选.请从2号玩家开始,逆序发言.2->1->5"}'
-       // data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"GAME_ACCOUNT","gameStatusStr":"游戏结算"},"gameAccountInfo":{"endTime":"2017-11-13 23:08","costTime":"01:14:16","winUsers":[{"userId":203,"nickName":"203","number":3,"identityName":"平民","identityId":1,"identityStatus":"EXILE","stage":1,"star":2},{"userId":204,"nickName":"204","number":4,"identityName":"女巫","identityId":4,"identityStatus":"SURVIVAL","stage":1,"star":1,"likeTime":1},{"userId":205,"nickName":"205","number":5,"identityName":"猎人","identityId":5,"identityStatus":"EXILE","stage":1,"star":1},{"userId":206,"nickName":"206","number":6,"identityName":"平民","identityId":1,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":207,"nickName":"207","number":7,"identityName":"白痴","identityId":9,"identityStatus":"IDIOT","stage":1,"star":1},{"userId":208,"nickName":"208","number":8,"identityName":"平民","identityId":1,"identityStatus":"EXILE","stage":1,"star":1},{"userId":209,"nickName":"209","number":9,"identityName":"预言家","identityId":3,"identityStatus":"SHOOT","stage":1,"star":1},{"userId":210,"nickName":"210","number":10,"identityName":"守卫","identityId":6,"identityStatus":"EXILE","stage":1,"star":1},{"userId":211,"nickName":"211","number":11,"identityName":"平民","identityId":1,"identityStatus":"SURVIVAL","stage":1,"star":1}],"loseUsers":[{"userId":201,"nickName":"201","number":1,"identityName":"狼人","identityId":2,"identityStatus":"EXILE","stage":1,"star":1},{"userId":202,"nickName":"202","number":2,"identityName":"白狼王","identityId":8,"identityStatus":"EXILE","stage":1,"star":1},{"userId":212,"nickName":"212","number":12,"identityName":"狼王","identityId":7,"identityStatus":"EXILE","stage":1,"star":1}],"gameStatus":"GOOD_WIN","gameStatusStr":"好人阵营胜利","surplusTime":10},"personalInfo":{"userId":204,"number":4,"buttons":[]}}'
-        game.socketCallback(data)
+        //data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"GAME_ACCOUNT","gameStatusStr":"游戏结算"},"gameAccountInfo":{"endTime":"2017-11-13 23:08","costTime":"01:14:16","winUsers":[{"userId":203,"nickName":"203","number":3,"identityName":"平民","identityId":1,"identityStatus":"EXILE","stage":1,"star":2},{"userId":204,"nickName":"204","number":4,"identityName":"女巫","identityId":4,"identityStatus":"SURVIVAL","stage":1,"star":1,"likeTime":1},{"userId":205,"nickName":"205","number":5,"identityName":"猎人","identityId":5,"identityStatus":"EXILE","stage":1,"star":1},{"userId":206,"nickName":"206","number":6,"identityName":"平民","identityId":1,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":207,"nickName":"207","number":7,"identityName":"白痴","identityId":9,"identityStatus":"IDIOT","stage":1,"star":1},{"userId":208,"nickName":"208","number":8,"identityName":"平民","identityId":1,"identityStatus":"EXILE","stage":1,"star":1},{"userId":209,"nickName":"209","number":9,"identityName":"预言家","identityId":3,"identityStatus":"SHOOT","stage":1,"star":1},{"userId":210,"nickName":"210","number":10,"identityName":"守卫","identityId":6,"identityStatus":"EXILE","stage":1,"star":1},{"userId":211,"nickName":"211","number":11,"identityName":"平民","identityId":1,"identityStatus":"SURVIVAL","stage":1,"star":1}],"loseUsers":[{"userId":201,"nickName":"201","number":1,"identityName":"狼人","identityId":2,"identityStatus":"EXILE","stage":1,"star":1},{"userId":202,"nickName":"202","number":2,"identityName":"白狼王","identityId":8,"identityStatus":"EXILE","stage":1,"star":1},{"userId":212,"nickName":"212","number":12,"identityName":"狼王","identityId":7,"identityStatus":"EXILE","stage":1,"star":1}],"gameStatus":"GOOD_WIN","gameStatusStr":"好人阵营胜利","surplusTime":10},"personalInfo":{"userId":204,"number":4,"buttons":[]}}'
+        //game.socketCallback(data)
        // data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"MVP_RESULT","gameStatusStr":"MVP结果"},"gameAccountInfo":{"mvpNumber":3},"showMsg":"恭喜3号玩家当选本局MVP."}'
-       //  setTimeout(function(){game.socketCallback(data)},1000)
+       //setTimeout(function(){game.socketCallback(data)},1000)
 
-         data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"CUR_GAME_STATUS","leaderInfo":{"leaderFlag":true,"leaderButton":[]},"boxInfo":{"boxName":"ggg"},"userInfoList":[{"userId":101,"nickName":"aaa","number":1,"sex":1,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":102,"nickName":"bbb","number":2,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1}],"screeningInfo":{"combinationConfigStr":"预言家 女巫 猎人 守卫 白痴 狼王 白狼王","combinationName":"什么都有","playerCount":12},"gameInfo":{"nightFlag":true,"gameTime":2,"gameStatus":"GAME_OVER","gameStatusStr":"游戏结束"},"personalInfo":{"userId":101,"nickName":"aaa","number":1,"sex":1,"identityName":"白狼王","identityId":8,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1,"consumptionScore":930,"buttons":[]}}'
-         setTimeout(function(){game.socketCallback(data)},1000)
+        data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE_AND_EVENT","gameInfo":{"gameStatus":"CAMPAIGN_VOTE","gameStatusStr":"竞选警长投票"},"personalInfo":{"buttons":["EMPTY"]},"eventInfo":{"eventType":"EVENT_CAMPAIGN_VOTE","eventName":"警长投票","eventDesc":"请选择你心目中的警长玩家.","chooseCount":1,"eventSurplusTime":10,"targetNumbers":[1,2]}}'
+        setTimeout(function(){
+            game.socketCallback(data)
+        },1000)
     });
 </script>
 </body>

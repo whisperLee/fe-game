@@ -30,17 +30,13 @@
     <a class="btn js-start" v-if="leaderFlag"   v-on:click="startGame">开始游戏</a>
 
   <div class="mine">
-    <a class="btn identity" v-on:click="showSF"></a>
+    <a class="identity" v-on:click="showSF"></a>
     <div class="userWrap">
       <usermine class="userBack" v-bind:user="mine"></usermine>
     </div>
     <div class='userBtns'>
-      <a v-for="(btn,idx) in leaderButton" class="leaderBtn btn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'leader')">
-        {{btn}}
-      </a>
-      <a v-for="(btn,idx) in personalButton" class="personBtn btn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'person')" >
-        {{btn}}
-      </a>
+      <a v-for="(btn,idx) in leaderButton" class="leaderBtn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'leader')"></a>
+      <a v-for="(btn,idx) in personalButton" class="personBtn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'person')" ></a>
     </div>
   </div>
   <!--抢身份-->
@@ -155,6 +151,7 @@
         </div>
     </div>
     <div class="gameEnd" >
+    <div class="endInner">
       <p class="resultInfo"><span class="costTime">{{accountInfo.costTime}}</span><span class="endTime">{{accountInfo.endTime}}</span></p>
       <div class="result win">
         <h3 class="title"><span>{{accountInfo.gameStatusStr}}</span></h3>
@@ -176,6 +173,7 @@
         </ul>
       </div>
     </div>
+  </div>
     <div class="layer userAccount">
       <div class="inner">
         <div :class="myAccountInfo.mvpFlag? 'mvp' : '' "></div>

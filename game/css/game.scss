@@ -6,14 +6,8 @@
 @import "animate";
 @import "end";
 .messageCenter{
-  position: absolute; left:20%; padding-top: 20%; top:1%; width: 60%; height:auto;
+  position: absolute; left:20%; top:20%; width: 60%; height:auto;
   .message{background: rgba(26,188,156,0.8); color: #fff; width:100%; padding: .1rem; font-size: .14rem; box-sizing: border-box; border-radius: 5px;
     h3{font-size: .16rem; }
   }
-}
-
-.userBtns{
-  position: absolute;
-  right:0;
-  bottom:0;
 }

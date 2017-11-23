@@ -282,4 +282,29 @@ body {
   .longPress.btn4 .process b {
     background: #d34132; }
 
+.userBtns {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  height: auto;
+  width: auto; }
+  .userBtns a {
+    width: .3rem;
+    height: .45rem;
+    margin-right: .2rem;
+    float: right; }
+    .userBtns a[event=SELF_DESTRUCT] {
+      background: #ccc; }
+
+.identity {
+  position: absolute;
+  left: .2rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  width: .3rem;
+  height: .45rem;
+  background: url(../image/sf.png) no-repeat center;
+  background-size: contain; }
+
 /*# sourceMappingURL=game_set.css.map */

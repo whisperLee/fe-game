@@ -24,7 +24,7 @@ var animate = {
         })
     },
     sfLayerOuter: function (el, fun) {
-        var btn = $('.mine .btn.identity')
+        var btn = $('.mine .identity')
         el = el || $('.layerShenfen')
         el.removeClass('active')
         el.find('.title,.btn').hide()
@@ -112,6 +112,7 @@ var animate = {
 
         el.find('.longPress.state-success').removeClass('state-success')
         el.removeClass('active')
+        $('.user-list.choosing').removeClass('choosing')
         console.log("outer"+el+$time.attr('time'))
         if($time && $time.attr('time')>0){
             $time.attr('time'==-1)

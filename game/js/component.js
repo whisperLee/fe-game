@@ -16,7 +16,7 @@ var component = {
                     '<div class="status">'+
                         '<b v-if="user.campaignFlag" class="state campaign"></b>'+
                         '<b v-if="user.sergeantFlag" class="state sergeant"></b>'+
-                        '<b v-if="user.identityStatus" class="`stage ${user.identityStatus}`"></b>'+
+                        '<b v-if="user.identityStatus" v-bind:class="`state ${user.identityStatus}`"></b>'+
                     '</div>'+
                 '</div>'+
             '</div>'+

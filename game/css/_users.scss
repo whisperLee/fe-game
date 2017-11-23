@@ -8,13 +8,6 @@
       width: 100%;
       height: 100%;
       -webkit-transform-origin: center center;
-
-      &[dead=true]{
-        opacity:0.8;
-        .head img{
-          visibility: hidden;
-        }
-      }
     }
   }
   &.choosing{
@@ -76,9 +69,25 @@
           position: relative
         }
       }
+      &[dead=true]{
+        opacity:0.8;
+        .head{
+          background: url(../image/dead.png) no-repeat center; background-size: contain;
+          img{
+            visibility: hidden;
+          }
+        }
+      }
       .status{
+        position: absolute;
+        right:2%;
+        top:6%;
+        width:100%;
+        height:25%;
         b.state{
-          position: absolute; right:2%; top:6%; width:25%; height:25%; z-index: 10;
+          width: 23%;
+          float: right;
+          margin-right: 2%;
           opacity:0;
           -webkit-animation:fadeInRight 1s forwards;
           background-size: contain;

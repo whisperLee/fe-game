@@ -171,10 +171,12 @@ var game = new Vue({
                 if(d.gameInfo){
                     _self.gameInfo(d)
                 }
-                if(global.isExit(d.leaderInfo)){
+                if(global.isExit(d.leaderInfo.leaderButton)){
                     _self.setLeaderBtn(d.leaderInfo)
                 }
-
+                if(d.personalInfo.deadFlag){
+                    _self.dead()
+                }
             }
         },
         eventInfo:function(info){
@@ -226,7 +228,7 @@ var game = new Vue({
             var _self = this
             info.eventName && el.find('.title').html(info.eventName)
             info.eventDesc && el.find('.info').html(info.eventDesc)
-
+            $('.user-list .canVote').removeClass('canVote')
             if(global.isExit(info.targetNumbers) && info.targetNumbers.length>0 ){
                 for(var i=0;i<info.targetNumbers.length;i++){
                     $('.user-list li .user[num="'+info.targetNumbers[i]+'"]').addClass('canVote')
@@ -251,20 +253,25 @@ var game = new Vue({
         },
         gameInfo:function(d){
             var _self = this
-            //var s = d.gameInfo.gameStatus
             if(d.gameInfo){
-                    if(d.gameInfo.gameStatus == 'ROB_IDENTITY'){
+                 var s = d.gameInfo.gameStatus
+                    if(s == 'ROB_IDENTITY'){
                         _self.showQiang(d.identityInfoList)
-                    }else if(d.gameInfo.gameStatus == 'LOOK_IDENTITY'){
+                    }
+                    else if(s == 'LOOK_IDENTITY'){
                         _self.$set(_self.mine,'identityName',d.personalInfo.identityName)
                         _self.$set(_self.mine,'identityId',d.personalInfo.identityId)
                         $('.layerShenfen .shenfen').addClass('shenfen'+d.personalInfo.identityId)
                         _self.showSF()
-                    }else if(d.gameInfo.gameStatus == 'GAME_ACCOUNT'){
+                    }
+
+                    else if(s == 'GAME_ACCOUNT'){
                         _self.account(d.gameAccountInfo)
-                    }else if(d.gameInfo.gameStatus == 'MVP_RESULT'){
+                    }
+                    else if(s == 'MVP_RESULT'){
                         _self.mvp(d.gameAccountInfo.mvpNumber)
-                    }else if(d.gameInfo.gameStatus == 'GAME_REPLAY'){
+                    }
+                    else if(s == 'GAME_REPLAY'){
                         if(d.personalAccountInfo.changeLevelFlag){
                             if(d.personalAccountInfo.upFlag){
                                 d.personalAccountInfo.showStage = d.personalAccountInfo.preStage
@@ -284,6 +291,7 @@ var game = new Vue({
                         _self.userAccountChange(d.personalAccountInfo)
                     }
 
+
                     if(global.isExit(d.gameInfo.nightFlag)){
                         console.log(d.gameInfo.nightFlag)
                         _self.screenCenterMessage.nightFlag = d.gameInfo.nightFlag?1:0
@@ -302,10 +310,18 @@ var game = new Vue({
                     }
             }
             if(d.userInfoList){
+                if(s == 'CAMPAIGN_RESULT' || s =='CAMPAIGN_PK_SPEAK' || s =='CAMPAIGN_OUT_PK_SPEAK'){
+                    for(var i=0; i<_self.users[i];i++){
+                        if(_self.users[i].campaignFlag){
+                            _self.users[i].campaignFlag = false
+                        }
+                    }
+                }
                 for(var i=0;i<d.userInfoList.length; i++){
                     var num = d.userInfoList[i].number
-                    _self.users[num-1] =  $.extend({}, d.userInfoList[i], _self.users[num-1])
+                    _self.users[num-1] =  $.extend({}, _self.users[num-1], d.userInfoList[i])
                 }
+
                 console.log(JSON.stringify(_self.users))
             }
             if(d.personalInfo && d.personalInfo.buttons){
@@ -898,6 +914,16 @@ var game = new Vue({
 
             $('.layerUserInfo .close').off().on('click',function(){
                 animate.layerOuter($('.layerUserInfo'))
+            })
+
+            $('.userBtns').off().on('click',function(){
+                var el = $(this)
+                if(el.hasClass('active')){
+                    el.removeClass('active')
+                }else{
+                    el.addClass('active')
+                }
+
             })
 
 

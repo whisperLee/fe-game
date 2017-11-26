@@ -19,7 +19,10 @@ var animate = {
             easing: 'ease-in-out',
             complete: function(){
                 el.addClass('active')
-              el.find('.title,.btn').show()
+                el.find('.title,.btn').show()
+                setTimeout(function(){
+                    animate.sfLayerOuter(el)
+                },10000)
             }
         })
     },
@@ -113,6 +116,7 @@ var animate = {
         el.find('.longPress.state-success').removeClass('state-success')
         el.removeClass('active')
         $('.user-list.choosing').removeClass('choosing')
+
         console.log("outer"+el+$time.attr('time'))
         if($time && $time.attr('time')>0){
             $time.attr('time'==-1)

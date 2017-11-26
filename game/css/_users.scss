@@ -1,3 +1,4 @@
+@charset "utf-8";
 .user-list{
   position: relative; width:100%; height:auto; overflow: hidden;
   li{
@@ -19,9 +20,6 @@
       }
     }
   }
-}
-.choosing .user{
-  opacity: 0.5;
 }
 .user{
   position: relative;
@@ -86,6 +84,7 @@
         height:25%;
         b.state{
           width: 23%;
+          height:100%;
           float: right;
           margin-right: 2%;
           opacity:0;
@@ -94,11 +93,20 @@
           background-repeat: no-repeat;
           background-position: center;
         }
-        b.campaign{background-image: url(../image/shangjing.png); }
-        b.sergeant{background-image: url(../image/jing.png);}
-        b.DEAD,b.LOVE_DEAD,b.EXILE,b.SHOOT,b.SELF_DESTRUCT,b.BOMBERMAN,b.IDIOT_TIMEOUT,b.WHITE_SHOOT,b.WHITE_SELF_DESTRUCT,b.SURVIVAL,b.SHUTUP,b.IDIOT{
-          background-image: url(../image/jing.png);
-        }
+        b.campaign{background-image: url(../image/state/s1.png); } /**上警**/
+        b.sergeant{background-image: url(../image/state/s2.png);} /**警长**/
+        b.SURVIVAL{} /**存活**/
+        b.SHUTUP{background-image: url(../image/state/s4.png);} /**禁言**/
+        b.IDIOT{background-image: url(../image/state/s5.png);} /**白痴翻牌**/
+        b.DEAD{} /**死亡**/
+        b.LOVE_DEAD{background-image: url(../image/state/s6.png);} /**殉情**/
+        b.EXILE{background-image: url(../image/state/s7.png);} /**放逐**/
+        b.SHOOT{background-image: url(../image/state/s8.png);} /**开枪带走**/
+        b.SELF_DESTRUCT{background-image: url(../image/state/s9.png);} /**自爆**/
+        b.BOMBERMAN{background-image: url(../image/state/s10.png);} /**炸弹人**/
+        b.IDIOT_TIMEOUT{background-image: url(../image/state/s11.png);} /**白痴超时死亡**/
+        b.WHITE_SHOOT{background-image: url(../image/state/s12.png);} /**白狼王开枪带走**/
+        b.WHITE_SELF_DESTRUCT{background-image: url(../image/state/s13.png);} /**白狼王自爆**/
       }
       &:before{
         background-image: url(../image/level/0.png);
@@ -150,45 +158,6 @@
     }
 }
 }
-
-/*user dead*/
-//.user.DEAD .head img,.user.LOVE_DEAD .head img,.user.EXILE .head img,.user.SHOOT .head img,.user.SELF_DESTRUCT .head img,.user.BOMBERMAN .head img,.user.IDIOT_TIMEOUT .head img,.user.WHITE_SHOOT .head img,.user.WHITE_SELF_DESTRUCT .head img{visibility: hidden; }
-//.user.DEAD .level,.user.LOVE_DEAD .level,.user.EXILE .head img,.user.SHOOT .level,.user.SELF_DESTRUCT .level,.user.BOMBERMAN .level,.user.IDIOT_TIMEOUT .level,.user.WHITE_SHOOT .level,.user.WHITE_SELF_DESTRUCT .level{opacity: 0.8;}
-.user.SURVIVAL .head{ // 存活
-
-}
-.user.SHUTUP .head{// 禁言
-}
-.user.IDIOT .head{// 白痴翻牌
-}
-.user.DEAD .head,.user.LOVE_DEAD .head,.user.EXILE .head,.user.SHOOT .head,.user.SELF_DESTRUCT .head,.user.BOMBERMAN .head,.user.IDIOT_TIMEOUT .head,.user.WHITE_SHOOT .head,.user.WHITE_SELF_DESTRUCT .head{
-  background: url(../image/dead.png) no-repeat center; background-size: contain;
-}
-.user.LOVE_DEAD .head{
-  background-image: url(../image/dead.png);
-}
-.user.EXILE .head{
-  background-image: url(../image/fangzu.png);
-}
-.user.SHOOT .head{
-  background-image: url(../image/kq.png);
-}
-.user.SELF_DESTRUCT .head{
-  background-image: url(../image/b.png);
-}
-.user.BOMBERMAN .head{
-  background-image: url(../image/dead.png);
-}
-.user.IDIOT_TIMEOUT .head{
-  background-image: url(../image/b.png);
-}
-.user.WHITE_SHOOT .head{
-  background-image: url(../image/kq.png);
-}
-.user.WHITE_SELF_DESTRUCT .head{
-  background-image: url(../image/blwzb.png);
-}
-
 .mine{
   position: absolute;
   left:0;

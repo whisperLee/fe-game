@@ -25,7 +25,8 @@ var component = {
     usermine : {
         props: ['user'],
         template:
-        '<div class="user userBack">'+
+        // '<div class="user userBack">'+
+        '<div class="user">'+
             '<div v-bind:class="`level level${user.stage || 0 }`">'+
                 '<div class="userInner">'+
                     '<div class="head">'+
@@ -35,8 +36,8 @@ var component = {
                     '<div v-bind:class="`num num${user.number || 0 }`"></div>'+
                 '</div>'+
             '</div>'+
-            '<p class="nick">昵称：user.nickName</p><p class="designation">称号：狼里一枝花</p>'+
         '</div>'
+
     },
     userend : {
         props: ['user'],

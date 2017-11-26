@@ -11,7 +11,25 @@
         .user-list{position: fixed; top:0}
         .user-list li{position: relative; width:25%; float:left; opacity: 1;}
         
-
+        .mine{bottom: 0}
+        .mine .userWrap{width:70%;}
+        .mine .user{width:35%; margin: 0; overflow: hidden; float: left;}
+        .mine .user .level{float: left;}
+        .mine .userWrap .info{float: left; padding-top: 10%;}
+        .userBtns{position: absolute; right:0; bottom:0; width:.8rem; height:.8rem; -webkit-transform: translateY(0%); background: url(../image/mine/c.png) center no-repeat;  background-size: contain;}
+        
+        .userBtns a{display: none; width:22.2%; height:34%; position: absolute;  background-position: center; background-repeat: no-repeat; background-size: contain; }
+        .userBtns.active{background-image: url(../image/mine/ca.png); width:1.5rem; height:1.5rem; }
+        .userBtns.active a{display: block;}
+        .userBtns.active a:before{content: ""; position: absolute; left:0; top:0; width:100%; height:100%; background-position: center; background-repeat: no-repeat; background-size: contain;}
+        .userBtns a.identity:before{ background-image: url(../image/mine/4.png);}
+        .userBtns a[event='SELF_DESTRUCT']:before{background-image: url(../image/mine/3.png);}
+        .userBtns a[event='GIVE_UP']:before{background-image: url(../image/mine/2.png);}
+        .userBtns a[event='SPEAK_END']:before{background-image: url(../image/mine/1.png);}
+        .userBtns a:nth-child(1){left:20%; top:59%; -webkit-transform:  rotate(-72deg) ; background-image: url(../image/mine/b1.png);}
+        .userBtns a:nth-child(2){left:20%; top:31%; -webkit-transform: rotate(-46deg); background-image: url(../image/mine/b2.png); }
+        .userBtns a:nth-child(3){left:37%; top:14%; -webkit-transform: rotate(-43deg) ; background-image: url(../image/mine/b3.png);}
+        .userBtns a:nth-child(4){left:67%; top:14%; -webkit-transform: rotate(-19deg); background-image: url(../image/mine/b4.png);}
     </style>
 </head>
 <body>
@@ -34,13 +52,19 @@
     </div>
 
     <div class="mine" >
-        <a class="identity" v-on:click="showSF"></a>
+        
         <div class="userWrap">
-            <usermine class="userBack" v-bind:user="mine"></usermine>
+            <usermine v-bind:user="mine"></usermine>
+            <div class="info">
+                <p class="nick">昵称：{{mine.nickName}}</p>
+                <p class="designation">称号：狼里一枝花</p>
+            </div>
         </div>
-        <div class='userBtns'>
-          <a v-for="(btn,idx) in leaderButton" class="leaderBtn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'leader')"></a>
-          <a v-for="(btn,idx) in personalButton" class="personBtn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'person')" ></a>
+
+        <div class='userBtns active'>
+            <a class="identity" v-on:click="showSF"></a>
+            <a v-for="(btn,idx) in leaderButton" class="leaderBtn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'leader')"></a>
+            <a v-for="(btn,idx) in personalButton" class="personBtn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'person')" ></a>
         </div>
     </div>
 
@@ -263,7 +287,7 @@
         //animate.layerEnter(el)
         var data = {}
         game.users = [
-            {userId:101,nickName:"aaa",number:1,sex:1,stage:1,star:1},
+            {userId:101,nickName:"aaa",number:1,stage:1,star:1},
             {userId:102,nickName:"bbb",number:2,stage:1,star:1},
             {userId:103,nickName:"ccc",number:3,stage:1,star:1},
             {userId:104,nickName:"ddd",number:4,stage:1,star:1},
@@ -275,16 +299,17 @@
             {userId:110,nickName:"ggg",number:7,stage:1,star:1},
             {userId:111,nickName:"xxx",number:8,stage:1,star:1},
             {userId:112,nickName:"zzz",number:9,stage:1,star:1}]
-        data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"number":1,"campaignFlag":true},{"number":2,"sergeantFlag":true},{"number":3,"identityStatus":"IDIOT_TIMEOUT","deadFlag":true},{"number":4,"identityStatus":"WHITE_SHOOT"},{"number":6,"identityStatus":"EXILE"},{"number":7,"identityStatus":"SHOOT"},{"number":8,"identityStatus":"IDIOT"},{"number":9,"identityStatus":"DEAD"},{"number":10,"identityStatus":"SHUTUP"},{"number":11,"identityStatus":"SELF_DESTRUCT"},{"number":12,"identityStatus":"WHITE_SELF_DESTRUCT"}],"gameInfo":{"gameStatus":"CAMPAIGN_SPEAK","gameStatusStr":"竞选警长发言"},"personalInfo":{"buttons":["GIVE_UP","SELF_DESTRUCT"]},"showMsg":"1号,2号,5号玩家参与竞选.请从2号玩家开始,逆序发言.2->1->5"}'
+        data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"number":2,"campaignFlag":true},{"number":3,"campaignFlag":true},{"number":5,"campaignFlag":true}],"gameInfo":{"gameStatus":"CAMPAIGN_SPEAK","gameStatusStr":"竞选警长发言"},"personalInfo":{"sergeantFlag":false,"campaignFlag":false,"deadFlag":false,"buttons":["SELF_DESTRUCT"]},"showMsg":"2号,3号,5号玩家参与竞选.请从3号玩家开始,序发言.3->2->5"}'
         //data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"GAME_ACCOUNT","gameStatusStr":"游戏结算"},"gameAccountInfo":{"endTime":"2017-11-13 23:08","costTime":"01:14:16","winUsers":[{"userId":203,"nickName":"203","number":3,"identityName":"平民","identityId":1,"identityStatus":"EXILE","stage":1,"star":2},{"userId":204,"nickName":"204","number":4,"identityName":"女巫","identityId":4,"identityStatus":"SURVIVAL","stage":1,"star":1,"likeTime":1},{"userId":205,"nickName":"205","number":5,"identityName":"猎人","identityId":5,"identityStatus":"EXILE","stage":1,"star":1},{"userId":206,"nickName":"206","number":6,"identityName":"平民","identityId":1,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":207,"nickName":"207","number":7,"identityName":"白痴","identityId":9,"identityStatus":"IDIOT","stage":1,"star":1},{"userId":208,"nickName":"208","number":8,"identityName":"平民","identityId":1,"identityStatus":"EXILE","stage":1,"star":1},{"userId":209,"nickName":"209","number":9,"identityName":"预言家","identityId":3,"identityStatus":"SHOOT","stage":1,"star":1},{"userId":210,"nickName":"210","number":10,"identityName":"守卫","identityId":6,"identityStatus":"EXILE","stage":1,"star":1},{"userId":211,"nickName":"211","number":11,"identityName":"平民","identityId":1,"identityStatus":"SURVIVAL","stage":1,"star":1}],"loseUsers":[{"userId":201,"nickName":"201","number":1,"identityName":"狼人","identityId":2,"identityStatus":"EXILE","stage":1,"star":1},{"userId":202,"nickName":"202","number":2,"identityName":"白狼王","identityId":8,"identityStatus":"EXILE","stage":1,"star":1},{"userId":212,"nickName":"212","number":12,"identityName":"狼王","identityId":7,"identityStatus":"EXILE","stage":1,"star":1}],"gameStatus":"GOOD_WIN","gameStatusStr":"好人阵营胜利","surplusTime":10},"personalInfo":{"userId":204,"number":4,"buttons":[]}}'
-        //game.socketCallback(data)
-       // data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"MVP_RESULT","gameStatusStr":"MVP结果"},"gameAccountInfo":{"mvpNumber":3},"showMsg":"恭喜3号玩家当选本局MVP."}'
+        game.socketCallback(data)
+        
        //setTimeout(function(){game.socketCallback(data)},1000)
 
-        //data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"CUR_GAME_STATUS","leaderInfo":{"leaderFlag":false},"boxInfo":{"boxName":"ggg"},"userInfoList":[{"userId":101,"nickName":"aaa","number":1,"sex":1,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":2},{"userId":102,"nickName":"bbb","number":2,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":103,"nickName":"ccc","number":3,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":104,"nickName":"ddd","number":4,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":105,"nickName":"eee","number":5,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":106,"nickName":"fff","number":6,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"number":7,"identityStatus":"SHOOT","deadFlag":true},{"number":8,"identityStatus":"IDIOT"},{"number":9,"identityStatus":"DEAD","deadFlag":true},{"number":10,"identityStatus":"SHUTUP"},{"number":11,"identityStatus":"SELF_DESTRUCT","deadFlag":true},{"number":12,"identityStatus":"WHITE_SELF_DESTRUCT","deadFlag":true}],"screeningInfo":{"combinationConfigStr":"预言家 女巫 猎人 守卫 白痴 狼王 白狼王","combinationName":"什么都有","playerCount":12},"gameInfo":{"nightFlag":false,"gameTime":1,"gameStatus":"LAST_NIGHT_INFO","gameStatusStr":"昨天情况公布"},"personalInfo":{"userId":103,"nickName":"ccc","number":3,"identityName":"白狼王","identityId":8,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1,"consumptionScore":995,"buttons":["SELF_DESTRUCT"]}}'
+        //data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"CUR_GAME_STATUS","leaderInfo":{"leaderFlag":false},"boxInfo":{"boxName":"ggg"},"userInfoList":[{"userId":101,"nickName":"aaa","number":1,"sex":1,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":2},{"userId":102,"nickName":"bbb","number":2,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":103,"nickName":"ccc","number":3,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":104,"nickName":"ddd","number":4,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":105,"nickName":"eee","number":5,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":106,"nickName":"fff","number":6,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"number":7,"identityStatus":"SHOOT","deadFlag":true},{"number":8,"identityStatus":"IDIOT"},{"number":9,"identityStatus":"DEAD","deadFlag":true},{"number":10,"identityStatus":"SHUTUP"},{"number":11,"identityStatus":"SELF_DESTRUCT","deadFlag":true},{"number":12,"identityStatus":"WHITE_SELF_DESTRUCT","deadFlag":true}],"screeningInfo":{"combinationConfigStr":"预言家 女巫 猎人 守卫 白痴 狼王 白狼王","combinationName":"什么都有","playerCount":12},"gameInfo":{"nightFlag":false,"gameTime":1,"gameStatus":"LAST_NIGHT_INFO","gameStatusStr":"昨天情况公布"},"personalInfo":{"userId":103,"nickName":"ccc","number":3,"identityName":"白狼王","identityId":8,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1,"consumptionScore":995,"buttons":["SELF_DESTRUCT","SPEAK_END","GIVE_UP"]}}'
         setTimeout(function(){
+            data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"userId":102,"number":2,"campaignFlag":false}]}'
             game.socketCallback(data)
-        },1000)
+        },5000)
     });
 </script>
 </body>

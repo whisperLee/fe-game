@@ -162,17 +162,22 @@
 .mine{
   position: absolute;
   left:0;
-  bottom:.1rem;
+  bottom:0;
   width:100%;
   height:auto;
-  .user{
-    width:50%;
-    margin:0 auto;
-    //.nick,.desig{
-    //  position: absolute;
-    //  bottom:0;
-    //  font-size: .16rem;
-    //  color: #fff;
-    //}
+  .userWrap{
+    width:70%;
+    .user{
+      width:35%; overflow: hidden; float: left;
+    }
+    .info{
+      float: left; padding-top: 10%;
+    }
   }
+
+
+
+
+
+
 }

@@ -731,6 +731,7 @@ var game = new Vue({
                 duration: 1000,
                 delay:3000,
                 complete: function() {
+                    el.find('.count').hide()
                     _per.velocity({
                         width:newPre+'%'
                     },{

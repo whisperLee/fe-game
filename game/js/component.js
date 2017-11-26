@@ -25,19 +25,24 @@ var component = {
     usermine : {
         props: ['user'],
         template:
-        // '<div class="user userBack">'+
-        '<div class="user">'+
-            '<div v-bind:class="`level level${user.stage || 0 }`">'+
-                '<div class="userInner">'+
-                    '<div class="head">'+
-                        '<img v-bind:src="user.headImgUrl || `../image/head.png`">'+
+        '<div class="userWrap">'+
+            // '<div class="user userBack">'+
+            '<div class="user">'+
+                '<div v-bind:class="`level level${user.stage || 0 }`">'+
+                    '<div class="userInner">'+
+                        '<div class="head">'+
+                            '<img v-bind:src="user.headImgUrl || `../image/head.png`">'+
+                        '</div>'+
+                        '<i v-bind:class="`star star${user.star || 0 }`"></i>'+
+                        '<div v-bind:class="`num num${user.number || 0 }`"></div>'+
                     '</div>'+
-                    '<i v-bind:class="`star star${user.star || 0 }`"></i>'+
-                    '<div v-bind:class="`num num${user.number || 0 }`"></div>'+
                 '</div>'+
             '</div>'+
+            '<div class="info">'+
+                '<p class="nick">昵称：{{user.nickName}}</p>'+
+                '<p class="designation">称号：狼里一枝花</p>'+
+            '</div>'+
         '</div>'
-
     },
     userend : {
         props: ['user'],
@@ -74,6 +79,16 @@ var component = {
             '</ul>'+
         '</div>'
 
+    },
+    messagecenter:{
+        props: ['message'],
+        template:
+        '<div class="messageCenter">'+
+            '<div class="top" v-if="message.nightFlag!=-1">第<span>{{ message.gameTime }}</span>天'+
+            '<span v-if="message.nightFlag">黑天</span><span v-else>白天</span></div>'+
+            '<div class="message" v-if="message.gameStatusStr!=``">{{ message.gameStatusStr }}</div>'+
+            '<div class="result" v-if="message.result!=``">{{ message.result }}</div>'+
+        '</div>'
     }
    
 }

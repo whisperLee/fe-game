@@ -3,6 +3,7 @@
  */
 Vue.component('user',component.user)
 Vue.component('usermine',component.usermine)
+Vue.component('messagecenter',component.messagecenter)
 Vue.component('userinfo',component.userinfo)
 Vue.component('userwin',component.user)
 Vue.component('userlose',component.user)
@@ -120,6 +121,7 @@ var game = new Vue({
             _self.gameEvent = d.msgType
             // 队列
             if (d.msgType === 'QUEUE') {
+                _self.mine = d.personalInfo
                 _self.setUser(d)
                 setTimeout(function () {
                     _self.setUserQueueStyle()
@@ -311,7 +313,7 @@ var game = new Vue({
             }
             if(d.userInfoList){
                 if(s == 'CAMPAIGN_RESULT' || s =='CAMPAIGN_PK_SPEAK' || s =='CAMPAIGN_OUT_PK_SPEAK'){
-                    for(var i=0; i<_self.users[i];i++){
+                    for(var i=0; i<_self.users.length;i++){
                         if(_self.users[i].campaignFlag){
                             _self.users[i].campaignFlag = false
                             _self.$set(_self.users,i,_self.users[i])
@@ -571,12 +573,16 @@ var game = new Vue({
             if(!notOuter){
                 animate.layerOuter(el)
             }
-            var data = {
-                targetNumberList:n,
-                eventType:el.attr('event')
+            var e = el.attr('event')
+            if(e){
+                var data = {
+                    targetNumberList:n,
+                    eventType:e
+                }
+                console.log(JSON.stringify(data))
+                websocket.receiveUserEvent(data)
             }
-            console.log(JSON.stringify(data))
-            websocket.receiveUserEvent(data)
+
         },
         // 提交用户事件选择 --选人
         userEventForUserChoose: function(el){
@@ -812,6 +818,14 @@ var game = new Vue({
         addAtten:function(){
 
         },
+        userBtntoggle:function(){
+            var el = $('.userBtns')
+                if(el.hasClass('active')){
+                    el.removeClass('active')
+                }else{
+                    el.addClass('active')
+                }
+        },
         active:function(){
             var _self = this
             var shenfen_flow = 0
@@ -918,17 +932,6 @@ var game = new Vue({
             $('.layerUserInfo .close').off().on('click',function(){
                 animate.layerOuter($('.layerUserInfo'))
             })
-
-            $('.userBtns').off().on('click',function(){
-                var el = $(this)
-                if(el.hasClass('active')){
-                    el.removeClass('active')
-                }else{
-                    el.addClass('active')
-                }
-
-            })
-
 
 
         }

@@ -18,27 +18,20 @@
     </ul>
     <div class="queueBtns" v-if="queueFlow >= 1 && queueFlow < 3">
         <a class="btn"  v-on:click="quitSeat">退出座位</a>
-        <a class="btn js-start" v-if="queueFlow >= 2 && leaderFlag"   v-on:click="startGame">开始游戏</a>
         <a class="btn" v-if="screeningId !== 0 && leaderFlag"  v-on:click="modifyGameSet">修改配置</a>
+        <a class="btn js-start" v-if="queueFlow >= 1 && leaderFlag"   v-on:click="startGame">开始游戏</a>
+
+    </div>
+  <a class="btn js-start"   v-on:click="startGame">开始游戏</a>
+    <div class="messageWrap">
+      <messagecenter v-bind:user="screenCenterMessage"></messagecenter>
     </div>
 
-    <div :class="screenCenterMessage.nightFlag!=-1? 'messageCenter' : hide">
-        <div class="top" v-if="screenCenterMessage.nightFlag!=-1">第<span>{{ screenCenterMessage.gameTime }}</span>天<span v-if="screenCenterMessage.nightFlag">黑天</span><span v-else>白天</span></div>
-        <div class="message" v-if="screenCenterMessage.gameStatusStr!=''">{{ screenCenterMessage.gameStatusStr }}</div>
-        <div class="result" v-if="screenCenterMessage.result!=''">{{ screenCenterMessage.result }}</div>
-    </div>
-
-  <div class="mine" v-if="mine">
-
-    <div class="userWrap">
-      <usermine v-bind:user="mine"></usermine>
-      <div class="info">
-        <p class="nick">昵称：{{mine.nickName}}</p>
-        <p class="designation">称号：狼里一枝花</p>
-      </div>
-    </div>
-
-    <div class='userBtns'>
+  <!--<div class="mine" v-if="mine.identityId">-->
+  <div class="mine" v-if="mine.identityId">
+    <usermine v-bind:user="mine"></usermine>
+    <!--<div :class="mine.hasOwnProperty('identityId')?'userBtns':hide" v-on:click="userBtntoggle">-->
+    <div class="userBtns" v-on:click="userBtntoggle">
       <a class="identity" v-on:click="showSF"></a>
       <a v-for="(btn,idx) in leaderButton" class="leaderBtn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'leader')"></a>
       <a v-for="(btn,idx) in personalButton" class="personBtn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'person')" ></a>

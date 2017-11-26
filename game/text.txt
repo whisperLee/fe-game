@@ -25,22 +25,13 @@ SHOOT：开枪
 EXILE：放逐
 IDIOT：白痴被放逐
 
-竞选发言:
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"number":1,"campaignFlag":true},{"number":2,"campaignFlag":true},{"number":5,"campaignFlag":true}],"gameInfo":{"gameStatus":"CAMPAIGN_SPEAK","gameStatusStr":"竞选警长发言"},"personalInfo":{"buttons":["GIVE_UP","SELF_DESTRUCT"]},"showMsg":"1号,2号,5号玩家参与竞选.请从'2'号玩家开始,'逆'序发言.2->1->5"}
-*******************  buttons,userInfoList
-
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"userId":201,"number":1,"campaignFlag":false}]}
-*******************  userInfoList
-
-
-
-更新桌长按钮:
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE_LEADER","leaderInfo":{"leaderFlag":true,"leaderButton":["SPEAK_END"]}}
-===={"targetNumberList":null,"eventType":"SPEAK_END"}
-*******************  button
 
 
 http://note.youdao.com/noteshare?id=e6ab57892697c23970d222c5bcc4ca58&sub=E7C7D9F90C8B406390A51634137B7A28
 
 
 按钮事件
+
+center 样式以及移到模板中
+userBottom  移到模板中
+

@@ -67,15 +67,7 @@
           position: relative
         }
       }
-      &[dead=true]{
-        opacity:0.8;
-        .head{
-          background: url(../image/dead.png) no-repeat center; background-size: contain;
-          img{
-            visibility: hidden;
-          }
-        }
-      }
+
       .status{
         position: absolute;
         right:2%;
@@ -124,6 +116,15 @@
           }
         }
         &:before{background-image: url(../image/level/#{$i}.png);}
+      }
+    }
+  }
+  &[dead=true]{
+    opacity:0.8;
+    .head{
+      background: url(../image/dead.png) no-repeat center; background-size: contain;
+      img{
+        visibility: hidden;
       }
     }
   }

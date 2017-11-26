@@ -314,14 +314,15 @@ var game = new Vue({
                     for(var i=0; i<_self.users[i];i++){
                         if(_self.users[i].campaignFlag){
                             _self.users[i].campaignFlag = false
+                            _self.$set(_self.users,i,_self.users[i])
                         }
                     }
                 }
                 for(var i=0;i<d.userInfoList.length; i++){
                     var num = d.userInfoList[i].number
                     _self.users[num-1] =  $.extend({}, _self.users[num-1], d.userInfoList[i])
+                    _self.$set(_self.users,num-1,_self.users[num-1])
                 }
-
                 console.log(JSON.stringify(_self.users))
             }
             if(d.personalInfo && d.personalInfo.buttons){
@@ -332,16 +333,17 @@ var game = new Vue({
                 }
             }
         },
+
         // 设置用户状态
         setUser: function (d) {
             var _self = this
             _self.users = []
             var total = (d.screeningInfo && d.screeningInfo.playerCount) || 15
 
-            for (var k = 0; k < total; k++) {
+            for (var k = 1; k <= total; k++) {
                 _self.users.push({
-                    userId: '10' + k,
-                    number: k + 1,
+                    userId: k,
+                    number: k,
                     headImgUrl: staticUrl+'/image/head.png'
                 })
             }

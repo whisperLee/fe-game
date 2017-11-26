@@ -10,7 +10,11 @@
     <style>
         .user-list{position: fixed; top:0}
         .user-list li{position: relative; width:25%; float:left; opacity: 1;}
+        .user[dead='true']{
+        opacity:0.8;
         
+      }
+      
         .mine{bottom: 0}
         .mine .userWrap{width:70%;}
         .mine .user{width:35%; margin: 0; overflow: hidden; float: left;}
@@ -299,7 +303,7 @@
             {userId:110,nickName:"ggg",number:7,stage:1,star:1},
             {userId:111,nickName:"xxx",number:8,stage:1,star:1},
             {userId:112,nickName:"zzz",number:9,stage:1,star:1}]
-        data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"number":2,"campaignFlag":true},{"number":3,"campaignFlag":true},{"number":5,"campaignFlag":true}],"gameInfo":{"gameStatus":"CAMPAIGN_SPEAK","gameStatusStr":"竞选警长发言"},"personalInfo":{"sergeantFlag":false,"campaignFlag":false,"deadFlag":false,"buttons":["SELF_DESTRUCT"]},"showMsg":"2号,3号,5号玩家参与竞选.请从3号玩家开始,序发言.3->2->5"}'
+        data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"number":2,"deadFlag":true},{"number":3,"campaignFlag":true},{"number":5,"campaignFlag":true}],"gameInfo":{"gameStatus":"CAMPAIGN_SPEAK","gameStatusStr":"竞选警长发言"},"personalInfo":{"sergeantFlag":false,"campaignFlag":false,"deadFlag":false,"buttons":["SELF_DESTRUCT"]},"showMsg":"2号,3号,5号玩家参与竞选.请从3号玩家开始,序发言.3->2->5"}'
         //data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"GAME_ACCOUNT","gameStatusStr":"游戏结算"},"gameAccountInfo":{"endTime":"2017-11-13 23:08","costTime":"01:14:16","winUsers":[{"userId":203,"nickName":"203","number":3,"identityName":"平民","identityId":1,"identityStatus":"EXILE","stage":1,"star":2},{"userId":204,"nickName":"204","number":4,"identityName":"女巫","identityId":4,"identityStatus":"SURVIVAL","stage":1,"star":1,"likeTime":1},{"userId":205,"nickName":"205","number":5,"identityName":"猎人","identityId":5,"identityStatus":"EXILE","stage":1,"star":1},{"userId":206,"nickName":"206","number":6,"identityName":"平民","identityId":1,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":207,"nickName":"207","number":7,"identityName":"白痴","identityId":9,"identityStatus":"IDIOT","stage":1,"star":1},{"userId":208,"nickName":"208","number":8,"identityName":"平民","identityId":1,"identityStatus":"EXILE","stage":1,"star":1},{"userId":209,"nickName":"209","number":9,"identityName":"预言家","identityId":3,"identityStatus":"SHOOT","stage":1,"star":1},{"userId":210,"nickName":"210","number":10,"identityName":"守卫","identityId":6,"identityStatus":"EXILE","stage":1,"star":1},{"userId":211,"nickName":"211","number":11,"identityName":"平民","identityId":1,"identityStatus":"SURVIVAL","stage":1,"star":1}],"loseUsers":[{"userId":201,"nickName":"201","number":1,"identityName":"狼人","identityId":2,"identityStatus":"EXILE","stage":1,"star":1},{"userId":202,"nickName":"202","number":2,"identityName":"白狼王","identityId":8,"identityStatus":"EXILE","stage":1,"star":1},{"userId":212,"nickName":"212","number":12,"identityName":"狼王","identityId":7,"identityStatus":"EXILE","stage":1,"star":1}],"gameStatus":"GOOD_WIN","gameStatusStr":"好人阵营胜利","surplusTime":10},"personalInfo":{"userId":204,"number":4,"buttons":[]}}'
         game.socketCallback(data)
         

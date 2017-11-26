@@ -297,12 +297,12 @@ body {
           margin: 0 auto;
           z-index: 2;
           position: relative; }
-      .user .level .userInner[dead=true] {
+      .user[dead=true] {
         opacity: 0.8; }
-        .user .level .userInner[dead=true] .head {
+        .user[dead=true] .head {
           background: url(../image/dead.png) no-repeat center;
           background-size: contain; }
-          .user .level .userInner[dead=true] .head img {
+          .user[dead=true] .head img {
             visibility: hidden; }
       .user .level .userInner .status {
         position: absolute;

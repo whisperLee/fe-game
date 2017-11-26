@@ -20,7 +20,6 @@
         <a class="btn"  v-on:click="quitSeat">退出座位</a>
         <a class="btn" v-if="screeningId !== 0 && leaderFlag"  v-on:click="modifyGameSet">修改配置</a>
         <a class="btn js-start" v-if="queueFlow >= 1 && leaderFlag"   v-on:click="startGame">开始游戏</a>
-
     </div>
   <a class="btn js-start"   v-on:click="startGame">开始游戏</a>
     <div class="messageWrap">

@@ -161,7 +161,7 @@
         </ul>
       </div>
       <div class="result lose">
-        <h3 class="title"><span>失败</span></h3>
+        <!--<h3 class="title"><span>失败</span></h3>-->
         <ul class="userList">
           <li v-for="(user,idx) in accountInfo.loseUsers" v-on:click="mvp($event)" :userid="user.userId">
             <userlose v-bind:user="user"></userlose>
@@ -174,7 +174,7 @@
     <div class="layer userAccount">
       <div class="inner">
         <div :class="myAccountInfo.mvpFlag? 'mvp' : '' "></div>
-        <userend class="userBack" v-bind:user="myAccountInfo"></userend>
+        <userend v-bind:user="myAccountInfo"></userend>
         <ul class="levelChange" >
           <li>
             <span class="left">等级：</span><div class="right"><p>{{myAccountInfo.showStage}}阶</p></div>

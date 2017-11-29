@@ -47,7 +47,7 @@ var component = {
     userend : {
         props: ['user'],
         template:
-        '<div class="user userBack">'+
+        '<div class="user userBack" v-bind:dead="user.deadFlag">'+
         '<div v-bind:class="`level level${user.showStage || 0 }`">'+
         '<div class="userInner">'+
         '<div class="head">'+

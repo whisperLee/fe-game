@@ -21,8 +21,8 @@
         }
         .result{
           position: relative;
-          width:74%;
-          margin: .6rem auto 0;
+          width:76%;
+          margin: .1rem auto 0;
           background: #fff;
           border-radius: 5px;
           box-sizing: border-box;
@@ -99,6 +99,7 @@
           }
           &.win{
             width:82%;
+            margin-top:.4rem;
             border-color:#e8685b ;
             h3.title{
               background-image: url("../image/t2.png");

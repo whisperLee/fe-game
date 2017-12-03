@@ -110,10 +110,6 @@ body {
       padding: .2rem 0;
       color: #f1f1f1;
       text-align: center; }
-    body .main.day {
-      background-image: url(../image/d.jpg); }
-    body .main.night {
-      background-image: url(../image/n.jpg); }
 
 .hide {
   display: none; }
@@ -344,7 +340,7 @@ body {
         right: 2%;
         top: 6%;
         width: 100%;
-        height: 25%;
+        height: 33%;
         /**上警**/
         /**警长**/
         /**存活**/
@@ -360,10 +356,12 @@ body {
         /**白狼王开枪带走**/
         /**白狼王自爆**/ }
         .user .level .userInner .status b.state {
-          width: 23%;
+          position: relative;
+          z-index: 9;
+          width: 33%;
           height: 100%;
           float: right;
-          margin-right: 2%;
+          margin-left: 2%;
           opacity: 0;
           -webkit-animation: fadeInRight 1s forwards;
           background-size: contain;
@@ -1184,21 +1182,37 @@ body {
       background: url("../image/level/start5.png") no-repeat center;
       background-size: contain; }
 
+.main.day {
+  background-image: url(../image/d.jpg); }
+.main.night {
+  background-image: url(../image/n.jpg); }
+
 .messageCenter {
   position: absolute;
   left: 20%;
   top: 20%;
   width: 60%;
   height: auto; }
-  .messageCenter .message {
-    background: rgba(26, 188, 156, 0.8);
-    color: #fff;
-    width: 100%;
-    padding: .1rem;
+  .messageCenter .top {
+    background: rgba(36, 74, 111, 0.5);
+    padding: 0 .1rem;
+    line-height: .3rem;
+    border-radius: 5px;
+    display: inline-block;
+    color: #fff; }
+  .messageCenter .dialog {
+    position: relative;
+    margin: .1rem 0;
     font-size: .14rem;
-    box-sizing: border-box;
-    border-radius: 5px; }
-    .messageCenter .message h3 {
-      font-size: .16rem; }
+    line-height: 150%;
+    background: rgba(36, 74, 111, 0.5);
+    border-radius: 5px;
+    padding: 0.1rem; }
+    .messageCenter .dialog .name {
+      color: #34495e; }
+    .messageCenter .dialog .name {
+      color: #e74c3c; }
+    .messageCenter .dialog .message {
+      color: #f1f1f1; }
 
 /*# sourceMappingURL=game.css.map */

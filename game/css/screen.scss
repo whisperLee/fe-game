@@ -1,0 +1,140 @@
+@charset "utf-8";
+@import "global";
+@import "_users";
+@import "animate";
+@import "end";
+body .main{background: url("../sImage/bg.jpg") no-repeat center bottom; background-size: 100% auto;}
+.gameInfo{
+  position: absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:20%;
+  .box{
+    position: absolute;
+    left:32.5%;
+    top:0;
+    width:35%;
+    height:.26rem;
+    background: url("../sImage/room.png") no-repeat center;
+    background-size: contain;
+    font-size: .12rem;
+    line-height: .26rem;
+    text-align: center;
+  }
+  .combinats{
+    position: absolute;
+    left: 2%;
+    top: 7%;
+    width: 37%;
+    height: 45%;
+    background: url("../sImage/ban.png") no-repeat right top;
+    background-size: contain;
+    line-height: .4rem;
+    padding: 0 .6rem 0 .2rem;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: .11rem;
+  }
+}
+.table{
+  position: absolute;
+  left:50%;
+  bottom:0;
+  width:100%;
+  height:80%;
+  background: url("../simage/c.png") no-repeat center top; background-size: 100% 100%;
+  -webkit-transform:translateX(-50%);
+  .num{
+    position: absolute;
+    left: 74%;
+    top: -6%;
+    width: 24%;
+    height: 20%;
+    background: url(../sImage/num.png) no-repeat left bottom;
+    background-size: contain;
+    padding-left: 8%;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: .11rem;
+  }
+  .user-list{
+    height:100%;
+    li{
+      position: absolute;
+      left:0;
+      top:0;
+      width:.6rem;
+      height:.6rem;
+      margin-left: -.3rem;
+      margin-top: -.3rem;
+    }
+    .user{
+      position: absolute;
+      left:0;
+      top:0;
+    }
+  }
+  .messageWrap{
+    width: 54%;
+    position: absolute;
+    left: 23%;
+    top: 37%;
+    height: 55%;
+    .day{
+      text-align: center;
+      width:100%;
+      overflow: hidden;
+      span{
+        position: relative;
+        padding: 0 .15rem;
+        font-size: .18rem;
+        line-height: .24rem;
+        b{
+          font-weight: bold;
+          color: #e74c3c;
+        }
+        &:before,&:after{
+          content: '';
+          position: absolute;
+          top:0;
+          width:1rem;
+          height:100%;
+        }
+        &:before{
+          right:100%;
+          background: url("../simage/t_l.png") no-repeat right center;
+          background-size: contain;
+        }
+        &:after{
+          left:100%;
+          background: url("../simage/t_r.png") no-repeat left center;
+          background-size: contain;
+        }
+      }
+    }
+    .message{
+      background: url(../sImage/m.png) no-repeat center;
+      background-size: 100% 100%;
+      width: 100%;
+      height: 1.9rem;
+      padding: .12rem .25rem;
+      box-sizing: border-box;
+      margin-top: .2rem;
+      h2{
+        font-size: .18rem;
+        line-height: 200%;
+        color: #16afec;
+        padding: 0;
+        text-align: left;
+      }
+      p{
+        font-size: .18rem;
+        line-height: 150%;
+        color: #369ffc;
+
+      }
+    }
+  }
+}
+

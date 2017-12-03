@@ -32,6 +32,9 @@ http://note.youdao.com/noteshare?id=e6ab57892697c23970d222c5bcc4ca58&sub=E7C7D9F
 
 按钮事件
 
-center 样式以及移到模板中
-userBottom  移到模板中
+
+if(d.showMsg =='欢迎光临遇见狼人杀俱乐部'){  //???????????????????key 是什么？
+   //准备抢身份
+   _self.setUserGameStyle()
+}
 

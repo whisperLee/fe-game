@@ -109,10 +109,6 @@ body {
       padding: .2rem 0;
       color: #f1f1f1;
       text-align: center; }
-    body .main.day {
-      background-image: url(../image/d.jpg); }
-    body .main.night {
-      background-image: url(../image/n.jpg); }
 
 .hide {
   display: none; }

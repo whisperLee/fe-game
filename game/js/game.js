@@ -110,7 +110,8 @@ var game = new Vue({
         connectWebScoket: function () {
             var _self = this
             console.log('websocket开始:' + new Date())
-            websocket.connect(_self, _self.boxId, _self.userId, _self.socketCallback)
+            var url = '/userTopic/game/user/' + _self.boxId + '/' + _self.userId
+            websocket.connect(_self, url , _self.socketCallback)
         },
         // socket 接收方法
         socketCallback: function (data) {

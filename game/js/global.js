@@ -35,7 +35,7 @@ var global = {
       success: function () {}
     }, data)
     d.url = host + d.url
-    d.data.userToken = '10' + this.urlHash().gameNumber
+    //d.data.userToken = this.urlHash().gameNumber
     d.data = JSON.stringify(d.data)
     $.ajax(d)
   },

@@ -25,7 +25,7 @@ var game = new Vue({
         lookOverIdentity:0,//判定用户是否已经查看身份
         screenCenterMessage: {
             gameTime:0,
-            nightFlag: -1,
+            nightFlag:'-1',
             gameStatusStr:'',
             result:''
         },
@@ -36,6 +36,7 @@ var game = new Vue({
     created: function () {
         var _self = this
         console.log('页面开始:' + new Date())
+        console.log(_self.mine)
         _self.sit()
         setTimeout(function(){_self.active()},100)
     },
@@ -118,18 +119,24 @@ var game = new Vue({
             var _self = this
             console.log('得到返回数据:' + new Date())
             var d = JSON.parse(data.body)
-
+            setInterval(
+                function(){
+                    console.log(_self.mine)
+                },1000
+            )
             _self.gameEvent = d.msgType
             // 队列
             if (d.msgType === 'QUEUE') {
                 _self.mine = d.personalInfo
+
                 _self.setUser(d)
                 setTimeout(function () {
                     _self.setUserQueueStyle()
                 }, 10)
             }
             if(d.showMsg){
-                _self.screenCenterMessage.result = d.showMsg
+                //_self.screenCenterMessage.result = d.showMsg
+                _self.$set(_self.screenCenterMessage,'result',d.showMsg)
                 if(d.showMsg =='欢迎光临遇见狼人杀俱乐部'){
                     //准备抢身份
                     _self.setUserGameStyle()
@@ -163,14 +170,16 @@ var game = new Vue({
                 _self.setUser(d)
                 setTimeout(function () {
                     _self.setUserGameStyle()
+                    // 设置自己的身份
+
+                    $('.layerShenfen .shenfen').addClass('shenfen'+d.personalInfo.identityId)
+                    // 设置自己的游戏信息
+                    if(d.eventInfo){ //防止用户队列没有创建
+                        _self.eventInfo(d.eventInfo)
+                    }
                 }, 10)
-                // 设置自己的身份
                 _self.mine = d.personalInfo
-                $('.layerShenfen .shenfen').addClass('shenfen'+d.personalInfo.identityId)
-                // 设置自己的游戏信息
-                if(d.eventInfo){
-                    _self.eventInfo(d.eventInfo)
-                }
+
                 if(d.gameInfo){
                     _self.gameInfo(d)
                 }
@@ -233,12 +242,15 @@ var game = new Vue({
             info.eventDesc && el.find('.info').html(info.eventDesc)
             $('.user-list .canVote').removeClass('canVote')
             if(global.isExit(info.targetNumbers) && info.targetNumbers.length>0 ){
+                console.log(info.targetNumbers)
                 for(var i=0;i<info.targetNumbers.length;i++){
                     $('.user-list li .user[num="'+info.targetNumbers[i]+'"]').addClass('canVote')
                 }
             }else{
+                console.log('canVote'+$('.user-list li .user').length)
                 $('.user-list li .user').each(function(){
                     if(!$(this).attr('dead')){
+                        console.log('canVote11')
                         $(this).addClass('canVote')
                     }
                 })
@@ -297,16 +309,21 @@ var game = new Vue({
 
                     if(global.isExit(d.gameInfo.nightFlag)){
                         console.log(d.gameInfo.nightFlag)
-                        _self.screenCenterMessage.nightFlag = d.gameInfo.nightFlag?1:0
+                        var n = d.gameInfo.nightFlag?1:0
+                        _self.$set(_self.screenCenterMessage,'nightFlag',n)
+                        //_self.screenCenterMessage.nightFlag = d.gameInfo.nightFlag?1:0
                     }
                     if(global.isExit(d.gameInfo.gameTime)){
-                        _self.screenCenterMessage.gameTime = d.gameInfo.gameTime
+                        //_self.screenCenterMessage.gameTime = d.gameInfo.gameTime
+                        _self.$set(_self.screenCenterMessage,'gameTime',d.gameInfo.gameTime)
                     }
                     if(global.isExit(d.gameInfo.gameStatusStr)){
-                        _self.screenCenterMessage.gameStatusStr = d.gameInfo.gameStatusStr
+                        _self.$set(_self.screenCenterMessage,'gameStatusStr',d.gameInfo.gameStatusStr)
+                        //_self.screenCenterMessage.gameStatusStr = d.gameInfo.gameStatusStr
                     }
                     if(global.isExit(d.gameInfo.showMsg)){
-                        _self.screenCenterMessage.result = d.gameInfo.result
+                        _self.$set(_self.screenCenterMessage,'result',d.gameInfo.result)
+                        //_self.screenCenterMessage.result = d.gameInfo.result
                     }
                     if(global.isExit(d.gameInfo.voteInfoList) && d.gameInfo.voteInfoList.length>0){
                         _self.showVoteList(d.gameInfo.voteInfoList[0])
@@ -443,6 +460,7 @@ var game = new Vue({
             var h = ''
             var className = ''
             for(var i=0;i<d.length;i++){
+                console.log(_self.mine)
                 className = _self.mine.consumptionScore < d[i].cost?'no':''
                 h+='<li identityid="'+d[i].identityId+'" name="'+d[i].name+'" class="'+className+'"><div class="shenfen shenfen'+d[i].identityId+'"></div><div class="price">'+d[i].cost+'</div></li>'
             }

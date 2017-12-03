@@ -84,10 +84,10 @@ var component = {
         props: ['message'],
         template:
         '<div class="messageCenter">'+
-            '<div class="top" v-if="message.nightFlag!=-1">第<span>{{ message.gameTime }}</span>天'+
-            '<span v-if="message.nightFlag">黑天</span><span v-else>白天</span></div>'+
-            '<div class="message" v-if="message.gameStatusStr!=``">{{ message.gameStatusStr }}</div>'+
-            '<div class="result" v-if="message.result!=``">{{ message.result }}</div>'+
+            '<div class="top" v-if="message.hasOwnProperty(`nightFlag`) && message.nightFlag!=-1">第<span>{{ message.gameTime }}</span>天'+
+            '<span v-if="message.hasOwnProperty(`nightFlag`) && message.nightFlag">黑天</span><span v-else>白天</span></div>'+
+            '<div class="message" v-if="message.hasOwnProperty(`gameStatusStr`) && message.gameStatusStr!=``">{{ message.gameStatusStr }}</div>'+
+            '<div class="result" v-if="message.hasOwnProperty(`result`) && message.result!=``">{{ message.result }}</div>'+
         '</div>'
     }
    

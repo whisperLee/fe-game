@@ -21,13 +21,11 @@
         <a class="btn" v-if="screeningId !== 0 && leaderFlag"  v-on:click="modifyGameSet">修改配置</a>
         <a class="btn js-start" v-if="queueFlow >= 1 && leaderFlag"   v-on:click="startGame">开始游戏</a>
     </div>
-  <a class="btn js-start"   v-on:click="startGame">开始游戏</a>
-    <div class="messageWrap">
+    <div class="messageWrap" v-if="screenCenterMessage  && screenCenterMessage.hasOwnProperty('nightFlag') && screenCenterMessage.nightFlag!=-1">
       <messagecenter v-bind:user="screenCenterMessage"></messagecenter>
     </div>
 
-  <!--<div class="mine" v-if="mine.identityId">-->
-  <div class="mine" v-if="mine.identityId">
+  <div class="mine" v-if="mine && mine.hasOwnProperty('identityId')">
     <usermine v-bind:user="mine"></usermine>
     <!--<div :class="mine.hasOwnProperty('identityId')?'userBtns':hide" v-on:click="userBtntoggle">-->
     <div class="userBtns" v-on:click="userBtntoggle">
@@ -199,7 +197,7 @@
     </div>
 </div>
 <script type="application/javascript" src="../../js/zepto.min.js"></script>
-<script type="application/javascript" src="../../js/vue.js"></script>
+<script type="application/javascript" src="../../js/vue.min.js"></script>
 <script type="application/javascript" src="../../js/velocity.min.js"></script>
 <script type="application/javascript" src="../../js/sockjs.min.js"></script>
 <script type="application/javascript" src="../../js/stomp.js"></script>

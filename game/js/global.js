@@ -35,7 +35,12 @@ var global = {
       success: function () {}
     }, data)
     d.url = host + d.url
-    //d.data.userToken = this.urlHash().gameNumber
+      if(this.urlHash().gameNumber<10){
+          d.data.userToken = '10'+ this.urlHash().gameNumber
+      }else{
+          d.data.userToken = '1' + this.urlHash().gameNumber
+      }
+        global.setCookie('a__b',d.data.userToken)
     d.data = JSON.stringify(d.data)
     $.ajax(d)
   },
@@ -63,12 +68,12 @@ var global = {
     router: function (path) {
       window.location.href = path
     },
-  // setCookie: function (name, value) {
-  //   var Days = 30
-  //   var exp = new Date()
-  //   exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000)
-  //   document.cookie = name + '=' + escape(value) + ';expires=' + exp.toGMTString()
-  // },
+  setCookie: function (name, value) {
+    var Days = 30
+    var exp = new Date()
+    exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000)
+    document.cookie = name + '=' + escape(value) + ';expires=' + exp.toGMTString()
+  },
     saoyisao: function () {
       console.log('调去扫一扫功能')
     },

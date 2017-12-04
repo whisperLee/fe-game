@@ -45,5 +45,12 @@ var websocket = {
     receiveUserEvent:function (data) {
         data = JSON.stringify(data)
         stompClient.send('/gameUser/receiveUserEvent', {},data)
+    },
+    // 大屏事件
+    receiveScreenEvent:function(data){
+        data = JSON.stringify(data)
+        console.log('receiveScreenEvent:'+data)
+        stompClient.send('/screen/receiveScreenEvent', {}, data);
     }
+
 }

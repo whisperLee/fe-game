@@ -18,20 +18,41 @@ var screen = new Vue({
     el: '#screen',
     data :{
         users: [],
-        screenCenterMessage: {
-            gameTime:1,
-            nightFlag: 1,
-            gameStatusStr:'选择一位玩家倒吊',
-            result:'选择一位玩家倒吊'
+        boxInfo:{},
+        screeningInfo:{},//板子信息
+        screenCenterMessage: {//屏幕控制中心
+            nightFlag: -1
         },
         accountInfo:{},
+        voiceUrl:''//音频url
     },
     created: function () {
         var _self = this
+
         console.log('页面开始:' + new Date())
+        _self.init()
         _self.connectWebScoket()
     },
     methods: {
+        init:function(){
+            var _self = this
+            var W = $(window).width()
+            var H = $(window).height()
+            var n_w = 1920,n_h = 1200;
+            var i = W / H,
+                r = n_w / n_h;
+            t = i < r ? W / n_w:H / n_h
+            _self._w = parseInt(n_w*t)
+
+            $('.main').css({
+                "width":_self._w,
+                "height":parseInt(n_h*t)
+            })
+
+            $('html').css({
+                "fontSize":_self._w/10+'px'
+            })
+        },
         // 连接websocket
         connectWebScoket: function () {
             var _self = this
@@ -59,6 +80,27 @@ var screen = new Vue({
                     _self.setUserGameStyle()
                 }
             }
+            if(d.boxInfo){
+                _self.boxInfo = d.boxInfo
+            }
+            if(d.screeningInfo){
+                _self.screeningInfo = d.screeningInfo
+            }
+            if(d.voiceUrl){
+                _self.$set(_self,'voiceUrl',d.voiceUrl)
+                var audio = document.getElementById('audio');
+                audio.onended = function() {
+                    console.log("音频播放完成")
+                    _self.sendEventForScreen(d)
+                };
+                console.log(_self.voiceUrl)
+            }
+            if(d.message){
+                _self.$set(_self.screenCenterMessage,'message',d.message)
+                _self.screenCenterMessage.messageExt = d.messageExt?d.messageExt:''
+                _self.$set(_self.screenCenterMessage,'messageExt',_self.screenCenterMessage.messageExt)
+            }
+
 
             // 游戏开始后事件
             if(d.msgType == 'UPDATE'){ //需要获取GameInfo和userInfoList
@@ -188,7 +230,51 @@ var screen = new Vue({
                 }
             }
         },
-
+        sendEventForScreen:function(a){
+            var _self = this
+            if(a.countdownSec>0) {
+                var data;
+                if(!_self.recoverType) {
+                    _self.recoverType = a.msgType;
+                    _self.thisType = a.msgType;
+                }else{
+                    if(a.msgType!='EVENT_PAUSE' && a.msgType!='EVENT_CONTINUE') {
+                        _self.recoverType = _self.thisType;
+                        _self.thisType = a.msgType;
+                    }
+                }
+                if(a.msgType=='EVENT_CONTINUE') {
+                    data = {
+                        'eventType': _self.recoverType,
+                        'sourceNumber':1
+                    }
+                }else{
+                   data = {
+                       'eventType': a.msgType
+                   }
+                }
+                _self.countDown(a.countdownSec+2,function(){
+                    websocket.receiveScreenEvent(data)
+                },a)
+            }
+        },
+        countDown: function (time,callback,a) {
+            var _self = this;
+            if(a.msgType!='EVENT_RESULT') {
+                clearTimeout(_self.countDownTime);
+            }
+            callback = callback || function () { }
+            clearInterval(_self.countDownTime)
+            _self.countDownTime = setInterval(function () {
+                if (time > 0) {
+                    console.log(time)
+                    time--
+                } else {
+                    clearInterval(_self.countDownTime)
+                    callback(a)
+                }
+            }, 1000)
+        },
         // 设置用户状态
         setUser: function (d) {
             var _self = this
@@ -220,42 +306,21 @@ var screen = new Vue({
         // 队列页面用户样式设置
         setUserQueueStyle: function () {
             var _self = this
-
             var total = _self.users.length
-            
-            var W = $(window).width()
-            var H = $(window).height()
-            var n_w = 1960,n_h = 1200;
-            var i = W / H,
-            r = n_w / n_h;
-            t = i < r ? W / n_w:H / n_h
-
-            var _w = parseInt(n_w*t)
-            var r = _w*0.93/2
-
+            var r = _self._w*0.93/2
             var ao = 150/total //20-170度之间
-            
-            $('.main').css({
-                "width":_w,
-                "height":parseInt(n_h*t),
-                "fontSize":_w/100+'px'
-            })
+
             $('.user-list li').each(function (idx) {
-                var left = _w/2 - r   *   Math.cos((ao*idx+20)   *   3.14   /180   )
-                var top =  _w/2 - r   *   Math.sin((ao*idx +20)   *   3.14   /180   )
+                var left = _self._w/2 - r   *   Math.cos((ao*idx+20)   *   3.14   /180   )
+                var top =  _self._w/2 - r   *   Math.sin((ao*idx +20)   *   3.14   /180   )
                 // x1   =   x0   +   r   *   cos(ao   *   3.14   /180   ) 
                 // y1   =   y0   +   r   *   sin(ao   *   3.14   /180   )
                 $(this).css({
-                    width:'.6rem',
-                    height:'.6rem',
                     left: left+'px',
                     top: top+'px',
                     opacity:1
                 })
             })
-
-           
-
         },
         // 游戏界面用户样式设置
         setUserGameStyle: function () {

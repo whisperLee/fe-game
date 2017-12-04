@@ -14,9 +14,9 @@ var component = {
                     '<i v-bind:class="`star star${user.star || 0 }`"></i>'+
                     '<div v-bind:class="`num num${user.number || 0 }`"></div>'+
                     '<div class="status">'+
-                        '<b v-if="user.campaignFlag" class="state campaign"></b>'+
-                        '<b v-if="user.sergeantFlag" class="state sergeant"></b>'+
-                        '<b v-if="user.identityStatus" v-bind:class="`state ${user.identityStatus}`"></b>'+
+                        '<b v-show="user.campaignFlag" class="state campaign"></b>'+
+                        '<b v-show="user.sergeantFlag" class="state sergeant"></b>'+
+                        '<b v-show="user.identityStatus" v-bind:class="`state ${user.identityStatus}`"></b>'+
                     '</div>'+
                 '</div>'+
             '</div>'+
@@ -81,13 +81,13 @@ var component = {
 
     },
     messagecenter:{
-        props: ['message'],
+        props: ['screenCenterMessage'],
         template:
         '<div class="messageCenter">'+
-            '<div class="top" v-if="message.hasOwnProperty(`nightFlag`) && message.nightFlag!=-1">第<span>{{ message.gameTime }}</span>天'+
-            '<span v-if="message.hasOwnProperty(`nightFlag`) && message.nightFlag">黑天</span><span v-else>白天</span></div>'+
-            '<div class="message" v-if="message.hasOwnProperty(`gameStatusStr`) && message.gameStatusStr!=``">{{ message.gameStatusStr }}</div>'+
-            '<div class="result" v-if="message.hasOwnProperty(`result`) && message.result!=``">{{ message.result }}</div>'+
+            '<div class="top" v-show="screenCenterMessage && screenCenterMessage.gameTime">第<span>{{ screenCenterMessage.gameTime }}</span>天'+
+            '<span v-show="screenCenterMessage && screenCenterMessage.nightFlag">黑天</span><span v-show="screenCenterMessage && !screenCenterMessage.nightFlag">白天</span></div>'+
+            '<div class="message" v-show="screenCenterMessage && screenCenterMessage.gameStatusStr && screenCenterMessage.gameStatusStr!=``">{{ screenCenterMessage.gameStatusStr }}</div>'+
+            '<div class="result" v-show="screenCenterMessage.result && screenCenterMessage.result!=``">{{ screenCenterMessage.result }}</div>'+
         '</div>'
     }
    

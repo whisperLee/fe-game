@@ -760,9 +760,17 @@ body {
       background: url("../image/level/start5.png") no-repeat center;
       background-size: contain; }
 
-body .main {
-  background: url("../sImage/bg.jpg") no-repeat center bottom;
-  background-size: 100% auto; }
+body {
+  background: #000; }
+  body .main {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    background: url("../sImage/bg.jpg") no-repeat center bottom;
+    background-size: 100% auto; }
+  body .audio {
+    display: none; }
 
 .gameInfo {
   position: absolute;
@@ -775,25 +783,25 @@ body .main {
     left: 32.5%;
     top: 0;
     width: 35%;
-    height: .26rem;
+    height: .35rem;
     background: url("../sImage/room.png") no-repeat center;
-    background-size: contain;
-    font-size: .12rem;
-    line-height: .26rem;
+    background-size: 100% 100%;
+    font-size: .18rem;
+    line-height: .35rem;
     text-align: center; }
   .gameInfo .combinats {
     position: absolute;
-    left: 2%;
-    top: 7%;
+    left: 3%;
+    top: 18%;
     width: 37%;
     height: 45%;
-    background: url("../sImage/ban.png") no-repeat right top;
+    background: url(../sImage/ban.png) no-repeat right top;
     background-size: contain;
-    line-height: .4rem;
+    line-height: .55rem;
     padding: 0 .6rem 0 .2rem;
     box-sizing: border-box;
     text-align: center;
-    font-size: .11rem; }
+    font-size: .14rem; }
 
 .table {
   position: absolute;
@@ -806,7 +814,7 @@ body .main {
   -webkit-transform: translateX(-50%); }
   .table .num {
     position: absolute;
-    left: 74%;
+    left: 75%;
     top: -6%;
     width: 24%;
     height: 20%;
@@ -815,17 +823,18 @@ body .main {
     padding-left: 8%;
     box-sizing: border-box;
     text-align: center;
-    font-size: .11rem; }
+    font-size: .14rem;
+    line-height: .35rem; }
   .table .user-list {
     height: 100%; }
     .table .user-list li {
       position: absolute;
       left: 0;
       top: 0;
-      width: .6rem;
-      height: .6rem;
-      margin-left: -.3rem;
-      margin-top: -.3rem; }
+      width: .8rem;
+      height: .8rem;
+      margin-left: -.4rem;
+      margin-top: -.4rem; }
     .table .user-list .user {
       position: absolute;
       left: 0;
@@ -835,7 +844,7 @@ body .main {
     position: absolute;
     left: 23%;
     top: 37%;
-    height: 55%; }
+    height: 47%; }
     .table .messageWrap .day {
       text-align: center;
       width: 100%;
@@ -863,6 +872,9 @@ body .main {
           background: url("../simage/t_r.png") no-repeat left center;
           background-size: contain; }
     .table .messageWrap .message {
+      position: absolute;
+      left: 0;
+      bottom: 0;
       background: url(../sImage/m.png) no-repeat center;
       background-size: 100% 100%;
       width: 100%;
@@ -871,14 +883,15 @@ body .main {
       box-sizing: border-box;
       margin-top: .2rem; }
       .table .messageWrap .message h2 {
-        font-size: .18rem;
+        font-size: .21rem;
         line-height: 200%;
         color: #16afec;
         padding: 0;
-        text-align: left; }
+        text-align: left;
+        font-weight: bold; }
       .table .messageWrap .message p {
-        font-size: .18rem;
-        line-height: 150%;
+        font-size: .2rem;
+        line-height: 160%;
         color: #369ffc; }
 
 /*# sourceMappingURL=screen.css.map */

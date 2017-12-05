@@ -66,27 +66,20 @@ var screen = new Vue({
             var _self = this
             console.log('得到返回数据:' + new Date())
             var d = JSON.parse(data.body)
-            if (d.msgType === 'QUEUE') {
-                _self.mine = d.personalInfo
+            if(d.userInfoList && d.userInfoList.length>0){
                 _self.setUser(d)
                 setTimeout(function () {
                     _self.setUserQueueStyle()
                 }, 10)
             }
-            if(d.showMsg){
-                _self.screenCenterMessage.result = d.showMsg
-                if(d.showMsg =='欢迎光临遇见狼人杀俱乐部'){
-                    //准备抢身份
-                    _self.setUserGameStyle()
-                }
-            }
-            if(d.boxInfo){
+
+            if(d.boxInfo){ // 包房信息
                 _self.boxInfo = d.boxInfo
             }
-            if(d.screeningInfo){
+            if(d.screeningInfo){ // 板子信息
                 _self.screeningInfo = d.screeningInfo
             }
-            if(d.voiceUrl){
+            if(d.voiceUrl){ // 音频播放
                 _self.$set(_self,'voiceUrl',d.voiceUrl)
                 var audio = document.getElementById('audio');
                 audio.onended = function() {
@@ -95,32 +88,27 @@ var screen = new Vue({
                 };
                 console.log(_self.voiceUrl)
             }
-            if(d.message){
+            if(d.message){ // 提示消息
                 _self.$set(_self.screenCenterMessage,'message',d.message)
                 _self.screenCenterMessage.messageExt = d.messageExt?d.messageExt:''
                 _self.$set(_self.screenCenterMessage,'messageExt',_self.screenCenterMessage.messageExt)
             }
 
+            if(d.gameResult){ // 游戏结束
+                var el = $('.win')
+                el.addClass(d.gameResult)
+                animate.layerEnter(el)
+            }
 
+            if(d.voteInfo){ // 投票结果
+                _self.showVoteList(d.voteInfo)
+            }
             // 游戏开始后事件
             if(d.msgType == 'UPDATE'){ //需要获取GameInfo和userInfoList
                 _self.gameInfo(d)
             }
-            else if(d.msgType == 'UPDATE_LEADER'){//需要获取leaderInfo
-                _self.setLeaderBtn(d.leaderInfo)
-            }
-            else if(d.msgType == 'DEAD'){//该玩家挂了,黑屏,不在接受事件 除了gameover
-                _self.dead()
-            }
             else if(d.msgType == 'EVENT_GAMEOVER'){ //游戏结束 获取gameResult字段 TODO
 
-            }
-            else if(d.msgType == 'EVENT'){ // 游戏事件,需要获取eventInfo
-                _self.eventInfo(d.eventInfo)
-            }
-            else if(d.msgType == 'UPDATE_AND_EVENT'){
-                _self.gameInfo(d)
-                _self.eventInfo(d.eventInfo)
             }
             else if(d.msgType == 'EVENT_RESULT'){ // 游戏事件返回结果,需要获取eventResultInfo
                 d.eventResultInfo.eventDesc && global.pop_tips(d.eventResultInfo.eventDesc)
@@ -152,17 +140,9 @@ var screen = new Vue({
             var _self = this
             if(d.gameInfo){
                 var s = d.gameInfo.gameStatus
-                if(s == 'ROB_IDENTITY'){
-                    _self.showQiang(d.identityInfoList)
-                }
-                else if(s == 'LOOK_IDENTITY'){
-                    _self.$set(_self.mine,'identityName',d.personalInfo.identityName)
-                    _self.$set(_self.mine,'identityId',d.personalInfo.identityId)
-                    $('.layerShenfen .shenfen').addClass('shenfen'+d.personalInfo.identityId)
-                    _self.showSF()
-                }
 
-                else if(s == 'GAME_ACCOUNT'){
+
+                if(s == 'GAME_ACCOUNT'){
                     _self.account(d.gameAccountInfo)
                 }
                 else if(s == 'MVP_RESULT'){
@@ -191,44 +171,20 @@ var screen = new Vue({
 
                 if(global.isExit(d.gameInfo.nightFlag)){
                     console.log(d.gameInfo.nightFlag)
-                    _self.screenCenterMessage.nightFlag = d.gameInfo.nightFlag?1:0
+                    var n = d.gameInfo.nightFlag?1:0
+                    _self.$set(_self.screenCenterMessage,'nightFlag',n)
+                    //_self.screenCenterMessage.nightFlag = d.gameInfo.nightFlag?1:0
                 }
                 if(global.isExit(d.gameInfo.gameTime)){
-                    _self.screenCenterMessage.gameTime = d.gameInfo.gameTime
+                    //_self.screenCenterMessage.gameTime = d.gameInfo.gameTime
+                    _self.$set(_self.screenCenterMessage,'gameTime',d.gameInfo.gameTime)
                 }
-                if(global.isExit(d.gameInfo.gameStatusStr)){
-                    _self.screenCenterMessage.gameStatusStr = d.gameInfo.gameStatusStr
-                }
-                if(global.isExit(d.gameInfo.showMsg)){
-                    _self.screenCenterMessage.result = d.gameInfo.result
-                }
+
                 if(global.isExit(d.gameInfo.voteInfoList) && d.gameInfo.voteInfoList.length>0){
                     _self.showVoteList(d.gameInfo.voteInfoList[0])
                 }
             }
-            if(d.userInfoList){
-                if(s == 'CAMPAIGN_RESULT' || s =='CAMPAIGN_PK_SPEAK' || s =='CAMPAIGN_OUT_PK_SPEAK'){
-                    for(var i=0; i<_self.users.length;i++){
-                        if(_self.users[i].campaignFlag){
-                            _self.users[i].campaignFlag = false
-                            _self.$set(_self.users,i,_self.users[i])
-                        }
-                    }
-                }
-                for(var i=0;i<d.userInfoList.length; i++){
-                    var num = d.userInfoList[i].number
-                    _self.users[num-1] =  $.extend({}, _self.users[num-1], d.userInfoList[i])
-                    _self.$set(_self.users,num-1,_self.users[num-1])
-                }
-                console.log(JSON.stringify(_self.users))
-            }
-            if(d.personalInfo && d.personalInfo.buttons){
-                if(d.personalInfo.buttons.length==0 || d.personalInfo.buttons[0]=='EMPTY'){
-                    _self.personalButton = []
-                }else{
-                    _self.personalButton = d.personalInfo.buttons
-                }
-            }
+
         },
         sendEventForScreen:function(a){
             var _self = this
@@ -322,36 +278,20 @@ var screen = new Vue({
                 })
             })
         },
-        // 游戏界面用户样式设置
-        setUserGameStyle: function () {
-            var _self = this
-            var total = _self.users.length
-            var col = 5
-            var row = parseInt((total - 4) / 2) + 1
-            var center_user = total - row * 2
-            var width = height = $(window).width() / col
-            var styles = _self.returnUserStyle(total,row,col,width,height,center_user)
-
-            $('.user-list li').each(function (idx) {
-                var f = $(this)
-                var data = styles.style[idx]
-                data.width = data.height = width
-                data.opacity = 1
-                f.velocity(data, {
-                    'duration': 800,
-                    'delay': idx * 50
-                })
-                f.addClass(styles.className[idx])
-            })
-        },
         showVoteList:function(d){
+            var _self = this
             var el = $('.layerEventVoteResult')
             el.find('.title').html(d.voteTitle)
             var info = []
-            for(var f = 0; f<d.maxNumbers.length; f++){
-                info.push(' 【'+d.maxNumbers[f]+'】')
+            if(d.maxNumbers.length>0){
+                for(var f = 0; f<d.maxNumbers.length; f++){
+                    info.push(' 【'+d.maxNumbers[f]+'】')
+                }
+                el.find('.info').html(info.join(',')+'号票数最多')
+            }else{
+                el.find('.info').html('所有人弃票')
             }
-            el.find('.info').html(info.join(',')+'号票数最多')
+
             var h = ''
             for(var i = 0; i < d.voteDetailList.length; i++){
                 var voteN = d.voteDetailList[i].votedNumber
@@ -369,6 +309,25 @@ var screen = new Vue({
             }
             el.find('.resultList').html(h)
             animate.layerEnter(el)
+
+            _self.voteListScroll(el)
+        },
+        voteListScroll:function(el){
+            var _self = this
+            var w_h = el.find('.content').height()
+            var c_h = el.find('.content .resultList').height()
+            console.log(w_h+','+c_h)
+            var r = c_h/w_h
+            if(r>2){
+                el.find('.content').addClass('mins')
+                el.find('.result').each(function(idx){
+                    if($(this).find('.right li').length>3){
+                        $(this).addClass('max')
+                    }
+                })
+            }else if(r>1){
+                el.find('.content').addClass('halfs')
+            }
         },
         account:function(d){
             var _self = this

@@ -668,10 +668,14 @@ var game = new Vue({
             var el = $('.layerEventVoteResult')
             el.find('.title').html(d.voteTitle)
             var info = []
-            for(var f = 0; f<d.maxNumbers.length; f++){
-                info.push(' 【'+d.maxNumbers[f]+'】')
+            if(d.maxNumbers.length>0){
+                for(var f = 0; f<d.maxNumbers.length; f++){
+                    info.push(' 【'+d.maxNumbers[f]+'】')
+                }
+                el.find('.info').html(info.join(',')+'号票数最多')
+            }else{
+                el.find('.info').html('所有人弃票')
             }
-            el.find('.info').html(info.join(',')+'号票数最多')
             var h = ''
             for(var i = 0; i < d.voteDetailList.length; i++){
                 var voteN = d.voteDetailList[i].votedNumber

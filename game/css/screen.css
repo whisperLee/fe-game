@@ -769,129 +769,313 @@ body {
     -webkit-transform: translate(-50%, -50%);
     background: url("../sImage/bg.jpg") no-repeat center bottom;
     background-size: 100% auto; }
-  body .audio {
-    display: none; }
-
-.gameInfo {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 20%; }
-  .gameInfo .box {
-    position: absolute;
-    left: 32.5%;
-    top: 0;
-    width: 35%;
-    height: .35rem;
-    background: url("../sImage/room.png") no-repeat center;
-    background-size: 100% 100%;
-    font-size: .18rem;
-    line-height: .35rem;
-    text-align: center; }
-  .gameInfo .combinats {
-    position: absolute;
-    left: 3%;
-    top: 18%;
-    width: 37%;
-    height: 45%;
-    background: url(../sImage/ban.png) no-repeat right top;
-    background-size: contain;
-    line-height: .55rem;
-    padding: 0 .6rem 0 .2rem;
-    box-sizing: border-box;
-    text-align: center;
-    font-size: .14rem; }
-
-.table {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  width: 100%;
-  height: 80%;
-  background: url("../simage/c.png") no-repeat center top;
-  background-size: 100% 100%;
-  -webkit-transform: translateX(-50%); }
-  .table .num {
-    position: absolute;
-    left: 75%;
-    top: -6%;
-    width: 24%;
-    height: 20%;
-    background: url(../sImage/num.png) no-repeat left bottom;
-    background-size: contain;
-    padding-left: 8%;
-    box-sizing: border-box;
-    text-align: center;
-    font-size: .14rem;
-    line-height: .35rem; }
-  .table .user-list {
-    height: 100%; }
-    .table .user-list li {
+    body .main .gameInfo {
       position: absolute;
       left: 0;
       top: 0;
-      width: .8rem;
-      height: .8rem;
-      margin-left: -.4rem;
-      margin-top: -.4rem; }
-    .table .user-list .user {
-      position: absolute;
-      left: 0;
-      top: 0; }
-  .table .messageWrap {
-    width: 54%;
-    position: absolute;
-    left: 23%;
-    top: 37%;
-    height: 47%; }
-    .table .messageWrap .day {
-      text-align: center;
       width: 100%;
-      overflow: hidden; }
-      .table .messageWrap .day span {
-        position: relative;
-        padding: 0 .15rem;
+      height: 20%; }
+      body .main .gameInfo .box {
+        position: absolute;
+        left: 32.5%;
+        top: 0;
+        width: 35%;
+        height: .35rem;
+        background: url("../sImage/room.png") no-repeat center;
+        background-size: 100% 100%;
         font-size: .18rem;
-        line-height: .24rem; }
-        .table .messageWrap .day span b {
-          font-weight: bold;
-          color: #e74c3c; }
-        .table .messageWrap .day span:before, .table .messageWrap .day span:after {
-          content: '';
+        line-height: .35rem;
+        text-align: center; }
+      body .main .gameInfo .combinats {
+        position: absolute;
+        left: 3%;
+        top: 18%;
+        width: 37%;
+        height: 45%;
+        background: url(../sImage/ban.png) no-repeat right top;
+        background-size: contain;
+        line-height: .55rem;
+        padding: 0 .6rem 0 .2rem;
+        box-sizing: border-box;
+        text-align: center;
+        font-size: .14rem; }
+    body .main .table {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 100%;
+      height: 80%;
+      background: url("../simage/c.png") no-repeat center top;
+      background-size: 100% 100%;
+      -webkit-transform: translateX(-50%); }
+      body .main .table .num {
+        position: absolute;
+        left: 75%;
+        top: -6%;
+        width: 24%;
+        height: 20%;
+        background: url(../sImage/num.png) no-repeat left bottom;
+        background-size: contain;
+        padding-left: 8%;
+        box-sizing: border-box;
+        text-align: center;
+        font-size: .14rem;
+        line-height: .35rem; }
+      body .main .table .user-list {
+        height: 100%; }
+        body .main .table .user-list li {
           position: absolute;
+          left: 0;
           top: 0;
-          width: 1rem;
-          height: 100%; }
-        .table .messageWrap .day span:before {
-          right: 100%;
-          background: url("../simage/t_l.png") no-repeat right center;
-          background-size: contain; }
-        .table .messageWrap .day span:after {
-          left: 100%;
-          background: url("../simage/t_r.png") no-repeat left center;
-          background-size: contain; }
-    .table .messageWrap .message {
+          width: .8rem;
+          height: .8rem;
+          margin-left: -.4rem;
+          margin-top: -.4rem; }
+        body .main .table .user-list .user {
+          position: absolute;
+          left: 0;
+          top: 0; }
+      body .main .table .messageWrap {
+        width: 54%;
+        position: absolute;
+        left: 23%;
+        top: 37%;
+        height: 47%; }
+        body .main .table .messageWrap .day {
+          text-align: center;
+          width: 100%;
+          overflow: hidden; }
+          body .main .table .messageWrap .day span {
+            position: relative;
+            padding: 0 .15rem;
+            font-size: .18rem;
+            line-height: .24rem; }
+            body .main .table .messageWrap .day span b {
+              font-weight: bold;
+              color: #e74c3c; }
+            body .main .table .messageWrap .day span:before, body .main .table .messageWrap .day span:after {
+              content: '';
+              position: absolute;
+              top: 0;
+              width: 1rem;
+              height: 100%; }
+            body .main .table .messageWrap .day span:before {
+              right: 100%;
+              background: url("../simage/t_l.png") no-repeat right center;
+              background-size: contain; }
+            body .main .table .messageWrap .day span:after {
+              left: 100%;
+              background: url("../simage/t_r.png") no-repeat left center;
+              background-size: contain; }
+        body .main .table .messageWrap .message {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          background: url(../sImage/m.png) no-repeat center;
+          background-size: 100% 100%;
+          width: 100%;
+          height: 1.9rem;
+          padding: .12rem .25rem;
+          box-sizing: border-box;
+          margin-top: .2rem; }
+          body .main .table .messageWrap .message h2 {
+            font-size: .21rem;
+            line-height: 200%;
+            color: #16afec;
+            padding: 0;
+            text-align: left;
+            font-weight: bold; }
+          body .main .table .messageWrap .message p {
+            font-size: .2rem;
+            line-height: 160%;
+            color: #369ffc; }
+    body .main .audio {
+      display: none; }
+    body .main .layerEventVoteResult {
       position: absolute;
       left: 0;
-      bottom: 0;
-      background: url(../sImage/m.png) no-repeat center;
-      background-size: 100% 100%;
+      top: 0;
       width: 100%;
-      height: 1.9rem;
-      padding: .12rem .25rem;
-      box-sizing: border-box;
-      margin-top: .2rem; }
-      .table .messageWrap .message h2 {
-        font-size: .21rem;
-        line-height: 200%;
-        color: #16afec;
-        padding: 0;
-        text-align: left;
-        font-weight: bold; }
-      .table .messageWrap .message p {
-        font-size: .2rem;
-        line-height: 160%;
-        color: #369ffc; }
+      height: 100%;
+      display: none; }
+      body .main .layerEventVoteResult.active {
+        background: rgba(0, 0, 0, 0.7); }
+      body .main .layerEventVoteResult .inner {
+        position: absolute;
+        left: 19%;
+        top: 10.5%;
+        width: 62%;
+        height: 79%;
+        background: url("../sImage/lay.png") no-repeat center;
+        background-size: 100% 100%; }
+        body .main .layerEventVoteResult .inner .title {
+          font-size: .28rem;
+          padding: .25rem 0;
+          color: #f1f1f1;
+          text-align: center; }
+        body .main .layerEventVoteResult .inner .info {
+          font-size: .2rem;
+          line-height: 150%;
+          text-align: center;
+          padding-top: .1rem; }
+        body .main .layerEventVoteResult .inner .content {
+          margin: 0 .2rem;
+          box-sizing: border-box;
+          height: 3.65rem;
+          overflow-y: auto; }
+          body .main .layerEventVoteResult .inner .content ul {
+            padding: 0 .15rem; }
+            body .main .layerEventVoteResult .inner .content ul .result {
+              position: relative;
+              overflow: hidden;
+              border-bottom: 1px solid #16afec;
+              padding: .08rem .05rem .08rem 17.5%;
+              box-sizing: border-box; }
+              body .main .layerEventVoteResult .inner .content ul .result .userNum {
+                font-size: .28rem;
+                color: #f1f1f1;
+                width: .6rem;
+                height: .6rem;
+                line-height: .6rem;
+                border-radius: 50%;
+                display: block;
+                text-align: center; }
+              body .main .layerEventVoteResult .inner .content ul .result .left {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 17.5%;
+                height: 100%; }
+                body .main .layerEventVoteResult .inner .content ul .result .left .userNum {
+                  position: absolute;
+                  left: 50%;
+                  top: 50%;
+                  -webkit-transform: translate(-50%, -50%);
+                  background: url("../sImage/t.png") no-repeat center;
+                  background-size: contain; }
+                  body .main .layerEventVoteResult .inner .content ul .result .left .userNum.qi {
+                    background-image: url("../sImage/qi.png"); }
+              body .main .layerEventVoteResult .inner .content ul .result .right {
+                position: relative;
+                width: 100%; }
+                body .main .layerEventVoteResult .inner .content ul .result .right:before {
+                  content: "";
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  width: .3rem;
+                  height: 100%;
+                  background: url(../image/jiantou.png) no-repeat center;
+                  background-size: contain; }
+                body .main .layerEventVoteResult .inner .content ul .result .right ul {
+                  overflow: hidden;
+                  margin-left: .3rem; }
+                  body .main .layerEventVoteResult .inner .content ul .result .right ul li {
+                    float: left;
+                    width: 20%; }
+                    body .main .layerEventVoteResult .inner .content ul .result .right ul li .userNum {
+                      background: url("../sImage/b.png") no-repeat center;
+                      background-size: contain;
+                      margin: .08rem auto; }
+              body .main .layerEventVoteResult .inner .content ul .result:last-child {
+                border-bottom: none; }
+          body .main .layerEventVoteResult .inner .content.halfs ul .result {
+            padding-top: .04rem;
+            padding-bottom: .04rem; }
+            body .main .layerEventVoteResult .inner .content.halfs ul .result .userNum {
+              width: .4rem;
+              height: .4rem;
+              line-height: .4rem;
+              font-size: .22rem; }
+            body .main .layerEventVoteResult .inner .content.halfs ul .result .right ul li {
+              width: 12.5%; }
+          body .main .layerEventVoteResult .inner .content.mins ul .result {
+            float: left;
+            width: 46%;
+            padding-left: .5rem;
+            margin: 0 2%; }
+            body .main .layerEventVoteResult .inner .content.mins ul .result .right ul li {
+              width: 33%; }
+              body .main .layerEventVoteResult .inner .content.mins ul .result .right ul li .userNum {
+                margin: .04rem auto; }
+            body .main .layerEventVoteResult .inner .content.mins ul .result .userNum {
+              width: .4rem;
+              height: .4rem;
+              line-height: .4rem;
+              font-size: .22rem; }
+            body .main .layerEventVoteResult .inner .content.mins ul .result.max {
+              width: 100%; }
+              body .main .layerEventVoteResult .inner .content.mins ul .result.max .left {
+                width: .5rem; }
+              body .main .layerEventVoteResult .inner .content.mins ul .result.max .right ul li {
+                width: 12.5%; }
+                body .main .layerEventVoteResult .inner .content.mins ul .result.max .right ul li .userNum {
+                  margin: .04rem auto; }
+    body .main .win {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: none; }
+      body .main .win.active {
+        background: rgba(0, 0, 0, 0.7); }
+      body .main .win .inner {
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        left: 25%;
+        top: 25%;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat; }
+      body .main .win.TIE .inner {
+        background-image: url("../sImage/w0.png"); }
+      body .main .win.WOLF_WIN .inner {
+        background-image: url("../sImage/w1.png"); }
+      body .main .win.GOOD_WIN .inner {
+        background-image: url("../sImage/w2.png"); }
+      body .main .win.THIRD_WIN .inner {
+        background-image: url("../sImage/w3.png"); }
+
+.scrollBar::-webkit-scrollbar {
+  width: 8px; }
+
+.scrollBar::-webkit-scrollbar-button {
+  display: none; }
+
+.scrollBar::-webkit-scrollbar-button:vertical:end:increment {
+  display: block;
+  height: 4px; }
+
+.scrollBar::-webkit-scrollbar-track {
+  height: 200px; }
+
+.scrollBar::-webkit-scrollbar-button:vertical:end:increment {
+  background-color: #031d45; }
+
+.scrollBar::-webkit-scrollbar-track {
+  background-color: #031d45; }
+
+.scrollBar::-webkit-scrollbar-track-piece:vertical:start {
+  width: 4px;
+  background: #031d45; }
+
+.scrollBar::-webkit-scrollbar-track-piece:vertical:end {
+  width: 4px;
+  background: #031d45; }
+
+.scrollBar::-webkit-scrollbar-thumb:vertical {
+  background: #194990;
+  cursor: pointer; }
+
+.scrollBar {
+  scrollbar-arrow-color: #194990;
+  scrollbar-face-color: #194990;
+  scrollbar-track-color: #031d45;
+  scrollbar-highlight-color: #194990;
+  scrollbar-3dlight-color: #616161;
+  scrollbar-shadow-color: #194990;
+  scrollbar-darkshadow-color: #616161; }
 
 /*# sourceMappingURL=screen.css.map */

@@ -22,31 +22,17 @@
         <a class="btn js-start" v-if="queueFlow >= 1 && leaderFlag"   v-on:click="startGame">开始游戏</a>
     </div>
     <div class="messageWrap" style="display: none" v-show="screenCenterMessage.nightFlag!=-1">
-      <!--<messagecenter v-bind:user="screenCenterMessage"></messagecenter>-->
       <div class="top" v-show="screenCenterMessage.gameTime">第<span>{{ screenCenterMessage.gameTime }}</span>
       <span v-show="screenCenterMessage.nightFlag">黑天</span><span v-show="!screenCenterMessage.nightFlag">白天</span></div>
       <div class="message" v-show="screenCenterMessage.gameStatusStr && screenCenterMessage.gameStatusStr!=``">{{ screenCenterMessage.gameStatusStr }}</div>
       <div class="result" v-show="screenCenterMessage.result && screenCenterMessage.result!=``">{{ screenCenterMessage.result }}</div>
     </div>
 
+  <div class="mine" style="display: none" v-show="JSON.stringify(mine)!='{}'">
   <div class="mine" style="display: none" v-show="mine.identityId">
     <div class="userWrap">
-      <div class="user">
-        <div v-bind:class="`level level${mine.stage || 0 }`">
-        <div class="userInner">
-            <div class="head">
-              <img v-bind:src="mine.headImgUrl || `../image/head.png`">
-              </div>
-            <i v-bind:class="`star star${mine.star || 0 }`"></i>
-            <div v-bind:class="`num num${mine.number || 0 }`"></div>
-            </div>
-          </div>
-        </div>
-      <div class="info">
-        <p class="nick">昵称：{{mine.nickName}}</p>
-        <p class="designation">称号：狼里一枝花</p>
-        </div>
-      </div>
+      <usermine class="userBack" v-bind:user="mine"></usermine>
+    </div>
     <div class="userBtns" v-on:click="userBtntoggle">
       <a class="identity" v-on:click="showSF"></a>
       <a v-for="(btn,idx) in leaderButton" class="leaderBtn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'leader')"></a>

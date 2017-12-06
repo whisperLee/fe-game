@@ -121,13 +121,14 @@ var game = new Vue({
             var d = JSON.parse(data.body)
             setInterval(
                 function(){
-                    console.log(_self.mine)
+                    console.log(JSON.stringify(_self.mine))
                 },1000
             )
             _self.gameEvent = d.msgType
             // 队列
             if (d.msgType === 'QUEUE') {
                 _self.mine = d.personalInfo
+                console.log(_self.mine)
 
                 _self.setUser(d)
                 setTimeout(function () {

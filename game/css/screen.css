@@ -904,8 +904,8 @@ body {
         position: absolute;
         left: 19%;
         top: 10.5%;
-        width: 62%;
-        height: 79%;
+        width: 61%;
+        height: 83%;
         background: url("../sImage/lay.png") no-repeat center;
         background-size: 100% 100%; }
         body .main .layerEventVoteResult .inner .title {
@@ -921,7 +921,7 @@ body {
         body .main .layerEventVoteResult .inner .content {
           margin: 0 .2rem;
           box-sizing: border-box;
-          height: 3.65rem;
+          height: 3.9rem;
           overflow-y: auto; }
           body .main .layerEventVoteResult .inner .content ul {
             padding: 0 .15rem; }
@@ -1011,16 +1011,18 @@ body {
                 width: 12.5%; }
                 body .main .layerEventVoteResult .inner .content.mins ul .result.max .right ul li .userNum {
                   margin: .04rem auto; }
-    body .main .win {
+            body .main .layerEventVoteResult .inner .content.mins ul .result:last-child {
+              border-bottom: 1px solid #16afec; }
+    body .main .gameResult {
       position: absolute;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
       display: none; }
-      body .main .win.active {
+      body .main .gameResult.active {
         background: rgba(0, 0, 0, 0.7); }
-      body .main .win .inner {
+      body .main .gameResult .inner {
         width: 50%;
         height: 50%;
         position: absolute;
@@ -1029,14 +1031,36 @@ body {
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat; }
-      body .main .win.TIE .inner {
+      body .main .gameResult.TIE .inner {
         background-image: url("../sImage/w0.png"); }
-      body .main .win.WOLF_WIN .inner {
+      body .main .gameResult.WOLF_WIN .inner {
         background-image: url("../sImage/w1.png"); }
-      body .main .win.GOOD_WIN .inner {
+      body .main .gameResult.GOOD_WIN .inner {
         background-image: url("../sImage/w2.png"); }
-      body .main .win.THIRD_WIN .inner {
+      body .main .gameResult.THIRD_WIN .inner {
         background-image: url("../sImage/w3.png"); }
+    body .main .gameEnd {
+      display: none; }
+      body .main .gameEnd .endInner .result h3.title {
+        height: .8rem;
+        top: -.5rem;
+        line-height: .5rem;
+        margin-top: 0;
+        padding-top: 0; }
+      body .main .gameEnd .endInner .result .userList li {
+        width: 16.6%;
+        padding-bottom: .2rem; }
+        body .main .gameEnd .endInner .result .userList li .user {
+          width: 80%;
+          margin: 0 auto; }
+    body .main .welcome {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: url("../sImage/welcome.png") no-repeat center;
+      background-size: contain; }
 
 .scrollBar::-webkit-scrollbar {
   width: 8px; }

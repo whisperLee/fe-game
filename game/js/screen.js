@@ -6,13 +6,9 @@
  */
 Vue.component('user',component.user)
 Vue.component('usermine',component.usermine)
-Vue.component('messagecenter',component.messagecenter)
-Vue.component('userinfo',component.userinfo)
 Vue.component('userwin',component.user)
 Vue.component('userlose',component.user)
 Vue.component('userend',component.userend)
-// Vue.component('qiangshenfen', component.qiangshenfen)
-// Vue.component('identitylayer', component.identitylayer)
 
 var screen = new Vue({
     el: '#screen',
@@ -66,7 +62,9 @@ var screen = new Vue({
             var _self = this
             console.log('得到返回数据:' + new Date())
             var d = JSON.parse(data.body)
-            if(d.userInfoList && d.userInfoList.length>0){
+
+            if(d.userInfoList && d.userInfoList.length>0){ // 玩家信息
+                $('.welcome').hide()
                 _self.setUser(d)
                 setTimeout(function () {
                     _self.setUserQueueStyle()
@@ -79,30 +77,40 @@ var screen = new Vue({
             if(d.screeningInfo){ // 板子信息
                 _self.screeningInfo = d.screeningInfo
             }
-            if(d.voiceUrl){ // 音频播放
-                _self.$set(_self,'voiceUrl',d.voiceUrl)
-                var audio = document.getElementById('audio');
-                audio.onended = function() {
-                    console.log("音频播放完成")
-                    _self.sendEventForScreen(d)
-                };
-                console.log(_self.voiceUrl)
-            }
+
             if(d.message){ // 提示消息
                 _self.$set(_self.screenCenterMessage,'message',d.message)
                 _self.screenCenterMessage.messageExt = d.messageExt?d.messageExt:''
                 _self.$set(_self.screenCenterMessage,'messageExt',_self.screenCenterMessage.messageExt)
             }
 
-            if(d.gameResult){ // 游戏结束
-                var el = $('.win')
-                el.addClass(d.gameResult)
-                animate.layerEnter(el)
+            if(d.voiceUrl){ // 音频播放
+                _self.$set(_self,'voiceUrl',d.voiceUrl)
+                var audio = document.getElementById('audio');
+                audio.onended = function() {
+                    console.log("音频播放完成")
+                    // _self.sendEventForScreen(d)
+                };
+                console.log(_self.voiceUrl)
             }
+            _self.sendEventForScreen(d) //??????
 
             if(d.voteInfo){ // 投票结果
                 _self.showVoteList(d.voteInfo)
             }
+
+            if(d.gameResult){ // 游戏结束
+                var el = $('.gameResult')
+                el.addClass(d.gameResult)
+                animate.layerEnter(el)
+            }
+            if(d.gameAccountInfo){ //游戏结算
+                $('.gameEnd').show()
+                //_self.accountInfo = {}
+                _self.accountInfo = d.gameAccountInfo;
+            }
+
+
             // 游戏开始后事件
             if(d.msgType == 'UPDATE'){ //需要获取GameInfo和userInfoList
                 _self.gameInfo(d)
@@ -318,7 +326,7 @@ var screen = new Vue({
             var c_h = el.find('.content .resultList').height()
             console.log(w_h+','+c_h)
             var r = c_h/w_h
-            if(r>2){
+            if(r>1.5){
                 el.find('.content').addClass('mins')
                 el.find('.result').each(function(idx){
                     if($(this).find('.right li').length>3){

@@ -21,7 +21,7 @@
         <a class="btn" v-if="screeningId !== 0 && leaderFlag"  v-on:click="modifyGameSet">修改配置</a>
         <a class="btn js-start" v-if="queueFlow >= 1 && leaderFlag"   v-on:click="startGame">开始游戏</a>
     </div>
-    <div class="messageWrap" style="display: none" v-show="screenCenterMessage.nightFlag!=-1">
+    <div class="messageCenter" style="display: none" v-show="screenCenterMessage.nightFlag!=-1">
       <div class="top" v-show="screenCenterMessage.gameTime">第<span>{{ screenCenterMessage.gameTime }}</span>
       <span v-show="screenCenterMessage.nightFlag">黑天</span><span v-show="!screenCenterMessage.nightFlag">白天</span></div>
       <div class="message" v-show="screenCenterMessage.gameStatusStr && screenCenterMessage.gameStatusStr!=``">{{ screenCenterMessage.gameStatusStr }}</div>
@@ -29,10 +29,8 @@
     </div>
 
   <div class="mine" style="display: none" v-show="JSON.stringify(mine)!='{}'">
-  <div class="mine" style="display: none" v-show="mine.identityId">
-    <div class="userWrap">
-      <usermine class="userBack" v-bind:user="mine"></usermine>
-    </div>
+  <!--<div class="mine" style="display: none" v-show="mine.identityId">-->
+    <usermine class="userBack" v-bind:user="mine"></usermine>
     <div class="userBtns" v-on:click="userBtntoggle">
       <a class="identity" v-on:click="showSF"></a>
       <a v-for="(btn,idx) in leaderButton" class="leaderBtn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'leader')"></a>

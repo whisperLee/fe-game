@@ -135,13 +135,10 @@ var game = new Vue({
                     _self.setUserQueueStyle()
                 }, 10)
             }
+
             if(d.showMsg){
                 //_self.screenCenterMessage.result = d.showMsg
                 _self.$set(_self.screenCenterMessage,'result',d.showMsg)
-                if(d.showMsg =='欢迎光临遇见狼人杀俱乐部'){
-                    //准备抢身份
-                    _self.setUserGameStyle()
-                }
             }
 
             // 游戏开始后事件
@@ -271,7 +268,11 @@ var game = new Vue({
             var _self = this
             if(d.gameInfo){
                  var s = d.gameInfo.gameStatus
-                    if(s == 'ROB_IDENTITY'){
+                    if(s =='WELCOME'){
+                        //准备抢身份
+                        _self.setUserGameStyle()
+                    }
+                    else if(s == 'ROB_IDENTITY'){
                         _self.showQiang(d.identityInfoList)
                     }
                     else if(s == 'LOOK_IDENTITY'){
@@ -565,26 +566,16 @@ var game = new Vue({
                     opacity: 1
                 };
             }else{ // 其它时间查看身份
-                var btn = $('.mine .btn.identity')
-                if($('.mine .btn.identity').length>0){
-                    var initStyle={
-                        width: btn.width(),
-                        height: btn.height(),
-                        left: btn.offset().left,
-                        top: btn.offset().top,
-                        display:'block',
-                        opacity: 0
-                    };
-                }else{
+
                     var initStyle={
                         width: 0,
                         height: 0,
-                        left: 0,
-                        top: $('.main').height(),
+                        right: 0,
+                        bottom: $('.main').height(),
                         display:'block',
                         opacity: 0
                     };
-                }
+
             }
             animate.sfLayerInter($('.layerShenfen'),initStyle);
         },

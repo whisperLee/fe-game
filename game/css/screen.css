@@ -889,6 +889,9 @@ body {
             font-size: .2rem;
             line-height: 160%;
             color: #369ffc; }
+            body .main .table .messageWrap .message p b {
+              font-size: .3rem;
+              color: #e74c3c; }
     body .main .audio {
       display: none; }
     body .main .layerEventVoteResult {

@@ -49,7 +49,7 @@ var websocket = {
     // 大屏事件
     receiveScreenEvent:function(data){
         data = JSON.stringify(data)
-        console.log('receiveScreenEvent:'+data)
+        console.log(new Date() +'receiveScreenEvent:'+data)
         stompClient.send('/screen/receiveScreenEvent', {}, data);
     }
 

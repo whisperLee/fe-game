@@ -9,7 +9,7 @@ Vue.component('usermine',component.usermine)
 Vue.component('userwin',component.user)
 Vue.component('userlose',component.user)
 Vue.component('userend',component.userend)
-
+var timer
 var screen = new Vue({
     el: '#screen',
     data :{
@@ -80,6 +80,13 @@ var screen = new Vue({
 
             if(d.message){ // 提示消息
                 _self.$set(_self.screenCenterMessage,'message',d.message)
+                // if(d.messageExt){
+                //     var m = d.messageExt
+                //     if(d.msgType == 'EVENT_RESULT'){
+                //         m =  m.replace(d.eventResultInfo.targetNumber,'<b>'+d.eventResultInfo.targetNumber+'</b>')
+                //     }
+                //     $('.message p').html(m)
+                // }
                 _self.screenCenterMessage.messageExt = d.messageExt?d.messageExt:''
                 _self.$set(_self.screenCenterMessage,'messageExt',_self.screenCenterMessage.messageExt)
             }
@@ -87,6 +94,13 @@ var screen = new Vue({
             if(d.voiceUrl){ // 音频播放
                 _self.$set(_self,'voiceUrl',d.voiceUrl)
                 var audio = document.getElementById('audio');
+              
+                audio.addEventListener("canplaythrough",
+                    function() {
+                        console.log('sc'+audio.duration);
+                    },
+                    false);
+
                 audio.onended = function() {
                     console.log("音频播放完成")
                     // _self.sendEventForScreen(d)
@@ -95,8 +109,8 @@ var screen = new Vue({
             }
             _self.sendEventForScreen(d) //??????
 
-            if(d.voteInfo){ // 投票结果
-                _self.showVoteList(d.voteInfo)
+            if(d.voteInfo && d.voteInfo.voteDetailList.length>0){ // 投票结果
+                _self.showVoteList(d.voteInfo,d.countdownSec)
             }
 
             if(d.gameResult){ // 游戏结束
@@ -105,9 +119,13 @@ var screen = new Vue({
                 animate.layerEnter(el)
             }
             if(d.gameAccountInfo){ //游戏结算
-                $('.gameEnd').show()
-                //_self.accountInfo = {}
-                _self.accountInfo = d.gameAccountInfo;
+                if(d.msgType == 'EVENT_GAME_ACCOUNT'){
+                    $('.gameEnd').show()
+                    _self.accountInfo = d.gameAccountInfo;
+                }
+                if(d.msgType == 'EVENT_MVP_RESULT'){
+                    $('.gameEnd .userList .user[num="'+d.gameAccountInfo.mvpNumber+'"]').addClass('mvp')
+                }
             }
 
 
@@ -201,21 +219,28 @@ var screen = new Vue({
                 if(!_self.recoverType) {
                     _self.recoverType = a.msgType;
                     _self.thisType = a.msgType;
-                }else{
+                }
+                else{
                     if(a.msgType!='EVENT_PAUSE' && a.msgType!='EVENT_CONTINUE') {
                         _self.recoverType = _self.thisType;
-                        _self.thisType = a.msgType;
+                        if(a.msgType=='EVENT_RESULT'){
+                            _self.thisType = a.eventResultInfo.eventType;
+                        }else{
+                            _self.thisType = a.msgType;
+                        }
                     }
+
                 }
                 if(a.msgType=='EVENT_CONTINUE') {
                     data = {
                         'eventType': _self.recoverType,
                         'sourceNumber':1
                     }
-                }else{
-                   data = {
-                       'eventType': a.msgType
-                   }
+                }
+                else{
+                    data = {
+                        'eventType': _self.thisType
+                    }
                 }
                 _self.countDown(a.countdownSec+2,function(){
                     websocket.receiveScreenEvent(data)
@@ -224,17 +249,17 @@ var screen = new Vue({
         },
         countDown: function (time,callback,a) {
             var _self = this;
-            if(a.msgType!='EVENT_RESULT') {
-                clearTimeout(_self.countDownTime);
-            }
+            // if(a.msgType!='EVENT_RESULT') {
+            //     clearTimeout(_self.countDownTime);
+            // }
+            clearTimeout(timer);
             callback = callback || function () { }
-            clearInterval(_self.countDownTime)
-            _self.countDownTime = setInterval(function () {
+            timer = setInterval(function () {
                 if (time > 0) {
                     console.log(time)
                     time--
                 } else {
-                    clearInterval(_self.countDownTime)
+                    clearInterval(timer)
                     callback(a)
                 }
             }, 1000)
@@ -286,7 +311,7 @@ var screen = new Vue({
                 })
             })
         },
-        showVoteList:function(d){
+        showVoteList:function(d,time){
             var _self = this
             var el = $('.layerEventVoteResult')
             el.find('.title').html(d.voteTitle)
@@ -295,7 +320,7 @@ var screen = new Vue({
                 for(var f = 0; f<d.maxNumbers.length; f++){
                     info.push(' 【'+d.maxNumbers[f]+'】')
                 }
-                el.find('.info').html(info.join(',')+'号票数最多')
+                el.find('.info').html(info.join(',')+'号得票最多')
             }else{
                 el.find('.info').html('所有人弃票')
             }
@@ -316,7 +341,7 @@ var screen = new Vue({
                 h+='</ul> </div> </li>'
             }
             el.find('.resultList').html(h)
-            animate.layerEnter(el)
+            animate.layerEnter(el,time)
 
             _self.voteListScroll(el)
         },

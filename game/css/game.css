@@ -552,6 +552,7 @@ body {
         height: auto;
         float: left; }
         .qiang .inner ul li .shenfen {
+          position: relative;
           width: 80%;
           padding-top: 120%;
           height: 0;
@@ -576,10 +577,16 @@ body {
               background-size: contain; }
         .qiang .inner ul li.unselect {
           opacity: 0.8; }
-        .qiang .inner ul li.no {
-          opacity: 0.7; }
-          .qiang .inner ul li.no .price {
-            color: #888; }
+        .qiang .inner ul li.no .shenfen:before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5); }
+        .qiang .inner ul li.no .price {
+          color: #e74c3c; }
     .qiang .inner .countDown {
       position: absolute;
       left: 0;

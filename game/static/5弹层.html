@@ -27,18 +27,11 @@
         </li>
     </ul> -->
 
-    <div class="messageCenter">
-        <div class="top" v-if="screenCenterMessage.nightFlag!=-1">第<span>{{ screenCenterMessage.gameTime }}</span>天<span v-if="screenCenterMessage.nightFlag">黑天</span><span v-else>白天</span></div>
-        <div class="dialog status">
-            <div class="name">系统：</div>
-            <div class="message" v-if="screenCenterMessage.gameStatusStr!=''">{{ screenCenterMessage.gameStatusStr }}</div>
-        </div>
-        <div class="dialog result">
-            <div class="name">法官：</div>
-            <div class="message" v-if="screenCenterMessage.result!=''">{{ screenCenterMessage.result }}</div>
-        </div>    
-        
-        
+    <div class="messageCenter" style="display: none" v-show="screenCenterMessage.nightFlag!=-1">
+      <div class="top" v-show="screenCenterMessage.gameTime">第<span>{{ screenCenterMessage.gameTime }}</span>
+      <span v-show="screenCenterMessage.nightFlag">黑天</span><span v-show="!screenCenterMessage.nightFlag">白天</span></div>
+      <div class="message" v-show="screenCenterMessage.gameStatusStr && screenCenterMessage.gameStatusStr!=``">{{ screenCenterMessage.gameStatusStr }}</div>
+      <div class="result" v-show="screenCenterMessage.result && screenCenterMessage.result!=``">{{ screenCenterMessage.result }}</div>
     </div>
 
     <div class="mine" >
@@ -51,7 +44,14 @@
             <a v-for="(btn,idx) in personalButton" class="personBtn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'person')" ></a>
         </div>
     </div>
-
+    <div class="qiang">
+      <div class="inner">
+        <h2 class="title"></h2>
+        <div class="countDown">倒计时:<span></span></div>
+        <ul class="shenfens">
+        </ul>
+      </div>
+    </div>
     <!--查看身份-->
     <div class="layer layerShenfen">
         <div class="inner">
@@ -283,17 +283,20 @@
             {userId:110,nickName:"ggg",number:7,stage:1,star:1},
             {userId:111,nickName:"xxx",number:8,stage:1,star:1},
             {userId:112,nickName:"zzz",number:9,stage:1,star:1}]
-        data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"CUR_GAME_STATUS","leaderInfo":{"leaderFlag":true,"leaderButton":[]},"boxInfo":{"boxName":"ggg"},"userInfoList":[{"userId":101,"nickName":"aaa","number":1,"sex":1,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":109,"nickName":"zzz","number":9,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1}],"screeningInfo":{"combinationConfigStr":"预言家 女巫 猎人 守卫 白痴 狼王 白狼王","combinationName":"什么都有","playerCount":12},"gameInfo":{"nightFlag":true,"gameTime":1,"gameStatus":"SAVIOR","gameStatusStr":"守卫活动"},"personalInfo":{"userId":101,"nickName":"aaa","number":1,"sex":1,"sergeantFlag":false,"campaignFlag":false,"identityName":"守卫","identityId":6,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1,"consumptionScore":916,"buttons":[]},"eventInfo":{"eventType":"EVENT_SAVIOR","eventName":"守卫护盾","eventDesc":"选择一位玩家守护,保证其中刀不死.","chooseCount":1,"eventSurplusTime":15}}'
-        //data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"GAME_ACCOUNT","gameStatusStr":"游戏结算"},"gameAccountInfo":{"endTime":"2017-11-13 23:08","costTime":"01:14:16","winUsers":[{"userId":203,"nickName":"203","number":3,"identityName":"平民","identityId":1,"identityStatus":"EXILE","stage":1,"star":2},{"userId":204,"nickName":"204","number":4,"identityName":"女巫","identityId":4,"identityStatus":"SURVIVAL","stage":1,"star":1,"likeTime":1},{"userId":205,"nickName":"205","number":5,"identityName":"猎人","identityId":5,"identityStatus":"EXILE","stage":1,"star":1},{"userId":206,"nickName":"206","number":6,"identityName":"平民","identityId":1,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":207,"nickName":"207","number":7,"identityName":"白痴","identityId":9,"identityStatus":"IDIOT","stage":1,"star":1},{"userId":208,"nickName":"208","number":8,"identityName":"平民","identityId":1,"identityStatus":"EXILE","stage":1,"star":1},{"userId":209,"nickName":"209","number":9,"identityName":"预言家","identityId":3,"identityStatus":"SHOOT","stage":1,"star":1},{"userId":210,"nickName":"210","number":10,"identityName":"守卫","identityId":6,"identityStatus":"EXILE","stage":1,"star":1},{"userId":211,"nickName":"211","number":11,"identityName":"平民","identityId":1,"identityStatus":"SURVIVAL","stage":1,"star":1}],"loseUsers":[{"userId":201,"nickName":"201","number":1,"identityName":"狼人","identityId":2,"identityStatus":"EXILE","stage":1,"star":1},{"userId":202,"nickName":"202","number":2,"identityName":"白狼王","identityId":8,"identityStatus":"EXILE","stage":1,"star":1},{"userId":212,"nickName":"212","number":12,"identityName":"狼王","identityId":7,"identityStatus":"EXILE","stage":1,"star":1}],"gameStatus":"GOOD_WIN","gameStatusStr":"好人阵营胜利","surplusTime":10},"personalInfo":{"userId":204,"number":4,"buttons":[]}}'
-        game.socketCallback(data)
-        
-       //setTimeout(function(){game.socketCallback(data)},1000)
+        data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"QUEUE","leaderInfo":{"leaderFlag":true,"leaderButton":[]},"boxInfo":{"boxName":"ggg"},"userInfoList":[{"userId":101,"nickName":"aaa","number":1,"sex":1,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":2,"likeTime":4,"mvpTime":2}],"screeningInfo":{"combinationConfigStr":"预言家 女巫 猎人 守卫 白痴 狼王 白狼王","combinationName":"什么都有","playerCount":12},"personalInfo":{"userId":101,"nickName":"aaa","number":1,"sex":1,"sergeantFlag":false,"campaignFlag":false,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":2,"likeTime":4,"mvpTime":2,"consumptionScore":7,"buttons":[]}}'
 
-        //data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"CUR_GAME_STATUS","leaderInfo":{"leaderFlag":false},"boxInfo":{"boxName":"ggg"},"userInfoList":[{"userId":101,"nickName":"aaa","number":1,"sex":1,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":2},{"userId":102,"nickName":"bbb","number":2,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":103,"nickName":"ccc","number":3,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":104,"nickName":"ddd","number":4,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":105,"nickName":"eee","number":5,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":106,"nickName":"fff","number":6,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"number":7,"identityStatus":"SHOOT","deadFlag":true},{"number":8,"identityStatus":"IDIOT"},{"number":9,"identityStatus":"DEAD","deadFlag":true},{"number":10,"identityStatus":"SHUTUP"},{"number":11,"identityStatus":"SELF_DESTRUCT","deadFlag":true},{"number":12,"identityStatus":"WHITE_SELF_DESTRUCT","deadFlag":true}],"screeningInfo":{"combinationConfigStr":"预言家 女巫 猎人 守卫 白痴 狼王 白狼王","combinationName":"什么都有","playerCount":12},"gameInfo":{"nightFlag":false,"gameTime":1,"gameStatus":"LAST_NIGHT_INFO","gameStatusStr":"昨天情况公布"},"personalInfo":{"userId":103,"nickName":"ccc","number":3,"identityName":"白狼王","identityId":8,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1,"consumptionScore":995,"buttons":["SELF_DESTRUCT","SPEAK_END","GIVE_UP"]}}'
+        game.socketCallback(data)
+
+  
         // setTimeout(function(){
-        //     data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"number":0,"sergeantFlag":true,"campaignFlag":false}],"gameInfo":{"gameStatus":"CAMPAIGN_RESULT","gameStatusStr":"竞选结果","voteInfoList":[{"voteTitle":"警上PK投票","voteDetailList":[{"votedNumber":0,"voteNumberList":[1,4,5,6]}],"maxNumbers":[]}],"voteShowType":"LAST"},"showMsg":"所有玩家都弃票,本局游戏没有警长."}'
+        //     data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","identityInfoList":[{"identityId":1,"name":"平民","cost":1},{"identityId":5,"name":"猎人","cost":10},{"identityId":7,"name":"狼王","cost":1}],"gameInfo":{"gameStatus":"ROB_IDENTITY","gameStatusStr":"开始抢身份"}}'
         //     game.socketCallback(data)
-        // },5000)
+        // },1000)
+
+        setTimeout(function(){
+            data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"LOOK_IDENTITY","gameStatusStr":"查看身份"},"personalInfo":{"sergeantFlag":false,"campaignFlag":false,"identityName":"狼王","identityId":7,"deadFlag":false,"buttons":[]}}'
+            game.socketCallback(data)
+        },1000)
     });
 </script>
 </body>

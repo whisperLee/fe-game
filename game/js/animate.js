@@ -11,8 +11,8 @@ var animate = {
         el.velocity({
             width: '100%',
             height: '100%',
-            right: '0',
-            bottom: '0',
+            left: '0',
+            top: '0',
             opacity: 1
         }, {
             duration: 500,
@@ -34,8 +34,8 @@ var animate = {
         el.velocity({
             width: btn.width(),
             height: btn.height(),
-            left: btn.offset().left,
-            top: btn.offset().top
+            left: '100%',
+            top: '100%'
         }, {
           duration: 300, 
           complete: function() {

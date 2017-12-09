@@ -28,8 +28,8 @@
       <div class="result" v-show="screenCenterMessage.result && screenCenterMessage.result!=``">{{ screenCenterMessage.result }}</div>
     </div>
 
-  <div class="mine" style="display: none" v-show="JSON.stringify(mine)!='{}'">
-  <!--<div class="mine" style="display: none" v-show="mine.identityId">-->
+  <!--<div class="mine" style="display: none" v-show="JSON.stringify(mine)!='{}'">-->
+  <div class="mine" style="display: none" v-show="mine.identityId">
     <usermine class="userBack" v-bind:user="mine"></usermine>
     <div class="userBtns" v-on:click="userBtntoggle">
       <a class="identity" v-on:click="showSF"></a>

@@ -566,16 +566,14 @@ var game = new Vue({
                     opacity: 1
                 };
             }else{ // 其它时间查看身份
-
                     var initStyle={
                         width: 0,
                         height: 0,
-                        right: 0,
-                        bottom: $('.main').height(),
+                        left: 0,
+                        top: $('.main').height(),
                         display:'block',
                         opacity: 0
                     };
-
             }
             animate.sfLayerInter($('.layerShenfen'),initStyle);
         },

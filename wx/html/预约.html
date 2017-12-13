@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+        <meta name="format-detection" content="telephone=no">
+        
+        <title>游戏页面</title>
+        <style>
+        @charset "utf-8";
+@import "g_variable";
+body,div,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,iframe,input,textarea,select,label,article,aside,footer,header,menu,nav,section,time,audio,video { margin: 0; padding: 0}
+article,aside,footer,header,nav,section,audio,canvas,video { display: block}
+html{font-size: 100px;}
+@media screen and (min-width: 320px) and (orientation : portrait){
+  html{font-size: 80px;}
+}
+@media screen and (min-width: 375px) and (orientation : portrait){
+  html{font-size: 100px;}
+}
+@media screen and (min-width: 414px) and (orientation : portrait){
+  html{font-size: 110px;}
+}
+body {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-user-select:none;
+  overflow: auto;
+  font-size: .16rem;
+  line-height: 150%;
+}
+textarea {
+  resize: none
+}
+iframe,img {
+  border: 0
+}
+ul,ol,ul li {
+  list-style: none;
+}
+input,select,textarea {
+  outline: 0;
+  -webkit-user-modify: read-write-plaintext-only
+}
+input {
+  -webkit-appearance: none
+}
+a {
+  text-decoration: none
+}
+.cf:after {
+  content: "";
+  display: table;
+  clear: both
+}
+.cf {
+  *zoom: 1
+}
+h1,h2,h3 {
+  font-weight: 100
+}
+i {
+  font-style: normal
+}
+video{
+  font-size: 0;
+}
+
+
+
+        body{background:#fff; }
+        .section-gap{position: relative; height:.4rem; line-height: .4rem; font-size: .14rem; color: #333; color: #1abc9c; border-bottom: .01rem solid #e1e1e1; margin: 0; padding: 0 .2rem;}
+        .section-gap .section-title{ color: #999; position: absolute; left:.2rem; top:0; height:100%; text-align: }
+        .section-gap .section-contain{margin-left: .8rem; padding-left: .1rem; height:100%;}
+        .section-gap .section-contain .input,.section-gap .section-contain input{ background: none; border: none; width:100%; height:100%;}
+        .radio-group li{padding-left:.2rem; background: url(../image/r_1.png) no-repeat left center; background-size: .15rem .15rem; float: left; width:.9rem; }
+        .radio-group li.active{background-image:url(../image/r_2.png); color: #1abc9c; }
+        .select-group .selected{}
+        .select-group .ul{display: none;}
+        </style>
+    </head>
+<body>
+<div class="main">
+  <div class="head"></div>
+  <div class="container">
+      <div class="section-gap">
+        <div class="section-title">店铺：</div>
+        <div class="section-contain">
+          <div class="selected">旗舰店</div>
+          <ul>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+      </div>
+      <div class="section-gap">
+        <div class="section-title">预约人数：</div>
+        <div class="section-contain select-group">
+          <div class="selected">12</div>
+          <ul>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+      </div>
+      <div class="section-gap">
+        <div class="section-title">预约方式：</div>
+        <div class="section-contain">
+          <ul class="radio-group">
+            <li>包桌</li>
+            <li>散客</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section-gap">
+        <div class="section-title">联系人：</div>
+        <div class="section-contain">
+          <div class="input"><input type="text" name="name" placeholder="请输入联系人"></div>
+        </div>
+      </div>
+      <div class="section-gap">
+        <div class="section-title">联系电话：</div>
+        <div class="section-contain">
+          <div class="input"><input type="num" name="tel" placeholder="请输入联系人电话"></div>
+        </div>
+      </div>
+      <div class="section-gap">
+        <div class="section-title">到店时间：</div>
+        <div class="section-contain">
+          <div class="selected">2017-12-14(周四) 13-14</div>
+          <ul>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+      </div>
+  </div>
+  <div class="footer">
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<script>
+$(function(){
+  var layer = {
+    init:function(){
+      this.active()
+    },
+    active:function(){
+      var  _this = this
+      $('.radio-group').each(function(){
+        var el = $(this)
+        el.find('li').off().on('click',function(){
+          $(this).addClass('active').siblings().removeClass('active')
+        })
+      })
+    }
+  }
+  layer.init()
+})
+  var d = {
+  "data": {
+    "canAppointment": true,
+    "canThisDay": true,
+    "cancelAheadMinute": 60,
+    "recommendSoloAppointmentDayTimes": [
+      {
+        "appointmentFlag": false,
+        "dayStr": "2017-12-13",
+        "fullFlag": false,
+        "gamerCount": 0,
+        "timeStr": "18-19",
+        "weekDayStr": "今天"
+      }
+    ],
+    "shopSceneResponse": {
+      "nowBoxIdleCount": 3,
+      "nowShopComeGamerCount": 0,
+      "nowShopGamerCount": 0,
+      "nowShopIdleGamerCount": 0,
+      "nowShopPlayGamerCount": 0,
+      "shopBoxCount": 3
+    },
+    "soloAppointmentDayTimes": {
+      "2017-12-13 今天": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-13",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "18-19",
+          "weekDayStr": "今天"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-13",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "20-21",
+          "weekDayStr": "今天"
+        }
+      ],
+      "2017-12-14 周四": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-14",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-14",
+          "weekDayStr": "周四"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-14",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "14-15",
+          "weekDayStr": "周四"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-14",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "15-16",
+          "weekDayStr": "周四"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-14",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "16-17",
+          "weekDayStr": "周四"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-14",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-18",
+          "weekDayStr": "周四"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-14",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "18-19",
+          "weekDayStr": "周四"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-14",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "20-21",
+          "weekDayStr": "周四"
+        }
+      ],
+      "2017-12-15 周五": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-15",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-14",
+          "weekDayStr": "周五"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-15",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "14-15",
+          "weekDayStr": "周五"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-15",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "15-16",
+          "weekDayStr": "周五"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-15",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "16-17",
+          "weekDayStr": "周五"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-15",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-18",
+          "weekDayStr": "周五"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-15",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "18-19",
+          "weekDayStr": "周五"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-15",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "20-21",
+          "weekDayStr": "周五"
+        }
+      ],
+      "2017-12-16 周六": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-16",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-14",
+          "weekDayStr": "周六"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-16",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "14-15",
+          "weekDayStr": "周六"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-16",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "15-16",
+          "weekDayStr": "周六"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-16",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "16-17",
+          "weekDayStr": "周六"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-16",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-18",
+          "weekDayStr": "周六"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-16",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "18-19",
+          "weekDayStr": "周六"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-16",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "20-21",
+          "weekDayStr": "周六"
+        }
+      ],
+      "2017-12-17 周日": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-17",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-14",
+          "weekDayStr": "周日"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-17",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "14-15",
+          "weekDayStr": "周日"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-17",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "15-16",
+          "weekDayStr": "周日"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-17",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "16-17",
+          "weekDayStr": "周日"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-17",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-18",
+          "weekDayStr": "周日"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-17",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "18-19",
+          "weekDayStr": "周日"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-17",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "20-21",
+          "weekDayStr": "周日"
+        }
+      ],
+      "2017-12-18 周一": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-18",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-14",
+          "weekDayStr": "周一"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-18",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "14-15",
+          "weekDayStr": "周一"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-18",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "15-16",
+          "weekDayStr": "周一"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-18",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "16-17",
+          "weekDayStr": "周一"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-18",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-18",
+          "weekDayStr": "周一"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-18",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "18-19",
+          "weekDayStr": "周一"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-18",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "20-21",
+          "weekDayStr": "周一"
+        }
+      ],
+      "2017-12-19 周二": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-19",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-14",
+          "weekDayStr": "周二"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-19",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "14-15",
+          "weekDayStr": "周二"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-19",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "15-16",
+          "weekDayStr": "周二"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-19",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "16-17",
+          "weekDayStr": "周二"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-19",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-18",
+          "weekDayStr": "周二"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-19",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "18-19",
+          "weekDayStr": "周二"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-19",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "20-21",
+          "weekDayStr": "周二"
+        }
+      ]
+    },
+    "timestamp": 1513155648654,
+    "wholeAppointmentDayTimes": {
+      "2017-12-13 今天": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-13",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "今天"
+        }
+      ],
+      "2017-12-14 周四": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-14",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周四"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-14",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周四"
+        }
+      ],
+      "2017-12-15 周五": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-15",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周五"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-15",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周五"
+        }
+      ],
+      "2017-12-16 周六": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-16",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周六"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-16",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周六"
+        }
+      ],
+      "2017-12-17 周日": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-17",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周日"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-17",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周日"
+        }
+      ],
+      "2017-12-18 周一": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-18",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周一"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-18",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周一"
+        }
+      ],
+      "2017-12-19 周二": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-19",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周二"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-19",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周二"
+        }
+      ],
+      "2017-12-20 周三": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-20",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周三"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-20",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周三"
+        }
+      ],
+      "2017-12-21 周四": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-21",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周四"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-21",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周四"
+        }
+      ],
+      "2017-12-22 周五": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-22",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周五"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-22",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周五"
+        }
+      ],
+      "2017-12-23 周六": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-23",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周六"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-23",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周六"
+        }
+      ],
+      "2017-12-24 周日": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-24",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周日"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-24",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周日"
+        }
+      ],
+      "2017-12-25 周一": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-25",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周一"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-25",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周一"
+        }
+      ],
+      "2017-12-26 周二": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-26",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周二"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-26",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周二"
+        }
+      ],
+      "2017-12-27 周三": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-27",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周三"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-27",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周三"
+        }
+      ],
+      "2017-12-28 周四": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-28",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周四"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-28",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周四"
+        }
+      ],
+      "2017-12-29 周五": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-29",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周五"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-29",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周五"
+        }
+      ],
+      "2017-12-30 周六": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-30",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周六"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-30",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周六"
+        }
+      ],
+      "2017-12-31 周日": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-31",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周日"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2017-12-31",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周日"
+        }
+      ],
+      "2018-01-01 周一": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-01",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周一"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-01",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周一"
+        }
+      ],
+      "2018-01-02 周二": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-02",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周二"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-02",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周二"
+        }
+      ],
+      "2018-01-03 周三": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-03",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周三"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-03",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周三"
+        }
+      ],
+      "2018-01-04 周四": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-04",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周四"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-04",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周四"
+        }
+      ],
+      "2018-01-05 周五": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-05",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周五"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-05",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周五"
+        }
+      ],
+      "2018-01-06 周六": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-06",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周六"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-06",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周六"
+        }
+      ],
+      "2018-01-07 周日": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-07",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周日"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-07",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周日"
+        }
+      ],
+      "2018-01-08 周一": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-08",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周一"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-08",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周一"
+        }
+      ],
+      "2018-01-09 周二": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-09",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周二"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-09",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周二"
+        }
+      ],
+      "2018-01-10 周三": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-10",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周三"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-10",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周三"
+        }
+      ],
+      "2018-01-11 周四": [
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-11",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "13-17",
+          "weekDayStr": "周四"
+        },
+        {
+          "appointmentFlag": false,
+          "dayStr": "2018-01-11",
+          "fullFlag": false,
+          "gamerCount": 0,
+          "timeStr": "17-21",
+          "weekDayStr": "周四"
+        }
+      ]
+    }
+  },
+    "status": {
+      "code": "OK",
+      "msg": null,
+      "retcode": 0
+    },
+    "trace": {
+      "destIp": "172.17.27.230",
+      "id": "e153ec21-d66d-420e-9106-a21e30795fa4",
+      "srcIp": "203.205.141.123",
+      "timestamp": 1513155648482
+    }
+}
+
+
+
+</script>
+</body>
+</html>

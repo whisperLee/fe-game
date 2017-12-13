@@ -20,7 +20,8 @@ var screen = new Vue({
             nightFlag: -1
         },
         accountInfo:{},
-        voiceUrl:''//音频url
+        voiceUrl:'',//音频url
+        bgmUrl:''//背景音频url
     },
     created: function () {
         var _self = this
@@ -90,24 +91,34 @@ var screen = new Vue({
                 _self.screenCenterMessage.messageExt = d.messageExt?d.messageExt:''
                 _self.$set(_self.screenCenterMessage,'messageExt',_self.screenCenterMessage.messageExt)
             }
+            if(d.bgmUrl || d.bgmUrl==''){ // 背景音频播放
+                _self.$set(_self,'bgmUrl',d.bgmUrl)
+                var bgmUrl = document.getElementById('audio');
+                bgmUrl.currentTime = 0;
 
+                // bgmUrl.addEventListener("canplaythrough",
+                //     function() {
+                //         console.log('sc'+bgmUrl.duration);
+                //     },
+                //     false);
+                //
+                // console.log(_self.bgmUrl)
+            }
             if(d.voiceUrl){ // 音频播放
                 _self.$set(_self,'voiceUrl',d.voiceUrl)
-                var audio = document.getElementById('audio');
-              
-                audio.addEventListener("canplaythrough",
+                var voiceUrl = document.getElementById('bgMusic');
+                voiceUrl.currentTime = 0;
+
+
+                voiceUrl.addEventListener("canplaythrough",
                     function() {
-                        console.log('sc'+audio.duration);
+                        console.log('sc'+voiceUrl.duration);
                     },
                     false);
-
-                audio.onended = function() {
-                    console.log("音频播放完成")
-                    // _self.sendEventForScreen(d)
-                };
                 console.log(_self.voiceUrl)
             }
-            _self.sendEventForScreen(d) //??????
+
+            _self.sendEventForScreen(d)
 
             if(d.voteInfo && d.voteInfo.voteDetailList.length>0){ // 投票结果
                 _self.showVoteList(d.voteInfo,d.countdownSec)

@@ -119,11 +119,11 @@ var game = new Vue({
             var _self = this
             console.log('得到返回数据:' + new Date())
             var d = JSON.parse(data.body)
-            setInterval(
-                function(){
-                    console.log(JSON.stringify(_self.mine))
-                },1000
-            )
+            // setInterval(
+            //     function(){
+            //         console.log(JSON.stringify(_self.mine))
+            //     },1000
+            // )
             _self.gameEvent = d.msgType
             // 队列
             if (d.msgType === 'QUEUE') {

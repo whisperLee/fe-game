@@ -54,6 +54,7 @@ var screen = new Vue({
         connectWebScoket: function () {
             var _self = this
             _self.boxId = global.urlHash().boxId || 0
+            document.cookie = "jm_x=" + _self.boxId + "; path=/" // 设置cookie
             console.log('websocket开始:' + new Date())
             var url = '/userTopic/game/screen/' + _self.boxId
             websocket.connectpc(_self, url , _self.socketCallback)

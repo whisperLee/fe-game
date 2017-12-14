@@ -127,7 +127,10 @@ var game = new Vue({
             _self.gameEvent = d.msgType
             // 队列
             if (d.msgType === 'QUEUE') {
-                _self.mine = d.personalInfo
+                if(d.personalInfo){
+                    _self.mine = d.personalInfo
+                }
+
                 console.log(_self.mine)
 
                 _self.setUser(d)
@@ -176,7 +179,9 @@ var game = new Vue({
                         _self.eventInfo(d.eventInfo)
                     }
                 }, 10)
-                _self.mine = d.personalInfo
+                if(d.personalInfo){
+                    _self.mine = d.personalInfo
+                }
 
                 if(d.gameInfo){
                     _self.gameInfo(d)

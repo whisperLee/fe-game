@@ -329,7 +329,7 @@ var game = new Vue({
                         //_self.screenCenterMessage.gameStatusStr = d.gameInfo.gameStatusStr
                     }
                     if(global.isExit(d.gameInfo.showMsg)){
-                        _self.$set(_self.screenCenterMessage,'result',d.gameInfo.result)
+                        _self.$set(_self.screenCenterMessage,'result',d.gameInfo.showMsg)
                         //_self.screenCenterMessage.result = d.gameInfo.result
                     }
                     if(global.isExit(d.gameInfo.voteInfoList) && d.gameInfo.voteInfoList.length>0){

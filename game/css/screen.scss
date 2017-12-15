@@ -2,7 +2,6 @@
 @import "global";
 @import "_users";
 @import "animate";
-@import "end";
 body{
   background: #000;
   .main{
@@ -53,7 +52,7 @@ body{
       height:80%;
       background: url("../sImage/c.png") no-repeat center top; background-size: 100% 100%;
       -webkit-transform:translateX(-50%);
-      .num{
+      .combinationName{
         position: absolute;
         left: 75%;
         top: -6%;
@@ -293,6 +292,9 @@ body{
           }
         }
       }
+      .countDown{
+        display: none;
+      }
     }
     .gameResult{
       position: absolute;
@@ -329,26 +331,6 @@ body{
       }
 
     }
-    .gameEnd{
-      display: none;
-      .endInner .result{
-        h3.title {
-          height: .8rem;
-          top: -.5rem;
-          line-height: .5rem;
-          margin-top: 0;
-          padding-top: 0;
-        }
-        .userList li{
-          width:16.6%;
-          padding-bottom: .2rem;
-          .user{
-            width: 80%;
-            margin: 0 auto;
-          }
-        }
-      }
-    }
     .welcome{
       position: absolute;
       left: 0;
@@ -359,6 +341,158 @@ body{
       background-size:contain;
     }
   }
+  .gameEnd{
+    position: absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    overflow-y:auto;
+    //background: url("../sImage/bg.jpg") no-repeat center;
+    //background-size: 100% auto;
+    background: #092e63;
+    z-index: 9;
+    display: none;
+    .endInner{
+      padding-top: .2rem;
+      .resultInfo{
+        color: $color; width:9rem; margin: 0 auto; line-height: .2rem;
+        span{
+          padding-left: .25rem; background: url("../image/time.png") no-repeat left center; background-size: contain;
+          &.endTime{
+            float:right; background-image: url("../image/clock.png")
+          }
+        }
+      }
+      .result{
+        position: relative;
+        width:9rem;
+        margin: .1rem auto 0;
+        border-radius: 5px;
+        box-sizing: border-box;
+        padding: .12rem;
+        &:before,&:after{
+          content: '';
+          position: absolute;
+          left: 0;
+          top:0;
+          width: 100%;
+          height: 100%;
+          background-repeat: no-repeat;
+          background-size: contain;
+        }
+        //border: 1px solid #a3cfff;
+        h3.title{
+          position: absolute;
+          top:0;
+          text-align: center;
+          background-size: contain;
+          background-position:center ;
+          background-repeat: no-repeat;
+          color: #fff;
+          height:0;
+          span{
+            font-size: .16rem;
+            line-height: 100%;
+            position: absolute;
+            left:0;
+            top:37%;
+            width:100%;
+            text-align: center;
+            -webkit-transform:translateY(-50%)
+          }
+        }
+        .userList{
+          overflow: hidden;
+          padding: .3rem .16rem ;
+          li{
+            position: relative;
+            width:auto;
+            float: left;
+            text-align: center;
+            .user{
+              width:.93rem;
+              margin: 0 auto;
+            }
+            p{
+              text-align: center;
+              width:100%;
+              height:.2rem;
+              line-height: .2rem;
+              overflow: hidden;
+              span{
+                display: inline-block;
+                color: $color;
+                font-size: .14rem;
+                white-space: nowrap;
+              }
+            }
+            &.mvp:before{
+              content: "";
+              position: absolute;
+              right:0;
+              bottom:25%;
+              width:60%;
+              height:25%;
+              background: url("../image/mvp2.png") no-repeat right bottom;
+              background-size: contain;
+              z-index: 9;
+              -webkit-animation:seal .5s forwards;
+
+            }
+          }
+
+        }
+        &.win{
+          margin-top:.4rem;
+          border-color:#e8685b ;
+          h3.title{
+            background-image: url("../sImage/w.png");
+            width: 38%;
+            padding-top: 27.5%;
+            margin-top: -12%;
+            left: -11%;
+          }
+          .userList{
+            background: url("../sImage/w_c.png") no-repeat center;
+            background-size: 100% 100%;
+          }
+          &:before{
+            background-image: url("../sImage/w_l.png");
+            background-position: left bottom;
+          }
+          &:after{
+            background-image: url("../sImage/w_r.png");
+            background-position: right top;
+          }
+        }
+        &.lose{
+          margin-top:.4rem;
+          border-color:#e8685b ;
+          h3.title{
+            background-image: url("../sImage/l.png");
+            width:14%;
+            padding-top: 11%;
+            margin-top: -4%;
+            right: 1%;
+          }
+          .userList{
+            background: url("../sImage/l_c.png") no-repeat center;
+            background-size: 100% 100%;
+          }
+          &:before{
+            background-image: url("../sImage/l_l.png");
+            background-position: left top;
+          }
+          &:after{
+            background-image: url("../sImage/l_r.png");
+            background-position: right bottom;
+          }
+        }
+      }
+    }
+  }
+
 
 }
 

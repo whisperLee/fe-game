@@ -33,15 +33,8 @@ http://note.youdao.com/noteshare?id=e6ab57892697c23970d222c5bcc4ca58&sub=E7C7D9F
 按钮事件
 
 
-if(d.showMsg =='欢迎光临遇见狼人杀俱乐部'){  //???????????????????key 是什么？
-   //准备抢身份
-   _self.setUserGameStyle()
-}
 
 大屏 特殊事件原因？？？处理办法？？？
 女巫毒人:
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT_RESULT","countdownSec":5,"message":"女巫,你毒的是7号,女巫请闭眼.","voiceUrl":"http://tsn.baidu.com/text2audio?tex=%E5%A5%B3%E5%B7%AB%E8%AF%B7%E9%97%AD%E7%9C%BC.&lan=zh&cuid=yujian&ctp=1&tok=24.39a2b442af791f890199abe5cbde60ba.2592000.1513160056.282335-2180146&spd=5&pit=5&vol=15&per=0","eventResultInfo":{"eventType":"EVENT_WITCH","eventDesc":"女巫,你毒的是7号,女巫请闭眼.","targetNumber":"7"}}
 
-需要提供第几天，白天or黑夜？？？？？
-天亮了
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT_LIGHT","countdownSec":5,"message":"天亮了","voiceUrl":"http://tsn.baidu.com/text2audio?tex=%E5%A4%A9%2C%E4%BA%AE%E4%BA%86&lan=zh&cuid=yujian&ctp=1&tok=24.39a2b442af791f890199abe5cbde60ba.2592000.1513160056.282335-2180146&spd=5&pit=5&vol=15&per=0"}

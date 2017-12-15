@@ -63,6 +63,7 @@ var screen = new Vue({
         socketCallback: function (data) {
             var _self = this
             console.log('得到返回数据:' + new Date())
+            console.log(data.body)
             var d = JSON.parse(data.body)
 
             if(d.userInfoList && d.userInfoList.length>0){ // 玩家信息
@@ -78,6 +79,18 @@ var screen = new Vue({
             }
             if(d.screeningInfo){ // 板子信息
                 _self.screeningInfo = d.screeningInfo
+            }
+
+            if(global.isExit(d.gameInfo)){
+                if(global.isExit(d.gameInfo.nightFlag)){
+                    var n = d.gameInfo.nightFlag?1:0
+                    _self.$set(_self.screenCenterMessage,'nightFlag',n)
+                    //_self.screenCenterMessage.nightFlag = d.gameInfo.nightFlag?1:0
+                }
+                if(global.isExit(d.gameInfo.gameTime)){
+                    //_self.screenCenterMessage.gameTime = d.gameInfo.gameTime
+                    _self.$set(_self.screenCenterMessage,'gameTime',d.gameInfo.gameTime)
+                }
             }
 
             if(d.message){ // 提示消息
@@ -111,12 +124,12 @@ var screen = new Vue({
                 voiceUrl.currentTime = 0;
 
 
-                voiceUrl.addEventListener("canplaythrough",
-                    function() {
-                        console.log('sc'+voiceUrl.duration);
-                    },
-                    false);
-                console.log(_self.voiceUrl)
+                // voiceUrl.addEventListener("canplaythrough",
+                //     function() {
+                //         console.log('sc'+voiceUrl.duration);
+                //     },
+                //     false);
+                // console.log(_self.voiceUrl)
             }
 
             _self.sendEventForScreen(d)
@@ -132,97 +145,12 @@ var screen = new Vue({
             }
             if(d.gameAccountInfo){ //游戏结算
                 if(d.msgType == 'EVENT_GAME_ACCOUNT'){
-                    $('.gameEnd').show()
-                    _self.accountInfo = d.gameAccountInfo;
+                    _self.account(d)
                 }
                 if(d.msgType == 'EVENT_MVP_RESULT'){
-                    $('.gameEnd .userList .user[num="'+d.gameAccountInfo.mvpNumber+'"]').addClass('mvp')
+                    _self.mvp(d)
                 }
             }
-
-
-            // 游戏开始后事件
-            if(d.msgType == 'UPDATE'){ //需要获取GameInfo和userInfoList
-                _self.gameInfo(d)
-            }
-            else if(d.msgType == 'EVENT_GAMEOVER'){ //游戏结束 获取gameResult字段 TODO
-
-            }
-            else if(d.msgType == 'EVENT_RESULT'){ // 游戏事件返回结果,需要获取eventResultInfo
-                d.eventResultInfo.eventDesc && global.pop_tips(d.eventResultInfo.eventDesc)
-            }
-            else if(d.msgType == 'CUR_GAME_STATUS'){ // 游戏开始后，用户重新进入游戏
-                _self.setUser(d)
-                setTimeout(function () {
-                    _self.setUserGameStyle()
-                }, 10)
-                // 设置自己的身份
-                _self.mine = d.personalInfo
-                $('.layerShenfen .shenfen').addClass('shenfen'+d.personalInfo.identityId)
-                // 设置自己的游戏信息
-                if(d.eventInfo){
-                    _self.eventInfo(d.eventInfo)
-                }
-                if(d.gameInfo){
-                    _self.gameInfo(d)
-                }
-                if(global.isExit(d.leaderInfo.leaderButton)){
-                    _self.setLeaderBtn(d.leaderInfo)
-                }
-                if(d.personalInfo.deadFlag){
-                    _self.dead()
-                }
-            }
-        },
-        gameInfo:function(d){
-            var _self = this
-            if(d.gameInfo){
-                var s = d.gameInfo.gameStatus
-
-
-                if(s == 'GAME_ACCOUNT'){
-                    _self.account(d.gameAccountInfo)
-                }
-                else if(s == 'MVP_RESULT'){
-                    _self.mvp(d.gameAccountInfo.mvpNumber)
-                }
-                else if(s == 'GAME_REPLAY'){
-                    if(d.personalAccountInfo.changeLevelFlag){
-                        if(d.personalAccountInfo.upFlag){
-                            d.personalAccountInfo.showStage = d.personalAccountInfo.preStage
-                            d.personalAccountInfo.showStar = d.personalAccountInfo.preStar
-                        }else{
-                            d.personalAccountInfo.showStage = d.personalAccountInfo.nextStage
-                            d.personalAccountInfo.showStar = d.personalAccountInfo.nextStar
-                        }
-                    }else{
-                        d.personalAccountInfo.showStage = d.personalAccountInfo.thisStage
-                        d.personalAccountInfo.showStar = d.personalAccountInfo.thisStar
-                    }
-                    d.personalAccountInfo.showScore = d.personalAccountInfo.oldScore
-                    _self.myAccountInfo = {}
-                    _self.myAccountInfo=d.personalAccountInfo
-
-                    _self.userAccountChange(d.personalAccountInfo)
-                }
-
-
-                if(global.isExit(d.gameInfo.nightFlag)){
-                    console.log(d.gameInfo.nightFlag)
-                    var n = d.gameInfo.nightFlag?1:0
-                    _self.$set(_self.screenCenterMessage,'nightFlag',n)
-                    //_self.screenCenterMessage.nightFlag = d.gameInfo.nightFlag?1:0
-                }
-                if(global.isExit(d.gameInfo.gameTime)){
-                    //_self.screenCenterMessage.gameTime = d.gameInfo.gameTime
-                    _self.$set(_self.screenCenterMessage,'gameTime',d.gameInfo.gameTime)
-                }
-
-                if(global.isExit(d.gameInfo.voteInfoList) && d.gameInfo.voteInfoList.length>0){
-                    _self.showVoteList(d.gameInfo.voteInfoList[0])
-                }
-            }
-
         },
         sendEventForScreen:function(a){
             var _self = this
@@ -260,15 +188,10 @@ var screen = new Vue({
             }
         },
         countDown: function (time,callback,a) {
-            var _self = this;
-            // if(a.msgType!='EVENT_RESULT') {
-            //     clearTimeout(_self.countDownTime);
-            // }
             clearTimeout(timer);
             callback = callback || function () { }
             timer = setInterval(function () {
                 if (time > 0) {
-                    console.log(time)
                     time--
                 } else {
                     clearInterval(timer)
@@ -358,10 +281,8 @@ var screen = new Vue({
             _self.voteListScroll(el)
         },
         voteListScroll:function(el){
-            var _self = this
             var w_h = el.find('.content').height()
             var c_h = el.find('.content .resultList').height()
-            console.log(w_h+','+c_h)
             var r = c_h/w_h
             if(r>1.5){
                 el.find('.content').addClass('mins')
@@ -376,15 +297,16 @@ var screen = new Vue({
         },
         account:function(d){
             var _self = this
-            $('.user-list,.messageCenter,.mine').hide()
             $('.gameEnd').show()
             _self.accountInfo = {}
-            _self.accountInfo = d;
+            _self.accountInfo = d.gameAccountInfo;
         },
-        mvp:function(num){
-            var _self = this
-            $('.gameEnd .result .userList li .user[num="'+num+'"]').closest('li').addClass('mvp')
-
+        mvp:function(d){
+            if(d.gameAccountInfo.mvpNumber>0){
+                $('.gameEnd .result .userList li .user[num="'+d.gameAccountInfo.mvpNumber+'"]').closest('li').addClass('mvp')
+            }else{
+                global.pop_tips(d.messageExt)
+            }
         },
         // 返回每个用户坐标
         returnUserStyle: function (total,row,col,width,height,center_user) {
@@ -412,7 +334,6 @@ var screen = new Vue({
                     className.push('center')
                 }
             }
-            console.log(style)
             return {'style':style,'className':className}
         },
 

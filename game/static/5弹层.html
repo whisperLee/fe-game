@@ -294,7 +294,7 @@
         // },1000)
 
         setTimeout(function(){
-            data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"LOOK_IDENTITY","gameStatusStr":"查看身份"},"personalInfo":{"sergeantFlag":false,"campaignFlag":false,"identityName":"狼王","identityId":7,"deadFlag":false,"buttons":[]}}'
+            data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE_AND_EVENT","gameInfo":{"nightFlag":false,"gameTime":1,"gameStatus":"CAMPAIGN_SERGEANT","gameStatusStr":"竞选警长"},"personalInfo":{"buttons":["EMPTY"]},"eventInfo":{"eventType":"EVENT_CAMPAIGN_SERGEANT","eventName":"警长竞选","eventDesc":"准备竞选警长,请选择是否参选.","chooseCount":0,"eventSurplusTime":10}}'
             game.socketCallback(data)
         },1000)
     });

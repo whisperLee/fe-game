@@ -12,7 +12,7 @@ var component = {
                         '<img v-bind:src="user.headImgUrl || `../image/head.png`">'+
                     '</div>'+
                     '<i v-bind:class="`star star${user.star || 0 }`"></i>'+
-                    '<div v-bind:class="`num num${user.number || 0 }`"></div>'+
+                    '<div v-bind:class="`num num${user.number || 0 }`">{{user.number}}</div>'+
                     '<div class="status">'+
                         '<b v-show="user.campaignFlag" class="state campaign"></b>'+
                         '<b v-show="user.sergeantFlag" class="state sergeant"></b>'+

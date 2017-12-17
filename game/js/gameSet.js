@@ -25,7 +25,7 @@ new Vue({
         comType: -1,
         total: 0,
         selfs: ['全自助', '半自助', '手工'],
-        victory: ['屠城', '屠边'],
+        victory: ['屠边','屠城'],
         postData: {
             combinationId: 0, // 板子id
             config: {}, // 人员配置
@@ -132,10 +132,11 @@ new Vue({
         },
         chooseBaseCom: function () {
             var _self = this
-            _self.flow = 2
+            _self.flow = 4
             _self.postData.config = {}
             _self.postData.combinationId = parseInt(event.currentTarget.getAttribute('typeid'))
             _self.postData.playerCount = event.currentTarget.getAttribute('playercount')
+            _self.addScreeningByUser()
         },
         toggle: function (item) {
             var _self = this
@@ -186,7 +187,7 @@ new Vue({
                     playerCount: cus.total,
                     config: config
                 })
-                _self.flow = 2
+                _self.flow = 3
             } else {
                 global.pop_tips('游戏人数请在' + cus.min + '和' + cus.max + '之间')
             }

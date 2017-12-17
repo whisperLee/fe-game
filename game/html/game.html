@@ -7,6 +7,11 @@
         <meta name="format-detection" content="telephone=no">
         <link href="../css/game.css" rel="stylesheet" type="text/css" media="screen" />
         <title>游戏页面</title>
+      <style>
+
+        /*.user-list{position: fixed; top:0}*/
+        /*.user-list li{position: relative; width:25%; float:left; opacity: 1;}*/
+      </style>
     </head>
 <body>
 <div class="main" id="game" :class="screenCenterMessage.nightFlag==1? 'night' : screenCenterMessage.nightFlag==0?'day':'' ">
@@ -194,8 +199,8 @@
             <div class="right">
               <div class="pro">
                 <b></b>
-                <span v-bind:class="`pre bound level${myAccountInfo.preStage || 0 }`"><i class="star" v-for="(user,idx) in myAccountInfo.preStar"></i></span>
-                <span v-bind:class="`next bound level${myAccountInfo.thisStage || 0 }`"><i class="star" v-for="(user,idx) in myAccountInfo.thisStar"></i></span>
+                <span v-bind:class="`pre bound level${myAccountInfo.thisStage || 0 }`"><i class="star" v-for="(user,idx) in myAccountInfo.thisStar"></i></span>
+                <span v-bind:class="`next bound level${myAccountInfo.nextStage || 0 }`"><i class="star" v-for="(user,idx) in myAccountInfo.nextStar"></i></span>
                 <span v-bind:class="`count ${myAccountInfo.upFlag?'addcount':'subcount'}`">{{myAccountInfo.newScore-myAccountInfo.oldScore}}分</span>
               </div>
               <span class="totalAccount">{{myAccountInfo.showScore}}分</span></div>
@@ -240,19 +245,20 @@
 //            {userId:110,nickName:"ggg",number:7,stage:1,star:1},
 //            {userId:111,nickName:"xxx",number:8,stage:1,star:1},
 //            {userId:112,nickName:"zzz",number:9,stage:1,star:1}]
-//        data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"GAME_ACCOUNT","gameStatusStr":"游戏结算"},"gameAccountInfo":{"endTime":"2017-11-13 23:08","costTime":"01:14:16","winUsers":[{"userId":203,"nickName":"203","number":3,"identityName":"平民","identityId":1,"identityStatus":"EXILE","stage":1,"star":2},{"userId":204,"nickName":"204","number":4,"identityName":"女巫","identityId":4,"identityStatus":"SURVIVAL","stage":1,"star":1,"likeTime":1},{"userId":205,"nickName":"205","number":5,"identityName":"猎人","identityId":5,"identityStatus":"EXILE","stage":1,"star":1},{"userId":206,"nickName":"206","number":6,"identityName":"平民","identityId":1,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":207,"nickName":"207","number":7,"identityName":"白痴","identityId":9,"identityStatus":"IDIOT","stage":1,"star":1},{"userId":208,"nickName":"208","number":8,"identityName":"平民","identityId":1,"identityStatus":"EXILE","stage":1,"star":1},{"userId":209,"nickName":"209","number":9,"identityName":"预言家","identityId":3,"identityStatus":"SHOOT","stage":1,"star":1},{"userId":210,"nickName":"210","number":10,"identityName":"守卫","identityId":6,"identityStatus":"EXILE","stage":1,"star":1},{"userId":211,"nickName":"211","number":11,"identityName":"平民","identityId":1,"identityStatus":"SURVIVAL","stage":1,"star":1}],"loseUsers":[{"userId":201,"nickName":"201","number":1,"identityName":"狼人","identityId":2,"identityStatus":"EXILE","stage":1,"star":1},{"userId":202,"nickName":"202","number":2,"identityName":"白狼王","identityId":8,"identityStatus":"EXILE","stage":1,"star":1},{"userId":212,"nickName":"212","number":12,"identityName":"狼王","identityId":7,"identityStatus":"EXILE","stage":1,"star":1}],"gameStatus":"GOOD_WIN","gameStatusStr":"好人阵营胜利","surplusTime":10},"personalInfo":{"userId":204,"number":4,"buttons":[]}}'
-//
-//        game.socketCallback(data)
+////        data.body = ''
+////
+////
+////        game.socketCallback(data)
 ////
 ////
 ////         setTimeout(function(){
-////             data.body = ''
+////             data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"GAME_REPLAY","gameStatusStr":"游戏复盘"},"personalAccountInfo":{"userId":101,"nickName":"aaa","number":1,"identityId":1,"identityName":"平民","changeLevelFlag":false,"upFlag":true,"oldScore":280,"newScore":250,"preNeedScore":0,"preStar":1,"preStage":1,"thisNeedScore":100,"thisStar":2,"thisStage":1,"nextNeedScore":260,"nextStar":3,"nextStage":1,"endTime":"2017-12-16 19:22","costTime":"45:35","gameStatus":"GOOD_WIN","gameStatusStr":"好人阵营胜利","mvpFlag":false}}'
 ////             game.socketCallback(data)
-////         },2000)
-//        setTimeout(function(){
-//            data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"MVP_RESULT","gameStatusStr":"MVP结果"},"gameAccountInfo":{"mvpNumber":0},"showMsg":"本局游戏没有MVP."}'
-//            game.socketCallback(data)
-//        },3000)
+////         },1000)
+////        setTimeout(function(){
+////            data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_WITCH","witchStatusEnum":"PAPA","eventName":"女巫救人/毒人","eventDesc":"昨天中刀的是:3号,是否使用解药,是否使用毒药,要毒谁?","chooseCount":1,"eventSurplusTime":15}}'
+////            game.socketCallback(data)
+////        },10000)
 //    });
 </script>
 </body>

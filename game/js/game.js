@@ -130,10 +130,12 @@ var game = new Vue({
                 }, 10)
             }
 
-            if(d.showMsg){
-                //_self.screenCenterMessage.result = d.showMsg
+
+            if(global.isExit(d.showMsg)){
                 _self.$set(_self.screenCenterMessage,'result',d.showMsg)
+                //_self.screenCenterMessage.result = d.gameInfo.result
             }
+
 
             // 游戏开始后事件
             if(d.msgType == 'UPDATE'){ //需要获取GameInfo和userInfoList
@@ -193,6 +195,9 @@ var game = new Vue({
 
             if(e == 'EVENT_WITCH'){// 特殊事件----女巫
                 el = $('.layerEventWitch')
+                if(count>0){
+                    el.find('.content ul').html('<li class="unchoose"></li>')
+                }
                 if(info.witchStatusEnum == 'PAPA'){
                     el.find('.btn[event="EVENT_SAVE"]').show()
                     el.find('.btn[event="EVENT_POISON"]').show()
@@ -205,7 +210,10 @@ var game = new Vue({
                     el.find('.btn[event="EVENT_SAVE"]').hide()
                     el.find('.btn[event="EVENT_POISON"]').show()
                     $('.user-list').addClass('choosing')//?????
+                }else if(info.witchStatusEnum == 'RUBBISH'){
+                    el = $('.layerEventKnow')
                 }
+
             }else{ // 其它事件
                 if(count==-1){
                     el = $('.layerEventKnow')
@@ -315,10 +323,7 @@ var game = new Vue({
                         _self.$set(_self.screenCenterMessage,'gameStatusStr',d.gameInfo.gameStatusStr)
                         //_self.screenCenterMessage.gameStatusStr = d.gameInfo.gameStatusStr
                     }
-                    if(global.isExit(d.gameInfo.showMsg)){
-                        _self.$set(_self.screenCenterMessage,'result',d.gameInfo.showMsg)
-                        //_self.screenCenterMessage.result = d.gameInfo.result
-                    }
+
                     if(global.isExit(d.gameInfo.voteInfoList) && d.gameInfo.voteInfoList.length>0){
                         _self.showVoteList(d.gameInfo.voteInfoList[0])
                     }

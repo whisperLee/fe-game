@@ -43,26 +43,6 @@ var animate = {
             }
         })
     },
-    // layerEnter: function (el,time) {
-    //     el = el || $('.layer')
-    //     el.css({
-    //         display:'block'
-    //     })
-    //     el.velocity({
-    //         scale:[1,0],
-    //         translateY:'-50%'
-    //     }, {
-    //         duration: 500,
-    //         easing: 'ease-in-out',
-    //         complete: function(){
-    //           if(time){
-    //             setTimeout(function(){
-    //               animate.layerOuter(el)
-    //             },global.returnDurTime(time))
-    //           }
-    //         }
-    //     })
-    // },
     layerEnter: function(el,time){
         var _self = this
         $('.layer').hide()  //隐藏其它弹层
@@ -93,17 +73,18 @@ var animate = {
         var _self = this
         var $time =  el.find('.countDown span')
         var time = $time.attr('time')
-        if(time>0){
+        if(time>1){
             time--
-            if(time>0){
-                $time.attr('time',time).html(time+'秒')
-            }else{
-                $time.attr('time',0).html('时间到！')
-            }
+            $time.attr('time',time).html(time+'秒')
+            // if(time>0){
+            //     $time.attr('time',time).html(time+'秒')
+            // }else{
+            //     $time.attr('time',0).html('时间到！')
+            // }
             setTimeout(function(){
                 _self.countDown(el)
             },1000)
-        }else if(time==0){
+        }else{
             if(el.hasClass('layerEventChoose')){
                 _self.layerOuter($('.layerEventConfirmAgain'))
             }

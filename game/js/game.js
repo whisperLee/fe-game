@@ -894,32 +894,40 @@ var game = new Vue({
                 var el = $(this)
                 el.find('.longPress.btn').off().on(
                     'touchstart',function(){
-                    var _btn = $(this)
-                    var _pro = _btn.find('.process b')
-                    press_flow = 1
-                    _pro.velocity({
-                        width:['100%','0%']
-                    },{
-                        duration: 700,
-                        easing: 'linear',
-                        complete: function(){
 
-                            press_flow = 2
-                            _pro.width(0)
-                            _btn.addClass('state-success')
-                            _btn.attr('event') && el.attr('event',_btn.attr('event'))
-                            //方法提交
-                            _self.userEventForUserChoose(el)
+                        if(el.find('.unchoose').length>0){
+                            global.pop_tips('还有'+el.find('.unchoose').length+'名玩家没有选择')
+                        }else{
+                            var _btn = $(this)
+                            var _pro = _btn.find('.process b')
+                            press_flow = 1
+                            _pro.velocity({
+                                width:['100%','0%']
+                            },{
+                                duration: 700,
+                                easing: 'linear',
+                                complete: function(){
+
+                                    press_flow = 2
+                                    _pro.width(0)
+                                    _btn.addClass('state-success')
+                                    _btn.attr('event') && el.attr('event',_btn.attr('event'))
+                                    //方法提交
+                                    _self.userEventForUserChoose(el)
+                                }
+                            })
                         }
-                    })
+
                 }).on(
                     'touchend',function(){
                         var _self = $(this)
                         var _pro = _self.find('.process b')
+                        console.log(press_flow)
                         if(press_flow==1){
+                            global.pop_tips('您取消了提交')
                             animate.stopAll(_pro)
                             _pro.width(0)
-                        }else{
+                        }else if(press_flow==2){
                             animate.layerOuter(el)
                         }
                         press_flow = 0

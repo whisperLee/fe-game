@@ -509,7 +509,8 @@ body .main .mycon {
       body .main .mycon.achievement ul li .fl h3 {
         font-size: .2rem;
         line-height: 150%;
-        color: #16a085; }
+        color: #16a085;
+        font-weight: bold; }
       body .main .mycon.achievement ul li .fl p {
         font-size: .14rem; }
     body .main .mycon.achievement ul li .info {
@@ -556,7 +557,8 @@ body .main .mycon {
       body .main .mycon.records ul li .info h3 {
         font-size: .2rem;
         color: #16a085;
-        line-height: .4rem; }
+        line-height: .4rem;
+        font-weight: bold; }
       body .main .mycon.records ul li .info p {
         font-size: .12rem;
         color: #666;

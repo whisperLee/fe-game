@@ -67,6 +67,7 @@ body{
                 font-size: .2rem;
                 line-height: 150%;
                 color: $color4;
+                font-weight: bold;
               }
               p{
                 font-size: .14rem;
@@ -129,8 +130,10 @@ body{
             .info{
               padding-top: .2rem;
               h3{
-                font-size: .2rem; color: $color4;
+                font-size: .2rem;
+                color: $color4;
                 line-height: .4rem;
+                font-weight: bold;
               }
               p{
                 font-size: .12rem; color: $color2;

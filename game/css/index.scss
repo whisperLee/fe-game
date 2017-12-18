@@ -1,0 +1,103 @@
+@charset "utf-8";
+@import "_users";
+@import "_wx";
+body{
+  .main{
+    .importantMess{
+      margin: .1rem;
+      p{
+        background: url("../wxImage/point.png") no-repeat left top;
+        background-size: .2rem .2rem;
+        line-height: .2rem;
+        color: $color3;
+        font-size:.14rem ;
+        padding-left: .25rem;
+
+      }
+    }
+    .imgScroll{
+      margin: .1rem;
+      overflow: hidden;
+      line-height: 0;
+      ul{
+        width:100%;
+        height:auto;
+        li{
+          display: none;
+          a{
+            display: block;
+            img{
+              width:100%;
+              height:auto;
+            }
+          }
+
+          &.active{
+            display: block;
+
+          }
+        }
+      }
+
+    }
+    .shops{
+      margin: .1rem;
+      ul{
+        li{
+
+          a{
+            background: #fff;
+            padding-bottom: .1rem;
+            display: block;
+            img{
+              width:100%;
+            }
+            .info{
+              position: relative;
+              font-size: .14rem;
+              line-height: .24rem;
+              padding-left: .05rem;
+              .local{
+                background: url("../wxImage/local.png") no-repeat left center;
+                background-size: .2rem .2rem;
+                padding-left: .2rem;
+                color: $color2;
+              }
+              .shopName{
+                position: absolute;
+                right: .1rem;
+                top:0;
+                color: $color4;
+              }
+              .status{
+                font-size: .1rem;
+                color: $color2;
+                padding-left: .03rem;
+                span{
+                  padding-left: .15rem;
+                  margin-right: .15rem;
+                  b{
+                    color: $color4;
+                  }
+                  &.gaming{
+                    background: url("../wxImage/1.png") no-repeat left center;
+                    background-size: .15rem .15rem;
+                  }
+                  &.lineUp{
+                    background: url("../wxImage/2.png") no-repeat left center;
+                    background-size: .15rem .15rem;
+                  }
+                  &.notBeginning{
+                    background: url("../wxImage/3.png") no-repeat left center;
+                    background-size: .15rem .15rem;
+                  }
+                }
+
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

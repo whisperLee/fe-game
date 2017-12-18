@@ -1,6 +1,118 @@
+@import "_g_reset";
+@import "_g_variable";
 body {
   .main {
-    background: #f1f5fa;
+    background: $color;
+    .fl{
+      float: left;
+    }
+    .fr{
+      float: right;
+    }
+    .userCenterWrap{
+      background: #00bea1;
+      .topMessage{
+        width:100%;
+        height:.3rem;
+        line-height: .3rem;
+        padding: 0 .1rem;
+        box-sizing: border-box;
+        overflow: hidden;
+        background: rgba(255,255,255,0.5);
+        p{
+          white-space: nowrap;
+          color: $color2;
+          font-size: .12rem;
+          text-align: left;
+          b{
+            color: $color3;
+            padding: 0 .02rem;
+          }
+        }
+
+      }
+      .userCenter{
+        position: relative;
+        padding: .1rem 0;
+        overflow: hidden;
+        .left{
+          float: left;
+          width:40%;
+          .user{
+            width:100%;
+            .level .userInner{
+              margin: 0 auto;
+            }
+          }
+          p.nickname{
+            text-align: center;
+            color: $color;
+            font-size: .11rem;
+          }
+        }
+        .right{
+          position: absolute;
+          top:50%;
+          right:0;
+          width:60%;
+          -webkit-transform: translateY(-50%);
+          float: left;
+          .levelWrap{
+            height:.2rem;
+            line-height: .2rem;
+            font-size: .16rem;
+            color: $color;
+            margin-bottom: .1rem;
+            span.level{
+              float: left;
+            }
+            .levelPro{
+              position: relative;
+              float: left;
+              width:75%;
+              background: #009881;
+              border-radius: .03rem;
+              height: .16rem;
+              line-height: .16rem;
+              margin-left: .05rem;
+              margin-top:.02rem;
+              b{
+                position: absolute;
+                left: 0;
+                top:0;
+                width:0;
+                height:100%;
+                background: #63eb65;
+                border-radius: .03rem;
+              }
+              i{
+                position: relative;
+                display: block;
+                text-align: center;
+                color: $color;
+                font-size: .12rem;
+                z-index: 2;
+              }
+            }
+          }
+          .card{
+            b{
+              display: inline-block;
+              padding: 0 .05rem;
+              background: #009881;
+              color: $color;
+              font-size: .12rem;
+              line-height: .2rem;
+              border-radius: .05rem;
+              margin-right: .08rem;
+            }
+          }
+
+        }
+      }
+
+
+    }
   }
   .footer{
     position: fixed;
@@ -8,7 +120,26 @@ body {
     bottom: 0;
     width:100%;
     background: #fff;
-    height:.4rem;
+    height:.55rem;
+    border-top:1px solid #ccc;
+    ul{
+      padding-top: .07rem;
+      li{
+        float: left;
+        width:20%;
+        padding-top: .2rem;
+        text-align: center;
+        color: $color2;
+        font-size: .14rem;
+        line-height: .25rem;
+        background: url("../wxImage/mine.png") no-repeat center top;
+        background-size: .2rem .2rem;
+        &.on{
+          color: $color4;
+          background-image: url("../wxImage/mine_on.png");
+        }
+      }
+    }
 
   }
 }

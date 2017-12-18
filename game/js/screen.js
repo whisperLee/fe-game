@@ -107,7 +107,7 @@ var screen = new Vue({
             }
             if(d.bgmUrl || d.bgmUrl==''){ // 背景音频播放
                 _self.$set(_self,'bgmUrl',d.bgmUrl)
-                var bgmUrl = document.getElementById('audio');
+                var bgmUrl = document.getElementById('bgMusic');
                 bgmUrl.currentTime = 0;
 
                 // bgmUrl.addEventListener("canplaythrough",
@@ -120,7 +120,7 @@ var screen = new Vue({
             }
             if(d.voiceUrl){ // 音频播放
                 _self.$set(_self,'voiceUrl',d.voiceUrl)
-                var voiceUrl = document.getElementById('bgMusic');
+                var voiceUrl = document.getElementById('audio');
                 voiceUrl.currentTime = 0;
 
 

@@ -15,7 +15,7 @@
     </head>
 <body>
 <div class="main" id="game" :class="screenCenterMessage.nightFlag==1? 'night' : screenCenterMessage.nightFlag==0?'day':'' ">
-    <h2 v-if="queueFlow < 2" class="readyTitle">游戏准备中，请稍候...</h2>
+    <h2 v-if="queueFlow <= 2" class="readyTitle">{{readyMess}}</h2>
     <ul class="user-list">
         <li v-for="(user,idx) in users" v-on:click="userClick(user,$event)" :userid="user.userId">
             <user v-bind:user="user"></user>
@@ -27,7 +27,7 @@
         <a class="btn js-start" style="display: none" v-show="queueFlow >= 2 && leaderFlag" v-on:click="startGame">开始游戏</a>
     </div>
     <div class="messageCenter" style="display: none" v-show="screenCenterMessage.nightFlag!=-1">
-      <div class="top" v-if="screenCenterMessage.nightFlag!=-1">第<span>{{ screenCenterMessage.gameTime }}</span>天<span  v-show="screenCenterMessage.nightFlag">黑天</span><span  v-show="!screenCenterMessage.nightFlag">白天</span></div>
+      <div class="top" v-if="screenCenterMessage.gameTime>0">第<span>{{ screenCenterMessage.gameTime }}</span>天<span  v-show="screenCenterMessage.nightFlag">黑天</span><span  v-show="!screenCenterMessage.nightFlag">白天</span></div>
       <div class="dialog status" style="display: none" v-show="screenCenterMessage.gameStatusStr && screenCenterMessage.gameStatusStr!=``">
         <div class="name">系统：</div>
         <div class="message">{{ screenCenterMessage.gameStatusStr }}</div>
@@ -222,42 +222,42 @@
 <script type="application/javascript" src="../js/animate.js"></script>
 <script type="application/javascript" src="../js/game.js"></script>
 <script>
-//    $(function(){
-//        game.active()
-//        var el = $('.layer')
-//        var el = $('.layerShenfen')
-//        var el = $('.layerEventVoteResult')
-//        var el = $('.layerUserInfo')
-//        var el = $('.layerEventVoteResult')
-//        //var el = $('.layerDead')
-//        //animate.layerEnter(el)
-//        var data = {}
-//        game.users = [
-//            {userId:101,nickName:"aaa",number:1,stage:1,star:1},
-//            {userId:102,nickName:"bbb",number:2,stage:1,star:1},
-//            {userId:103,nickName:"ccc",number:3,stage:1,star:1},
-//            {userId:104,nickName:"ddd",number:4,stage:1,star:1},
-//            {userId:105,nickName:"eee",number:5,stage:1,star:1},
-//            {userId:106,nickName:"fff",number:6,stage:1,star:1},
-//            {userId:107,nickName:"ggg",number:7,stage:1,star:1},
-//            {userId:108,nickName:"xxx",number:8,stage:1,star:1},
-//            {userId:109,nickName:"zzz",number:9,stage:1,star:1},
-//            {userId:110,nickName:"ggg",number:7,stage:1,star:1},
-//            {userId:111,nickName:"xxx",number:8,stage:1,star:1},
-//            {userId:112,nickName:"zzz",number:9,stage:1,star:1}]
-//        data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_WITCH","witchStatusEnum":"PAPA","eventName":"女巫救人/毒人","eventDesc":"昨天中刀的是:3号,是否使用解药,是否使用毒药,要毒谁?","chooseCount":1,"eventSurplusTime":15}}'
-//        game.socketCallback(data)
-////
-////
-////         setTimeout(function(){
-////             data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"GAME_REPLAY","gameStatusStr":"游戏复盘"},"personalAccountInfo":{"userId":101,"nickName":"aaa","number":1,"identityId":1,"identityName":"平民","changeLevelFlag":false,"upFlag":true,"oldScore":280,"newScore":250,"preNeedScore":0,"preStar":1,"preStage":1,"thisNeedScore":100,"thisStar":2,"thisStage":1,"nextNeedScore":260,"nextStar":3,"nextStage":1,"endTime":"2017-12-16 19:22","costTime":"45:35","gameStatus":"GOOD_WIN","gameStatusStr":"好人阵营胜利","mvpFlag":false}}'
-////             game.socketCallback(data)
-////         },1000)
-//       setTimeout(function(){
-//            data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_WITCH","witchStatusEnum":"SAVE","eventName":"女巫救人/毒人","eventDesc":"昨天中刀的是:3号,是否使用解药,是否使用毒药,要毒谁?","chooseCount":1,"eventSurplusTime":15}}'
-//            game.socketCallback(data)
-//        },1000)
-//    });
+    $(function(){
+        game.active()
+        var el = $('.layer')
+        var el = $('.layerShenfen')
+        var el = $('.layerEventVoteResult')
+        var el = $('.layerUserInfo')
+        var el = $('.layerEventVoteResult')
+        //var el = $('.layerDead')
+        //animate.layerEnter(el)
+        var data = {}
+        game.users = [
+            {userId:101,nickName:"aaa",number:1,stage:1,star:1},
+            {userId:102,nickName:"bbb",number:2,stage:1,star:1},
+            {userId:103,nickName:"ccc",number:3,stage:1,star:1},
+            {userId:104,nickName:"ddd",number:4,stage:1,star:1},
+            {userId:105,nickName:"eee",number:5,stage:1,star:1},
+            {userId:106,nickName:"fff",number:6,stage:1,star:1},
+            {userId:107,nickName:"ggg",number:7,stage:1,star:1},
+            {userId:108,nickName:"xxx",number:8,stage:1,star:1},
+            {userId:109,nickName:"zzz",number:9,stage:1,star:1},
+            {userId:110,nickName:"ggg",number:7,stage:1,star:1},
+            {userId:111,nickName:"xxx",number:8,stage:1,star:1},
+            {userId:112,nickName:"zzz",number:9,stage:1,star:1}]
+        data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"QUEUE","leaderInfo":{"leaderFlag":true,"leaderButton":[]},"boxInfo":{"boxName":"ggg"},"userInfoList":[{"userId":101,"nickName":"aaa","number":1,"sex":1,"stage":1,"star":1},{"userId":102,"nickName":"bbb","number":2,"stage":1,"star":1},{"userId":103,"nickName":"ccc","number":3,"stage":1,"star":1},{"userId":104,"nickName":"ddd","number":4,"stage":1,"star":1},{"userId":105,"nickName":"eee","number":5,"stage":1,"star":1},{"userId":106,"nickName":"fff","number":6,"stage":1,"star":1},{"userId":107,"nickName":"ggg","number":7,"stage":1,"star":1},{"userId":108,"nickName":"xxx","number":8,"stage":1,"star":1},{"userId":109,"nickName":"zzz","number":9,"stage":1,"star":1}],"screeningInfo":{"combinationConfigStr":"预言家 女巫 猎人 守卫 白痴 白狼王","combinationName":"什么都有","playerCount":12},"personalInfo":{"userId":101,"nickName":"aaa","number":1,"sex":1,"stage":1,"star":1,"consumptionScore":946}}'
+        game.socketCallback(data)
+//
+//
+//         setTimeout(function(){
+//             data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"GAME_REPLAY","gameStatusStr":"游戏复盘"},"personalAccountInfo":{"userId":101,"nickName":"aaa","number":1,"identityId":1,"identityName":"平民","changeLevelFlag":false,"upFlag":true,"oldScore":280,"newScore":250,"preNeedScore":0,"preStar":1,"preStage":1,"thisNeedScore":100,"thisStar":2,"thisStage":1,"nextNeedScore":260,"nextStar":3,"nextStage":1,"endTime":"2017-12-16 19:22","costTime":"45:35","gameStatus":"GOOD_WIN","gameStatusStr":"好人阵营胜利","mvpFlag":false}}'
+//             game.socketCallback(data)
+//         },1000)
+       setTimeout(function(){
+            data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"QUEUE","leaderInfo":{"leaderFlag":true,"leaderButton":[]},"boxInfo":{"boxName":"ggg"},"userInfoList":[{"userId":101,"nickName":"aaa","number":1,"sex":1,"stage":1,"star":1},{"userId":102,"nickName":"bbb","number":2,"stage":1,"star":1},{"userId":103,"nickName":"ccc","number":3,"stage":1,"star":1},{"userId":104,"nickName":"ddd","number":4,"stage":1,"star":1},{"userId":105,"nickName":"eee","number":5,"stage":1,"star":1},{"userId":106,"nickName":"fff","number":6,"stage":1,"star":1},{"userId":107,"nickName":"ggg","number":7,"stage":1,"star":1},{"userId":108,"nickName":"xxx","number":8,"stage":1,"star":1},{"userId":109,"nickName":"zzz","number":9,"stage":1,"star":1},{"userId":110,"nickName":"zzz","number":10,"stage":1,"star":1},{"userId":111,"nickName":"zzz","number":11,"stage":1,"star":1},{"userId":12,"nickName":"zzz","number":12,"stage":1,"star":1}],"screeningInfo":{"combinationConfigStr":"预言家 女巫 猎人 守卫 白痴 白狼王","combinationName":"什么都有","playerCount":12},"personalInfo":{"userId":101,"nickName":"aaa","number":1,"sex":1,"stage":1,"star":1,"consumptionScore":946}}'
+            game.socketCallback(data)
+        },1000)
+    });
 </script>
 </body>
 </html>

@@ -14,6 +14,7 @@ Vue.component('userend',component.userend)
 var game = new Vue({
     el: '#game',
     data :{
+        readyMess:'游戏准备中，请稍候...',
         queueFlow: 0, // 0是入座，1是游戏准备，2是入座完成，3是抢身份
         screeningId: 0,
         leaderFlag: 0,
@@ -31,7 +32,8 @@ var game = new Vue({
         },
         accountInfo:{},
         personalAccountInfo:{},
-        myAccountInfo:{}
+        myAccountInfo:{},
+        isDead:0
     },
     created: function () {
         var _self = this
@@ -106,17 +108,36 @@ var game = new Vue({
             global.router('gameSet.html?boxId=' + _self.boxId + '&gameNumber='+_self.gameNumber + '&screeningId=' + _self.screeningId + '&event=modify')
         },
         // 连接websocket
-        connectWebScoket: function () {
+        connectWebScoket: function (i) {
             var _self = this
             console.log('websocket开始:' + new Date())
             var url = '/userTopic/game/user/' + _self.boxId + '/' + _self.userId
-            websocket.connect(_self, url , _self.socketCallback)
+            var error = function(i){
+                i = i || 0
+                i++
+                global.pop_tips('网络连接失败，正在重试，请稍候....')
+                if(i<=3){
+                    setTimeout(function(){
+                        _self.connectWebScoket(i)
+                    },3000)
+                }else{
+                    global.pop_tips('重连失败，请查看您的网络连接，或呼叫法官')
+                }
+            }
+            websocket.connect(_self, url , _self.socketCallback,function(){
+                error(i)
+            })
         },
         // socket 接收方法
         socketCallback: function (data) {
             var _self = this
             console.log('得到返回数据:' + new Date())
             var d = JSON.parse(data.body)
+
+            if(d.statusResponse.retcode!=0){ //所有错误消息
+                global.pop_tips(d.statusResponse.msg)
+            }
+
             _self.gameEvent = d.msgType
             // 队列
             if (d.msgType === 'QUEUE') {
@@ -129,14 +150,10 @@ var game = new Vue({
                     _self.setUserQueueStyle()
                 }, 10)
             }
-
-
-            if(global.isExit(d.showMsg)){
+            if(global.isExit(d.showMsg) && !_self.isDead){
                 _self.$set(_self.screenCenterMessage,'result',d.showMsg)
                 //_self.screenCenterMessage.result = d.gameInfo.result
             }
-
-
             // 游戏开始后事件
             if(d.msgType == 'UPDATE'){ //需要获取GameInfo和userInfoList
                 _self.gameInfo(d)
@@ -147,9 +164,7 @@ var game = new Vue({
             else if(d.msgType == 'DEAD'){//该玩家挂了,黑屏,不在接受事件 除了gameover
                 _self.dead(d)
             }
-            else if(d.msgType == 'EVENT_GAMEOVER'){ //游戏结束 获取gameResult字段 TODO
 
-            }
             else if(d.msgType == 'EVENT'){ // 游戏事件,需要获取eventInfo
                 _self.eventInfo(d.eventInfo)
             }
@@ -192,51 +207,53 @@ var game = new Vue({
             var e = info.eventType
             var count = info.chooseCount
             var el
-
-            if(e == 'EVENT_WITCH'){// 特殊事件----女巫
-                el = $('.layerEventWitch')
-                if(count>0){
-                    el.find('.content ul').html('<li class="unchoose"></li>')
-                }
-                if(info.witchStatusEnum == 'PAPA'){
-                    el.find('.btn[event="EVENT_SAVE"]').show()
-                    el.find('.btn[event="EVENT_POISON"]').show()
-                    $('.user-list').addClass('choosing')//?????
-                }else if(info.witchStatusEnum == 'SAVE'){
-                    el.find('.btn[event="EVENT_SAVE"]').show()
-                    el.find('.btn[event="EVENT_POISON"]').hide()
-                    $('.user-list').addClass('choosing')//?????
-                }else if(info.witchStatusEnum == 'POISON'){
-                    el.find('.btn[event="EVENT_SAVE"]').hide()
-                    el.find('.btn[event="EVENT_POISON"]').show()
-                    $('.user-list').addClass('choosing')//?????
-                }else if(info.witchStatusEnum == 'RUBBISH'){
-                    el = $('.layerEventKnow')
-                }
-
-            }else{ // 其它事件
-                if(count==-1){
-                    el = $('.layerEventKnow')
-                }else if(count==0){
-                    el = $('.layerEventDecide')
-                    if(e == 'EVENT_CAMPAIGN_SERGEANT'){ // 特殊事件---警长精选
-                        el.find('.btn[type="yes"]').html('竞选')
-                        el.find('.btn[type="no"]').html('放弃')
-                    }else{
-                        el.find('.btn[type="yes"]').eq(0).html('是')
-                        el.find('.btn[type="no"]').eq(0).html('否')
+            if(!_self.isDead){
+                if(e == 'EVENT_WITCH'){// 特殊事件----女巫
+                    el = $('.layerEventWitch')
+                    if(count>0){
+                        el.find('.content ul').html('<li class="unchoose"></li>')
                     }
-                }else if(count>0){
-                    el = $('.layerEventChoose')
-                    var h = ''
-                    for(var i=0;i<info.chooseCount;i++){
-                        h+='<li class="unchoose"></li>'
+                    if(info.witchStatusEnum == 'PAPA'){
+                        el.find('.btn[event="EVENT_SAVE"]').show()
+                        el.find('.btn[event="EVENT_POISON"]').show()
+                        $('.user-list').addClass('choosing')//?????
+                    }else if(info.witchStatusEnum == 'SAVE'){
+                        el.find('.btn[event="EVENT_SAVE"]').show()
+                        el.find('.btn[event="EVENT_POISON"]').hide()
+                        $('.user-list').addClass('choosing')//?????
+                    }else if(info.witchStatusEnum == 'POISON'){
+                        el.find('.btn[event="EVENT_SAVE"]').hide()
+                        el.find('.btn[event="EVENT_POISON"]').show()
+                        $('.user-list').addClass('choosing')//?????
+                    }else if(info.witchStatusEnum == 'RUBBISH'){
+                        el = $('.layerEventKnow')
                     }
-                    el.find('.content ul').html(h)
-                    $('.user-list').addClass('choosing')
+
                 }
+                else{ // 其它事件
+                    if(count==-1){
+                        el = $('.layerEventKnow')
+                    }else if(count==0){
+                        el = $('.layerEventDecide')
+                        if(e == 'EVENT_CAMPAIGN_SERGEANT'){ // 特殊事件---警长精选
+                            el.find('.btn[type="yes"]').html('竞选')
+                            el.find('.btn[type="no"]').html('放弃')
+                        }else{
+                            el.find('.btn[type="yes"]').eq(0).html('是')
+                            el.find('.btn[type="no"]').eq(0).html('否')
+                        }
+                    }else if(count>0){
+                        el = $('.layerEventChoose')
+                        var h = ''
+                        for(var i=0;i<info.chooseCount;i++){
+                            h+='<li class="unchoose"></li>'
+                        }
+                        el.find('.content ul').html(h)
+                        $('.user-list').addClass('choosing')
+                    }
+                }
+                _self.setEventLayer(el,info)
             }
-            _self.setEventLayer(el,info)
         },
         setEventLayer:function(el,info){
             var _self = this
@@ -283,7 +300,7 @@ var game = new Vue({
                         _self.showSF()
                     }
 
-                    else if(s == 'GAME_ACCOUNT'){
+                    else if(s == 'GAME_ACCOUNT'){ //游戏结算
                         _self.account(d)
                     }
                     else if(s == 'MVP_RESULT'){
@@ -309,24 +326,22 @@ var game = new Vue({
                         _self.userAccountChange(d.personalAccountInfo)
                     }
 
+                    if(!_self.isDead){
+                        if(global.isExit(d.gameInfo.nightFlag)){
+                            var n = d.gameInfo.nightFlag?1:0
+                            _self.$set(_self.screenCenterMessage,'nightFlag',n)
+                        }
+                        if(global.isExit(d.gameInfo.gameTime) && d.gameInfo.gameTime>0){
+                            _self.$set(_self.screenCenterMessage,'gameTime',d.gameInfo.gameTime)
+                        }
+                        if(global.isExit(d.gameInfo.gameStatusStr)){
+                            _self.$set(_self.screenCenterMessage,'gameStatusStr',d.gameInfo.gameStatusStr)
+                        }
+                        if(global.isExit(d.gameInfo.voteInfoList) && d.gameInfo.voteInfoList.length>0){
+                            _self.showVoteList(d.gameInfo.voteInfoList[0])
+                        }
+                    }
 
-                    if(global.isExit(d.gameInfo.nightFlag)){
-                        var n = d.gameInfo.nightFlag?1:0
-                        _self.$set(_self.screenCenterMessage,'nightFlag',n)
-                        //_self.screenCenterMessage.nightFlag = d.gameInfo.nightFlag?1:0
-                    }
-                    if(global.isExit(d.gameInfo.gameTime)){
-                        //_self.screenCenterMessage.gameTime = d.gameInfo.gameTime
-                        _self.$set(_self.screenCenterMessage,'gameTime',d.gameInfo.gameTime)
-                    }
-                    if(global.isExit(d.gameInfo.gameStatusStr)){
-                        _self.$set(_self.screenCenterMessage,'gameStatusStr',d.gameInfo.gameStatusStr)
-                        //_self.screenCenterMessage.gameStatusStr = d.gameInfo.gameStatusStr
-                    }
-
-                    if(global.isExit(d.gameInfo.voteInfoList) && d.gameInfo.voteInfoList.length>0){
-                        _self.showVoteList(d.gameInfo.voteInfoList[0])
-                    }
             }
             if(d.userInfoList){
                 if(s == 'CAMPAIGN_RESULT' || s =='CAMPAIGN_PK_SPEAK' || s =='CAMPAIGN_OUT_PK_SPEAK'){
@@ -374,6 +389,7 @@ var game = new Vue({
                 }
                 if (_self.gameEvent === 'QUEUE' && d.userInfoList.length === total) { // 队列状态下，所有用户都入座完成之后，可以开始游戏
                     _self.queueFlow = 2
+                    _self.readyMess=_self.leaderFlag?'所有人入座完成，请开始游戏':'所有人入座完成，等待桌长开始游戏'
                 } else {
                     _self.queueFlow = 1
                 }
@@ -644,6 +660,7 @@ var game = new Vue({
         },
         dead:function(d){
             var _self = this
+            _self.isDead = 1
             var el = $('.layerDead')
             if(d.showMsg){
                 el.find('.content').html('<b>'+d.showMsg+'</b>')
@@ -744,18 +761,22 @@ var game = new Vue({
                 delay:3000,
                 complete: function() {
                     el.find('.count').hide()
-                    _per.velocity({
-                        width:newPre+'%'
-                    },{
-                        duration: 500,
-                        complete: function() {
-                            _self.myAccountInfo = {}
-                            d.showStage = d.thisStage
-                            d.showStar = d.thisStar
-                            d.showScore = d.newScore 
-                            _self.myAccountInfo = d;
-                        }
-                    })
+                    if(newPre!=oldPre){
+                        _per.velocity({
+                                width:newPre+'%'
+                            },
+                            {
+                                duration: 500,
+                                complete: function() {
+                                    _self.myAccountInfo = {}
+                                    d.showStage = d.thisStage
+                                    d.showStar = d.thisStar
+                                    d.showScore = d.newScore
+                                    _self.myAccountInfo = d;
+                                }
+                            })
+                    }
+
                 }
             })
 

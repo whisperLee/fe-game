@@ -2,7 +2,7 @@ var stompClient
 var websocket = {
     host: 'http://liyn.me:8888/',
     //host: 'http://192.168.3.28:8888/',
-    connect: function (vue, url, callback) {
+    connect: function (vue, url, callback,error) {
         var _self = this
         var socket = new SockJS(_self.host+'stompEndpoints');
         stompClient = Stomp.over(socket);
@@ -11,6 +11,7 @@ var websocket = {
             _self.userJustEnter()
         }, function (msg) {
             console.log('msg: ' + msg)
+            error()
         })
     },
     connectpc: function (vue, url, callback) {

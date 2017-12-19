@@ -128,7 +128,9 @@ new Vue({
         chooseType: function () {
             var _self = this
             _self.flow = 1
+
             _self.comType = parseInt(event.currentTarget.getAttribute('typeid'))
+            _self.postData.gameModule = _self.comType
         },
         chooseBaseCom: function () {
             var _self = this

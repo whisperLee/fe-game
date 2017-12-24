@@ -81,6 +81,21 @@ body{
           position: absolute;
           left:0;
           top:0;
+          .num{
+            b{
+              font-size: .2rem;
+              color: #f1f1f1;
+              border: 1px solid #16afec;
+              border-radius: 50%;
+              display: none;
+              width: .25rem;
+              height: .25rem;
+              line-height: .25rem;
+              position: absolute;
+              left: 0;
+              bottom: 0rem;
+            }
+          }
         }
       }
       .messageWrap{
@@ -151,6 +166,16 @@ body{
 
           }
         }
+      }
+      .countDown{
+        position: absolute;
+        left: 0;
+        top:8%;
+        line-height: .5rem;
+        width:20%;
+        text-align: center;
+        font-size: .4rem;
+        color: $color3;
       }
     }
     .audio{

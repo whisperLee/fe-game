@@ -183,10 +183,9 @@ body {
         z-index: 2; }
       .user .level .userInner .num {
         background-image: url(../image/level/0_1_0.png);
-        z-index: 2;
-        font-size: 0;
-        line-height: 0;
-        text-indent: -999rem; }
+        z-index: 2; }
+        .user .level .userInner .num b {
+          display: none; }
       .user .level .userInner .num1:before {
         background-image: url("../image/level/n1.png"); }
       .user .level .userInner .num2:before {
@@ -615,6 +614,18 @@ body {
           position: absolute;
           left: 0;
           top: 0; }
+          body .main .table .user-list .user .num b {
+            font-size: .2rem;
+            color: #f1f1f1;
+            border: 1px solid #16afec;
+            border-radius: 50%;
+            display: none;
+            width: .25rem;
+            height: .25rem;
+            line-height: .25rem;
+            position: absolute;
+            left: 0;
+            bottom: 0rem; }
       body .main .table .messageWrap {
         width: 54%;
         position: absolute;
@@ -672,6 +683,15 @@ body {
             body .main .table .messageWrap .message p b {
               font-size: .3rem;
               color: #e74c3c; }
+      body .main .table .countDown {
+        position: absolute;
+        left: 0;
+        top: 8%;
+        line-height: .5rem;
+        width: 20%;
+        text-align: center;
+        font-size: .4rem;
+        color: #e74c3c; }
     body .main .audio {
       display: none; }
     body .main .layerEventVoteResult {

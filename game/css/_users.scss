@@ -49,7 +49,12 @@
       height:80%;
       margin: .1rem auto;
       .star{background-image:url(../image/level/l_b.png); z-index: 2;}
-      .num{background-image:url(../image/level/0_1_0.png); z-index: 2; font-size: 0; line-height: 0; text-indent: -999rem;}
+      .num{
+        background-image:url(../image/level/0_1_0.png); z-index: 2;
+        b{
+          display:none;
+        }
+      }
       @for $i from 1 through 15{
         .num#{$i}:before{
         background-image: url('../image/level/n#{$i}.png');

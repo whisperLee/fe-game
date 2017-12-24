@@ -21,7 +21,8 @@ var screen = new Vue({
         },
         accountInfo:{},
         voiceUrl:'',//音频url
-        bgmUrl:''//背景音频url
+        bgmUrl:'',//背景音频url
+        countdownSec:0// 倒计时
     },
     created: function () {
         var _self = this
@@ -110,13 +111,7 @@ var screen = new Vue({
                 var bgmUrl = document.getElementById('bgMusic');
                 bgmUrl.currentTime = 0;
 
-                // bgmUrl.addEventListener("canplaythrough",
-                //     function() {
-                //         console.log('sc'+bgmUrl.duration);
-                //     },
-                //     false);
-                //
-                // console.log(_self.bgmUrl)
+
             }
             if(d.voiceUrl){ // 音频播放
                 _self.$set(_self,'voiceUrl',d.voiceUrl)
@@ -135,7 +130,7 @@ var screen = new Vue({
             _self.sendEventForScreen(d)
 
             if(d.voteInfo && d.voteInfo.voteDetailList.length>0){ // 投票结果
-                _self.showVoteList(d.voteInfo,d.countdownSec)
+                _self.showVoteList(d.voteInfo,d.countdownSec+2)
             }
 
             if(d.gameResult){ // 游戏结束
@@ -154,7 +149,7 @@ var screen = new Vue({
         },
         sendEventForScreen:function(a){
             var _self = this
-            if(a.countdownSec>0) {
+            if(a.countdownSec && a.countdownSec>0) {
                 var data;
                 if(!_self.recoverType) {
                     _self.recoverType = a.msgType;
@@ -188,12 +183,13 @@ var screen = new Vue({
             }
         },
         countDown: function (time,callback,a) {
+            var _self = this
             clearTimeout(timer);
             callback = callback || function () { }
             timer = setInterval(function () {
-                if (time > 0) {
-                    time--
-                } else {
+                time--
+                _self.countdownSec = time
+                if (time <= 0) {
                     clearInterval(timer)
                     callback(a)
                 }

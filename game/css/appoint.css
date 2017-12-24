@@ -255,10 +255,9 @@ body .footer {
         z-index: 2; }
       .user .level .userInner .num {
         background-image: url(../image/level/0_1_0.png);
-        z-index: 2;
-        font-size: 0;
-        line-height: 0;
-        text-indent: -999rem; }
+        z-index: 2; }
+        .user .level .userInner .num b {
+          display: none; }
       .user .level .userInner .num1:before {
         background-image: url("../image/level/n1.png"); }
       .user .level .userInner .num2:before {

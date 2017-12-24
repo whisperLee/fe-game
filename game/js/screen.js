@@ -67,12 +67,29 @@ var screen = new Vue({
             console.log(data.body)
             var d = JSON.parse(data.body)
 
-            if(d.userInfoList && d.userInfoList.length>0){ // 玩家信息
-                $('.welcome').hide()
-                _self.setUser(d)
-                setTimeout(function () {
-                    _self.setUserQueueStyle()
-                }, 10)
+            if( d.userInfoList && d.userInfoList.length>0){ // 玩家信息
+                if(d.msgType == 'QUEUE'){
+                    $('.welcome').hide()
+                    _self.setUser(d)
+                    setTimeout(function () {
+                        _self.setUserQueueStyle()
+                    }, 10)
+                }else{
+                    if(d.msgType == 'CAMPAIGN_RESULT' || d.msgType =='CAMPAIGN_PK_SPEAK' || d.msgType =='CAMPAIGN_OUT_PK_SPEAK'){
+                        for(var i=0; i<_self.users.length;i++){
+                            if(_self.users[i].campaignFlag){
+                                _self.users[i].campaignFlag = false
+                                _self.$set(_self.users,i,_self.users[i])
+                            }
+                        }
+                    }
+                    for(var i=0;i<d.userInfoList.length; i++){
+                        var num = d.userInfoList[i].number
+                        _self.users[num-1] =  $.extend({}, _self.users[num-1], d.userInfoList[i])
+                        _self.$set(_self.users,num-1,_self.users[num-1])
+                    }
+                }
+
             }
 
             if(d.boxInfo){ // 包房信息

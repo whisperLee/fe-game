@@ -38,7 +38,7 @@
     .userInner{
       position: relative;
       text-align: center;
-      padding: 12%;
+      padding: 9%;
       box-sizing: border-box;
       line-height: 0;
       background: none;
@@ -48,16 +48,16 @@
       width:80%;
       height:80%;
       margin: .1rem auto;
-      .star{background-image:url(../image/level/l_b.png); z-index: 2;}
+      //.star{background-image:url(../image/newLevel/l_b.png); z-index: 2;}
       .num{
-        background-image:url(../image/level/0_1_0.png); z-index: 2;
+        background-image:url(../image/newLevel/0_1_0.png); z-index: 2;
         b{
           display:none;
         }
       }
       @for $i from 1 through 15{
         .num#{$i}:before{
-        background-image: url('../image/level/n#{$i}.png');
+        background-image: url('../image/newLevel/n#{$i}.png');
         }
       }
       .head{
@@ -108,7 +108,7 @@
         b.WHITE_SELF_DESTRUCT{background-image: url(../image/state/s13.png);} /**白狼王自爆**/
       }
       &:before{
-        background-image: url(../image/level/0.png);
+        background-image: url(../image/newLevel/0.png);
       }
     }
 
@@ -116,13 +116,14 @@
   @for $i from 1 through 5{
     .level#{$i}{
       .userInner{
-        .num{background-image: url(../image/level/#{$i}_1_0.png);}
+        .num{background-image: url(../image/newLevel/#{$i}_1_0.png);}
         @for $j from 1 through 3{
-          .star#{$j}:before{
-            background-image: url('../image/level/#{$i}_#{$j}.png');
+          .star#{$j}{
+            background-image: url('../image/newLevel/#{$i}_#{$j}.png');
+            z-index:3;
           }
         }
-        &:before{background-image: url(../image/level/#{$i}.png);}
+        &:before{background-image: url(../image/newLevel/#{$i}.png);}
       }
     }
   }
@@ -155,13 +156,13 @@
       background-size: contain;
       background-position: center center;
       .userInner{
-        width:40%;
+        width:46%;
         padding: 6%;
       }
     }
     @for $i from 1 through 5{
       .level#{$i}{
-        background-image:url(../image/level/#{$i}_0.png);
+        background-image:url(../image/newLevel/#{$i}_0.png);
       }
     }
 }

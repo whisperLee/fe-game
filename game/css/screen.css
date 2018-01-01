@@ -168,7 +168,7 @@ body {
     .user .level .userInner {
       position: relative;
       text-align: center;
-      padding: 12%;
+      padding: 9%;
       box-sizing: border-box;
       line-height: 0;
       background: none;
@@ -178,44 +178,41 @@ body {
       width: 80%;
       height: 80%;
       margin: .1rem auto; }
-      .user .level .userInner .star {
-        background-image: url(../image/level/l_b.png);
-        z-index: 2; }
       .user .level .userInner .num {
-        background-image: url(../image/level/0_1_0.png);
+        background-image: url(../image/newLevel/0_1_0.png);
         z-index: 2; }
         .user .level .userInner .num b {
           display: none; }
       .user .level .userInner .num1:before {
-        background-image: url("../image/level/n1.png"); }
+        background-image: url("../image/newLevel/n1.png"); }
       .user .level .userInner .num2:before {
-        background-image: url("../image/level/n2.png"); }
+        background-image: url("../image/newLevel/n2.png"); }
       .user .level .userInner .num3:before {
-        background-image: url("../image/level/n3.png"); }
+        background-image: url("../image/newLevel/n3.png"); }
       .user .level .userInner .num4:before {
-        background-image: url("../image/level/n4.png"); }
+        background-image: url("../image/newLevel/n4.png"); }
       .user .level .userInner .num5:before {
-        background-image: url("../image/level/n5.png"); }
+        background-image: url("../image/newLevel/n5.png"); }
       .user .level .userInner .num6:before {
-        background-image: url("../image/level/n6.png"); }
+        background-image: url("../image/newLevel/n6.png"); }
       .user .level .userInner .num7:before {
-        background-image: url("../image/level/n7.png"); }
+        background-image: url("../image/newLevel/n7.png"); }
       .user .level .userInner .num8:before {
-        background-image: url("../image/level/n8.png"); }
+        background-image: url("../image/newLevel/n8.png"); }
       .user .level .userInner .num9:before {
-        background-image: url("../image/level/n9.png"); }
+        background-image: url("../image/newLevel/n9.png"); }
       .user .level .userInner .num10:before {
-        background-image: url("../image/level/n10.png"); }
+        background-image: url("../image/newLevel/n10.png"); }
       .user .level .userInner .num11:before {
-        background-image: url("../image/level/n11.png"); }
+        background-image: url("../image/newLevel/n11.png"); }
       .user .level .userInner .num12:before {
-        background-image: url("../image/level/n12.png"); }
+        background-image: url("../image/newLevel/n12.png"); }
       .user .level .userInner .num13:before {
-        background-image: url("../image/level/n13.png"); }
+        background-image: url("../image/newLevel/n13.png"); }
       .user .level .userInner .num14:before {
-        background-image: url("../image/level/n14.png"); }
+        background-image: url("../image/newLevel/n14.png"); }
       .user .level .userInner .num15:before {
-        background-image: url("../image/level/n15.png"); }
+        background-image: url("../image/newLevel/n15.png"); }
       .user .level .userInner .head {
         width: 100%;
         height: 100%;
@@ -283,57 +280,72 @@ body {
         .user .level .userInner .status b.WHITE_SELF_DESTRUCT {
           background-image: url(../image/state/s13.png); }
       .user .level .userInner:before {
-        background-image: url(../image/level/0.png); }
+        background-image: url(../image/newLevel/0.png); }
   .user .level1 .userInner .num {
-    background-image: url(../image/level/1_1_0.png); }
-  .user .level1 .userInner .star1:before {
-    background-image: url("../image/level/1_1.png"); }
-  .user .level1 .userInner .star2:before {
-    background-image: url("../image/level/1_2.png"); }
-  .user .level1 .userInner .star3:before {
-    background-image: url("../image/level/1_3.png"); }
+    background-image: url(../image/newLevel/1_1_0.png); }
+  .user .level1 .userInner .star1 {
+    background-image: url("../image/newLevel/1_1.png");
+    z-index: 3; }
+  .user .level1 .userInner .star2 {
+    background-image: url("../image/newLevel/1_2.png");
+    z-index: 3; }
+  .user .level1 .userInner .star3 {
+    background-image: url("../image/newLevel/1_3.png");
+    z-index: 3; }
   .user .level1 .userInner:before {
-    background-image: url(../image/level/1.png); }
+    background-image: url(../image/newLevel/1.png); }
   .user .level2 .userInner .num {
-    background-image: url(../image/level/2_1_0.png); }
-  .user .level2 .userInner .star1:before {
-    background-image: url("../image/level/2_1.png"); }
-  .user .level2 .userInner .star2:before {
-    background-image: url("../image/level/2_2.png"); }
-  .user .level2 .userInner .star3:before {
-    background-image: url("../image/level/2_3.png"); }
+    background-image: url(../image/newLevel/2_1_0.png); }
+  .user .level2 .userInner .star1 {
+    background-image: url("../image/newLevel/2_1.png");
+    z-index: 3; }
+  .user .level2 .userInner .star2 {
+    background-image: url("../image/newLevel/2_2.png");
+    z-index: 3; }
+  .user .level2 .userInner .star3 {
+    background-image: url("../image/newLevel/2_3.png");
+    z-index: 3; }
   .user .level2 .userInner:before {
-    background-image: url(../image/level/2.png); }
+    background-image: url(../image/newLevel/2.png); }
   .user .level3 .userInner .num {
-    background-image: url(../image/level/3_1_0.png); }
-  .user .level3 .userInner .star1:before {
-    background-image: url("../image/level/3_1.png"); }
-  .user .level3 .userInner .star2:before {
-    background-image: url("../image/level/3_2.png"); }
-  .user .level3 .userInner .star3:before {
-    background-image: url("../image/level/3_3.png"); }
+    background-image: url(../image/newLevel/3_1_0.png); }
+  .user .level3 .userInner .star1 {
+    background-image: url("../image/newLevel/3_1.png");
+    z-index: 3; }
+  .user .level3 .userInner .star2 {
+    background-image: url("../image/newLevel/3_2.png");
+    z-index: 3; }
+  .user .level3 .userInner .star3 {
+    background-image: url("../image/newLevel/3_3.png");
+    z-index: 3; }
   .user .level3 .userInner:before {
-    background-image: url(../image/level/3.png); }
+    background-image: url(../image/newLevel/3.png); }
   .user .level4 .userInner .num {
-    background-image: url(../image/level/4_1_0.png); }
-  .user .level4 .userInner .star1:before {
-    background-image: url("../image/level/4_1.png"); }
-  .user .level4 .userInner .star2:before {
-    background-image: url("../image/level/4_2.png"); }
-  .user .level4 .userInner .star3:before {
-    background-image: url("../image/level/4_3.png"); }
+    background-image: url(../image/newLevel/4_1_0.png); }
+  .user .level4 .userInner .star1 {
+    background-image: url("../image/newLevel/4_1.png");
+    z-index: 3; }
+  .user .level4 .userInner .star2 {
+    background-image: url("../image/newLevel/4_2.png");
+    z-index: 3; }
+  .user .level4 .userInner .star3 {
+    background-image: url("../image/newLevel/4_3.png");
+    z-index: 3; }
   .user .level4 .userInner:before {
-    background-image: url(../image/level/4.png); }
+    background-image: url(../image/newLevel/4.png); }
   .user .level5 .userInner .num {
-    background-image: url(../image/level/5_1_0.png); }
-  .user .level5 .userInner .star1:before {
-    background-image: url("../image/level/5_1.png"); }
-  .user .level5 .userInner .star2:before {
-    background-image: url("../image/level/5_2.png"); }
-  .user .level5 .userInner .star3:before {
-    background-image: url("../image/level/5_3.png"); }
+    background-image: url(../image/newLevel/5_1_0.png); }
+  .user .level5 .userInner .star1 {
+    background-image: url("../image/newLevel/5_1.png");
+    z-index: 3; }
+  .user .level5 .userInner .star2 {
+    background-image: url("../image/newLevel/5_2.png");
+    z-index: 3; }
+  .user .level5 .userInner .star3 {
+    background-image: url("../image/newLevel/5_3.png");
+    z-index: 3; }
   .user .level5 .userInner:before {
-    background-image: url(../image/level/5.png); }
+    background-image: url(../image/newLevel/5.png); }
   .user[dead=true] {
     opacity: 0.8; }
     .user[dead=true] .head {
@@ -358,18 +370,18 @@ body {
     background-size: contain;
     background-position: center center; }
     .user.userBack .level .userInner {
-      width: 40%;
+      width: 46%;
       padding: 6%; }
   .user.userBack .level1 {
-    background-image: url(../image/level/1_0.png); }
+    background-image: url(../image/newLevel/1_0.png); }
   .user.userBack .level2 {
-    background-image: url(../image/level/2_0.png); }
+    background-image: url(../image/newLevel/2_0.png); }
   .user.userBack .level3 {
-    background-image: url(../image/level/3_0.png); }
+    background-image: url(../image/newLevel/3_0.png); }
   .user.userBack .level4 {
-    background-image: url(../image/level/4_0.png); }
+    background-image: url(../image/newLevel/4_0.png); }
   .user.userBack .level5 {
-    background-image: url(../image/level/5_0.png); }
+    background-image: url(../image/newLevel/5_0.png); }
 
 .mine {
   position: absolute;

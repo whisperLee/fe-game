@@ -385,7 +385,7 @@ body .main {
           padding: 0 .02rem; }
     body .main .userCenterWrap .userCenter {
       position: relative;
-      padding: .1rem 0;
+      padding: .1rem;
       overflow: hidden; }
       body .main .userCenterWrap .userCenter .left {
         float: left;
@@ -416,7 +416,7 @@ body .main {
           body .main .userCenterWrap .userCenter .right .levelWrap .levelPro {
             position: relative;
             float: left;
-            width: 75%;
+            width: 80%;
             background: #009881;
             border-radius: .03rem;
             height: .16rem;
@@ -607,12 +607,12 @@ body .main .mycon {
         border: 1px solid #16a085;
         color: #16a085;
         font-size: .14rem;
-        line-height: .3rem;
-        height: .3rem;
+        line-height: .26rem;
+        height: .26rem;
         padding: 0 .1rem;
         display: inline-block;
         border-radius: .05rem;
         float: right;
-        box-sizing: border-box; }
+        box-sizing: content-box; }
 
 /*# sourceMappingURL=my.css.map */

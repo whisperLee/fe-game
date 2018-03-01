@@ -1,12 +1,18 @@
 @charset "utf-8";
 $fontStack:Helvetica,STHeiti,Droid Sans Fallback;
 $color: #f1f1f1;
+$color0:#fff;
+$color1: #000;
 $color2: #666;
 $color3:#e74c3c; // 橙
-$color4:#16a085; // 蓝
+$color8:#d34132; //深橙
 $color5:#34495e; // 深蓝
 $color6:rgba(36,74,111,0.8); // 深蓝.8
+$color4:#16a085; // 蓝
 $color7:#1abc9c; // 蓝+
+
+
+
 
 ._page{
   position:absolute;

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <meta name="format-detection" content="telephone=no">
+  <link href="../css/wx_mine.css" rel="stylesheet" type="text/css" media="screen" />
+  <title>我的</title>
+</head>
+<body>
+<div class="main" id="wx_mine">
+  <div class="userCenterWrap">
+    <div class="userCenter">
+      <div class="left">
+        <user class="userBack" v-bind:user="user"></user>
+        <p class="nickname">{{user.nickName}}</p>
+      </div>
+      <div class="right">
+        <div class="levelWrap">
+          <span class="level">lv.2</span>
+          <div class="levelPro">
+            <b style="width:30%"></b>
+            <i>50/100</i>
+          </div>
+        </div>
+        <div class="card">
+          <b>月卡:1</b>
+          <b>天卡:15</b>
+          <b>时卡:62.5</b>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <ul class="bar">
+      <li class="on">总览</li>
+      <li>成就</li>
+      <li>历史</li>
+      <li>资金卡</li>
+      <li>订单</li>
+    </ul>
+    <div class="pandect mycon on">
+        <div class="title">
+          <span class="fl">获胜：10</span>
+          <span class="fr">游戏：30</span>
+        </div>
+        <ul>
+          <li>
+            <img src="../wxImage/baichi.jpg" alt="">
+            <p>
+              <span class="fl">获胜:1</span>
+              <span class="fr">游戏:1</span>
+            </p>
+          </li>
+          <li>
+            <img src="../wxImage/baichi.jpg" alt="">
+            <p>
+              <span class="fl">获胜:1</span>
+              <span class="fr">游戏:1</span>
+            </p>
+          </li>
+          <li>
+            <img src="../wxImage/baichi.jpg" alt="">
+            <p>
+              <span class="fl">获胜:1</span>
+              <span class="fr">游戏:1</span>
+            </p>
+          </li>
+          <li>
+            <img src="../wxImage/baichi.jpg" alt="">
+            <p>
+              <span class="fl">获胜:1</span>
+              <span class="fr">游戏:1</span>
+            </p>
+          </li>
+          <li>
+            <img src="../wxImage/baichi.jpg" alt="">
+            <p>
+              <span class="fl">获胜:1</span>
+              <span class="fr">游戏:1</span>
+            </p>
+          </li>
+          <li>
+            <img src="../wxImage/baichi.jpg" alt="">
+            <p>
+              <span class="fl">获胜:1</span>
+              <span class="fr">游戏:1</span>
+            </p>
+          </li>
+        </ul>
+
+      </div>
+    <div class="achievement mycon ">
+      <ul>
+        <li>
+          <div class="fl">
+            <h3>平民不哭</h3>
+            <p>平民胜利10次</p>
+          </div>
+          <div class="info">
+            <div class="pro">
+              <b style="width:30%"></b>
+              <i>3/10</i>
+            </div>
+            <p>进行中</p>
+          </div>
+
+        </li>
+        <li>
+          <div class="fl">
+            <h3>最毒妇人心</h3>
+            <p>女巫使用毒药10次</p>
+          </div>
+          <div class="info">
+            <div class="pro">
+              <b style="width:30%"></b>
+              <i>3/10</i>
+            </div>
+            <p>进行中</p>
+          </div>
+
+        </li>
+      </ul>
+
+    </div>
+    <div class="records mycon">
+        <ul>
+          <li>
+            <div class="fl"><img src="../wxImage/baichi.jpg" alt=""></div>
+            <div class="info">
+              <h3>12人普通场</h3>
+              <p>对战时间：2017-05-01 14：30</p>
+            </div>
+          </li>
+          <li>
+            <div class="fl"><img src="../wxImage/baichi.jpg" alt=""></div>
+            <div class="info">
+              <h3>12人普通场</h3>
+              <p>对战时间：2017-05-01 14：30</p>
+            </div>
+          </li>
+          <li>
+            <div class="fl"><img src="../wxImage/baichi.jpg" alt=""></div>
+            <div class="info">
+              <h3>12人普通场</h3>
+              <p>对战时间：2017-05-01 14：30</p>
+            </div>
+          </li>
+          <li>
+            <div class="fl"><img src="../wxImage/baichi.jpg" alt=""></div>
+            <div class="info">
+              <h3>12人普通场</h3>
+              <p>对战时间：2017-05-01 14：30</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    <div class="cards mycon">
+      <ul>
+        <li class="card card0">
+          <div class="left"><div class="inner"><p class="money">￥10</p><p class="limit">满50元可用</p></div></div>
+          <div class="right">
+            <h3>全品类满减优惠券</h3>
+            <p class="info">特价商品不能使用</p>
+            <p class="endTime">有效期至:2018-02-28</p>
+          </div>
+          <b class="status status0"></b>
+        </li>
+      </ul>
+
+    </div>
+    <div class="orders mycon">
+      <ul>
+        <li class="order">
+          <div class="commodity">
+            <ul>
+              <li>
+                <img src="../wxImage/baichi.jpg" alt="">
+              </li>
+              <li>
+                <img src="../wxImage/baichi.jpg" alt="">
+              </li>
+              <li>
+                <img src="../wxImage/baichi.jpg" alt="">
+              </li>
+            </ul>
+          </div>
+          <div class="info">
+            <p>共4件商品 实付款：￥90元</p>
+            <a class="btn">再次购买</a>
+          </div>
+
+        </li>
+        <li class="order">
+          <div class="commodity">
+            <ul>
+              <li>
+                <img src="../wxImage/baichi.jpg" alt="">
+              </li>
+              <li>
+                <img src="../wxImage/baichi.jpg" alt="">
+              </li>
+              <li>
+                <img src="../wxImage/baichi.jpg" alt="">
+              </li>
+            </ul>
+          </div>
+          <div class="info">
+            <p>共4件商品 实付款：￥90元</p>
+            <a class="btn">再次购买</a>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+    </div>
+  <div class="footer">
+    <ul>
+      <li class="index">首页</li>
+      <li class="appoint">预约</li>
+      <li class="game">游戏</li>
+      <li class="store">商城</li>
+      <li class="my on">我的</li>
+    </ul>
+  </div>
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<script type="application/javascript" src="../../js/vue.js"></script>
+<script type="application/javascript" src="../../game/js/global.js"></script>
+<script type="application/javascript" src="../../game/js/component.js"></script>
+<script type="application/javascript" src="../../game/js/animate.js"></script>
+<script>
+    Vue.component('user',component.user)
+    new Vue({
+        el: '#wx_mine',
+        data: {
+            importantMess:'重要通知：为庆祝分店开业，所有店铺今日5折！！',
+            user:{
+                "userId":201,"nickName":"浪里一枝花","number":1,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1,"likeTime":1,"mvpTime":1
+            }
+        },
+        created: function () {
+            var _self = this
+            setTimeout(function(){
+                _self.active()
+            },10)
+        },
+        methods: {
+          active:function(){
+
+            $('.container .bar li').each(function(idx){
+                $(this).off().on('click',function(){
+                    $('.bar li').removeClass('on').eq(idx).addClass('on')
+                    $('.container .mycon').removeClass('on').eq(idx).addClass('on')
+                })
+            })
+          }
+        }
+    })
+
+</script>
+</body>
+</html>

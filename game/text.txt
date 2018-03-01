@@ -25,16 +25,18 @@ SHOOT：开枪
 EXILE：放逐
 IDIOT：白痴被放逐
 
-竞选发言:
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"number":1,"campaignFlag":true},{"number":2,"campaignFlag":true},{"number":5,"campaignFlag":true}],"gameInfo":{"gameStatus":"CAMPAIGN_SPEAK","gameStatusStr":"竞选警长发言"},"personalInfo":{"buttons":["GIVE_UP","SELF_DESTRUCT"]},"showMsg":"1号,2号,5号玩家参与竞选.请从'2'号玩家开始,'逆'序发言.2->1->5"}
-*******************  buttons,userInfoList
-
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"userId":201,"number":1,"campaignFlag":false}]}
-*******************  userInfoList
 
 
+http://note.youdao.com/noteshare?id=e6ab57892697c23970d222c5bcc4ca58&sub=E7C7D9F90C8B406390A51634137B7A28
 
-更新桌长按钮:
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE_LEADER","leaderInfo":{"leaderFlag":true,"leaderButton":["SPEAK_END"]}}
-===={"targetNumberList":null,"eventType":"SPEAK_END"}
-*******************  button
+微信首页banner图事件
+
+重新设置内容样式
+@ApiModelProperty(value = "非必填,分页参数,每页多少条,默认10,0表示全量",example = "10")
+    @Min(0)
+    private int pageSize = CommonConstant.DEFAULT_PAGE_SIZE;
+
+    订单调用流程:
+    1.调用orderConfirm,获取结算价格,商品列表等数据,不用传入voucherId和consumptionScore,只需要传入类型和商品信息
+    2.调用getOrderConsumptionScore获取当前可以使用的玉米列表
+    3.使用玉米或者使用抵价券,调用changeVoucherOrConsume,传入voucherId或者consumptionScore,获取使用之后的价格信息(只会返回价格,可以获得玉米等信息).

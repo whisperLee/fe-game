@@ -1,3 +1,4 @@
+@charset "utf-8";
 @import "_g_reset";
 @import "_g_variable";
 body {
@@ -8,6 +9,7 @@ body {
     background: url("../image/n1.jpg") no-repeat center top;
     background-size: cover;
     overflow-y: auto;
+    //display:none;
     .page{
       position: relative;
       width:100%;
@@ -22,16 +24,17 @@ body {
     }
     h2{
       font-size: .2rem;
+      line-height: .24rem;
       padding: .2rem 0;
       color: $color;
       text-align: center;
     }
-    &.day{background-image:url(../image/d.jpg);}
-    &.night{background-image:url(../image/n.jpg); }
   }
 
 }
-
+.hide{
+  display: none;
+}
 .simple_tips{
   position:fixed;
   z-index:999;

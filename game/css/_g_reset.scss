@@ -2,7 +2,7 @@
 @import "g_variable";
 body,div,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,iframe,input,textarea,select,label,article,aside,footer,header,menu,nav,section,time,audio,video { margin: 0; padding: 0}
 article,aside,footer,header,nav,section,audio,canvas,video { display: block}
-html{font-size: 100px;}
+html{font-size: 80px;}
 @media screen and (min-width: 320px) and (orientation : portrait){
   html{font-size: 80px;}
 }
@@ -56,6 +56,9 @@ i {
 }
 video{
   font-size: 0;
+}
+[v-cloak] {
+  display: none;
 }
 
 

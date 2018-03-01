@@ -19,20 +19,23 @@ var animate = {
             easing: 'ease-in-out',
             complete: function(){
                 el.addClass('active')
-              el.find('.title,.btn').show()
+                el.find('.title,.btn').show()
+                // setTimeout(function(){
+                //     animate.sfLayerOuter(el)
+                // },10000)
             }
         })
     },
     sfLayerOuter: function (el, fun) {
-        var btn = $('.mine .btn.identity')
+        var btn = $('.mine .identity')
         el = el || $('.layerShenfen')
         el.removeClass('active')
         el.find('.title,.btn').hide()
         el.velocity({
             width: btn.width(),
             height: btn.height(),
-            left: btn.offset().left,
-            top: btn.offset().top
+            left: '100%',
+            top: '100%'
         }, {
           duration: 300, 
           complete: function() {
@@ -40,34 +43,16 @@ var animate = {
             }
         })
     },
-    // layerEnter: function (el,time) {
-    //     el = el || $('.layer')
-    //     el.css({
-    //         display:'block'
-    //     })
-    //     el.velocity({
-    //         scale:[1,0],
-    //         translateY:'-50%'
-    //     }, {
-    //         duration: 500,
-    //         easing: 'ease-in-out',
-    //         complete: function(){
-    //           if(time){
-    //             setTimeout(function(){
-    //               animate.layerOuter(el)
-    //             },global.returnDurTime(time))
-    //           }
-    //         }
-    //     })
-    // },
     layerEnter: function(el,time){
         var _self = this
+        $('.layer').hide()  //隐藏其它弹层
         el.css({
-            display:'block'
+            display:'block',
+            opacity:0
         })
         el.velocity({
-            scale:[1,0]
-            //translateY:'-50%'
+            scale:[1,0],
+            opacity:[1,0]
         }, {
             duration: 500,
             easing: 'ease-in-out',
@@ -76,9 +61,8 @@ var animate = {
             }
         })
         if(time && time>0){
-            console.log("enter"+el+time)
             if(el.find('.countDown').length<=0){
-                el.find('.inner').append('<div class="countDown"><span time='+parseInt(time+1)+'></span></div>')
+                el.find('.title').append('<div class="countDown">( <span time='+parseInt(time+1)+'></span> )</div>')
             }else{
                 el.find('.countDown span').attr('time',time+1)
             }
@@ -89,18 +73,18 @@ var animate = {
         var _self = this
         var $time =  el.find('.countDown span')
         var time = $time.attr('time')
-        if(time>0){
-            console.log("countDown"+el+time)
+        if(time>1){
             time--
-            if(time>0){
-                $time.attr('time',time).html(time)
-            }else{
-                $time.attr('time',0).html('时间到！')
-            }
+            $time.attr('time',time).html(time+'秒')
+            // if(time>0){
+            //     $time.attr('time',time).html(time+'秒')
+            // }else{
+            //     $time.attr('time',0).html('时间到！')
+            // }
             setTimeout(function(){
                 _self.countDown(el)
             },1000)
-        }else if(time==0){
+        }else{
             if(el.hasClass('layerEventChoose')){
                 _self.layerOuter($('.layerEventConfirmAgain'))
             }
@@ -112,7 +96,7 @@ var animate = {
 
         el.find('.longPress.state-success').removeClass('state-success')
         el.removeClass('active')
-        console.log("outer"+el+$time.attr('time'))
+        $('.user-list.choosing').removeClass('choosing')
         if($time && $time.attr('time')>0){
             $time.attr('time'==-1)
         }

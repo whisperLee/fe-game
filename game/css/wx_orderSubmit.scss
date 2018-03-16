@@ -1,0 +1,23 @@
+@charset "utf-8";
+@import "users";
+@import "wx";
+@import "wx_order";
+@import "wx_card";
+body{
+  .main{
+    background: $wxColor2;
+    .orderSubmit{
+      position: absolute; left:0; top:.55rem; bottom:.55rem; overflow-y: auto; width:100%;
+    }
+    .enabledVoucher .card{
+      .right{
+        background: url("../wxImage/r.png") no-repeat 93% center;
+        background-size: .3rem;
+      }
+      &.active .right{
+        background-image: url("../wxImage/r_on.png");
+      }
+    }
+  }
+
+}

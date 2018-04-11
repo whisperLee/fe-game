@@ -39,7 +39,7 @@ body {
   overflow: auto;
   font-size: .16rem;
   line-height: 150%;
-  font-f: Helvetica, STHeiti, Droid Sans Fallback; }
+  font-family: Helvetica, STHeiti, Droid Sans Fallback; }
 
 textarea {
   resize: none; }

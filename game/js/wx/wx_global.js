@@ -142,6 +142,7 @@ var wglobal = {
     },
     layerEnter:function(el,callback){
         var _self = this
+        callback = callback || function(){}
         $('.layer').hide()  //隐藏其它弹层
         el.css({
             display:'block',

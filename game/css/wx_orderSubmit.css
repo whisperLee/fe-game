@@ -319,7 +319,7 @@ body {
   overflow: auto;
   font-size: .16rem;
   line-height: 150%;
-  font-f: Helvetica, STHeiti, Droid Sans Fallback; }
+  font-family: Helvetica, STHeiti, Droid Sans Fallback; }
 
 textarea {
   resize: none; }
@@ -823,6 +823,9 @@ ul.goodList {
     padding: 0 .1rem;
     float: right;
     margin: .1rem .1rem .1rem 0; }
+
+.consumptionScoreChoose {
+  display: none; }
 
 .card {
   height: 1rem;

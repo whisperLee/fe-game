@@ -1,0 +1,58 @@
+.nav {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.2rem;
+  bottom: 0;
+  background: #262d33; }
+  .nav .user {
+    margin-top: .3rem; }
+    .nav .user .head img {
+      width: .8rem;
+      height: .8rem;
+      margin: 0 auto;
+      display: block; }
+    .nav .user .name {
+      font-size: .14rem;
+      line-height: .2rem;
+      color: #fff;
+      text-align: center;
+      padding-top: .1rem; }
+  .nav ul {
+    margin-top: .2rem;
+    overflow: hidden; }
+    .nav ul li {
+      font-size: .16rem;
+      color: #fff;
+      padding-top: 50px;
+      text-align: center;
+      line-height: 150%;
+      margin-top: .4rem;
+      background-repeat: no-repeat;
+      background-position: center top;
+      background-size: 40px 40px;
+      cursor: pointer; }
+      .nav ul li.on, .nav ul li:hover {
+        color: #e44839; }
+      .nav ul li.index {
+        background-image: url("../image/i3.png"); }
+        .nav ul li.index.on, .nav ul li.index:hover {
+          background-image: url("../image/i4.png"); }
+      .nav ul li.box {
+        background-image: url("../image/i3.png"); }
+        .nav ul li.box.on, .nav ul li.box:hover {
+          background-image: url("../image/i4.png"); }
+      .nav ul li.order {
+        background-image: url("../image/i3.png"); }
+        .nav ul li.order.on, .nav ul li.order:hover {
+          background-image: url("../image/i4.png"); }
+      .nav ul li.appoint {
+        background-image: url("../image/i3.png"); }
+        .nav ul li.appoint.on, .nav ul li.appoint:hover {
+          background-image: url("../image/i4.png"); }
+      .nav ul li.data {
+        background-image: url("../image/i3.png"); }
+        .nav ul li.data.on, .nav ul li.data:hover {
+          background-image: url("../image/i4.png"); }
+
+/*# sourceMappingURL=global.css.map */

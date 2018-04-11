@@ -1,0 +1,15 @@
+@charset "utf-8";
+
+@-webkit-keyframes wSteps2 {
+  0% {background-position:-0% 0%;}
+  100% {background-position:-200% 0%;}
+}
+@-webkit-keyframes wStep3 {
+  0% {background-position:-0% 0%;}
+  100% {background-position:-300% 0%;}
+}
+
+@-webkit-keyframes flash {
+  0%,100% {opacity: 0;}
+  50% {opacity: 1;}
+}

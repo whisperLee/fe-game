@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no">
+    <link href="../../css/swiper.min.css" rel="stylesheet" type="text/css" media="screen" >
+    <link href="../css/wx_index.css" rel="stylesheet" type="text/css" media="screen" />
+    <title>首页</title>
+    <style>
+        /*.container,.footer,.user,.topMessage,.card{display: none}*/
+        .userCenter{height:1rem;}
+
+    </style>
+</head>
+<body>
+<div class="main" id="wx_index" v-cloak>
+    <div class="userCenterWrap" >
+        <div class="topMessage"><p>{{tips}}</p></div>
+        <div class="userCenter">
+            <div class="left">
+                <user v-bind:user="user"></user>
+                <p class="nickname">{{user.nickName}}</p>
+            </div>
+            <div class="right">
+                <div class="levelWrap">
+                    <span class="level">lv.{{user.stage}}</span>
+                    <div class="levelPro">
+                        <b v-bind:style="`width:${user.levelPro || 0 }%`"></b>
+                        <i>{{user.totalGameScore}}/{{user.nextNeedScore}}</i>
+                    </div>
+                </div>
+                <div class="card">
+                    <b v-for = "item in card">{{item.name}}:{{item.value}}{{item.unit}}</b>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="importantMess"  style="display: none" v-show="importantMess">
+            <p>{{importantMess.name}}：{{importantMess.notice}}</p>
+        </div>
+
+        <div class="imgScroll swiper-container">
+            <ul class="swiper-wrapper">
+                <li v-for = "item in banners" class="swiper-slide">
+                    <a :href="item.redirectUrl">
+                        <!--https://gw.alicdn.com/imgextra/i1/10/TB2nUmng7fb_uJjSsrbXXb6bVXa_!!10-0-lubanu.jpg_q50.jpg-->
+                        <img :src="item.imgUrl" alt="">
+                        <p>{{item.content}}</p>
+                    </a>
+                </li>
+            </ul>
+            <div class="swiper-pagination"></div>
+        </div>
+
+
+        <div class="shops">
+            <ul>
+                <li v-for = "item in shops">
+                    <a href="wx_shopDetail.html">
+                        <img :src="item.coverImgUrl" alt="">
+                        <div class="info">
+                            <p class="local">{{item.address}}</p>
+                            <p class="shopName">{{item.name}}</p>
+                            <div class="status">
+                                <span class="gaming">游戏中：<b>{{item.shopPlayGamerCount || 0}}</b>人</span>
+                                <span class="lineUp">排队中：<b>{{item.shopIdleGamerCount || 0}}</b>人</span>
+                                <span class="notBeginning">未开始：<b>{{item.shopAppointmentGamerCount || 0}}</b>人</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="footer">
+        <ul>
+        </ul>
+    </div>
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<script type="application/javascript" src="../../js/vue.js"></script>
+<script type="application/javascript" src="../../game/js/wx/wx_global.js"></script>
+<script type="application/javascript" src="../../game/js/wx/wx_component.js"></script>
+<script type="application/javascript" src="../../js/swiper.js"></script>
+
+<script type="application/javascript" src="../../game/js/wx/wx_index.js"></script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+@charset "utf-8";
+@import "_wx_reset";
+.orderDetail{
+  .hd{
+    height:.4rem;
+    line-height: .4rem;
+    position: relative;
+    font-size: .16rem;
+    color: $wxColor7;
+    padding: 0 .1rem;
+    margin-top: .1rem;
+    background: $wxColor1;
+    border-bottom: .5px solid $wxColor3;
+    .orderSatus{
+      float: right;
+      color: $wxColor11;
+    }
+  }
+  .ul.goodList,.amount,.userResponse{
+    margin-bottom: .1rem;
+    background: $wxColor1;
+    font-size: .14rem;
+    color: $wxColor7;
+    line-height: .2rem;
+  }
+
+  ul.goodList{
+    margin-bottom: .1rem;
+    background: $wxColor1;
+    li{
+      border-bottom: .5px solid $wxColor3;
+      a{
+        display: block;
+        overflow: hidden;
+        padding:.1rem;
+        .picWrap {
+          float: left;
+          width: .8rem;
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+        .goodWrap{
+          margin-left: .9rem;
+          font-size: .14rem;
+          line-height: .2rem;
+          color: $wxColor7;
+          .unitPrice{
+            text-decoration:line-through;
+            padding-right: .05rem;
+          }
+        }
+      }
+    }
+  }
+  .amount{
+    padding: .1rem;
+    color: $wxColor6;
+    p{
+      line-height: .3rem;
+      span{
+        float: right;
+        &.sub{
+          color: $wxColor11;
+        }
+      }
+      &.total{
+        color: $wxColor7;
+        text-align: right;
+        border-top: .5px solid $wxColor2;
+        padding-top: .05rem;
+        margin-top: .05rem;
+        span{
+          color: $wxColor11;
+          font-size: .16rem;
+        }
+      }
+    }
+  }
+  .userResponse{
+    padding: .1rem;
+    p{
+      line-height: .3rem;
+      span{
+        display: inline-block;
+        width:1rem;
+      }
+    }
+  }
+
+  .address{
+    background: $wxColor1; margin-bottom: .1rem; overflow: hidden;
+    div{
+      position: relative;
+      height: .4rem; line-height: .4rem; margin: .1rem;
+      span{
+        display: inline-block;
+        width:.7rem;
+        float: left;
+      }
+      .input{
+        display: block;
+        margin:0 0 0 .8rem;
+        height: .4rem;
+        input{
+          border:none;
+          background: $wxColor2;
+          width:100%;
+          height: 100%;
+          text-indent: .1rem;
+        }
+      }
+    }
+
+  }
+  .userCash{
+    background: $wxColor1; margin-bottom: .1rem;
+    li{
+      position: relative; padding: 0 .1rem; line-height: .4rem; border-bottom: 0.5px solid $wxColor3; font-size: .14rem;
+      &.voucher{
+        background: url("../wxImage/list.png") no-repeat center right; background-size: auto 100%;
+        padding-right: .3rem;
+        .enable{ background: $wxColor1; padding: 3px;  border: 1px solid $wxColor11;  border-radius: 3px; font-size: .12rem; margin-left: .05rem;}
+      }
+      &.conScore{
+        span{margin-left: .1rem; font-size: .12rem;}
+        .switch{position: absolute; right:.1rem; top:.05rem; width:.5rem;height:.3rem; background: url("../wxImage/swi_off.png") no-repeat center; background-size: contain;
+          &.active{background-image: url("../wxImage/swi_on.png")}
+        }
+      }
+    }
+  }
+  .payType{
+    background: $wxColor1; margin-bottom: .1rem; line-height: .4rem; height:.4rem; font-size: .14rem;
+    padding: 0 .1rem;
+    span{
+      float: left;
+    }
+    .radio{
+      float: left;
+      li{
+        padding-left: .2rem; height:.4rem; line-height: .4rem; background: url("../wxImage/r.png") no-repeat left center; background-size: .2rem; float: left; margin-left: .15rem;
+        &.active{background-image: url("../wxImage/r_on.png")}
+      }
+    }
+  }
+}
+.btns{
+  position: fixed;
+  bottom: 0;
+  left:0;
+  width:100%;
+  height:.55rem;
+  background: $wxColor1;
+  border-top: .5px solid $wxColor3;
+  .btn{
+    height:.35rem; line-height: .35rem; font-size: .14rem; color: $wxColor7; border: 1px solid $wxColor3; border-radius: .05rem; padding: 0 .1rem; float: right; margin: .1rem .1rem .1rem 0;
+  }
+
+
+}
+.orders{
+  ul{
+    li.order{
+      margin-bottom: .1rem;
+      padding: .1rem;
+      background: $wxColor1;
+      .hd{
+        background: $wxColor1;
+        border-bottom: .5px solid $wxColor3;
+        margin-bottom: .1rem;
+        line-height: .35rem;
+        overflow: hidden;
+        font-size: .14rem;
+        p{
+          float: left;
+          color: $wxColor7;
+        }
+        .status{
+          float: right;
+          color: $wxColor9;
+        }
+      }
+      .goods{
+        width:100%;
+        height:.5rem;
+        ul{
+          width:100%;
+          height: 100%;
+          overflow: hidden;
+          li{
+            float: left;
+            width:.48rem;
+            height:.36rem;
+            margin-right: .1rem;
+            border: .5px solid $wxColor3;
+            box-sizing: border-box;
+
+            img{
+              width:100%;
+              height:auto;
+            }
+          }
+        }
+      }
+      .info{
+        padding-top: .1rem;
+        font-size: .14rem;
+        color: $wxColor7;
+        text-align: left;
+        height: .3rem;
+        line-height: .3rem;
+        p{
+          float: left;
+        }
+        .btn{
+          border: 1px solid $wxColor9;
+          color: $wxColor9;
+          font-size: .14rem;
+          line-height: .26rem;
+          height: .26rem;
+          padding: 0 .1rem;
+          display: inline-block;
+          border-radius: .05rem;
+          float: right;
+          box-sizing: content-box;
+          background: none;
+          width: auto;
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+.footer{
+  text-align: right;
+  .btn.btn1{
+    height:.55rem; line-height: .55rem; width:1rem; text-align: center; color: $wxColor1; background: $wxColor11; display: inline-block;
+  }
+  .total{font-size: .16rem; color: $wxColor11; padding-right: .1rem;}
+}
+.layerNavContent{
+  .hd{
+    height:.4rem;
+    ul{
+      li{
+        float: left; width:50%; line-height: .4rem; font-size: .14rem; text-align: center;
+        &.active{color: $wxColor11;}
+      }
+    }
+  }
+  .bd{
+    .cards{
+      display: none;
+      &.active{
+        display: block;
+      }
+    }
+  }
+}
+.consumptionScoreChoose{
+  height:.4rem; width:100%; display: none; border-top:0.5px solid $wxColor3;
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection"content="telephone=no">
+    <link href="../css/end.css" rel="stylesheet" type="text/css" media="screen" />
+    <title>游戏结束</title>
+    <style>
+        .count{
+            position: absolute;
+            right:0;
+            top:-.15rem;
+            font-size: .12rem;
+            line-height: .15rem;
+            color: $color4;
+            opacity: 0;
+        }
+        .subcount{
+            color: #e74c3c;
+        }
+        .layer.userAccount .inner .user,.layer.userAccount .inner .levelChange li div.right .star{-webkit-transform-style: preserve-3d; -webkit-backface-visibility: hidden; -webkit-transition: all 1.0s ease-in-out;}
+
+        .layer.userAccount .inner .levelChange .level1 .star{
+            background: url(../image/level/start1.png) no-repeat center;
+            background-size: contain;
+        }
+        .layer.userAccount .inner .levelChange .level2 .star{
+            background: url(../image/level/start2.png) no-repeat center;
+            background-size: contain;
+        }
+        .layer.userAccount .inner .levelChange .level3 .star{
+            background: url(../image/level/start3.png) no-repeat center;
+            background-size: contain;
+        }
+        .layer.userAccount .inner .levelChange .level4 .star{
+            background: url(../image/level/start4.png) no-repeat center;
+            background-size: contain;
+        }
+
+    </style>
+</head>
+<body>
+<div class="main" id="end">
+    <div class="gameEnd">
+        <p class="resultInfo"><span class="costTime">{{costTime}}</span><span class="endTime">{{endTime}}</span></p>
+        <div class="result win">
+            <h3 class="title"><span>{{gameStatusStr}}</span></h3>
+            <ul class="userList">
+                <li v-for="(user,idx) in winUsers" v-on:click="voteMvp($event)" :userid="user.userId" class="zan">
+                    <userwin v-bind:user="user"></userwin>
+                    <p><span>{{user.identityName}}</span></p>
+                </li>
+
+            </ul>
+        </div>
+        <div class="result lose">
+            <h3 class="title"><span>失败</span></h3>
+            <ul class="userList">
+                <li v-for="(user,idx) in loseUsers" v-on:click="mvp($event)" :userid="user.userId">
+                    <userlose v-bind:user="user"></userlose>
+                    <p><span>{{user.identityName}}</span></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layer userAccount">
+        <div class="inner">
+            <div :class="personalAccountInfo.mvpFlag? 'mvp' : '' "></div>
+            <userend class="userBack" v-bind:user="myAccountInfo"></userend>
+            <ul class="levelChange" >
+                <li>
+                    <span class="left">等级：</span><div class="right"><p>{{myAccountInfo.thisStage}}阶</p></div>
+                </li>
+                <li v-bind:class="`level${myAccountInfo.thisStage || 0 }`">
+                    <span class="left">星级：</span><div class="right"><b class="star" v-for="(user,idx) in myAccountInfo.thisStar"></b></div>
+                </li>
+                <li>
+                    <span class="left">积分：</span>
+                    <div class="right">
+                        <div class="pro">
+                            <b></b>
+                            <span v-bind:class="`pre bound level${personalAccountInfo.preStage || 0 }`"><i class="star" v-for="(user,idx) in personalAccountInfo.preStar"></i></span>
+                            <span v-bind:class="`next bound level${personalAccountInfo.thisStage || 0 }`"><i class="star" v-for="(user,idx) in personalAccountInfo.thisStar"></i></span>
+                            <span v-bind:class="`count ${personalAccountInfo.upFlag?'addcount':'subcount'}`">{{personalAccountInfo.newScore-personalAccountInfo.oldScore}}分</span>
+                        </div>
+                        <span class="totalAccount">{{personalAccountInfo.oldScore}}分</span></div>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<script type="application/javascript" src="../../js/vue.js"></script>
+<script type="application/javascript" src="../../js/velocity.min.js"></script>
+
+
+<script type="application/javascript" src="../js/global.js"></script>
+<script type="application/javascript" src="../js/component.js"></script>
+<script type="application/javascript" src="../js/animate.js"></script>
+<script type="application/javascript" src="../js/end.js"></script>
+</body>
+</html>

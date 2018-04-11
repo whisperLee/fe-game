@@ -1,0 +1,228 @@
+@charset "utf-8";
+@import "users";
+@import "wx";
+body{
+  .main{
+    padding-bottom: .5rem;
+    .header{
+      margin-bottom: 0;
+    }
+    .topWrap{
+      .bulletin{
+        line-height: .18rem; font-size:.12rem ; color: $wxColor11; padding: .1rem;
+      }
+      .recom{
+        .hd{font-size: .16rem; color: $wxColor7; line-height: .3rem; padding-left: .1rem; border-top:1px solid $wxColor3; }
+        .bd{
+          overflow-x: auto; background: $wxColor2;
+          ul{
+            white-space:nowrap; height:1.6rem; overflow: hidden;
+            li.goodList{
+              float: left; height:100%;
+              a{
+                width:1.2rem; background: $wxColor1;  margin:.05rem;
+                .picWrap{
+                  width:1.2rem; height:.9rem; overflow: hidden; float: none;
+                  img{width:100%; height:auto;}
+                }
+                .goodWrap{
+                  margin-left: 0;
+                  .goodCont{
+                    .goodName{
+                      font-size: .14rem;
+                    }
+                    .goodOp {
+                      bottom: 0;
+                      span {
+                        width: .24rem;
+                        height: .24rem;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .menuWrap{
+      position: relative; width:100%; height:auto;
+      .asideWrap{
+        position: absolute;  left:0; top:0; width:.8rem; bottom:0; background: $wxColor2;
+        ul{
+          li{
+            padding: .15rem .1rem; font-size: .14rem; color: $wxColor7; line-height: 150%; text-align: center;
+            &.on{
+              background: $wxColor1;
+              color: $wxColor9;
+              font-weight: bold;
+
+            }
+          }
+        }
+      }
+      .mainWrap{
+        background: $wxColor1; margin-left:.8rem;
+        ul{
+          li.goodList{
+            a{
+
+            }
+          }
+        }
+      }
+    }
+    .cartWrap{
+      .cartList{
+        position: fixed; left:0; bottom:0.5rem; width:100%; z-index: 99; box-shadow: 0px 1px 8px $wxColor3;
+        display: none;
+        &.on{ display: block;}
+        .hd{
+          background: $wxColor1; height:.4rem;  line-height: .4rem; color: $wxColor7;
+          .clearCart{
+            float: right; margin-right: .2rem; padding-left: .2rem; background: url("../wxImage/clear.png") no-repeat left center; background-size: .2rem .2rem;
+          }
+        }
+        .bd{
+          background: $wxColor1; padding: 0 .1rem;
+          ul{
+            li{
+              position: relative; width:100%; height:.5rem; line-height: .5rem; color: $wxColor7; box-shadow: 0 1px 0 $wxColor3;
+              .name{
+                margin-right: 1.4rem; overflow: hidden;  font-size: .16rem;  text-overflow: ellipsis;  white-space: nowrap;
+              }
+              .goodPrice{
+                position: absolute; right:1rem; top:0;
+              }
+              .goodOp{
+                position: absolute; right:0; bottom:.1rem;
+              }
+            }
+          }
+        }
+      }
+      .cart{
+        position: fixed; left:0; bottom:0; width:100%; height:.5rem; line-height: .5rem; z-index: 99;
+        background: rgba(51,51,51,0.9);
+        .cartIcon{
+          position: absolute; left:.15rem; bottom:.1rem; width:.5rem; height:.5rem; background: url("../wxImage/cart.png") no-repeat center; background-size: contain;
+          .number{position: absolute; left:.3rem; top:-.05rem; background: $wxColor11; color: $wxColor1; border: 1px solid $wxColor1; width:.24rem; height:.24rem; font-size: .14rem; line-height: .24rem; border-radius: 50%; text-align: center; font-weight: bold; display: none;}
+        }
+        .price{
+          margin-left: .85rem; font-size: .2rem; color: $wxColor1; line-height: .4rem;
+        }
+        .accountBtn{
+          position: absolute;  top: 0; bottom:0;  right: 0; background: $wxColor6; width:1.2rem; height: 100%; text-align: center; color:$wxColor1;
+        }
+        &.on{
+          .cartIcon{
+            background-image: url("../wxImage/cart_on.png");
+            .number{
+              display: block;
+            }
+          }
+          .accountBtn{
+            background: $wxColor9;
+          }
+        }
+      }
+    }
+  }
+}
+.goodList{
+  overflow: hidden;
+  a{
+    display: block; margin: .1rem; height:auto; overflow: hidden;
+    .picWrap{
+      position: relative; width:1rem; height:.8rem; overflow: hidden; float: left;
+      img{width:100%; height:auto;}
+    }
+    .goodWrap{
+      position: relative; margin-left: 1.1rem;  line-height: 150%; padding: .05rem;
+      .goodCont{
+        .goodName{
+          font-size: .16rem;  line-height: 150%; color: $wxColor7;
+        }
+        .goodContent{
+          overflow: hidden;
+          span{
+            line-height: 150%; font-size: .12rem; color: $wxColor6;
+            float: left; margin-right: .1rem;
+          }
+        }
+        .goodPrice{
+          line-height: 150%; font-size: .18rem; color: $wxColor11; font-weight: bold;
+        }
+        .goodOp{
+          position: absolute; right:.05rem; bottom:0;
+
+          .goodNum,.goodSub{
+            display: none;
+          }
+
+          &.unfold{
+            .goodNum,.goodSub{
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+.goodList[isSoldOut="1"]{
+  a{
+    .picWrap:before{
+      content: "";
+      position: absolute;
+      left:0;
+      top:0;
+      width:100%;
+      height:100%;
+      background: url("../wxImage/t1.png") no-repeat center bottom rgba(255,255,255,0.5);
+      background-size: 100% auto;
+    }
+    .goodWrap{
+      .goodCont{
+        .goodPrice{color: $wxColor6;}
+        .goodOp{display: none;}
+      }
+    }
+  }
+
+
+}
+.goodOp {
+  span {
+    float: right;
+    width: .28rem;
+    height: .28rem;
+    line-height: .28rem;
+  }
+  .goodAdd {
+    background: url("../wxImage/add.png") no-repeat center;
+    background-size: contain;
+  }
+  .goodNum {
+
+    input{
+      width: .28rem;
+      height: .28rem;
+      border: none;
+      background: none;
+      text-align: center;
+      font-size: .2rem;
+      color: $wxColor7;
+
+    }
+  }
+  .goodSub {
+    background: url("../wxImage/sub.png") no-repeat center;
+    background-size: contain;
+  }
+}
+.mask{
+  position: fixed; left:0; top:0; width:100%; height:100%; background: $wxColor13; z-index: 9; display: none;
+}

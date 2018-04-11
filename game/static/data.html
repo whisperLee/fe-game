@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+        <meta name="format-detection" content="telephone=no">
+         <link href="../css/global.css" rel="stylesheet" type="text/css" media="screen" />
+        <title>游戏页面</title>
+        <style>
+        .main{background: #f1f1f1;}
+        .nav{background: #fff; height:.5rem;}
+        .nav ul li{width:33.33%; float: left; text-align: center; font-size: .18rem; color: #333333; line-height: .5rem;} 
+        .nav ul li.on{background: #1abc9c; color: #fff;}
+        .data ul li.row{ font-size: .14rem; color: #666; height:.4rem; font-size: .14rem;}
+        .data ul li.row.top{color: #1abc9c; font-size: .15rem;}
+        .data ul li.row.top .b{color: #666;}
+        .data ul li.row.total{color: #e74c3c;}
+        .data ul li.row:nth-child(2n){background: #fff;}
+        .data ul li.row:nth-child(2n+1){background: #f1f1f1;}
+        .data ul li.row ul{padding: 0 .1rem;}
+        .data ul li.row ul li{float: left; line-height:.4rem; text-align: center;}
+
+        .data ul li.row ul li b{color: #1abc9c; font-weight:normal; }
+        .data ul li.row.total ul li b{color: #e74c3c;}
+        .data ul li.row ul li:nth-child(1){width:22%;}
+        .data ul li.row ul li:nth-child(2){width:15.5%;}
+        .data ul li.row ul li:nth-child(3){width:50%;}
+        .data ul li.row ul li:nth-child(4){width:12.5%;}
+        </style>
+    </head>
+<body>
+<div class="main">
+  <div class="nav">
+    <ul>
+      <li class="on">最近7天</li>
+      <li>最近30天</li>
+      <li>最近3个月</li>
+    </ul>
+  </div>
+  <div class="data">
+    <ul>
+      <li class="top row">
+        <ul>
+          <li>日期</li>
+          <li>人流量</li>
+          <li>营业额<span class="b">(游戏/酒水)</span></li>
+          <li>场次</li>
+        </ul>
+      </li>
+      <li class="row">
+        <ul>
+          <li>2018/01/04</li>
+          <li>55人</li>
+          <li> <b>7000元</b> ( 5000元 / 2000元 )</li>
+          <li>9场</li>
+        </ul>
+      </li>
+      <li class="row">
+        <ul>
+          <li>2018/01/04</li>
+          <li>55人</li>
+          <li><b>7000元</b> ( 5000元 / 2000元 )</li>
+          <li>9场</li>
+        </ul>
+      </li>
+      <li class="row">
+        <ul>
+          <li>2018/01/04</li>
+          <li>55人</li>
+          <li> <b>7000元</b> ( 5000元 / 2000元 )</li>
+          <li>9场</li>
+        </ul>
+      </li>
+      <li class="row">
+        <ul>
+          <li>2018/01/04</li>
+          <li>55人</li>
+          <li> <b>7000元</b> ( 5000元 / 2000元 )</li>
+          <li>9场</li>
+        </ul>
+      </li>
+      <li class="row">
+        <ul>
+          <li>2018/01/04</li>
+          <li>55人</li>
+          <li> <b>7000元</b> ( 5000元 / 2000元 )</li>
+          <li>9场</li>
+        </ul>
+      </li>
+      <li class="row">
+        <ul>
+          <li>2018/01/04</li>
+          <li>55人</li>
+          <li><b>7000元</b> ( 5000元 / 2000元 )</li>
+          <li>9场</li>
+        </ul>
+      </li>
+      <li class="row">
+        <ul>
+          <li>2018/01/04</li>
+          <li>55人</li>
+          <li><b>7000元</b> ( 5000元 / 2000元 )</li>
+          <li>9场</li>
+        </ul>
+      </li>
+      <li class="row total">
+        <ul>
+          <li>总计</li>
+          <li>55人</li>
+          <li> <b>7000元</b> ( 5000元 / 2000元 )</li>
+          <li>9场</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+
+</body>
+</html>

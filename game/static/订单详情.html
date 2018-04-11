@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <meta name="format-detection" content="telephone=no">
+  <link href="../css/wx_mine.css" rel="stylesheet" type="text/css" media="screen" />
+  <title></title>
+</head>
+<body>
+<div class="main" id="wx_orderDetail">
+  <div class="top">
+    <a class="back"></a>
+    <h2>订单详情</h2>
+  </div>
+  <div class="orderDetail">
+    <div class="hd">
+      <p class="fl">订单号：{{orderDatail.name}}</p>
+      <span class="orderSatus">{{orderDatail.status}}</span>
+    </div>
+    <div class="bd">
+      <ul class="goodList">
+        <li v-for = "(item,key) in orderDatail.orderItemInfoResponseList">
+           <a>
+            <div class="picWrap">
+              <img :src="item.smallImgUrl">
+            </div>
+            <div class="goodWrap">
+              <div class="goodCont">
+                <div class="goodName">{{item.goodsName}}</div>
+                <div class="goodNum"><span>x{{item.quantity}}</span></div>
+                <div class="goodPrice">
+                  <span class="unitPrice" style="display: none" v-show="item.unitPrice!=item.actualUnitPrice">¥{{item.unitPrice}}</span>
+                  <span>¥{{item.actualUnitPrice}}</span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <div class="amount">
+        <p>商品金额：<span>￥117.05</span></p>
+        <p>促销优惠：<span class="sub">-￥17.05</span></p>
+        <p>优惠券：<span>￥0.00</span></p>
+        <p class="total">应付总额：<span>￥100.00</span></p>
+      </div> 
+      <div class="userResponse">
+        <p><span class="label">收货人：</span>琳琳</p>
+        <p><span class="label">联系电话：</span>琳琳</p>
+        <p><span class="label">收货地址</span>琳琳</p>
+        <p><span class="label">支付方式</span>琳琳</p>
+        <p><span class="label">下单时间：</span>2017-11-13 15:40:00</p>
+      </div>
+    </div> 
+    <div class="btns">
+      <a class="btn">申请退款</a>
+      <a class="btn">再次购买</a>
+    </div> 
+  </div>
+
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<script type="application/javascript" src="../../js/vue.js"></script>
+<script type="application/javascript" src="../../game/js/global.js"></script>
+<script type="application/javascript" src="../../game/js/component.js"></script>
+<script type="application/javascript" src="../../game/js/animate.js"></script>
+<script>
+    Vue.component('user',component.user)
+    new Vue({
+        el: '#wx_orderDetail',
+        data: {
+          orderDatail:{
+            status:0,
+            orderItemInfoResponseList:[
+                  {
+                    goodsId:201,
+                    goodsName:'雀巢咖啡',
+                    quantity:2,
+                    unitPrice:'34.80',
+                    actualUnitPrice:'35.80',
+                    smallImgUrl:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    goodsId:202,
+                    goodsName:'雀巢咖啡',
+                    quantity:2,
+                    unitPrice:'35.80',
+                    actualUnitPrice:'35.80',
+                    smallImgUrl:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    goodsId:203,
+                    goodsName:'雀巢咖啡',
+                    quantity:2,
+                    unitPrice:'35.80',
+                    actualUnitPrice:'35.80',
+                    smallImgUrl:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    goodsId:204,
+                    goodsName:'雀巢咖啡',
+                    quantity:2,
+                    unitPrice:'35.80',
+                    actualUnitPrice:'35.80',
+                    smallImgUrl:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  }
+            ]
+          }
+            
+        },
+        created: function () {
+            var _self = this
+            setTimeout(function(){
+                _self.active()
+            },10)
+        },
+        methods: {
+         
+        }
+    })
+
+</script>
+</body>
+</html>

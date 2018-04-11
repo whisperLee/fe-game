@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no">
+    <link href="../css/wx_orderSubmit.css" rel="stylesheet" type="text/css" media="screen" />
+    <title>订单提交</title>
+</head>
+<body>
+<div class="main" id="wx_orderSubmit" v-cloak>
+    <div class="header">
+        <div>
+            <a class="back" v-on:click="back()"></a>
+            <h1 class="pageName"><span>订单提交</span></h1>
+        </div>
+    </div>
+    <div class="orderDetail orderSubmit">
+        <div class="bd">
+            <div class="address">
+                <div><span>收货人:</span><div class="input"><input type="text" :value="user.userName"></div></div>
+                <div><span>联系方式:</span><div class="input"><input type="text" :value="user.mobile"></div></div>
+                <div><span>收货地址:</span><div class="input"><input type="text" :value="user.address"></div></div>
+            </div>
+            <ul class="goodList">
+                <li v-for = "(item,key) in goods">
+                    <a>
+                        <div class="picWrap">
+                            <img :src="item.smallImgUrl">
+                        </div>
+                        <div class="goodWrap">
+                            <div class="goodCont">
+                                <div class="goodName">{{item.goodsName}}</div>
+                                <div class="goodNum"><span>x{{item.quantity}}</span></div>
+                                <div class="goodPrice">
+                                    <span class="unitPrice" style="display: none" v-show="item.amount!=item.actualAmount">¥{{item.amount}}</span>
+                                    <span>¥{{item.actualAmount}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <ul class="userCash">
+                <li class="voucher" v-on:click="showVoucher()">优惠券 <span class="enable"></span><p class="fr"><span v-if="orderConfirmDate.voucherId && orderConfirmDate.voucherId!=null">-￥{{amount.voucherDiscounts}}</span><span v-else>未使用</span></p></li>
+                <li class="conScore">玉米  <span>共{{orderConsumptionScore.allConsumptionScore}}玉米</span><span>可用{{orderConsumptionScore.maxConsumptionScore}}玉米</span> <div class="switch" v-on:click="switchBtn($event)" v-if="orderConsumptionScore && orderConsumptionScore.consumptionScoreList && orderConsumptionScore.consumptionScoreList.length>0"></div>
+                    <div class="consumptionScoreChoose">
+                        使用
+                        <select name="" id="consumptionScoreChoose">
+                            <option v-for = "(item,key) in orderConsumptionScore.consumptionScoreList" :value="item">{{item}}</option>
+                        </select>玉米
+
+                    </div>
+                </li>
+
+            </ul>
+            <div class="amount">
+                <p>商品金额：<span>￥{{amount.amount}}</span></p>
+                <p>促销优惠：<span class="sub">-￥{{amount.promotionDiscounts || 0}} </span></p>
+                <p>优惠券：<span>-￥{{amount.voucherDiscounts || 0}}</span></p>
+                <p>玉米：<span>-￥{{amount.useConsumptionScore?amount.useConsumptionScore/100:0}}</span></p>
+                <p class="total">应付总额：<span>￥{{amount.actualAmount}}</span></p>
+            </div>
+            <div class="payType">
+                <span>支付方式:</span> <ul class="radio"><li type="0" class="active">微信支付</li><li type="50">线下付款</li></ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <span class="total">实付款：￥{{amount.actualAmount}}</span>
+        <a class="btn btn1" v-on:click="orderSubmit()">确认购买</a>
+    </div>
+    <div class="layerWrap voucherListLayer">
+        <div class="layerNavTop">
+            <a class="back"></a>
+            <h2>使用抵价券</h2>
+        </div>
+        <div class="layerNavContent voucherList barWrap">
+            <div class="hd">
+                <ul class="flexBar">
+                    <li class="enabled on"><a></a></li>
+                    <li class="disabled"><a></a></li>
+                </ul>
+            </div>
+            <div class="bd">
+                <ul class="cards barCon enabledVoucher on">
+
+                </ul>
+                <ul class="cards barCon disabledVoucher">
+
+                </ul>
+            </div>
+        </div>
+        <div class="layerNavBottom">
+            <div class="btns">
+                <a class="btn" v-on:click="confirmCard()">确认</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<script type="application/javascript" src="../../js/vue.js"></script>
+<script type="application/javascript" src="../../js/velocity.min.js"></script>
+<script type="application/javascript" src="../../game/js/animate.js"></script>
+<script type="application/javascript" src="../../game/js/wx/wx_global.js"></script>
+<script type="application/javascript" src="../../game/js/wx/wx_component.js"></script>
+<script type="application/javascript" src="../js/wx/wx_orderSubmit.js"></script>
+</body>
+</html>

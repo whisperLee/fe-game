@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no">
+    <link href="../css/wx_shop.css" rel="stylesheet" type="text/css" media="screen" />
+    <title>首页</title>
+</head>
+<body>
+<div class="main" id="wx_shop">
+    <div class="header">
+        <div>
+            <a class="back" v-on:click="back()"></a>
+            <h1 class="pageName"><span>{{shopName}}</span></h1>
+        </div>
+    </div>
+    <div class="topWrap">
+        <div class="bulletin"><b>公告:</b>{{bulletin}}</div>
+        <div class="recom">
+            <div class="hd">{{topList.classifyName}}</div>
+            <div class="bd">
+                <ul>
+                    <li v-for = "(item,key) in topList.goodsList" class="goodList js-goodList" :isSoldOut="item.soldOutFlag" :goodId="item.id">
+                        <a>
+                            <div class="picWrap">
+                                <img :src="item.smallImgUrl" alt="">
+                            </div>
+                            <div class="goodWrap">
+                                <div class="goodCont">
+                                    <div class="goodName">{{item.name}}</div>
+                                    <div class="goodPrice">
+                                        <span>¥{{item.actualPrice}}<input type="hidden" class="js-goodPrice" :value="item.actualPrice" name="goodPrice"></span>
+                                    </div>
+                                    <div class="goodOp js-goodOp">
+                                        <span class="goodAdd js-goodAdd" v-on:click="changeGood($event,item,2)"></span>
+                                        <!--<span class="goodNum"><input readonly class="js-goodNum" :value="item.num" name="goodNum"></span>-->
+                                        <!--<span class="goodSub js-goodSub" v-on:click="changeGood($event,item,-1)"></span>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="menuWrap">
+        <div class="asideWrap">
+            <ul>
+                <li v-for = "(items,key) in goods" :type="key"><a>{{items.classifyName}}</a></li>
+            </ul>
+        </div>
+        <div class="mainWrap">
+            <ul v-for = "(items,key) in goods" :type="key">
+                <li v-for = "(item,key) in items.goodsList" class="goodList js-goodList" :isSoldOut="item.soldOutFlag" :goodId="item.id">
+                    <a>
+                        <div class="picWrap">
+                            <img :src="item.smallImgUrl">
+                        </div>
+                        <div class="goodWrap">
+                            <div class="goodCont">
+                                <div class="goodName">{{item.name}}</div>
+                                <div class="goodContent">
+                                    <span class="goodSale">月售{{item.salesVolume}}</span>
+                                </div>
+                                <div class="goodPrice">
+                                    <span>¥{{item.actualPrice}}<input type="hidden" class="js-goodPrice" :value="item.actualPrice" name="goodPrice"></span>
+                                </div>
+
+                                <div :class="item.num>0? 'unfold goodOp js-goodOp':'goodOp js-goodOp'">
+                                    <span class="goodAdd js-goodAdd" v-on:click="changeGood($event,item,1)"></span>
+                                    <span class="goodNum"><input readonly class="js-goodNum" :value="item.num || 0" name="goodNum"></span>
+                                    <span class="goodSub js-goodSub" v-on:click="changeGood($event,item,-1)"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="cartWrap">
+        <div class="cartList">
+            <div class="hd"><span class="clearCart" v-on:click="clearCart()">清空购物车</span></div>
+            <div class="bd">
+                <ul>
+                    <li v-for = "(item,key) in cartList" class="goodList js-goodList" :goodId="item.id">
+                        <p class="name">{{item.name}}</p>
+                        <div class="goodOp js-goodOp">
+                            <span class="goodAdd js-goodAdd" v-on:click="changeGood($event,item,1)"></span>
+                            <span class="goodNum"><input readonly class="js-goodNum" :value="item.num" name="goodNum"></span>
+                            <span class="goodSub js-goodSub" v-on:click="changeGood($event,item,-1)"></span>
+                        </div>
+                        <span class="goodPrice">¥{{item.actualPrice}} <input type="hidden" class="js-goodPrice" :value="item.actualPrice" name="goodPrice"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div :class="cartNum>0? 'cart on':'cart'">
+            <div class="cartIcon">
+                <div class="number">{{cartNum}}</div>
+            </div>
+            <div class="price">
+                ¥<span>{{cartTotal}}</span>
+            </div>
+            <div class="accountBtn" v-on:click="account()">结算</div>
+        </div>
+    </div>
+    <div class="j-mask mask"></div>
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<script type="application/javascript" src="../../js/vue.js"></script>
+<script type="application/javascript" src="../../game/js/wx/wx_global.js"></script>
+<script type="application/javascript" src="../../game/js/wx/wx_component.js"></script>
+<script type="application/javascript" src="../js/wx/wx_shop.js"></script>
+</body>
+</html>

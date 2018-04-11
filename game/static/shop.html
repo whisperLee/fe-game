@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <meta name="format-detection" content="telephone=no">
+  <link href="../css/wx_shop.css" rel="stylesheet" type="text/css" media="screen" />
+  <title>首页</title>
+</head>
+<body>
+<div class="main" id="wx_shop">
+  <div class="header">
+    <a class="back"></a>
+    <h1 class="pageName"><span>{{shop.shopName}}</span></h1>
+  </div>
+  <div class="topWrap">
+    <div class="bulletin"><b>公告:</b>{{shop.bulletin}}</div>
+    <div class="recom">
+      <div class="hd">{{shop.topList.name}}</div>
+      <div class="bd">
+        <ul>
+          <li v-for = "(item,key) in shop.topList.list" class="foodList js-foodList" :foodId="item.id">
+              <a>
+                <div class="picWrap">
+                  <img :src="item.img" alt="">
+                </div>
+                <div class="foodWrap">
+                  <div class="foodCont">
+                    <div class="foodName">{{item.name}}</div>
+                    <div class="foodPrice">
+                      <span>¥{{item.price}}<input type="hidden" class="js-foodPrice" :value="item.price" name="foodPrice"></span>
+                    </div>
+                    <div class="foodOp js-foodOp">
+                      <span class="foodAdd js-foodAdd" v-on:click="changeFood($event,1)"></span>
+                      <span class="foodNum"><input type="hidden" class="js-foodNum" value="0" name="foodNum"></span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="menuWrap">
+    <div class="asideWrap">
+      <ul>
+        <li v-for = "(items,key) in shop.cartList" :type="key"><a>{{key}}</a></li>
+      </ul>
+    </div>
+    <div class="mainWrap">
+      <ul v-for = "(items,key) in shop.cartList" :type="key">
+        <li v-for = "(item,key) in items" class="foodList js-foodList" :foodId="item.id">
+          <a>
+            <div class="picWrap">
+              <img :src="item.img">
+            </div>
+            <div class="foodWrap">
+              <div class="foodCont">
+                <div class="foodName">{{item.name}}</div>
+                <div class="foodContent">
+                  <span class="foodSale">月售120</span>
+                </div>
+                <div class="foodPrice">
+                  <span>¥{{item.price}}<input type="hidden" class="js-foodPrice" :value="item.price" name="foodPrice"></span>
+                </div>
+                <div class="foodOp js-foodOp">
+                  <span class="foodAdd js-foodAdd" v-on:click="changeFood($event,1)"></span>
+                  <span class="foodNum"><input readonly class="js-foodNum" value="0" name="foodNum"></span>
+                  <span class="foodSub js-foodSub" v-on:click="changeFood($event,-1)"></span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>    
+      </ul>
+    </div>
+  </div>
+  <div class="cartWrap">
+    <div class="cartList">
+      <div class="hd"><span class="clearCart" v-on:click="clearCart()">清空购物车</span></div>
+      <div class="bd">
+        <ul>
+          <li v-for = "(item,key) in cartList" class="foodList js-foodList" :foodId="item.id">
+            <p class="name">{{item.name}}</p>
+            <div class="foodOp js-foodOp">
+              <span class="foodAdd js-foodAdd" v-on:click="changeFood($event,1)"></span>
+              <span class="foodNum"><input readonly class="js-foodNum" value="0" name="foodNum"></span>
+              <span class="foodSub js-foodSub" v-on:click="changeFood($event,-1)"></span>
+            </div>
+            <span class="foodPrice">¥{{item.price}} <input type="hidden" class="js-foodPrice" :value="item.price" name="foodPrice"></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="cart on">
+      <div class="cartIcon">
+        <div class="number">10</div>
+      </div>
+      <div class="price">
+        ¥<span>60</span>
+      </div>
+      <div class="accountBtn">结算</div>
+    </div>
+  </div>
+  <div class="j-mask mask"></div>
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<script type="application/javascript" src="../../js/vue.js"></script>
+<script type="application/javascript" src="../../game/js/global.js"></script>
+<script type="application/javascript" src="../../game/js/component.js"></script>
+<script type="application/javascript" src="../js/wx/wx_shop.js"></script>
+<script>
+    Vue.component('user',component.user)
+    new Vue({
+        el: '#wx_shop',
+        data: {
+          shop:{
+            shopName:'你猜猜',
+            bulletin:'今天天气好，所有商品8折优惠',
+            topList:{
+              name:'热销推荐',
+              list:[
+                {
+                  id:101,
+                  name:'雀巢咖啡',
+                  price:'35.80',
+                  img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                },
+                {
+                  id:102,
+                  name:'雀巢咖啡',
+                  price:'35.80',
+                  img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                },
+                {
+                  id:103,
+                  name:'雀巢咖啡',
+                  price:'35.80',
+                  img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                },
+                {
+                  id:104,
+                  name:'雀巢咖啡',
+                  price:'35.80',
+                  img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                },
+                {
+                  id:105,
+                  name:'雀巢咖啡',
+                  price:'35.80',
+                  img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                },
+                {
+                  id:106,
+                  name:'雀巢咖啡',
+                  price:'35.80',
+                  img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                }
+              ]
+            },
+            cartList:{
+              '饮料':[
+                  {
+                    id:201,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:202,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:203,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:204,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:205,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:206,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  }
+              ],
+              '小吃':[
+                  {
+                    id:301,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:302,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:303,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:304,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:305,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:306,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  }
+              ],
+              '哈哈':[
+                  {
+                    id:401,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:402,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:403,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:404,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:405,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:406,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  }
+              ],
+              '呵呵':[
+                  {
+                    id:501,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:502,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:503,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:504,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:505,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  },
+                  {
+                    id:506,
+                    name:'雀巢咖啡',
+                    price:'35.80',
+                    img:'http://p1.meituan.net/0.84.63/xianfu/d9f0d0609e25d76fc6e9a84dd8b97fa720754.jpg.webp',
+                  }
+              ]
+            }
+          },
+          cartList:[]
+          
+
+        },
+        created: function () {
+            var _self = this
+            _self.shopId = global.urlHash.shopId
+            setTimeout(function(){
+                _self.init()
+            },1)
+
+        },
+        methods: {
+            init:function(){
+                var _self = this
+                _self._w = $(window).width()
+                _self._h = $(window).height()
+                _self.getCart()
+                $('.topWrap .recom ul').width($('.topWrap .recom ul li').width() * $('.topWrap .recom ul li').length )
+                _self.active()
+            },
+            scroll:function(){
+                var _self = this
+                var top = document.body.scrollTop
+                var t_h = $('.header').height()
+                console.log(top)
+                if( top >= $('.menuWrap').offset().top-t_h){
+                    $('.menuWrap .asideWrap').css({'position':'fixed','top':t_h+'px'})
+                }else{
+                    $('.menuWrap .asideWrap').css({'position':'absolute','top':0})
+                }
+
+            },
+            changeFood:function(event,type){
+                var _self = this
+                var el = $(event.currentTarget)
+                var $f = el.closest('.js-foodList')
+                var $op = el.closest('.js-foodOp')
+                var $num = $f.find('.js-foodNum')
+                var num = $num.val() || 0
+                var foodId = $f.attr('foodId')
+                if(type==1){ //加
+                    num++
+                    $op.addClass('unfold')
+                }else if(type==-1){ // 减
+                    num--
+                    if(num<1){
+                        num = 0
+                        if($op.hasClass('unfold')){
+                            $op.removeClass('unfold')
+                        }
+                    }
+                }
+                _self.setData({'foodId':foodId,'foodNum':num})
+                shop.modifyCart($f.attr('foodId'))
+            },
+//            setData:function(arr){
+//              for(var i=0; i<arr.length;i++){
+//                  $('.js-foodList[foodId="'+arr[i].foodId+'"]').each(function () {
+//                      $(this).find('.js-foodNum').val(arr[i].foodNum)
+//                  })
+//              }
+//            },
+            setData:function(obj){
+                $('.js-foodList[foodId="'+obj.foodId+'"]').each(function () {
+                    $(this).find('.js-foodNum').val(obj.foodNum)
+                })
+            },
+            clearCart:function(){
+              var _self  =this
+              _self.cartList = []
+              // 清空本地存储，并修改内容
+              shop.modifyLocalStorCart(_self.shopId,[])
+
+              $('js-foodList .js-foodOp.unfold').each(function(){
+                  var el = $(this)
+                  el.removeClass('unfold')
+                  el.find('.js-foodNum').val(0)
+              })
+
+              // 修改购物车数据？？？？？？？？？？？、
+            },
+            getCart:function(){
+                var _self = this
+              // 获取本地存储，并更新数据
+                var carts = shop.getStorage("carts");
+                var shopId = _self.shopId
+                if(carts[shopId]){
+                    var cartNum=total = 0;
+                    for(var key in carts[shopId]){
+                        var num = carts[shopId][key].num;
+                        var price = carts[shopId][key].price;
+                        if(num>0){
+                            total+=parseFloat(price*num);
+                            cartNum+=num;
+                            _self.setData({'foodId':carts[shopId][key].id,'foodNum':num})
+                        }
+
+                    }
+                    total = total.toFixed(2);
+                    if($('.cartIcon').find('input[name="total"]').length>0){
+                        $('.cartIcon').find('input[name="total"]').val(total);
+                    }else{
+                        $('.cartIcon').append('<input type="hidden" value="'+total+'" name="total" >');
+                    }
+                    $('.cart .price span').html(total);
+                    $('.cartIcon .number').html(cartNum);
+                }
+            },
+            active:function () {
+                var _self = this
+                $(window).scroll(function(){
+                    _self.scroll()
+                })
+                $('.cart.on .cartIcon').off().on('click',function(){
+                  if($('.cartList').hasClass('on')){
+                      $('.cartList').removeClass('on')
+                      $('.j-mask').hide()
+                  }else{
+                      $('.cartList').addClass('on')
+                      $('.j-mask').show()
+                  }
+                })
+
+                $('.j-mask').off().on('click',function(){
+                    $('.cartList').removeClass('on')
+                    $('.j-mask').hide()
+                })
+
+
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

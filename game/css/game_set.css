@@ -38,7 +38,8 @@ body {
   -webkit-user-select: none;
   overflow: auto;
   font-size: .16rem;
-  line-height: 150%; }
+  line-height: 150%;
+  font-family: Helvetica, STHeiti, Droid Sans Fallback; }
 
 textarea {
   resize: none; }

@@ -1,10 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <meta name="format-detection" content="telephone=no">
+  <link href="../css/wxh_record.css" rel="stylesheet" type="text/css" media="screen" />
+  <title>游戏记录</title>
 </head>
 <body>
+<div class="main" id="wx_records" v-cloak>
+  <div class="header"><div><a class="back"></a> <h1 class="pageName"><span>游戏记录</span></h1></div></div>
+  <div class="container iscrollWrap">
+    <div class="records iscroll" :total="getGameHistoryList.totalCount">
+      <ul>
+        <li v-on:click="showGameHistoryDetail($event)" v-for = "item in gameHistoryList.dataList" :gameId="item.id" >
+          <div class="fl"><img src="../wxImage/baichi.jpg" alt=""></div>
+          <div class="info">
+            <h3>{{item.combinationName}}</h3>
+            <p><span class="costTime">{{item.costTime}}</span><span class="endTime">{{item.endTime}}</span></p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="layerWrap gameHistoryLayer gameEnd">
+    <div class="layerNavTop">
+      <a class="back"></a>
+      <h2>对战历史</h2>
+    </div>
+    <div class="layerNavContent endInner">
+      <div class="result win">
+        <h3 class="title"><span>胜利</span></h3>
+        <ul class="userList">
+          <li v-for="(user,idx) in gameHistoryDetailInfo.winUsers" v-on:click="voteMvp($event)" :userid="user.userId" class="zan">
+            <userwin v-bind:user="user"></userwin>
+            <p><span>{{user.identityName}}</span></p>
+          </li>
 
+        </ul>
+      </div>
+      <div class="result lose">
+        <ul class="userList">
+          <li v-for="(user,idx) in gameHistoryDetailInfo.loseUsers" v-on:click="mvp($event)" :userid="user.userId">
+            <userlose v-bind:user="user"></userlose>
+            <p><span>{{user.identityName}}</span></p>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<script type="application/javascript" src="../../js/vue.js"></script>
+<script type="application/javascript" src="../../js/velocity.min.js"></script>
+<script type="application/javascript" src="../../js/iscroll5.js"></script>
+<script type="application/javascript" src="../../game/js/animate.js"></script>
+<script type="application/javascript" src="../../game/js/wx/wx_global.js"></script>
+<script type="application/javascript" src="../../game/js/wx/wx_component.js"></script>
+<script type="application/javascript" src="../../game/js/wx/wx_records.js"></script>
 </body>
 </html>

@@ -1,0 +1,57 @@
+@charset "utf-8";
+@import "global";
+/*预约*/
+.tabWrap{
+  .tabCon{
+    .appointDest,.appointSeat{
+      margin-bottom: .3rem;
+      .hd{
+        font-size: .24rem; line-height: .5rem; color: $wxColor11; font-weight: bold; padding-left: .4rem;
+      }
+      .bd{
+        .tableList{
+          .th,.tr{
+            display: -webkit-box;
+            display: -moz-box;
+            display: box;
+            p{
+              width:1%;
+              -webkit-box-flex:1 ;
+              -moz-box-flex: 1;
+              box-flex: 1;
+              float: none;
+              display: block;
+              .view{
+                color: $wxColor11; cursor: pointer;
+              }
+              .cancel{
+                color: $wxColor5;
+              }
+            }
+          }
+        }
+
+
+
+      }
+
+    }
+  }
+}
+.appointDest{
+  .hd{
+    background: url("../image/i14.png") no-repeat left center; background-size: .3rem .3rem;
+  }
+}
+.appointSeat{
+  .hd{
+    background: url("../image/i13.png") no-repeat left center; background-size: .3rem .3rem;
+  }
+}
+.layerContact{
+  .tableList{
+    .th,.tr{
+      p{width:33.3%}
+    }
+  }
+}

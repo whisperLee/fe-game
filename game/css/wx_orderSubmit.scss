@@ -1,7 +1,7 @@
 @charset "utf-8";
 @import "users";
 @import "wx";
-@import "wx_order";
+@import "_wx_order";
 @import "wx_card";
 body{
   .main{
@@ -17,6 +17,23 @@ body{
       &.active .right{
         background-image: url("../wxImage/r_on.png");
       }
+    }
+    .layerNavContent{
+      .bd{
+        padding: 0 .1rem;
+        .card{
+          .use{
+            display: none;
+          }
+        }
+      }
+    }
+    .footer{
+      text-align: right;
+      .btn.btn1{
+        height:.55rem; line-height: .55rem; width:1rem; text-align: center; color: $wxColor1; background: $wxColor11; display: inline-block;
+      }
+      .total{font-size: .16rem; color: $wxColor11; padding-right: .1rem;}
     }
   }
 

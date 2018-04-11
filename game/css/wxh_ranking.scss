@@ -1,0 +1,15 @@
+@charset "utf-8";
+@import "_wx";
+.ranking{
+  li{
+    height: .6rem; line-height: .6rem; padding: .1rem 0; border-bottom: 1px solid $wxColor3;
+    p{
+      font-size: .2rem; color: $wxColor7; float: left; height:100%;
+      img{height:.6rem; width:auto; display: block; margin: 0 auto;}
+      &:nth-child(1){width:10%;}
+      &:nth-child(2){width:30%;}
+      &:nth-child(3){width:30%;}
+      &:nth-child(4){width:30%;}
+    }
+  }
+}

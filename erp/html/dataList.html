@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <meta name="format-detection" content="telephone=no">
+  <link href="../css/dataList.css" rel="stylesheet" type="text/css" media="screen" />
+  <title>首页</title>
+</head>
+<body>
+<div class="main" id="e_dataList">
+  <div class="contain">
+    <div class="data">
+      <div class="tabWrap">
+        <div class="tabBar">
+          <ul>
+            <li class="on"><a>今天</a></li>
+            <li><a>最近1周</a></li>
+            <li><a>最近1月</a></li>
+            <li><a>最近1年</a></li>
+          </ul>
+        </div>
+        <div class="tabCons">
+          <ul class="tabCon tableList on">
+            <li class="th">
+              <p></p>
+              <p>消费人数</p>
+              <p>订单数<b>(实物/虚拟)</b></p>
+              <p>游戏人数<b>(场次)</b></p>
+              <p>营业额</p>
+            </li>
+            <li class="tr">
+              <p></p>
+              <p>{{todayData.buyCount}}人</p>
+              <p> <b class="b">{{todayData.orderCount}}单</b> ( {{todayData.entityOrderCount}}单 / {{todayData.virtualOrderCount}}单 )</p>
+              <p><b class="b">{{todayData.gamerCount}}人</b>({{todayData.screeningCount}}场)</p>
+              <p>{{todayData.turnover}}元</p>
+            </li>
+
+            <li class="th">
+              <p></p>
+              <p>预约人数</p>
+              <p>门店总人数<b>(游戏中/空闲)</b></p>
+              <p>路上人数</p>
+              <p>空闲包</p>
+            </li>
+            <li class="tr">
+              <p></p>
+              <p>{{todayData.todayShopAppointmentGamerCount}}人</p>
+              <p> <b class="b">{{todayData.nowShopGamerCount}}人</b> ( {{todayData.nowShopPlayGamerCount}}人 / {{todayData.nowShopIdleGamerCount}}人 )</p>
+              <p><b class="b">{{todayData.nowShopComeGamerCount}}人</b></p>
+              <p>{{todayData.nowBoxIdleCount}}间</p>
+            </li>
+          </ul>
+          <ul class="tabCon tableList">
+            <li class="th">
+              <p>日期</p>
+              <p>消费人数</p>
+              <p>订单数<b>(实物/虚拟)</b></p>
+              <p>游戏人数<b>(场次)</b></p>
+              <p>营业额</p>
+            </li>
+            <li v-for = "(item,key) in weekList" class="tr">
+              <p>{{item.dateStr}}</p>
+              <p>{{item.buyCount}}人</p>
+              <p> <b class="b">{{item.orderCount}}单</b> ( {{item.entityOrderCount}}单 / {{item.virtualOrderCount}}单 )</p>
+              <p><b class="b">{{item.gamerCount}}人</b>({{item.screeningCount}}场)</p>
+              <p>{{item.turnover}}元</p>
+            </li>
+            <li class="tr total">
+              <p>总计：</p>
+              <p><b class="b">{{weekTotal.buyCount}}人</b></p>
+              <p> <b class="b">{{weekTotal.orderCount}}单</b> ( {{weekTotal.entityOrderCount}}单 / {{weekTotal.virtualOrderCount}}单 )</p>
+              <p><b class="b">{{weekTotal.gamerCount}}人</b>({{weekTotal.screeningCount}}场)</p>
+              <p><b class="b">{{weekTotal.turnover}}元</b></p>
+            </li>
+          </ul>
+          <ul class="tabCon tableList">
+            <li class="th">
+              <p>日期</p>
+              <p>消费人数</p>
+              <p>订单数<b>(实物/虚拟)</b></p>
+              <p>游戏人数<b>(场次)</b></p>
+              <p>营业额</p>
+            </li>
+            <li v-for = "(item,key) in monthList" class="tr">
+              <p>{{item.dateStr}}</p>
+              <p>{{item.buyCount}}人</p>
+              <p> <b class="b">{{item.orderCount}}单</b> ( {{item.entityOrderCount}}单 / {{item.virtualOrderCount}}单 )</p>
+              <p><b class="b">{{item.gamerCount}}人</b>({{item.screeningCount}}场)</p>
+              <p>{{item.turnover}}元</p>
+            </li>
+            <li class="tr total">
+              <p>总计：</p>
+              <p><b class="b">{{monthTotal.buyCount}}人</b></p>
+              <p> <b class="b">{{monthTotal.orderCount}}单</b> ( {{monthTotal.entityOrderCount}}单 / {{monthTotal.virtualOrderCount}}单 )</p>
+              <p><b class="b">{{monthTotal.gamerCount}}人</b>({{monthTotal.screeningCount}}场)</p>
+              <p><b class="b">{{monthTotal.turnover}}元</b></p>
+            </li>
+          </ul>
+          <ul class="tabCon tableList">
+            <li class="th">
+              <p>日期</p>
+              <p>消费人数</p>
+              <p>订单数<b>(实物/虚拟)</b></p>
+              <p>游戏人数<b>(场次)</b></p>
+              <p>营业额</p>
+            </li>
+            <li v-for = "(item,key) in yearList" class="tr">
+              <p>{{item.dateStr}}</p>
+              <p>{{item.buyCount}}人</p>
+              <p> <b class="b">{{item.orderCount}}单</b> ( {{item.entityOrderCount}}单 / {{item.virtualOrderCount}}单 )</p>
+              <p><b class="b">{{item.screeningCount}}人</b>({{item.gamerCount}}场)</p>
+              <p>{{item.turnover}}元</p>
+            </li>
+            <li class="tr total">
+              <p>总计：</p>
+              <p><b class="b">{{yearTotal.buyCount}}人</b></p>
+              <p> <b class="b">{{yearTotal.orderCount}}单</b> ( {{yearTotal.entityOrderCount}}单 / {{yearTotal.virtualOrderCount}}单 )</p>
+              <p><b class="b">{{yearTotal.gamerCount}}人</b>({{yearTotal.screeningCount}}场)</p>
+              <p><b class="b">{{yearTotal.turnover}}元</b></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<script type="application/javascript" src="../../js/vue.js"></script>
+<script type="application/javascript" src="../../js/velocity.min.js"></script>
+<script type="application/javascript" src="../js/global.js"></script>
+<script type="application/javascript" src="../js/dataList.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+@charset "utf-8";
+@import "_wx";
+@import "_wx_card";
+body{
+  background: $wxColor2;
+  .main{
+    background: $wxColor2;
+    .header{
+      margin-bottom: 0;
+    }
+    .cards{
+      .bd{
+        padding: 0 .1rem;
+      }
+    }
+  }
+}
+
+
+

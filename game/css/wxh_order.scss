@@ -1,0 +1,49 @@
+@charset "utf-8";
+@import "_wx";
+@import "_wx_order";
+body{
+  background: $wxColor3;
+  .orderDetail{
+    .hd{
+      height:.4rem;
+      line-height: .4rem;
+      position: relative;
+      font-size: .16rem;
+      color: $wxColor7;
+      padding: 0 .1rem;
+      margin-top: .1rem;
+      background: $wxColor1;
+      border-bottom: .5px solid $wxColor3;
+      .orderSatus{
+        float: right;
+        color: $wxColor11;
+      }
+    }
+  }
+}
+
+
+
+
+.layerNavContent{
+  .hd{
+    height:.4rem;
+    ul{
+      li{
+        float: left; width:50%; line-height: .4rem; font-size: .14rem; text-align: center;
+        &.active{color: $wxColor11;}
+      }
+    }
+  }
+  .bd{
+    .cards{
+      display: none;
+      &.active{
+        display: block;
+      }
+    }
+  }
+}
+.consumptionScoreChoose{
+  height:.4rem; width:100%; display: none; border-top:0.5px solid $wxColor3;
+}

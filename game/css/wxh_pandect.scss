@@ -1,0 +1,34 @@
+@charset "utf-8";
+@import "_wx";
+.pandect{
+  padding-top: 0;
+  .title{
+    line-height: .4rem;
+    border-bottom: .5px solid $wxColor3;
+    overflow: hidden;
+    padding: 0 .1rem;
+    color: $wxColor6;
+
+  }
+  ul{
+    overflow: hidden;
+    li{
+      float: left;
+      width:30%;
+      margin-left: 2.5%;
+      margin-top: .1rem;
+      font-size: .12rem;
+      color:$wxColor6;
+      border: .5px solid $wxColor3;
+      line-height: 0;
+      img{
+        width:100%;
+        height: auto;
+      }
+      p{
+        padding: 0 .1rem;
+        line-height: .2rem;
+      }
+    }
+  }
+}

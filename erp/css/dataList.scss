@@ -1,0 +1,35 @@
+@charset "utf-8";
+@import "global";
+/*数据*/
+.tabWrap{
+  .tabCon{
+    .tr,.th{
+        p{
+          &:nth-child(1){width:20%;}
+          &:nth-child(2){width:17.5%;}
+          &:nth-child(3){width:25%;}
+          &:nth-child(4){width:17.5%;}
+          &:nth-child(5){width:20%;}
+        }
+
+    }
+    .th:nth-child(n+2){margin-top: .5rem;}
+  }
+}
+.mobile{
+  .tabWrap{
+    .tabCon{
+      .tr,.th{
+        p{
+          b{
+            display: block;
+          }
+        }
+        p:nth-child(3), p:nth-child(4){
+          line-height: .18rem; padding-top: .07rem; box-sizing: border-box;
+        }
+      }
+
+    }
+  }
+}

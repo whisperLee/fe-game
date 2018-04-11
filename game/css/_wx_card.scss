@@ -1,0 +1,113 @@
+.card{
+  height:1rem; background: $wxColor1; margin-bottom: .1rem;
+  .left{
+    position: relative; width:1.5rem; height: 100%; float: left; color: $wxColor1;
+    background: url("../wxImage/r0.png") no-repeat left center;
+    background-size: cover;
+    .inner{
+      position: absolute;
+      left:5%;
+      top:50%;
+      width:90%;
+      -webkit-transform:translate(0,-50%);
+      text-align: center;
+      .money{
+        font-size: .16rem; line-height: .4rem;
+        span{
+          font-size: .4rem; padding: 0 .05rem;
+        }
+      }
+      .limit{
+        font-size: .14rem; line-height: .2rem;
+      }
+    }
+  }
+  .right{
+    position: relative; height:100%; margin-left: 1.6rem; font-size: .12rem;  line-height: .2rem;
+    h3{
+      font-size: .18rem; line-height: .4rem; color: $wxColor7;
+    }
+    .info{
+      color: $wxColor6;
+    }
+    .endTime{
+      position: absolute; left:0; bottom:.05rem; color: $wxColor4; padding-top: .1rem; -webkit-transform-origin:left center;-webkit-transform:scale(0.8)
+    }
+    .use{
+      position: absolute; right:.05rem; bottom:.05rem; font-size: .12rem; color: $wxColor7; line-height: .2rem; height: .2rem; border-radius: .1rem; border: .5px solid $wxColor7; display: inline-block; padding: 0 .08rem;
+    }
+  }
+}
+.card[type="50"][canuse=true]{
+  .left{
+    background-image: url("../wxImage/r1.png")
+  }
+  .right{
+    .use{
+      border-color: #f6dc4b;
+      color: #f6dc4b
+    }
+  }
+}
+.card[type="51"][canuse=true]{
+  .left{
+    background-image: url("../wxImage/r2.png")
+  }
+  .right{
+    .use{
+      border-color: #fe8228;
+      color: #fe8228;
+    }
+  }
+}
+.card[type="0"][canuse=true]{
+  .left{
+    background-image: url("../wxImage/r3.png")
+  }
+  .right{
+    .use{
+      border-color: #3aeabb;
+      color: #3aeabb
+    }
+  }
+
+}
+.card[type="1"][canuse=true]{
+  .left{
+    background-image: url("../wxImage/r4.png")
+  }
+  .right{
+    .use{
+      border-color: #a087fd;
+      color: #a087fd;
+    }
+  }
+}
+.card[type="2"][canuse=true]{
+  .left{
+    background-image: url("../wxImage/r5.png")
+  }
+  .right{
+    .use{
+      border-color: #b443d3;
+      color: #b443d3;
+    }
+  }
+}
+.card[type="3"][canuse=true]{
+  .left{
+    background-image: url("../wxImage/r6.png")
+  }
+  .right{
+    .use{
+      border-color: #e74c3c;
+      color: #e74c3c;
+    }
+
+  }
+}
+.card[canuse=false]{
+  .use{
+    display: none;
+  }
+}

@@ -15,19 +15,6 @@ ctrl+t 拉取服务器最新代码
 要有新手视频指导
 
 
-用户头像状态: 身份状态(死亡,开枪,放逐等),上警,警长
-
-campaignFlag：true  上警
-sergeantFlag：true 警长
-identityStatus:DEAD死亡
-
-SHOOT：开枪
-EXILE：放逐
-IDIOT：白痴被放逐
-
-
-
-http://note.youdao.com/noteshare?id=e6ab57892697c23970d222c5bcc4ca58&sub=E7C7D9F90C8B406390A51634137B7A28
 
 微信首页banner图事件
 
@@ -36,7 +23,20 @@ http://note.youdao.com/noteshare?id=e6ab57892697c23970d222c5bcc4ca58&sub=E7C7D9F
     @Min(0)
     private int pageSize = CommonConstant.DEFAULT_PAGE_SIZE;
 
-    订单调用流程:
-    1.调用orderConfirm,获取结算价格,商品列表等数据,不用传入voucherId和consumptionScore,只需要传入类型和商品信息
-    2.调用getOrderConsumptionScore获取当前可以使用的玉米列表
-    3.使用玉米或者使用抵价券,调用changeVoucherOrConsume,传入voucherId或者consumptionScore,获取使用之后的价格信息(只会返回价格,可以获得玉米等信息).
+
+ footer的商城页面，怎样获取商城id
+
+ ===========
+ 接口未调用：
+  1.box-controller : face 包房相关api
+  2.consumption-score-record-controller : face 消费积分记录
+  3.game-info-controller : face 游戏信息相关api
+  4.game-record-controller
+  5.ranking-controller  排行榜相关api
+
+  订单赠品 未显示
+
+  线下支付时显示请到前台结算，
+  订单页面需要一个移动端页面
+  切换也签的时候需要刷新数据
+

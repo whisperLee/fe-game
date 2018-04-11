@@ -1,0 +1,61 @@
+@charset "utf-8";
+@import "global";
+@import "animate";
+/*包房*/
+.topMess{
+  position: absolute; left:0; color: $wxColor10; font-size: .18rem; line-height: .3rem; text-align: left; margin: .1rem; padding-left: .3rem;
+  b{position: absolute; left:0; top:0;  }
+}
+.call{
+  width:.3rem; height:.3rem; background: url("../image/i18.png"); background-size: auto 100%; display: block; margin: .1rem auto;
+  &.on{
+    -webkit-animation: wSteps2 1s steps(2) infinite; background: url("../image/a1.png"); background-size: auto 100%; cursor: pointer;
+  }
+}
+.roomList{
+  .tr:nth-child(2n+1){background: $wxColor2;}
+  .tr,.th{
+    p{
+      &:nth-child(1){width:10%;}
+      &:nth-child(2){width:15%;}
+      &:nth-child(3){width:15%;}
+      &:nth-child(4){width:10%;}
+      &:nth-child(5){width:15%;}
+      &:nth-child(6){width:20%;}
+      &:nth-child(7){width:15%;}
+
+      .btn{
+        margin: .1rem auto; background: $wxColor6; cursor: pointer;
+        &.lock{background: $wxColor10}
+        &.unlock{background: $wxColor11}
+      }
+    }
+  }
+
+}
+.btns{
+  margin: .05rem .1rem ; text-align: right;
+}
+.btn{
+  margin: .1rem auto; background: $wxColor6; cursor: pointer;
+  &.lock{background: $wxColor10}
+  &.free{background: $wxColor11}
+}
+
+.layerCallReason{
+  ul{
+    overflow: hidden;
+    li{
+      float: left; background-position: left center; padding-left: .35rem; margin: .2rem .2rem .2rem 0;
+    }
+  }
+  .textarea{
+    width:100%; height:.8rem;  background: #fff; border: 1px solid $wxColor3;
+    textarea{
+      background: none; border: none; padding: .1rem; line-height: .3rem; color: $wxColor9; font-size: .16rem;
+    }
+  }
+  .btn{
+    width:2rem; margin: .2rem auto;  display: block;  line-height: .4rem;  height: .4rem; background: $wxColor11;
+  }
+}

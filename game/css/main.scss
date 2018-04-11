@@ -1,4 +1,4 @@
 @charset "utf-8";
-@import 'reset';
-@import 'variable';
+@import '_g_reset';
+@import '_g_variable';
 .main{position: relative; font-size: .16rem; color: $color; line-height: 200%; }

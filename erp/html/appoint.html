@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <meta name="format-detection" content="telephone=no">
+  <link href="../css/appoint.css" rel="stylesheet" type="text/css" media="screen" />
+  <title>首页</title>
+</head>
+<body>
+<div class="main" id="e_appoint">
+  <div class="contain">
+    <div class="appoint">
+      <div class="tabWrap">
+        <div class="tabBar">
+          <ul>
+            <li  v-for = "(item,idx) in appoint" :class="idx==0?'on':''">
+              <a>{{item.dateStr}}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="tabCons">
+          <div  v-for = "(items,idx) in appoint" :class="`tabCon ${idx==0?'on':'' }`" >
+            <div class="appointDest" v-if="items.whole.length>0">
+              <div class="hd">包桌</div>
+              <div class="bd">
+                <div class="tableList">
+                  <div class="th">
+                    <p>时间段</p>
+                    <p>包桌数</p>
+                    <p>联系人</p>
+                  </div>
+                  <div class="tr" v-for = "(whole,wkey) in items.whole">
+                    <p>{{whole.datetime}}</p>
+                    <p>{{whole.totalCount}}桌</p>
+                    <p><b class="view" v-on:click="viewWholeContact($event,whole)">查看</b></p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="appointSeat" v-if="items.solo.length>0">
+              <div class="hd">散客</div>
+              <div class="bd">
+                <div class="tableList">
+                  <div class="th">
+                    <p>时间段</p>
+                    <p>总人数</p>
+                    <p>已到店人数</p>
+                    <p>确认来人数</p>
+                    <p>未确认人数</p>
+                    <p>确认不来人数</p>
+                  </div>
+                  <div class="tr"  v-for = "(solo,skey) in items.solo">
+                    <p>{{solo.datetime}}</p>
+                    <p>{{solo.totalCount}}</p>
+                    <p v-on:click="viewSoloContact($event,solo,'arrive')"><b class="view">{{solo.arriveCount}}人</b></p>
+                    <p v-on:click="viewSoloContact($event,solo,'confirm')"><b class="view">{{solo.confirmCount}}人</b></p>
+                    <p v-on:click="viewSoloContact($event,solo,'notConfirm')"><b class="view">{{solo.notConfirmCount}}人</b></p>
+                    <p v-on:click="viewSoloContact($event,solo,'absent')"><b class="view cancel">{{solo.absentCount}}人</b></p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="layerWrap layerContact">
+    <b class="close"></b>
+    <div class="layer">
+      <div class="tableList roomList">
+        <div class="th">
+          <p class="boxName">联系人</p>
+          <p class="area">联系方式</p>
+          <p class="area">预订人数</p>
+        </div>
+        <div class="tr" v-for = "(item,key) in contacts">
+          <p class="boxName">{{item.contacts}}</p>
+          <p class="area">{{item.contactsMobile}}</p>
+          <p class="area">{{item.gamerCount}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<script type="application/javascript" src="../../js/vue.js"></script>
+<script type="application/javascript" src="../../js/velocity.min.js"></script>
+<script type="application/javascript" src="../js/global.js"></script>
+<script type="application/javascript" src="../js/appoint.js"></script>
+</body>
+</html>

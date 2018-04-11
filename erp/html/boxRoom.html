@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <meta name="format-detection" content="telephone=no">
+  <link href="../css/boxRoom.css" rel="stylesheet" type="text/css" media="screen" />
+  <title>首页</title>
+</head>
+<body>
+<div class="main" id="e_boxRoom">
+  <div class="contain">
+    <!--<div class="topMess"><b></b>1号包房呼叫服务</div>-->
+    <!--<div class="btns operate">-->
+        <!--<a class="btn unlock js-batch-unlock">解锁</a>-->
+        <!--<a class="btn lock js-batch-lock">锁定</a>-->
+        <!--<a class="btn free js-batch-free">空闲</a>-->
+    <!--</div>-->
+    <div class="tableList roomList">
+      <div class="th">
+        <p>是否呼叫</p>
+        <p>包房名</p>
+        <p>包房状态</p>
+        <p>游戏状态</p>
+        <p>游戏时间</p>
+        <p>在玩人数 <b>(存活人数)</b></p>
+        <p>操作</p>
+      </div>
+      <div class="tr" v-for = "(item,key) in roomList" :id="item.id" :isCallOut="item.callOutFlag">
+          <p><i :class="`call ${item.callOutFlag?'on':'' }`" v-on:click="showCancelReason($event,item)"></i></p>
+          <p>{{item.name}}</p>
+          <p>{{item.roomStatus}}</p>
+          <p>{{item.gameStatus}}</p>
+          <p>{{item.gameDate}}</p>
+          <p>{{item.gamerCount}}人({{item.liveCount}}人)</p>
+          <p>
+             <!--STOP:停用,IDLE:空闲,APPOINTMENT:预定,INUSE:使用中-->
+              <a v-if="item.status === 'IDLE'" class="btn lock" v-on:click="lock($event,item)" >锁定</a>
+              <a v-else-if="item.status === 'APPOINTMENT'" class="btn unlock" v-on:click="unlock($event,item)">解锁</a>
+              <a v-else>无</a>
+          </p>
+        </div>
+
+      </div>
+
+  </div>
+  <div class="layerWrap layerCallReason">
+        <b class="close"></b>
+        <div class="layer">
+            <div class="tableList roomList">
+                <h2>请选择呼叫原因</h2>
+                <div class="layerCon">
+                    <ul>
+                        <li class="check js-check">系统问题</li>
+                        <li class="check js-check">需要服务</li>
+                    </ul>
+                    <div class="textarea"><textarea placeholder="其他问题请备注"></textarea></div>
+                    <a class="btn confirm js-confirm">提交</a>
+                </div>
+
+            </div>
+        </div>
+  </div>
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<script type="application/javascript" src="../../js/vue.js"></script>
+<script type="application/javascript" src="../../js/velocity.min.js"></script>
+<script type="application/javascript" src="../js/global.js"></script>
+<script type="application/javascript" src="../js/boxRoom.js"></script>
+</body>
+</html>

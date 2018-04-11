@@ -1,0 +1,45 @@
+.records{
+  ul{
+    li{
+      background: $wxColor1;
+      margin-bottom: .1rem;
+      overflow: hidden;
+      box-shadow:0 2px 0 $wxColor3;
+      .fl{
+        width:1rem;
+        img{
+          width:100%;
+          height:auto;
+        }
+      }
+      .info{
+        padding-top: .2rem;
+        h3{
+          font-size: .2rem;
+          color: $wxColor9;
+          line-height: .4rem;
+          font-weight: bold;
+        }
+        p{
+          font-size: .12rem; color: $wxColor7;
+          line-height: .2rem;
+          span{
+            padding-left: .2rem;
+            margin-right: .2rem;
+            background-repeat: no-repeat;
+            background-position: left center;
+            background-size: contain;
+          }
+          .costTime{
+            background-image: url(../image/time.png);
+          }
+          .endTime{
+            background-image: url(../image/clock.png);
+          }
+        }
+      }
+
+
+    }
+  }
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+  <meta name="format-detection" content="telephone=no">
+  <link href="../css/appoint.css" rel="stylesheet" type="text/css" media="screen" />
+  <title>首页</title>
+</head>
+<body>
+<div class="main" id="e_login">
+  <div class="contain">
+    <div class="appoint">
+      <div class="tabWrap">
+        <div class="tabBar">
+          <ul>
+            <li class="on"><a>6月6日(今天)</a></li>
+            <li><a><a>6月7日</a></a></li>
+            <li><a><a>6月8日</a></a></li>
+            <li><a><a>6月9日</a></a></li>
+            <li><a><a>6月10日</a></a></li>
+            <li><a><a>6月11日</a></a></li>
+            <li><a><a>6月12日</a></a></li>
+          </ul>
+        </div>
+        <div class="tabCons">
+          <div class="tabCon on">
+            <div class="appointDest">
+              <div class="hd">包桌</div>
+              <div class="bd">
+                <div class="tableList">
+                  <div class="th">
+                    <span>时间段</span>
+                    <span>包桌数</span>
+                    <span>联系人</span>
+                  </div>
+                  <div class="tr">
+                    <span>13:00-17:00</span>
+                    <span>2(桌)</span>
+                    <span><b class="view js-view">查看</b></span>
+                  </div>
+                  <div class="tr">
+                    <span>17:00-21:00</span>
+                    <span>1(桌)</span>
+                    <span><b class="view js-view">查看</b></span>
+                  </div>
+                  <div class="tr">
+                    <span>21:00-24:00</span>
+                    <span>1(桌)</span>
+                    <span><b class="view js-view">查看</b></span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="appointSeat">
+              <div class="hd">散客</div>
+              <div class="bd">
+                <div class="tableList">
+                  <div class="th">
+                    <span>时间段</span>
+                    <span>预约人数</span>
+                    <span>路上人数</span>
+                    <span>已到人数</span>
+                    <span>取消人数</span>
+                    <span>联系人</span>
+                  </div>
+                  <div class="tr">
+                    <span>13:00-17:00</span>
+                    <span>2(人)</span>
+                    <span>2(人)</span>
+                    <span>2(人)</span>
+                    <span>2(人)</span>
+                    <span><b class="view js-view">查看</b></span>
+                  </div>
+                  <div class="tr">
+                    <span>13:00-17:00</span>
+                    <span>2(人)</span>
+                    <span>2(人)</span>
+                    <span>2(人)</span>
+                    <span>2(人)</span>
+                    <span><b class="view js-view">查看</b></span>
+                  </div>
+                  <div class="tr">
+                    <span>13:00-17:00</span>
+                    <span>2(人)</span>
+                    <span>2(人)</span>
+                    <span>2(人)</span>
+                    <span>2(人)</span>
+                    <span><b class="view js-view">查看</b></span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="layerWrap layerContact">
+    <b class="close"></b>
+    <div class="layer">
+      <div class="btns operate">
+        <a class="btn cancel js-cancel">取消</a>
+        <a class="btn delay js-delay">延时</a>
+      </div>
+      <div class="tableList roomList">
+        <div class="th">
+          <span class="check js-checkAll"></span>
+          <span class="boxName">联系人</span>
+          <span class="area">联系方式</span>
+          <span class="operate">操作</span>
+        </div>
+        <div class="tr">
+          <span class="check js-check"></span>
+          <span class="boxName">张三</span>
+          <span class="area">18666666666</span>
+          <span class="operate"><a class="btn delay js-delay">延时</a></span>
+        </div>
+        <div class="tr">
+          <span class="check js-check"></span>
+          <span class="boxName">李四</span>
+          <span class="area">18666666666</span>
+          <span class="operate"><a class="btn delay js-delay">延时</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<script type="application/javascript" src="../../js/vue.js"></script>
+<script type="application/javascript" src="../../js/velocity.min.js"></script>
+<script type="application/javascript" src="../js/global.js"></script>
+<script>
+    $(function(){
+        eglobal.showNav(3)
+        $(".js-view").off().on("click",function(){
+            $(".layerContact").show()
+        })
+    })
+</script>
+</body>
+</html>

@@ -14,32 +14,45 @@
     <div class="tabWrap">
       <div class="tabBar">
         <ul>
-          <li class="on"><a>未完成实物订单</a></li>
-          <li><a>已完成实物订单</a></li>
-          <li><a>未完成线下订单</a></li>
-          <li><a>已完成线下订单</a></li>
+          <li class="on" v-on:click="getOrderListUnCom()"><a>未完成</a></li>
+          <li v-on:click="getOrderListCom()"><a>已完成</a></li>
         </ul>
       </div>
       <div class="tabCons">
-        <div class="tabCon on">
+        <div class="tabCon unCom on">
           <div class="tableSearch">
-            <!--<div class="searchMod">-->
-            <!--<span class="label">支付类型：</span>-->
-            <!--<div class="labelCon selectedWrap">-->
-            <!--<span class="selected">全部</span>-->
-            <!--<ul class="selectedDrop">-->
-            <!--<li>全部</li>-->
-            <!--<li>线下支付</li>-->
-            <!--<li>线上支付</li>-->
-            <!--</ul>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--<div class="searchMod">-->
-            <!--<span class="label">联系电话：</span>-->
-            <!--<div class="labelCon searchModInput">-->
-            <!--<input type="text" placeholder="请输入联系电话">-->
-            <!--</div>-->
-            <!--</div>-->
+            <div class="searchMod" type="payType">
+              <span class="label">支付类型：</span>
+              <div class="labelCon">
+                <ul class="radioSelect">
+                  <li type="" class="js-radio">所有</li>
+                  <li type="ONLINE" class="js-radio">线上</li>
+                  <li type="OFFLINE" class="js-radio on">线下</li>
+                </ul>
+              </div>
+            </div>
+            <div class="searchMod" type="orderType">
+              <span class="label">商品类型：</span>
+              <div class="labelCon">
+                <ul class="radioSelect">
+                  <li type="ENTITY" class="js-radio on">现实</li>
+                  <li type="VIRTUAL" class="js-radio">虚拟</li>
+                </ul>
+              </div>
+            </div>
+            <div class="searchMod block" type="queryDate">
+              <span class="label">订单时间：</span>
+              <div class="labelCon">
+                <ul class="radioSelect">
+                  <li type="TODAY" class="js-radio on">今天</li>
+                  <li type="YESTERDAY" class="js-radio">昨天</li>
+                  <li type="WEEK" class="js-radio">最近一周</li>
+                  <li type="MONTH" class="js-radio">最近一月</li>
+                  <li type="YEAR" class="js-radio">最近一年</li>
+                </ul>
+              </div>
+            </div>
+            <a class="btn search" v-on:click="getOrderListUnCom()">搜索</a>
           </div>
           <div class="tableList orderList">
             <div class="th">
@@ -52,10 +65,10 @@
             </div>
             <div class="order" v-for = "(order,key) in orderListUnCom">
               <div class="hd">
-                <!--<p class="check js-check"></p>-->
                 <p class="orderNum">订单号：{{order.name}}</p>
-                <p class="orderData">支付时间：{{order.payTime}}</p>
+                <p class="orderData" v-if="order.payTime">支付时间：{{order.payTime}}</p>
                 <p :class="`warn ${order.orderWarningEnum}`">{{order.orderWarningT}}</p>
+                <p class="orderStatus">状态：{{order.statusT}}</p>
               </div>
               <div class="bd">
                 <div class="tr">
@@ -73,8 +86,7 @@
                     <span>电话：{{order.userLocationResponse.mobile}}</span>
                     <span>地址：{{order.address}}</span>
                   </p>
-                  <p class="status fr">
-                    <span>{{order.statusT}}</span>
+                  <p v-if="order.btn">
                     <span v-if="order.btn === 'paid'"><a class='btn paid' v-on:click="paid($event,order)">确认已支付</a></span>
                     <span v-else-if="order.btn === 'delivery'"><a class='btn delivery' v-on:click="delivery($event,order)">确认配送</a></span>
                     <span v-else-if="order.btn === 'completed'"><a class='btn completed' v-on:click="completed($event,order)">确认完成</a></span>
@@ -86,7 +98,41 @@
             </div>
           </div>
         </div>
-        <div class="tabCon">
+        <div class="tabCon com">
+          <div class="tableSearch">
+            <div class="searchMod" type="payType">
+              <span class="label">支付类型：</span>
+              <div class="labelCon">
+                <ul class="radioSelect">
+                  <li type="" class="js-radio on">所有</li>
+                  <li type="ONLINE" class="js-radio">线上</li>
+                  <li type="OFFLINE" class="js-radio">线下</li>
+                </ul>
+              </div>
+            </div >
+            <div class="searchMod" type="orderType">
+              <span class="label">商品类型：</span>
+              <div class="labelCon">
+                <ul class="radioSelect">
+                  <li type="ENTITY" class="js-radio on">现实</li>
+                  <li type="VIRTUAL" class="js-radio">虚拟</li>
+                </ul>
+              </div>
+            </div>
+            <div class="searchMod block"  type="queryDate">
+              <span class="label">订单时间：</span>
+              <div class="labelCon">
+                <ul class="radioSelect">
+                  <li type="TODAY" class="js-radio on">今天</li>
+                  <li type="YESTERDAY" class="js-radio">昨天</li>
+                  <li type="WEEK" class="js-radio">最近一周</li>
+                  <li type="MONTH" class="js-radio">最近一月</li>
+                  <li type="YEAR" class="js-radio">最近一年</li>
+                </ul>
+              </div>
+            </div>
+            <a class="btn search"  v-on:click="getOrderListCom()">搜索</a>
+          </div>
           <div class="tableList orderList">
             <div class="th">
               <p>订单明细</p>
@@ -98,10 +144,10 @@
             </div>
             <div class="order" v-for = "(order,key) in orderListCom">
               <div class="hd">
-                <!--<p class="check js-check"></p>-->
                 <p class="orderNum">订单号：{{order.name}}</p>
-                <p class="orderData">支付时间：{{order.payTime}}</p>
-                <p :class="`warn ${order.orderWarningEnum}`">{{order.orderWarningT}}</p>
+                <p class="orderData" v-if="order.payTime">支付时间：{{order.payTime}}</p>
+                <!--<p :class="`warn ${order.orderWarningEnum}`">{{order.orderWarningT}}</p>-->
+                <p class="orderStatus">状态：{{order.statusT}}</p>
               </div>
               <div class="bd">
                 <div class="tr">
@@ -112,92 +158,20 @@
                     <span>共{{order.goodsTotalCount}}件</span>
                     <span>应付：<b class="b">￥{{order.actualAmount}}</b></span>
                   </p>
-                  <p>{{order.payT}}</p>
-                  <p>{{order.remark}}</p>
+                  <p>{{order.payT}}支付</p>
+                  <p>{{order.remark || '无'}}</p>
                   <p>
                     <span>收货人：{{order.userLocationResponse.userName}}</span>
                     <span>电话：{{order.userLocationResponse.mobile}}</span>
                     <span>地址：{{order.address}}</span>
                   </p>
-                  <p class="status fr"><span>{{order.statusT}}</span></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="tabCon">
-          <div class="tableList orderList">
-            <div class="th">
-              <p>订单明细</p>
-              <p>商品总量/实际总价</p>
-              <p>订单类型</p>
-              <p>备注</p>
-              <p>收货信息</p>
-              <p>状态</p>
-            </div>
-            <div class="order" v-for = "(order,key) in offlineUnCom">
-              <div class="hd">
-                <!--<p class="check js-check"></p>-->
-                <p class="orderNum">订单号：{{order.name}}</p>
-                <p class="orderData">支付时间：{{order.payTime}}</p>
-                <p :class="`warn ${order.orderWarningEnum}`">{{order.orderWarningT}}</p>
-              </div>
-              <div class="bd">
-                <div class="tr">
-                  <p>
-                    <span v-for="(good,dKey) in order.orderItemInfoResponseList">{{good.goodsName}} * {{good.quantity}}</span>
+                  <p v-if="order.btn">
+                    <span v-if="order.btn === 'paid'"><a class='btn paid' v-on:click="paid($event,order)">确认已支付</a></span>
+                    <span v-else-if="order.btn === 'delivery'"><a class='btn delivery' v-on:click="delivery($event,order)">确认配送</a></span>
+                    <span v-else-if="order.btn === 'completed'"><a class='btn completed' v-on:click="completed($event,order)">确认完成</a></span>
+                    <span v-else-if="order.btn === 'invoiced'"><a class='btn invoiced' v-on:click="invoiced($event,order)">确认已开票</a></span>
+                    <span v-else></span>
                   </p>
-                  <p>
-                    <span>共{{order.goodsTotalCount}}件</span>
-                    <span>应付：<b class="b">￥{{order.actualAmount}}</b></span>
-                  </p>
-                  <p>{{order.typeT}}</p>
-                  <p>{{order.remark}}</p>
-                  <p>
-                    <span>收货人：{{order.userLocationResponse.userName}}</span>
-                    <span>电话：{{order.userLocationResponse.mobile}}</span>
-                    <span>地址：{{order.address}}</span>
-                  </p>
-                  <p class="status fr"><span>{{order.statusT}}</span></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="tabCon">
-          <div class="tableList orderList">
-            <div class="th">
-              <p>订单明细</p>
-              <p>商品总量/实际总价</p>
-              <p>订单类型</p>
-              <p>备注</p>
-              <p>收货信息</p>
-              <p>状态</p>
-            </div>
-            <div class="order" v-for = "(order,key) in offlineCom">
-              <div class="hd">
-                <!--<p class="check js-check"></p>-->
-                <p class="orderNum">订单号：{{order.name}}</p>
-                <p class="orderData">支付时间：{{order.payTime}}</p>
-                <p :class="`warn ${order.orderWarningEnum}`">{{order.orderWarningT}}</p>
-              </div>
-              <div class="bd">
-                <div class="tr">
-                  <p>
-                    <span v-for="(good,dKey) in order.orderItemInfoResponseList">{{good.goodsName}} * {{good.quantity}}</span>
-                  </p>
-                  <p>
-                    <span>共{{order.goodsTotalCount}}件</span>
-                    <span>应付：<b class="b">￥{{order.actualAmount}}</b></span>
-                  </p>
-                  <p>{{order.typeT}}</p>
-                  <p>{{order.remark}}</p>
-                  <p>
-                    <span>收货人：{{order.userLocationResponse.userName}}</span>
-                    <span>电话：{{order.userLocationResponse.mobile}}</span>
-                    <span>地址：{{order.address}}</span>
-                  </p>
-                  <p class="status fr"><span>{{order.statusT}}</span></p>
                 </div>
               </div>
             </div>

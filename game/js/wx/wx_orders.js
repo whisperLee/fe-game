@@ -24,7 +24,7 @@ new Vue({
                 url: 'order/orderList',
                 data: {
                     "pageIndex": 1,
-                    "pageSize": 10
+                    "pageSize": 0
                 },
                 success: function (d) {
                     if(d.status.code == "OK" && d.data){

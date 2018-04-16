@@ -621,9 +621,9 @@ body {
       width: 100%; }
       body .main .list li a {
         display: block;
-        height: .4rem;
-        line-height: .4rem;
-        font-size: .14rem;
+        height: .5rem;
+        line-height: .5rem;
+        font-size: .16rem;
         color: #2d313f;
         border-bottom: 1px solid #ebedf2;
         padding-left: .1rem;

@@ -43,8 +43,6 @@ new Vue({
                                 d.data[i].gameDate = '/'
                             }
                         }
-                        //?????
-                        d.data[0].callOutFlag = true
                         _self.roomList = d.data
                     }
 

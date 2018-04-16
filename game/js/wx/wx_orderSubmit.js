@@ -182,6 +182,9 @@ new Vue({
                 success: function (d) {
                     console.log(d)
                     if(d.status.code=="OK"){
+                        //清空购物车
+                        var shopId = _self.shopId
+                        wglobal.setStorage('carts',{shopId:{}})
                         console.log("打开支付界面")
                     }
 

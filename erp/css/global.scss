@@ -93,17 +93,20 @@
       display: box;
       padding: 0 .2rem;
       li {
+        position: relative;
         width:1%;
         -webkit-box-flex:1 ;
         -moz-box-flex: 1;
         box-flex: 1;
         text-align: center;
-        font-size: .18rem;
+        font-size: .17rem;
         color: $wxColor7;
-        line-height: .5rem;
+        height:.5rem;
         cursor: pointer;
         a {
           display: block;
+          line-height: .2rem;
+          position: absolute; left:0; top:50%; width:100%; -webkit-transform:translateY(-50%);
         }
         &.on {
           color: $wxColor1;
@@ -124,9 +127,21 @@
 .tableSearch{
   margin: .2rem 0;
   .searchMod{
-    float: left; position: relative; width:50%; height:.4rem; line-height: .4rem;
+    float: left; position: relative; width:50%; line-height: .4rem;
+    span.label{color: $wxColor9; float: left}
+    &.block{
+      width:100%;
+    }
     .labelCon{
-      position: absolute; left:1rem; top:0; height:100%; right:.5rem; border: 1px solid $wxColor3; padding-right: .1rem;
+      height:100%; right:0; padding-right: .1rem; margin-left: .9rem; color: $wxColor6;
+      .radioSelect{
+        li{
+          float: left; margin-right: .2rem; padding-left: .2rem; line-height: .4rem; background: url("../image/r.png") no-repeat center left; background-size: .18rem ; cursor: pointer;
+          &.on{
+            background-image: url("../image/r_on.png"); color: $wxColor11;
+          }
+        }
+      }
       input{
         background: none; border: none; width:100%; height:100%; padding-left: .1rem;
       }
@@ -138,6 +153,7 @@
     clear: both;
   }
 }
+
 .selectedWrap{
   position: relative;
   .selected{
@@ -245,6 +261,10 @@
       .tabCon{
         margin: 0; font-size: .12rem;
       }
+    }
+    .tableSearch{
+      margin: .1rem;
+      .searchMod{width:100%;}
     }
   }
 }

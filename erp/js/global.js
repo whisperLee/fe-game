@@ -5,7 +5,32 @@
 // 配置API接口地址
 var host = 'http://liyn.me:9999/web-api/v1/lair/'
 //var host = 'http://192.168.3.28:8888/web-api/v1/'
-
+window.interfaceValue = {
+    orderStatus:{
+        "0":'待支付',
+        "10":'支付中',
+        "20":'已支付',
+        "30":'处理中',
+        "35":'配送中',
+        "40":'退款中',
+        "50":'已完成',
+        "51":'已开票',
+        "60":'已退款',
+        "70":'已取消'
+    },
+    payType :{
+        '0':'微信','1':'支付宝','50':'线下'
+    },
+    orderWarn : {
+        'NORMAL':'正常',
+        'WARNING':'预警',
+        'TIMEOUT':'超时'
+    },
+    orderType : {
+        '0':'虚拟',
+        '1':'实物'
+    }
+}
 var eglobal = {
     init:function(){
         var _this = this
@@ -225,6 +250,14 @@ var eglobal = {
                     $(this).addClass("on")
                 }
         })
+        $(".radioSelect").each(function(){
+            var f = $(this)
+            f.find(".js-radio").off().on("click",function(){
+                f.find(".js-radio").removeClass("on")
+                $(this).addClass("on")
+            })
+        })
+
         /*tab 标签*/
         $(".tabWrap").each(function(){
             var el = $(this)

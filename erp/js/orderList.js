@@ -12,28 +12,44 @@ new Vue({
     created: function () {
         var _self = this
         _self.init()
+
     },
     methods: {
         init:function(){
             var _self = this
             _self.erp = eglobal.getStorage('yjerp')
-            _self.getOrderListCom()
-            _self.getOrderListUnCom()
-            _self.getOfflineCom()
-            _self.getOfflineUnCom()
+            _self.getDataList()
+        },
+        getDataList:function(){
+          var _self = this
+          // 定时更新数据
+          _self.getOrderListCom()
+          _self.getOrderListUnCom()
+          setInterval(function(){
+              console.log('get data')
+              _self.getOrderListCom()
+              _self.getOrderListUnCom()
+          },50000)
         },
         getOrderListCom:function(){
             var _self = this
+            var el = $(".tabCon.com")
             var d = {
-                url: 'order/getTodayOrderList',
+                url: 'order/queryByCondition',
                 data: {
                     "completeFlag": true, //是否已完成的订单
+                    "orderPayTypeEnum": el.find(".searchMod[type='payType'] .js-radio.on").attr("type"),
+                    "orderType":  el.find(".searchMod[type='orderType'] .js-radio.on").attr("type"),
+                    "queryDateEnum":  el.find(".searchMod[type='queryDate'] .js-radio.on").attr("type"),
                     "shopId":_self.erp.user.shopId
                 },
                 success: function (d) {
                     console.log(d.data)
                     if(d.status.code=="OK" && d.data){
-                        _self.orderListCom = _self.returnData(d.data)
+                        for(var i=0;i<d.data.length;i++){
+                            d[i] = _self.returnData(d.data[i])
+                        }
+                        _self.orderListCom =d.data
                     }
                 }
             }
@@ -41,54 +57,29 @@ new Vue({
         },
         getOrderListUnCom:function(){
             var _self = this
+            var el = $(".tabCon.unCom")
             var d = {
-                url: 'order/getTodayOrderList',
+                url: 'order/queryByCondition',
                 data: {
                     "completeFlag": false, //是否已完成的订单
+                    "orderPayTypeEnum": el.find(".searchMod[type='payType'] .js-radio.on").attr("type"),
+                    "orderType":  el.find(".searchMod[type='orderType'] .js-radio.on").attr("type"),
+                    "queryDateEnum":  el.find(".searchMod[type='queryDate'] .js-radio.on").attr("type"),
                     "shopId":_self.erp.user.shopId
                 },
                 success: function (d) {
                     console.log(d.data)
                     if(d.status.code=="OK" && d.data){
-                        _self.orderListUnCom = _self.returnData(d.data)
+                        for(var i=0;i<d.data.length;i++){
+                            d[i] = _self.returnData(d.data[i])
+                        }
+                        _self.orderListUnCom =d.data
                     }
                 }
             }
             eglobal.ajax(d)
         },
-        getOfflineCom:function(){
-            var _self = this
-            var d = {
-                url: 'order/getTodayOfflineOrderList',
-                data: {
-                    "completeFlag": true, //是否已完成的订单
-                    "shopId":_self.erp.user.shopId
-                },
-                success: function (d) {
-                    if(d.status.code=="OK" && d.data){
-                        _self.offlineCom = _self.returnData(d.data)
-                    }
-                }
-            }
-            eglobal.ajax(d)
-        },
-        getOfflineUnCom:function(){
-            var _self = this
-            var d = {
-                url: 'order/getTodayOfflineOrderList',
-                data: {
-                    "completeFlag": false, //是否已完成的订单
-                    "shopId":_self.erp.user.shopId
-                },
-                success: function (d) {
-                    if(d.status.code=="OK" && d.data){
-                        _self.offlineUnCom = _self.returnData(d.data)
-                    }
-                }
-            }
-            eglobal.ajax(d)
-        },
-        paid:function(event,item){
+        paid:function(event,item){ //设置已支付
             var _self = this
             var d = {
                 url: 'order/payOrder',
@@ -98,13 +89,16 @@ new Vue({
                 success: function (d) {
                     console.log(d)
                     if(d.status.code=="OK" && d.data){
+                        item.status = 30
+                        item = _self.returnData(item)
+                        console.log(item)
                     }
 
                 }
             }
             eglobal.ajax(d)
-        }, //设置已支付
-        delivery:function(event,item){ //设置已支付
+        },
+        delivery:function(event,item){ //设置配送中
             var _self = this
             var d = {
                 url: 'order/deliveryOrder',
@@ -114,7 +108,8 @@ new Vue({
                 success: function (d) {
                     console.log(d)
                     if(d.status.code=="OK" && d.data){
-
+                        item.status = 35
+                        item = _self.returnData(item)
                     }
 
                 }
@@ -131,12 +126,26 @@ new Vue({
                 success: function (d) {
                     console.log(d)
                     if(d.status.code=="OK" && d.data){
-
+                        item.status = 50
+                        item.orderWarningEnum = 'NORMAL'
+                        item = _self.returnData(item)
+                        setTimeout(function(){
+                            //已完成订单数据清除该数据
+                            _self.removeItem(_self.orderListUnCom,item)
+                        },1000)
                     }
 
                 }
             }
             eglobal.ajax(d)
+        },
+        removeItem:function(list,item){
+            for(var i=0;i<list.length;i++){
+                if(list[i].id==item.id){
+                    list.splice(i, 1)
+                    return
+                }
+            }
         },
         invoiced:function(event,item){  //设置已开票
             var _self = this
@@ -148,9 +157,9 @@ new Vue({
                 success: function (d) {
                     console.log(d)
                     if(d.status.code=="OK" && d.data){
-
+                        item.status = 51
+                        item = _self.returnData(item)
                     }
-
                 }
             }
             eglobal.ajax(d)
@@ -169,49 +178,29 @@ new Vue({
             }
             return address
         },
-        returnData:function(d){
+        returnData:function(item){
             var _self = this
-            var status = {
-                "0":'待支付',
-                "10":'支付中',
-                "20":'已支付',
-                "30":'处理中',
-                "35":'配送中',
-                "40":'退款中',
-                "50":'已退款',
-                "60":'已取消',
-                "70":'已完成',
-                "71":'已开票',
+            var status = window.interfaceValue.orderStatus
+            var payType = window.interfaceValue.payType
+            var warn = window.interfaceValue.orderWarn
+            var type = window.interfaceValue.orderType
+            item.statusT = status[item.status]
+            item.payT = payType[item.payType]
+            item.orderWarningT = warn[item.orderWarningEnum]
+            item.typeT  = type[item.type]
+            item.address = _self.returnAddress(item.userLocationResponse)
+            if(item.status == '0'){
+                item.btn = "paid"
+            }else if(item.status == '30' ){
+                item.btn = "delivery"
+            }else if(item.status == '35' ){
+                item.btn = "completed"
+            }else if(item.status == '50' ){
+                item.btn = "invoiced"
+            }else{
+                item.btn = ''
             }
-            var payType = {
-                '0':'微信','1':'支付宝','50':'线下'
-            }
-            var warn = {
-                'NORMAL':'正常',
-                'WARNING':'预警',
-                'TIMEOUT':'超时'
-            }
-            var type = {
-                '0':'虚拟',
-                '1':'实物'
-            }
-            for(var i=0;i<d.length;i++){
-                d[i].statusT = status[d[i].status]
-                d[i].payT = payType[d[i].payType]
-                d[i].orderWarningT = warn[d[i].orderWarningEnum]
-                d[i].typeT  = type[d[i].type]
-                d[i].address = _self.returnAddress(d[i].userLocationResponse)
-                if(d[i].status == '0' && d[i].payType == '50'){
-                    d[i].btn = "paid"
-                }else if(d[i].status == '30' ){
-                    d[i].btn = "delivery"
-                }else if(d[i].status == '35' ){
-                    d[i].btn = "completed"
-                }else if(d[i].status == '70' ){
-                    d[i].btn = "invoiced"
-                }
-            }
-            return d
+            return item
         }
     }
 })

@@ -413,6 +413,9 @@ video {
     .main.mobile .contain .tableSearch .searchMod {
       width: 100%; }
 
+.nav {
+  display: none; }
+
 .main {
   position: absolute;
   left: 0;

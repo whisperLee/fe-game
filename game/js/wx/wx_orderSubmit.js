@@ -166,7 +166,6 @@ new Vue({
             }else{
                 el.addClass("active")
                 el.closest(".conScore").find(".consumptionScoreChoose").show()
-                console.log($("#consumptionScoreChoose").val())
                 _self.orderConfirmDate.consumptionScore = $("#consumptionScoreChoose").val() || $("#consumptionScoreChoose option").first().val()
             }
             _self.changeVoucherOrConsume(false)
@@ -188,12 +187,10 @@ new Vue({
                     "voucherId": _self.orderConfirmDate.voucherId || null
                 },
                 success: function (d) {
-                    console.log(d)
                     if(d.status.code=="OK"){
                         //清空购物车
                         var shopId = _self.shopId
                         wglobal.setStorage('carts',{shopId:{}})
-                        console.log("打开支付界面")
                         if(payType==0){
                             wglobal.router('wx_pay.html?orderId='+d.data.orderId+"&amount="+d.data.amount)
                         }else if(payType==50){

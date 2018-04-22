@@ -3,15 +3,18 @@
  */
 var host = 'http://liyn.me:7777/web-api/v1/face/'
 Vue.config.productionTip = false
+document.write("<script language=javascript src='../../js/init.js'></script>");
+// var dataValue = {
+//     'payType':{
+//         '0':'微信',
+//         '1':'支付宝',
+//         '2':'线下'
+//     }
+//
+// }
 
-var dataValue = {
-    'payType':{
-        '0':'微信',
-        '1':'支付宝',
-        '2':'线下'
-    }
 
-}
+
 var wglobal = {
     urlHash: function () {
         var name, value
@@ -64,7 +67,7 @@ var wglobal = {
             this.tipsTime = setTimeout(function () {
                 $('.simple_tips').remove()
                 callback()
-            }, 3000)
+            }, 2000)
         }
 
     },
@@ -161,6 +164,7 @@ var wglobal = {
     },
     layerOuter:function(el,callback){
         var _self = this
+        callback = callback || function(){}
         el.velocity({
             translateX:["100%",0]
         }, {
@@ -172,6 +176,14 @@ var wglobal = {
                 callback()
             }
         })
+    },
+    isPoneAvailable:function(phonenumber){
+        var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+        if (!myreg.test(phonenumber)) {
+            return false;
+        } else {
+            return true;
+        }
     },
     returnVoucherList:function(d){
         var h = ''
@@ -219,12 +231,23 @@ $(function(){
         init:function(){
             this.barActive()
             this.back()
+            this.phoneCheck()
+            $(".radios").each(function(){
+                var el = $(this)
+                el.find(".radio").off().on("click",function(){
+                    el.find(".radio").removeClass("on")
+                    $(this).addClass("on")
+                })
+            })
         },
         back:function(){
             $(".header .back").off().on("click",function(){
                 var backUrl = wglobal.urlHash().backUrl
+                var href = $(this).attr("href")
                 if(backUrl){
                     wglobal.router(backUrl)
+                }else if(href){
+                    wglobal.router(href)
                 }else{
                     history.go(-1)
                 }
@@ -240,11 +263,61 @@ $(function(){
         barActive:function(){
             $(".barWrap").each(function(){
                 var w = $(this)
-                w.find(".flexBar li").each(function(idx){
+                w.find(".flexBar > li").each(function(idx){
                     $(this).off().on("click",function(){
-                        w.find(".flexBar li").removeClass("on").eq(idx).addClass("on")
+                        w.find(".flexBar > li").removeClass("on").eq(idx).addClass("on")
                         w.find(".barCon").removeClass("on").eq(idx).addClass("on")
                     })
+                })
+            })
+        },
+        validateCountDown:function(el){
+            el.addClass("countDown")
+            var time = 90;
+            function recur(){
+                console.log(time)
+                if(time>0){
+                    el.find(".count span").html(time)
+                    var vT = setTimeout(function(){
+                        time--;
+                        recur()
+                    },1000)
+                }else{
+                    el.removeClass("countDown")
+                }
+
+            }
+            recur()
+
+        },
+        phoneCheck:function(){
+            var _self = this
+            // 清除手机号
+            $(".phone").each(function(){
+                var el = $(this)
+                var val = el.siblings(".validate")
+                el.find(".clear").off().on("mousedown",function(){
+                    $(".phone input").val("")
+                })
+            })
+            //发送验证码
+            $(".validate").each(function(){
+                var el = $(this)
+                el.find(".send").off().on("click",function(){
+                    if($(this).hasClass("on")){
+                        var d = {
+                            url: 'user/getAuthCode',
+                            data: {
+                                "string": $(".phone input").val(),
+                            },
+                            success: function (d) {
+                                console.log(d)
+                                _self.validateCountDown(el)
+                            }
+                        }
+                        wglobal.ajax(d)
+                    }
+
                 })
             })
         }

@@ -15,9 +15,9 @@
     <div class="records iscroll" :total="getGameHistoryList.totalCount">
       <ul>
         <li v-on:click="showGameHistoryDetail($event)" v-for = "item in gameHistoryList.dataList" :gameId="item.id" >
-          <div class="fl"><img src="../wxImage/baichi.jpg" alt=""></div>
+          <div class="fl"><img :src="item.head" alt=""></div>
           <div class="info">
-            <h3>{{item.combinationName}}</h3>
+            <h3><span>{{item.combinationName}}</span></h3>
             <p><span class="costTime">{{item.costTime}}</span><span class="endTime">{{item.endTime}}</span></p>
           </div>
         </li>
@@ -29,22 +29,22 @@
       <a class="back"></a>
       <h2>对战历史</h2>
     </div>
-    <div class="layerNavContent endInner">
+    <div class="layerNavContent endInner" v-if="gameHistoryDetailInfo.winUsers && gameHistoryDetailInfo.winUsers.length>0">
       <div class="result win">
         <h3 class="title"><span>胜利</span></h3>
         <ul class="userList">
           <li v-for="(user,idx) in gameHistoryDetailInfo.winUsers" v-on:click="voteMvp($event)" :userid="user.userId" class="zan">
             <userwin v-bind:user="user"></userwin>
-            <p><span>{{user.identityName}}</span></p>
+            <!--<p><span>{{user.identityName}}</span></p>-->
           </li>
 
         </ul>
       </div>
-      <div class="result lose">
+      <div class="result lose" v-if="gameHistoryDetailInfo.loseUsers && gameHistoryDetailInfo.loseUsers.length>0">
         <ul class="userList">
-          <li v-for="(user,idx) in gameHistoryDetailInfo.loseUsers" v-on:click="mvp($event)" :userid="user.userId">
+          <li v-for="(user,idx) in gameHistoryDetailInfo.loseUsers" :userid="user.userId">
             <userlose v-bind:user="user"></userlose>
-            <p><span>{{user.identityName}}</span></p>
+            <!--<p><span>{{user.identityName}}</span></p>-->
           </li>
         </ul>
       </div>

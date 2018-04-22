@@ -18,25 +18,31 @@ ctrl+t 拉取服务器最新代码
 
 微信首页banner图事件
 
-重新设置内容样式
-@ApiModelProperty(value = "非必填,分页参数,每页多少条,默认10,0表示全量",example = "10")
-    @Min(0)
-    private int pageSize = CommonConstant.DEFAULT_PAGE_SIZE;
-
-
  footer的商城页面，怎样获取商城id
 
- ===========
- 接口未调用：
-  1.box-controller : face 包房相关api
-  2.consumption-score-record-controller : face 消费积分记录
-  3.game-info-controller : face 游戏信息相关api
-  4.game-record-controller
-  5.ranking-controller  排行榜相关api
+ 我:
+ 手机端：预约，微信支付
 
-  订单赠品 未显示
+ 法官端：1周
+ 游戏新增身份3个:1.5周
+ 大屏刷新回复：2天
 
-  线下支付时显示请到前台结算，
-  订单页面需要一个移动端页面
-  切换也签的时候需要刷新数据
+ 扫码签到，到店签到：2天
+
+ 其他：3天
+
+ 送礼物：1周
+ 游戏支付页面 1天
+
+ ======
+ 提交的按钮，统一加一个遮罩
+
+
+
+
+
+
+
+
+
 

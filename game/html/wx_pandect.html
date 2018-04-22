@@ -6,58 +6,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
   <meta name="format-detection" content="telephone=no">
   <link href="../css/wxh_pandect.css" rel="stylesheet" type="text/css" media="screen" />
-  <title>总览</title>
+  <title>游戏战绩</title>
 </head>
 <body>
-<div class="main" id="wx_pandect">
-  <div class="header"><div><a class="back"></a> <h1 class="pageName"><span>总览</span></h1></div></div>
+<div class="main" id="wx_pandect" v-cloak>
+  <div class="header"><div><a class="back"></a> <h1 class="pageName"><span>游戏战绩</span></h1></div></div>
   <div class="container">
     <div class="pandect">
       <div class="title">
-        <span class="fl">获胜：{{record.totalWinCount}}</span>
-        <span class="fr">游戏：{{record.totalScreeningCount}}</span>
+        <span class="fl">获胜：<b>{{record.totalWinScreeningCount}}</b></span>
+        <span class="fr">总场次：{{record.totalScreeningCount}}</span>
       </div>
       <ul>
-        <li>
-          <img src="../wxImage/baichi.jpg" alt="">
+        <li v-for = "item in record.identityCountMap">
+          <img :src="item.head" alt="">
           <p>
-            <span class="fl">获胜:1</span>
-            <span class="fr">游戏:1</span>
-          </p>
-        </li>
-        <li>
-          <img src="../wxImage/baichi.jpg" alt="">
-          <p>
-            <span class="fl">获胜:1</span>
-            <span class="fr">游戏:1</span>
-          </p>
-        </li>
-        <li>
-          <img src="../wxImage/baichi.jpg" alt="">
-          <p>
-            <span class="fl">获胜:1</span>
-            <span class="fr">游戏:1</span>
-          </p>
-        </li>
-        <li>
-          <img src="../wxImage/baichi.jpg" alt="">
-          <p>
-            <span class="fl">获胜:1</span>
-            <span class="fr">游戏:1</span>
-          </p>
-        </li>
-        <li>
-          <img src="../wxImage/baichi.jpg" alt="">
-          <p>
-            <span class="fl">获胜:1</span>
-            <span class="fr">游戏:1</span>
-          </p>
-        </li>
-        <li>
-          <img src="../wxImage/baichi.jpg" alt="">
-          <p>
-            <span class="fl">获胜:1</span>
-            <span class="fr">游戏:1</span>
+            <span class="fl">获胜:{{item.winCount}}</span>
+            <span class="fr">场次:{{item.totalCount}}</span>
           </p>
         </li>
       </ul>

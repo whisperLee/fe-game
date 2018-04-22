@@ -1,0 +1,26 @@
+@charset "utf-8";
+@import "wxh_mine";
+body{
+  .main{
+    padding-bottom: 0;
+    .yumis{
+      li{
+        position: relative; margin-bottom: .1rem; line-height: 150%; background: $wxColor1; padding: .1rem;
+        h3{
+          font-size: .18rem; color: $wxColor7; font-weight: 500;
+        }
+        p{
+          font-size: .14rem; color: $wxColor5;
+        }
+        span{
+          position: absolute; right:.1rem; top:50%; margin-top: -.2rem; line-height: .4rem; font-size: .24rem; color: $wxColor11;
+          &.add{
+            color: $wxColor9;
+          }
+        }
+      }
+    }
+  }
+}
+
+

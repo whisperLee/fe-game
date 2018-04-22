@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
     <meta name="format-detection" content="telephone=no">
-    <link href="../css/wx_mine.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../css/wxh_mine.css" rel="stylesheet" type="text/css" media="screen" />
     <title>首页</title>
 </head>
 <body>
@@ -17,39 +17,44 @@
                 <p class="nickname">{{user.nickName}}</p>
             </div>
 
-                <div class="levelWrap">
-                    <span class="level">lv.2</span>
-                    <div class="levelPro">
-                        <b style="width:30%"></b>
-                        <i>50/100</i>
-                    </div>
+            <div class="levelWrap">
+                <span class="level">lv.{{user.stage}}</span>
+                <div class="levelPro">
+                    <b v-bind:style="`width:${user.levelPro || 0 }%`"></b>
+                    <i>{{user.totalGameScore}}/{{user.nextNeedScore}}</i>
                 </div>
-                <div class="card">
-                    <b>月卡:1</b>
-                    <b>天卡:15</b>
-                    <b>时卡:62.5</b>
-                </div>
+            </div>
+            <div class="card">
+                <b v-for = "item in card">{{item.name}}:{{item.value}}{{item.unit}}</b>
+            </div>
         </div>
     </div>
     <div class="container">
         <ul class="list">
-            <li>
-                <a href="wx_pandect.html">总览</a>
-            </li>
+
             <li>
                 <a href="wx_orders.html">订单</a>
             </li>
+            <!--<li>-->
+                <!--<a href="wx_achievement.html">成就</a>-->
+            <!--</li>-->
             <li>
-                <a href="wx_achievement.html">成就</a>
+                <a href="wx_cards.html">优惠券</a>
+            </li>
+            <li>
+                <a href="wx_ranking.html">排行榜</a>
             </li>
             <li>
                 <a href="wx_records.html">游戏记录</a>
             </li>
             <li>
-                <a href="wx_cards.html">资金卡</a>
+                <a href="wx_pandect.html">游戏战绩</a>
+            </li>
+            <li>
+                <a href="wx_yumi.html">遇米明细</a>
             </li>
         </ul>
-
+        <a class="btn logout" v-on:click="logout()">退出</a>
 
     </div>
     <div class="footer">

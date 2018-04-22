@@ -41,17 +41,19 @@ new Vue({
                 success: function (d) {
                     if(d.status.code=="OK" && d.data){
                         var d = d.data
-                        console.log(d)
                         d.gameTimeMin && _self.setCard('天卡',d.gameTimeMin,'')
                         d.gameTimeExpire && _self.setCard('月卡',d.gameTimeExpire,'')
-                        d.consumptionScore && _self.setCard('玉米',d.consumptionScore,'')
+                        d.consumptionScore && _self.setCard('遇米',d.consumptionScore,'')
                         _self.user = {
                             "nickName":d.name,
                             "headImgUrl":d.weixinHeadImg,
                             "stage":1,
                             "star":1,
                             "likeTime":d.likeTime,
-                            "mvpTime":d.mvpTime
+                            "mvpTime":d.mvpTime,
+                            "nextNeedScore":d.nextNeedScore,
+                            "totalGameScore":d.totalGameScore,
+                            "levelPro":parseInt(d.totalGameScore*100/(d.nextNeedScore-d.preNeedScore))
                         }
                     }
 
@@ -66,6 +68,20 @@ new Vue({
                 value:value,
                 unit:unit
             })
+        },
+        logout:function(){
+            var d = {
+                url: 'user/logout',
+                data: {},
+                success: function (d) {
+                    if(d.status.code=="OK"){
+                        var d = d.data
+                        wglobal.router('wx_login.html')
+                    }
+
+                }
+            }
+            wglobal.ajax(d)
         }
     }
 })

@@ -26,7 +26,7 @@ new Vue({
                 url: 'voucher/queryUserCash',
                 data: {
                     "pageIndex": 1,
-                    "pageSize": 10
+                    "pageSize": 0
                 },
                 success: function (d) {
                     if(d.status.code == "OK" && d.data){
@@ -47,7 +47,7 @@ new Vue({
                 url: 'voucher/queryUserExperience',
                 data: {
                     "pageIndex": 1,
-                    "pageSize": 10
+                    "pageSize": 0
                 },
                 success: function (d) {
                     if(d.status.code == "OK" && d.data){

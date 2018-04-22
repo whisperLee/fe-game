@@ -39,7 +39,7 @@ body {
   overflow: auto;
   font-size: .16rem;
   line-height: 150%;
-  font-family: Helvetica, STHeiti, Droid Sans Fallback; }
+  font-family: Microsoft YaHei, Helvetica, STHeiti, Droid Sans Fallback; }
 
 textarea {
   resize: none; }
@@ -55,7 +55,9 @@ input, select, textarea {
   -webkit-user-modify: read-write-plaintext-only; }
 
 input {
-  -webkit-appearance: none; }
+  -webkit-appearance: none;
+  background: none;
+  border: none; }
 
 a {
   text-decoration: none; }

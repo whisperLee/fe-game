@@ -1,0 +1,648 @@
+@charset "UTF-8";
+.user-list {
+  position: relative;
+  width: 100%;
+  height: auto;
+  z-index: 3; }
+  .user-list li {
+    position: absolute;
+    -webkit-transform-origin: center center;
+    opacity: 0; }
+    .user-list li .user {
+      width: 100%;
+      height: 100%;
+      -webkit-transform-origin: center center; }
+  .user-list.choosing .user {
+    opacity: 0.5; }
+    .user-list.choosing .user.canVote {
+      opacity: 1;
+      -webkit-animation: flash 1s infinite; }
+
+.user {
+  position: relative; }
+  .user .level {
+    width: 100%;
+    height: 100%; }
+    .user .level .userInner:before, .user .level .star, .user .level .star:before, .user .level .num, .user .level .num:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-position: center; }
+    .user .level .userInner {
+      position: relative;
+      text-align: center;
+      padding: 9%;
+      box-sizing: border-box;
+      line-height: 0;
+      background: none;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-position: center;
+      width: 80%;
+      height: 80%;
+      margin: .1rem auto; }
+      .user .level .userInner .num {
+        background-image: url(../image/newLevel/0_1_0.png);
+        z-index: 2; }
+        .user .level .userInner .num b {
+          display: none; }
+      .user .level .userInner .num1:before {
+        background-image: url("../image/newLevel/n1.png"); }
+      .user .level .userInner .num2:before {
+        background-image: url("../image/newLevel/n2.png"); }
+      .user .level .userInner .num3:before {
+        background-image: url("../image/newLevel/n3.png"); }
+      .user .level .userInner .num4:before {
+        background-image: url("../image/newLevel/n4.png"); }
+      .user .level .userInner .num5:before {
+        background-image: url("../image/newLevel/n5.png"); }
+      .user .level .userInner .num6:before {
+        background-image: url("../image/newLevel/n6.png"); }
+      .user .level .userInner .num7:before {
+        background-image: url("../image/newLevel/n7.png"); }
+      .user .level .userInner .num8:before {
+        background-image: url("../image/newLevel/n8.png"); }
+      .user .level .userInner .num9:before {
+        background-image: url("../image/newLevel/n9.png"); }
+      .user .level .userInner .num10:before {
+        background-image: url("../image/newLevel/n10.png"); }
+      .user .level .userInner .num11:before {
+        background-image: url("../image/newLevel/n11.png"); }
+      .user .level .userInner .num12:before {
+        background-image: url("../image/newLevel/n12.png"); }
+      .user .level .userInner .num13:before {
+        background-image: url("../image/newLevel/n13.png"); }
+      .user .level .userInner .num14:before {
+        background-image: url("../image/newLevel/n14.png"); }
+      .user .level .userInner .num15:before {
+        background-image: url("../image/newLevel/n15.png"); }
+      .user .level .userInner .head {
+        width: 100%;
+        height: 100%;
+        position: relative; }
+        .user .level .userInner .head img {
+          width: 100%;
+          height: auto;
+          margin: 0 auto;
+          z-index: 2;
+          position: relative; }
+      .user .level .userInner .status {
+        position: absolute;
+        right: 2%;
+        top: 1%;
+        width: 100%;
+        height: 33%;
+        /**上警**/
+        /**警长**/
+        /**存活**/
+        /**禁言**/
+        /**白痴翻牌**/
+        /**刀死**/
+        /**毒死**/
+        /**晚上殉情**/
+        /**白天殉情**/
+        /**殉情**/
+        /**放逐**/
+        /**开枪带走**/
+        /**自爆**/
+        /**炸弹人**/
+        /**白痴超时死亡**/
+        /**白狼王开枪带走**/
+        /**白狼王自爆**/ }
+        .user .level .userInner .status b.state {
+          position: relative;
+          z-index: 9;
+          width: 31%;
+          height: 100%;
+          float: right;
+          margin-left: 2%;
+          opacity: 0;
+          -webkit-animation: fadeInRight 1s forwards;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center; }
+        .user .level .userInner .status b.campaign {
+          background-image: url(../image/state/s1.png); }
+        .user .level .userInner .status b.sergeant {
+          background-image: url(../image/state/s2.png); }
+        .user .level .userInner .status b.SHUTUP {
+          background-image: url(../image/state/s4.png); }
+        .user .level .userInner .status b.IDIOT {
+          background-image: url(../image/state/s5.png); }
+        .user .level .userInner .status b.KNIFE {
+          background-image: url(../image/state/s14.png); }
+        .user .level .userInner .status b.POISON {
+          background-image: url(../image/state/s15.png); }
+        .user .level .userInner .status b.NIGHT_LOVE {
+          background-image: url(../image/state/s17.png); }
+        .user .level .userInner .status b.DAY_LOVE {
+          background-image: url(../image/state/s16.png); }
+        .user .level .userInner .status b.LOVE_DEAD {
+          background-image: url(../image/state/s6.png); }
+        .user .level .userInner .status b.EXILE {
+          background-image: url(../image/state/s7.png); }
+        .user .level .userInner .status b.SHOOT {
+          background-image: url(../image/state/s8.png); }
+        .user .level .userInner .status b.SELF_DESTRUCT {
+          background-image: url(../image/state/s9.png); }
+        .user .level .userInner .status b.BOMBERMAN {
+          background-image: url(../image/state/s10.png); }
+        .user .level .userInner .status b.IDIOT_TIMEOUT {
+          background-image: url(../image/state/s11.png); }
+        .user .level .userInner .status b.WHITE_SHOOT {
+          background-image: url(../image/state/s12.png); }
+        .user .level .userInner .status b.WHITE_SELF_DESTRUCT {
+          background-image: url(../image/state/s13.png); }
+      .user .level .userInner:before {
+        background-image: url(../image/newLevel/0.png); }
+  .user .level1 .userInner .num {
+    background-image: url(../image/newLevel/1_1_0.png); }
+  .user .level1 .userInner .star1 {
+    background-image: url("../image/newLevel/1_1.png");
+    z-index: 3; }
+  .user .level1 .userInner .star2 {
+    background-image: url("../image/newLevel/1_2.png");
+    z-index: 3; }
+  .user .level1 .userInner .star3 {
+    background-image: url("../image/newLevel/1_3.png");
+    z-index: 3; }
+  .user .level1 .userInner:before {
+    background-image: url(../image/newLevel/1.png); }
+  .user .level2 .userInner .num {
+    background-image: url(../image/newLevel/2_1_0.png); }
+  .user .level2 .userInner .star1 {
+    background-image: url("../image/newLevel/2_1.png");
+    z-index: 3; }
+  .user .level2 .userInner .star2 {
+    background-image: url("../image/newLevel/2_2.png");
+    z-index: 3; }
+  .user .level2 .userInner .star3 {
+    background-image: url("../image/newLevel/2_3.png");
+    z-index: 3; }
+  .user .level2 .userInner:before {
+    background-image: url(../image/newLevel/2.png); }
+  .user .level3 .userInner .num {
+    background-image: url(../image/newLevel/3_1_0.png); }
+  .user .level3 .userInner .star1 {
+    background-image: url("../image/newLevel/3_1.png");
+    z-index: 3; }
+  .user .level3 .userInner .star2 {
+    background-image: url("../image/newLevel/3_2.png");
+    z-index: 3; }
+  .user .level3 .userInner .star3 {
+    background-image: url("../image/newLevel/3_3.png");
+    z-index: 3; }
+  .user .level3 .userInner:before {
+    background-image: url(../image/newLevel/3.png); }
+  .user .level4 .userInner .num {
+    background-image: url(../image/newLevel/4_1_0.png); }
+  .user .level4 .userInner .star1 {
+    background-image: url("../image/newLevel/4_1.png");
+    z-index: 3; }
+  .user .level4 .userInner .star2 {
+    background-image: url("../image/newLevel/4_2.png");
+    z-index: 3; }
+  .user .level4 .userInner .star3 {
+    background-image: url("../image/newLevel/4_3.png");
+    z-index: 3; }
+  .user .level4 .userInner:before {
+    background-image: url(../image/newLevel/4.png); }
+  .user .level5 .userInner .num {
+    background-image: url(../image/newLevel/5_1_0.png); }
+  .user .level5 .userInner .star1 {
+    background-image: url("../image/newLevel/5_1.png");
+    z-index: 3; }
+  .user .level5 .userInner .star2 {
+    background-image: url("../image/newLevel/5_2.png");
+    z-index: 3; }
+  .user .level5 .userInner .star3 {
+    background-image: url("../image/newLevel/5_3.png");
+    z-index: 3; }
+  .user .level5 .userInner:before {
+    background-image: url(../image/newLevel/5.png); }
+  .user[dead=true] {
+    opacity: 0.8; }
+    .user[dead=true] .head {
+      background: url(../image/dead.png) no-repeat center;
+      background-size: contain; }
+      .user[dead=true] .head img {
+        visibility: hidden; }
+  .user .nick {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: .12rem;
+    line-height: .12rem; }
+  .user .designation {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: .12rem;
+    line-height: .12rem; }
+  .user.userBack .level {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center; }
+    .user.userBack .level .userInner {
+      width: 46%;
+      padding: 5%; }
+  .user.userBack .level1 {
+    background-image: url(../image/newLevel/1_0.png); }
+  .user.userBack .level2 {
+    background-image: url(../image/newLevel/2_0.png); }
+  .user.userBack .level3 {
+    background-image: url(../image/newLevel/3_0.png); }
+  .user.userBack .level4 {
+    background-image: url(../image/newLevel/4_0.png); }
+  .user.userBack .level5 {
+    background-image: url(../image/newLevel/5_0.png); }
+
+#game .mine {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto; }
+  #game .mine .userWrap {
+    width: 70%; }
+    #game .mine .userWrap .user {
+      width: 35%;
+      overflow: hidden;
+      float: left; }
+    #game .mine .userWrap .info {
+      float: left;
+      padding-top: 10%; }
+
+._page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0; }
+
+._verCenter {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%); }
+
+body, div, ol, ul, h1, h2, h3, h4, h5, h6, p, th, td, dl, dd, form, iframe, input, textarea, select, label, article, aside, footer, header, menu, nav, section, time, audio, video {
+  margin: 0;
+  padding: 0; }
+
+article, aside, footer, header, nav, section, audio, canvas, video {
+  display: block; }
+
+html {
+  font-size: 80px; }
+
+@media screen and (min-width: 320px) and (orientation: portrait) {
+  html {
+    font-size: 80px; } }
+@media screen and (min-width: 375px) and (orientation: portrait) {
+  html {
+    font-size: 100px; } }
+@media screen and (min-width: 414px) and (orientation: portrait) {
+  html {
+    font-size: 110px; } }
+body {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-user-select: none;
+  overflow: auto;
+  font-size: .16rem;
+  line-height: 150%;
+  font-family: Microsoft YaHei, Helvetica, STHeiti, Droid Sans Fallback; }
+
+textarea {
+  resize: none; }
+
+iframe, img {
+  border: 0; }
+
+ul, ol, ul li {
+  list-style: none; }
+
+input, select, textarea {
+  outline: 0;
+  -webkit-user-modify: read-write-plaintext-only; }
+
+input {
+  -webkit-appearance: none;
+  background: none;
+  border: none; }
+
+a {
+  text-decoration: none; }
+
+.cf:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.cf {
+  *zoom: 1; }
+
+h1, h2, h3 {
+  font-weight: 100; }
+
+i {
+  font-style: normal; }
+
+video {
+  font-size: 0; }
+
+[v-cloak] {
+  display: none; }
+
+body .main {
+  background: #ffffff;
+  padding-bottom: .55rem;
+  overflow: hidden; }
+  body .main .header {
+    height: .55rem;
+    margin-bottom: .1rem; }
+    body .main .header div {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: .55rem;
+      line-height: 55rem;
+      background: #00bea1;
+      z-index: 9; }
+      body .main .header div .back {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: .55rem;
+        height: .55rem;
+        background: url("../wxImage/back.png") no-repeat center;
+        background-size: contain; }
+      body .main .header div .pageName {
+        text-align: center;
+        font-size: .2rem;
+        color: #ffffff;
+        height: .55rem;
+        line-height: .55rem; }
+  body .main .fl {
+    float: left; }
+  body .main .fr {
+    float: right; }
+  body .main .topMessage {
+    width: 100%;
+    height: .3rem;
+    line-height: .3rem;
+    padding: 0 .1rem;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: #009881; }
+    body .main .topMessage p {
+      white-space: nowrap;
+      font-size: .12rem;
+      text-align: left; }
+  body .main .userCenterWrap {
+    background: #00bea1;
+    color: #ffffff; }
+    body .main .userCenterWrap .user .level .userInner {
+      margin: 0 auto; }
+      body .main .userCenterWrap .user .level .userInner .num {
+        display: none; }
+      body .main .userCenterWrap .user .level .userInner .star1 {
+        background: url("../wxImage/star1.png") no-repeat center;
+        background-size: contain; }
+      body .main .userCenterWrap .user .level .userInner .star2 {
+        background: url("../wxImage/star2.png") no-repeat center;
+        background-size: contain; }
+      body .main .userCenterWrap .user .level .userInner .star3 {
+        background: url("../wxImage/star3.png") no-repeat center;
+        background-size: contain; }
+    body .main .userCenterWrap p.nickname {
+      text-align: center;
+      font-size: .15rem;
+      line-height: .15rem; }
+body .levelWrap {
+  position: relative;
+  line-height: .16rem;
+  font-size: .16rem;
+  color: #ffffff;
+  margin-bottom: .1rem; }
+  body .levelWrap .levelPro {
+    position: absolute;
+    left: .4rem;
+    right: .1rem;
+    top: 0;
+    background: #009881;
+    border-radius: .03rem;
+    height: .16rem;
+    line-height: .16rem; }
+    body .levelWrap .levelPro b {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 100%;
+      background: #63eb65;
+      border-radius: .03rem; }
+    body .levelWrap .levelPro i {
+      position: relative;
+      display: block;
+      text-align: center;
+      color: #ffffff;
+      font-size: .12rem;
+      z-index: 2; }
+  body .levelWrap div.levelInfo {
+    position: relative;
+    overflow: hidden; }
+    body .levelWrap div.levelInfo span {
+      float: left;
+      padding-right: .1rem; }
+    body .levelWrap div.levelInfo span.star {
+      display: block;
+      height: .2rem; }
+body .card b {
+  display: inline-block;
+  padding: 0 .05rem;
+  background: #009881;
+  color: #ffffff;
+  font-size: .12rem;
+  line-height: .2rem;
+  border-radius: .05rem;
+  margin-right: .08rem; }
+body .layerWrap {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  background: #f1f5fa; }
+  body .layerWrap .layerNavTop {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: .55rem;
+    line-height: .55rem;
+    border-bottom: 1px solid #ebedf2;
+    background: #00bea1;
+    z-index: 2; }
+    body .layerWrap .layerNavTop .back {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: .55rem;
+      height: .55rem;
+      background: url(../wxImage/back.png) no-repeat center;
+      background-size: contain; }
+    body .layerWrap .layerNavTop h2 {
+      text-align: center;
+      font-size: .2rem;
+      color: #ffffff; }
+  body .layerWrap .layerNavContent {
+    position: absolute;
+    left: 0;
+    top: .55rem;
+    bottom: 0;
+    width: 100%;
+    overflow: auto; }
+  body .layerWrap .layerNavBottom {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: .55rem; }
+body .footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #ffffff;
+  height: .55rem;
+  border-top: 1px solid #ebedf2; }
+  body .footer ul {
+    padding-top: .07rem; }
+    body .footer ul li {
+      float: left;
+      width: 20%; }
+      body .footer ul li a {
+        display: block;
+        padding-top: .2rem;
+        text-align: center;
+        color: #2d313f;
+        font-size: .14rem;
+        line-height: .25rem;
+        background: url("../wxImage/mine.png") no-repeat center top;
+        background-size: .2rem .2rem; }
+      body .footer ul li.on a {
+        color: #00bea1;
+        background-image: url("../wxImage/mine_on.png"); }
+
+.simple_tips {
+  position: fixed;
+  z-index: 999;
+  left: 50%;
+  top: 50%;
+  width: 2.6rem;
+  line-height: 0.2rem;
+  -webkit-transform: translate(-50%, -50%);
+  padding: 0.2rem;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #f1f1f1;
+  border-radius: 5px;
+  font-size: 0.14rem;
+  text-align: center; }
+
+.flexBar {
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  height: .4rem; }
+  .flexBar li {
+    height: .4rem;
+    line-height: .4rem;
+    width: 1%;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+    word-break: break-all;
+    color: #2d313f;
+    text-align: center;
+    background: #ffffff;
+    border-bottom: 1px solid #ffffff;
+    font-size: .16rem; }
+    .flexBar li.on {
+      border-bottom: 1px solid #00bea1;
+      color: #00bea1; }
+
+.barCon {
+  display: none;
+  padding-top: .1rem; }
+  .barCon.on {
+    display: block; }
+
+.iscrollWrap {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: .55rem;
+  width: 100%; }
+  .iscrollWrap .iscroll {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; }
+
+body {
+  background: #f1f5fa; }
+  body .main {
+    background: #f1f5fa;
+    padding-top: 0; }
+    body .main .header {
+      margin-bottom: 0; }
+    body .main .userCenter {
+      width: 80%;
+      margin: 0 auto;
+      padding-bottom: .12rem; }
+      body .main .userCenter .top {
+        width: 55%;
+        margin: 0 auto;
+        padding: .1rem 0; }
+        body .main .userCenter .top .nickname {
+          text-align: center; }
+    body .main .list li {
+      width: 100%;
+      background: #ffffff; }
+      body .main .list li a {
+        display: block;
+        height: .5rem;
+        line-height: .5rem;
+        font-size: .16rem;
+        color: #2d313f;
+        border-bottom: 1px solid #ebedf2;
+        padding-left: .1rem;
+        background: url("../wxImage/list.png") no-repeat right center;
+        background-size: .4rem .4rem; }
+    body .main .btn.logout {
+      position: fixed;
+      bottom: .75rem;
+      left: 5%;
+      height: .4rem;
+      width: 90%;
+      line-height: .4rem;
+      color: #ffffff;
+      background: #ee6262;
+      text-align: center;
+      display: block;
+      border-radius: 5px; }
+
+/*# sourceMappingURL=wxh_mine.css.map */

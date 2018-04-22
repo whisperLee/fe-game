@@ -9,34 +9,49 @@
   <title>排行榜</title>
 </head>
 <body>
-<div class="main" id="wx_ranking">
+<div class="main" id="wx_ranking" v-cloak>
   <div class="header"><div><a class="back"></a> <h1 class="pageName"><span>排行榜</span></h1></div></div>
   <div class="container iscrollWrap">
-    <div class="ranking">
-      <ul>
-        <li>
-          <p class="num"></p>
-          <p><img src="../wxImage/head.png"></p>
-          <p>用户名</p>
-          <p>称号</p>
-        </li>
-        <li>
-          <p class="num"></p>
-          <p><img src="../wxImage/head.png"></p>
-          <p>用户名</p>
-          <p>称号</p>
-        </li>
-        <li>
-          <p class="num"></p>
-          <p><img src="../wxImage/head.png"></p>
-          <p>用户名</p>
-          <p>称号</p>
-        </li>
-        <li>
-          <p class="num"></p>
-          <p><img src="../wxImage/head.png"></p>
-          <p>用户名</p>
-          <p>称号</p>
+    <div class="rankings barWrap">
+      <ul class="hd flexBar">
+        <!--<li v-on:click="getCharm()">魅力</li>-->
+        <li class="on" v-on:click="getGame()">积分</li>
+        <li v-on:click="getMvp()">mvp</li>
+      </ul>
+      <div class="bd">
+        <!--<ul class="charm barCon barSWrap">-->
+          <!--<ul class="hd">-->
+            <!--<li v-on:click="getCharmT()"><span>实时</span></li>-->
+            <!--<li v-on:click="getCharmY()"><span>昨日</span></li>-->
+            <!--<li v-on:click="getCharmW()"><span>周榜</span></li>-->
+            <!--<li  v-on:click="getCharmTt()"><span>总榜</span></li>-->
+          <!--</ul>-->
+        <!--</ul>-->
+        <ul class="game barCon barSWrap on">
+          <ul class="hd">
+            <li class="on" v-on:click="getGameT()"><span>实时</span></li>
+            <li v-on:click="getGameY()"><span>昨日</span></li>
+            <li v-on:click="getGameW()"><span>周榜</span></li>
+            <li  v-on:click="getGameTt()"><span>总榜</span></li>
+          </ul>
+        </ul>
+        <ul class="mvp barCon barSWrap">
+          <ul class="hd">
+            <li v-on:click="getMvpT()"><span>实时</span></li>
+            <li v-on:click="getMvpY()"><span>昨日</span></li>
+            <li v-on:click="getMvpW()"><span>周榜</span></li>
+            <li v-on:click="getMvpTt()"><span>总榜</span></li>
+          </ul>
+        </ul>
+      </div>
+    </div>
+    <div class="ranking barSCon on">
+      <ul :class="dataList.length<=0?'none':''">
+        <li v-for = "(item,idx) in dataList">
+          <p class="num">NO.{{idx+1}}</p>
+          <p class="head"><img src="../wxImage/head.png"></p>
+          <p class="name">用户名</p>
+          <p class="value">190</p>
         </li>
       </ul>
     </div>
@@ -47,6 +62,7 @@
 <script type="application/javascript" src="../../js/velocity.min.js"></script>
 <script type="application/javascript" src="../../game/js/animate.js"></script>
 <script type="application/javascript" src="../../game/js/wx/wx_global.js"></script>
-<script type="application/javascript" src="../../game/js/wx/wx_records.js"></script>
+<script type="application/javascript" src="../../game/js/wx/wx_component.js"></script>
+<script type="application/javascript" src="../../game/js/wx/wx_ranking.js"></script>
 </body>
 </html>

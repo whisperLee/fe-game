@@ -5,9 +5,9 @@ Vue.component('user',wcomponent.user)
 new Vue({
     el: '#wx_index',
     data: {
-        tips:'浪里一枝花获得本局mvp',
+        tips:'',
         user:{},
-        importantMess:'重要通知：为庆祝分店开业，所有店铺今日5折！！',
+        importantMess:'',
         card:[],
         banners:[],
         shops:[]
@@ -37,7 +37,7 @@ new Vue({
                         console.log(d)
                         d.gameTimeMin && _self.setCard('天卡',d.gameTimeMin,'')
                         d.gameTimeExpire && _self.setCard('月卡',d.gameTimeExpire,'')
-                        d.consumptionScore && _self.setCard('玉米',d.consumptionScore,'')
+                        d.consumptionScore && _self.setCard('遇米',d.consumptionScore,'')
                         _self.user = {
                             "nickName":d.name,
                             "headImgUrl":d.weixinHeadImg,

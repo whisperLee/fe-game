@@ -1,17 +1,18 @@
 @charset "utf-8";
 .shenfen{
   background: url(../image/sf.png) no-repeat center bottom; background-size: contain;
-  &.on.shenfen1{background-image: url(../image/shenfen/pingmin.png)}
-  &.on.shenfen2{background-image: url(../image/shenfen/langren.png)}
-  &.on.shenfen3{background-image: url(../image/shenfen/yuyanjia.png)}
-  &.on.shenfen4{background-image: url(../image/shenfen/nvwu.png)}
-  &.on.shenfen5{background-image: url(../image/shenfen/lieren.png)}
-  &.on.shenfen6{background-image: url(../image/shenfen/shouwei.png)}
-  &.on.shenfen7{background-image: url(../image/shenfen/langwang.png)}
-  &.on.shenfen8{background-image: url(../image/shenfen/bailangwang.png)}
-  &.on.shenfen9{background-image: url(../image/shenfen/baichi.png)}
-  &.on.shenfen10{background-image: url(../image/shenfen/qiubite.png)}
-  &.on.shenfen11{background-image: url(../image/shenfen/daozei.png)}
+  &.on.shenfen1{background-image: url(../shenfen/1.png)} // 平民
+  &.on.shenfen2{background-image: url(../shenfen/2.png)}// 狼人
+  &.on.shenfen3{background-image: url(../shenfen/3.png)}// 预言家
+
+  &.on.shenfen4{background-image: url(../shenfen/4.png)}// 女巫
+  &.on.shenfen5{background-image: url(../shenfen/5.png)}// 猎人
+  &.on.shenfen6{background-image: url(../shenfen/6.png)}// 守卫
+  &.on.shenfen7{background-image: url(../shenfen/7.png)}// 狼王
+  &.on.shenfen8{background-image: url(../shenfen/8.png)} // 白狼王
+  &.on.shenfen9{background-image: url(../shenfen/9.png)} // 白痴
+  &.on.shenfen10{background-image: url(../shenfen/10.png)} // 丘比特
+  &.on.shenfen11{background-image: url(../shenfen/11.png)} // 盗贼
   //&.on.shenfen12{background-image: url(../image/shenfen/jinyanzhanglao.png)}
   //&.on.shenfen13{background-image: url(../image/shenfen/zhadanren.png)}
   //&.on.shenfen14{background-image: url(../image/shenfen/moshushi.png)}

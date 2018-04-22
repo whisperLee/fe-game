@@ -4,13 +4,13 @@
   ul{
     li.order{
       margin-bottom: .1rem;
-      padding: .1rem;
+      padding: 0 .1rem .1rem .1rem;
       background: $wxColor1;
       .hd{
         background: $wxColor1;
         border-bottom: .5px solid $wxColor3;
         margin-bottom: .1rem;
-        line-height: .35rem;
+        line-height: .4rem;
         overflow: hidden;
         font-size: .14rem;
         p{
@@ -68,6 +68,9 @@
           background: none;
           width: auto;
           margin: 0;
+          &.pay{
+            border-color:$wxColor11; color: $wxColor11;
+          }
         }
       }
     }
@@ -88,14 +91,14 @@
     margin-bottom: .1rem;
     background: $wxColor1;
     li{
-      border-bottom: .5px solid $wxColor3;
+      border-bottom: .5px solid $wxColor2;
       a{
         display: block;
         overflow: hidden;
         padding:.1rem;
         .picWrap {
           float: left;
-          width: .8rem;
+          width: .8rem; line-height: 0; border: 1px solid $wxColor2;
           img {
             width: 100%;
             height: auto;
@@ -109,6 +112,18 @@
           .unitPrice{
             text-decoration:line-through;
             padding-right: .05rem;
+          }
+        }
+      }
+      a.promot{
+        padding-left: .2rem; padding-top: 0;
+       .picWrap {
+          width: .7rem;
+        }
+        .goodWrap{
+          margin-left: .8rem;
+          .promotName{
+            color: $wxColor11; padding-right:.05rem;
           }
         }
       }
@@ -196,16 +211,16 @@
   }
   /*支付类型*/
   .payType{
-    background: $wxColor1; margin-bottom: .1rem; line-height: .4rem; height:.4rem; font-size: .14rem;
-    padding: 0 .1rem;
+    background: $wxColor1; margin-bottom: .1rem; line-height: .3rem; font-size: .14rem; padding: 0 .1rem; overflow: hidden;
     span{
-      float: left;
+      display: block; padding-top: .1rem;
     }
-    .radio{
-      float: left;
+    .radios{
+      display: block; padding-left: .1rem;
       li{
-        padding-left: .2rem; height:.4rem; line-height: .4rem; background: url("../wxImage/r.png") no-repeat left center; background-size: .2rem; float: left; margin-left: .15rem;
-        &.active{background-image: url("../wxImage/r_on.png")}
+        .tip{
+          color: $wxColor11;
+        }
       }
     }
   }
@@ -220,6 +235,9 @@
   border-top: .5px solid $wxColor3;
   .btn{
     height:.35rem; line-height: .35rem; font-size: .14rem; color: $wxColor7; border: 1px solid $wxColor3; border-radius: .05rem; padding: 0 .1rem; float: right; margin: .1rem .1rem .1rem 0;
+    &.pay{
+      border-color:$wxColor11; color: $wxColor11;
+    }
   }
 
 

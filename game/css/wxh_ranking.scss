@@ -1,15 +1,108 @@
 @charset "utf-8";
-@import "_wx";
-.ranking{
-  li{
-    height: .6rem; line-height: .6rem; padding: .1rem 0; border-bottom: 1px solid $wxColor3;
-    p{
-      font-size: .2rem; color: $wxColor7; float: left; height:100%;
-      img{height:.6rem; width:auto; display: block; margin: 0 auto;}
-      &:nth-child(1){width:10%;}
-      &:nth-child(2){width:30%;}
-      &:nth-child(3){width:30%;}
-      &:nth-child(4){width:30%;}
+@import "wxh_mine";
+
+.barSWrap{
+  padding-top: .05rem;
+  .hd{
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    height:.4rem;
+    li{
+      height: .35rem;
+      line-height: .35rem;
+      width:1%;
+      -webkit-box-flex:1 ;
+      -moz-box-flex: 1;
+      box-flex: 1;
+      word-break: break-all;
+      text-align: center;
+      font-size: .14rem;
+      span{
+        display: inline-block;
+      }
+      &.on{
+        span{
+          background: $wxColor9; color: $wxColor1; line-height: .25rem; margin: .05rem; padding: 0 .1rem;
+        }
+
+      }
     }
   }
+}
+
+.ranking{
+  ul{
+    position: relative; padding-top: 47%; overflow: hidden;background: url("../wxImage/bg.png") no-repeat top center; background-size: 100% auto;
+    &.none{
+      background: none;
+    }
+    li{
+      height: .5rem; line-height: .5rem; padding: .1rem 0; border-top: 1px solid $wxColor3; background: $wxColor1;
+      p{
+        font-size: .16rem; color: $wxColor7; float: left; height:100%; text-align: center;
+        img{height:.5rem; width:auto; display: block; margin: 0 auto;}
+        &:nth-child(1){width:20%;}
+        &:nth-child(2){width:25%;}
+        &:nth-child(3){width:25%;}
+        &:nth-child(4){width:30%; color: $wxColor9;}
+      }
+      &:nth-child(1),&:nth-child(2),&:nth-child(3){
+        position: absolute; top:0; width:33%; background: none; padding-top: .2rem; height:auto; border: none;
+        p{
+          position: relative; width:100%; height:auto; float:none; line-height: .25rem; font-size: .16rem;
+          img{
+            width:80%; height:auto;
+          }
+          &.num{
+            display: none;
+          }
+          &.head{
+            width:80%; margin: 0 auto; padding-bottom: 8%;
+            &:before{
+              position: absolute; right:-10%; top:-12%; content: ""; width:50%; height:50%; background: url("../wxImage/i1.png") no-repeat center; background-size: contain;
+            }
+            &:after{
+              position: absolute; left:0; bottom:0; content: ""; width:100%; height:100%; background: url("../wxImage/i4.png") no-repeat center bottom; background-size: contain;
+            }
+          }
+        }
+
+      }
+      &:nth-child(1){
+        left:33%;
+        p{
+          font-size: .18rem; line-height: .3rem;
+        }
+
+      }
+      &:nth-child(2){
+        left:0; margin-top:5%;
+        p.head{
+          width:75%;
+          &:before{
+            right:-5%; top:-12%; width:45%; height:45%; background-image: url("../wxImage/i2.png");
+          }
+          &:after{
+            background-image: url("../wxImage/i5.png");
+          }
+        }
+
+      }
+      &:nth-child(3){
+        left:66%; margin-top:5%;
+        p.head{
+          width:70%;
+          &:before{
+            right:0; top:-10%; width:40%; height:40%; background-image: url("../wxImage/i3.png");
+
+          }
+          &:after{
+            background-image: url("../wxImage/i6.png");
+          }
+        }
+      }
+    }
+  }
+
 }

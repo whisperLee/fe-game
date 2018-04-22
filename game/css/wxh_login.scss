@@ -1,0 +1,58 @@
+@charset "utf-8";
+@import "_wx";
+body{
+  background: $wxColor2;
+  .main{
+    background: $wxColor2;
+    .container{
+      padding: .1rem .2rem; text-align: center;
+      .input,.gender{
+        position: relative; background: $wxColor1; height:.44rem; line-height: .44rem; color: $wxColor7; padding: 0 .15rem; border-radius: .22rem; margin-bottom: .3rem; text-align: left;
+
+        .msg{
+          display: none;
+        }
+        &.error{
+          background: $wxColor14;
+          input{
+            color: $wxColor11;
+          }
+          .msg{
+            position: absolute; bottom:-.2rem; left:0; width:100%; line-height: .15rem; font-size: .12rem; color: $wxColor11; padding-left: .15rem; display: block;
+          }
+        }
+        &.validate{
+          .send,.count{
+            position: absolute; right:.15rem; top:0; font-size: .14rem; color: $wxColor5;
+            &.on{
+              color: $wxColor9; display: block;
+            }
+          }
+          .count{
+            display: none;
+          }
+          &.countDown{
+            .send{display: none;}
+            .count{display: block; color: $wxColor9;}
+          }
+        }
+      }
+      .gender{
+        ul{
+          overflow: hidden;
+          li{
+            padding-left: .3rem; background: url("../wxImage/r.png") no-repeat center left; background-size: .2rem; float: left; width: 50%; box-sizing: border-box;text-align: left; color: $wxColor6; width:auto;
+            &.on{
+              background-image: url("../wxImage/r_on.png");
+            }
+          }
+        }
+      }
+      .btn{
+        background: $wxColor9; display: block; width:100%; height:.4rem; line-height: .4rem; text-align: center; font-size: .16rem; color: $wxColor1; border-radius: .2rem;
+      }
+      a.register{font-size: .14rem; color: $wxColor5; line-height: .4rem; display: inline-block; padding:0 .2rem;}
+    }
+  }
+}
+

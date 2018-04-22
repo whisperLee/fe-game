@@ -23,11 +23,6 @@ new Vue({
         init:function(){
             var _self = this
             _self.getCart();
-            _self.getOrderConsumptionScore()
-            $(function(){
-                _self.active()
-            })
-
         },
         getCart:function(){
             var _self = this
@@ -64,6 +59,7 @@ new Vue({
                             amount:d.data.amount,
                             promotionDiscounts:d.data.promotionDiscounts
                         }
+                        _self.getOrderConsumptionScore(d.data.actualAmount) //获取可用遇米数
                         setTimeout(function(){
                             $(".voucherListLayer .enabledVoucher").html(wglobal.returnVoucherList(d.data.enabledVoucherResponseList))
                             $(".voucherListLayer .disabledVoucher").html(wglobal.returnVoucherList(d.data.disabledVoucherResponseList))
@@ -84,20 +80,27 @@ new Vue({
                         },10)
 
                     }else{
-                        d.status.msg && wglobal.pop_tips(d.status.msg)
+                        d.status.msg && wglobal.pop_tips(d.status.msg,function(){
+                            wglobal.router('wx_shop.html?shopId='+_self.shopId)
+                        })
+
+
                     }
 
                 }
             }
             wglobal.ajax(d)
         },
-        getOrderConsumptionScore:function(){
+        getOrderConsumptionScore:function(aDouble){
             var _self = this
             var d = {
-                url: 'order/getOrderConsumptionScore',
-                data:{},
+                url: 'order/getOrderConsumptionScoreByAmount',
+                data:{
+                    aDouble:aDouble
+                },
                 success: function (d) {
-                    console.log(d)
+                    console.log("yumi")
+                    console.log(d.data)
                     if(d.status.code=="OK" && d.data){
                         _self.orderConsumptionScore = d.data
                         $("#consumptionScoreChoose").change(function(){
@@ -111,7 +114,7 @@ new Vue({
             }
             wglobal.ajax(d)
         },
-        changeVoucherOrConsume:function(){ // 使用抵价券or积分
+        changeVoucherOrConsume:function(isGetConScore){ // 使用抵价券or积分
             var _self = this
             var d = {
                 url: 'order/changeVoucherOrConsume',
@@ -124,6 +127,7 @@ new Vue({
                         _self.amount.promotionDiscounts = d.data.promotionDiscounts
                         _self.amount.useConsumptionScore  = d.data.useConsumptionScore
                         _self.amount.voucherDiscounts   = d.data.voucherDiscounts
+                        isGetConScore && _self.getOrderConsumptionScore(d.data.actualAmount) //获取可用遇米数
                     }else{
                         d.status.msg && wglobal.pop_tips(d.status.msg)
                     }
@@ -132,7 +136,7 @@ new Vue({
             }
             wglobal.ajax(d)
         },
-        confirmCard:function(){
+        changeCard:function(){
             var _self = this
             var actCard = $(".voucherListLayer .enabledVoucher .card.active")
             if(actCard.length>0){
@@ -141,31 +145,35 @@ new Vue({
                 _self.orderConfirmDate.voucherId = null
             }
             wglobal.layerOuter($(".voucherListLayer"))
-            _self.changeVoucherOrConsume()
+            //遇米数置为0
+            _self.conScoreClose()
+            _self.changeVoucherOrConsume(true)
         },
         showVoucher:function(){
             wglobal.layerEnter($(".voucherListLayer"))
+        },
+        conScoreClose:function(){
+            var _self = this
+            $(".conScore .switch").removeClass("active")
+            $(".conScore .consumptionScoreChoose").hide()
+            _self.orderConfirmDate.consumptionScore = 0
         },
         switchBtn:function(){
             var _self = this
             var el = $(event.currentTarget)
             if(el.hasClass("active")){
-                el.removeClass("active")
-                el.closest(".conScore").find(".consumptionScoreChoose").hide()
+                _self.conScoreClose()
             }else{
                 el.addClass("active")
                 el.closest(".conScore").find(".consumptionScoreChoose").show()
-                if(!(_self.orderConfirmDate.consumptionScore && _self.orderConfirmDate.consumptionScore>0)){
-                    _self.orderConfirmDate.consumptionScore = $("#consumptionScoreChoose option").first().val()
-                        _self.changeVoucherOrConsume()
-                }
+                console.log($("#consumptionScoreChoose").val())
+                _self.orderConfirmDate.consumptionScore = $("#consumptionScoreChoose").val() || $("#consumptionScoreChoose option").first().val()
             }
+            _self.changeVoucherOrConsume(false)
         },
         orderSubmit:function(){
             var _self = this
-            var data = {
-
-            }
+            var payType = $(".payType li.on").attr("type")
             var d = {
                 url: 'order/orderSubmit',
                 data:{
@@ -174,7 +182,7 @@ new Vue({
                     "consumptionScore": _self.orderConfirmDate.consumptionScore || null,
                     "gameNumber": _self.user.gameNumber,
                     "goodsInfoList":_self.orderConfirmDate.goodsInfoList,
-                    "payType": $(".payType li.active").attr("type"),
+                    "payType": payType,
                     "remark": "",
                     "type": 1,
                     "voucherId": _self.orderConfirmDate.voucherId || null
@@ -186,6 +194,11 @@ new Vue({
                         var shopId = _self.shopId
                         wglobal.setStorage('carts',{shopId:{}})
                         console.log("打开支付界面")
+                        if(payType==0){
+                            wglobal.router('wx_pay.html?orderId='+d.data.orderId+"&amount="+d.data.amount)
+                        }else if(payType==50){
+                            wglobal.router('wx_orders.html?orderId='+d.data.orderId)
+                        }
                     }
 
                 }
@@ -195,13 +208,6 @@ new Vue({
         back:function(){
             var _self = this
             wglobal.router("wx_shop.html?shopId="+_self.shopId)
-        },
-        active:function () {
-            var _self = this
-            $(".payType li").click(function(){
-                $(".payType li").removeClass("active")
-                $(this).addClass("active")
-            })
         }
     }
 })

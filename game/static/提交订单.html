@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
   <meta name="format-detection" content="telephone=no">
-  <link href="../css/wx_mine.css" rel="stylesheet" type="text/css" media="screen" />
+  <link href="../css/wxh_orderSubmit.css" rel="stylesheet" type="text/css" media="screen" />
   <title></title>
 </head>
 <body>
@@ -41,11 +41,41 @@
               </div>
             </div>
           </a>
+          <a class="promot">
+            <div class="picWrap">
+              <img :src="item.smallImgUrl">
+            </div>
+            <div class="goodWrap">
+              <div class="goodCont">
+                <div class="goodName">{{item.goodsName}}</div>
+                <div class="goodNum"><span>x{{item.quantity}}</span></div>
+                <div class="goodPrice">
+                  <span class="unitPrice" style="display: none" v-show="item.unitPrice!=item.actualUnitPrice">¥{{item.unitPrice}}</span>
+                  <span>¥{{item.actualUnitPrice}}</span>
+                </div>
+              </div>
+            </div>
+          </a>
+          <a class="promot">
+            <div class="picWrap">
+              <img :src="item.smallImgUrl">
+            </div>
+            <div class="goodWrap">
+              <div class="goodCont">
+                <div class="goodName">{{item.goodsName}}</div>
+                <div class="goodNum"><span>x{{item.quantity}}</span></div>
+                <div class="goodPrice">
+                  <span class="unitPrice" style="display: none" v-show="item.unitPrice!=item.actualUnitPrice">¥{{item.unitPrice}}</span>
+                  <span>¥{{item.actualUnitPrice}}</span>
+                </div>
+              </div>
+            </div>
+          </a>
         </li>
       </ul>
       <div class="userCash">
         <div class="">优惠券 2张可用<span>-￥12.00</span></div>
-        <div class="">玉米 2000 <span></span></div>
+        <div class="">遇米 2000 <span></span></div>
       </div>
       <div class="amount">
         <p>商品金额：<span>￥117.05</span></p>

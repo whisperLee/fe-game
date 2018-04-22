@@ -1,9 +1,12 @@
 @charset "utf-8";
 @import "_wx_reset";
 @import "_g_reset";
+html{
+  background: $wxColor2;
+}
 body {
   .main {
-    background: $wxColor1;
+    background: $wxColor2;
     padding-bottom: .55rem;
     overflow: hidden;
     .header{
@@ -18,6 +21,9 @@ body {
           text-align: center;  font-size: .2rem; color: $wxColor1; height:.55rem; line-height: .55rem;
         }
       }
+    }
+    .container{
+      background: $wxColor2;
     }
     .fl{
       float: left;
@@ -234,6 +240,7 @@ body {
     &.on{
       border-bottom:1px solid $wxColor9;
       color: $wxColor9;
+      //background: $wxColor10; color: $wxColor1;
     }
   }
 }
@@ -248,5 +255,49 @@ body {
   position: absolute; left: 0; bottom:0; top:.55rem; width:100%;
   .iscroll{
     position: relative; width:100%; height:100%; overflow: hidden;
+  }
+}
+.radios li {
+  padding-left: .2rem;
+  height: .4rem;
+  line-height: .4rem;
+  background: url(../wxImage/r.png) no-repeat left center;
+  background-size: .2rem;
+  float: left;
+  margin-right: .15rem;
+  &.on{
+    background-image: url("../wxImage/r_on.png"); color: $wxColor9;
+  }
+}
+
+.input {
+  position: relative;
+  background: $wxColor1;
+  height: .44rem;
+  line-height: .44rem;
+  color: $wxColor7;
+  padding: 0 .15rem;
+  border-radius: .22rem;
+  margin-bottom: .3rem;
+  text-align: left;
+  input {
+    font-size: .16rem;
+    height: .44rem;
+    line-height: .44rem;
+    width: 100%;
+  }
+
+  input::-webkit-input-placeholder {
+    color: $wxColor5;
+  }
+  .clear {
+    position: absolute;
+    top: .06rem;
+    right: .1rem;
+    width: .3rem;
+    height: .3rem;
+    background: url("../wxImage/close.png") no-repeat center;
+    background-size: 100% 100%;
+    display: none;
   }
 }

@@ -40,7 +40,7 @@ body {
   overflow: auto;
   font-size: .16rem;
   line-height: 150%;
-  font-family: Helvetica, STHeiti, Droid Sans Fallback; }
+  font-family: Microsoft YaHei, Helvetica, STHeiti, Droid Sans Fallback; }
 
 textarea {
   resize: none; }
@@ -56,7 +56,9 @@ input, select, textarea {
   -webkit-user-modify: read-write-plaintext-only; }
 
 input {
-  -webkit-appearance: none; }
+  -webkit-appearance: none;
+  background: none;
+  border: none; }
 
 a {
   text-decoration: none; }
@@ -96,7 +98,7 @@ video {
   -webkit-transform: translateY(-50%); }
 
 body {
-  font-family: Helvetica, STHeiti, Droid Sans Fallback;
+  font-family: Microsoft YaHei, Helvetica, STHeiti, Droid Sans Fallback;
   color: #f1f1f1; }
   body .main {
     background: url("../image/n1.jpg") no-repeat center top;
@@ -530,27 +532,27 @@ body {
   background: url(../image/sf.png) no-repeat center bottom;
   background-size: contain; }
   .shenfen.on.shenfen1 {
-    background-image: url(../image/shenfen/pingmin.png); }
+    background-image: url(../shenfen/1.png); }
   .shenfen.on.shenfen2 {
-    background-image: url(../image/shenfen/langren.png); }
+    background-image: url(../shenfen/2.png); }
   .shenfen.on.shenfen3 {
-    background-image: url(../image/shenfen/yuyanjia.png); }
+    background-image: url(../shenfen/3.png); }
   .shenfen.on.shenfen4 {
-    background-image: url(../image/shenfen/nvwu.png); }
+    background-image: url(../shenfen/4.png); }
   .shenfen.on.shenfen5 {
-    background-image: url(../image/shenfen/lieren.png); }
+    background-image: url(../shenfen/5.png); }
   .shenfen.on.shenfen6 {
-    background-image: url(../image/shenfen/shouwei.png); }
+    background-image: url(../shenfen/6.png); }
   .shenfen.on.shenfen7 {
-    background-image: url(../image/shenfen/langwang.png); }
+    background-image: url(../shenfen/7.png); }
   .shenfen.on.shenfen8 {
-    background-image: url(../image/shenfen/bailangwang.png); }
+    background-image: url(../shenfen/8.png); }
   .shenfen.on.shenfen9 {
-    background-image: url(../image/shenfen/baichi.png); }
+    background-image: url(../shenfen/9.png); }
   .shenfen.on.shenfen10 {
-    background-image: url(../image/shenfen/qiubite.png); }
+    background-image: url(../shenfen/10.png); }
   .shenfen.on.shenfen11 {
-    background-image: url(../image/shenfen/daozei.png); }
+    background-image: url(../shenfen/11.png); }
 
 /*qiangshenfen*/
 .qiang {

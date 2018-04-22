@@ -1,18 +1,22 @@
 @charset "utf-8";
-@import "_wx";
+@import "wxh_mine";
 .pandect{
   padding-top: 0;
   .title{
+    background: $wxColor1;
     line-height: .4rem;
     border-bottom: .5px solid $wxColor3;
     overflow: hidden;
     padding: 0 .1rem;
     color: $wxColor6;
-
+    b{
+      color: $wxColor9;
+    }
   }
   ul{
     overflow: hidden;
     li{
+      position: relative;
       float: left;
       width:30%;
       margin-left: 2.5%;
@@ -26,8 +30,14 @@
         height: auto;
       }
       p{
+        position: absolute;
+        left:0;
+        right:0;
+        bottom:0;
+        background:$wxColor13;
         padding: 0 .1rem;
-        line-height: .2rem;
+        line-height: .25rem;
+        color: $wxColor1;
       }
     }
   }

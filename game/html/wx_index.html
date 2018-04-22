@@ -6,18 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
     <meta name="format-detection" content="telephone=no">
     <link href="../../css/swiper.min.css" rel="stylesheet" type="text/css" media="screen" >
-    <link href="../css/wx_index.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="../css/wxh_index.css" rel="stylesheet" type="text/css" media="screen" />
     <title>首页</title>
-    <style>
-        /*.container,.footer,.user,.topMessage,.card{display: none}*/
-        .userCenter{height:1rem;}
-
-    </style>
 </head>
 <body>
 <div class="main" id="wx_index" v-cloak>
     <div class="userCenterWrap" >
-        <div class="topMessage"><p>{{tips}}</p></div>
+        <div class="topMessage" v-if="tips!=''"><p>{{tips}}</p></div>
         <div class="userCenter">
             <div class="left">
                 <user v-bind:user="user"></user>
@@ -39,7 +34,8 @@
     </div>
     <div class="container">
         <div class="importantMess"  style="display: none" v-show="importantMess">
-            <p>{{importantMess.name}}：{{importantMess.notice}}</p>
+            <!--<p>{{importantMess.name}}：{{importantMess.notice}}</p>-->
+            <p>{{importantMess.notice}}</p>
         </div>
 
         <div class="imgScroll swiper-container">
@@ -54,8 +50,6 @@
             </ul>
             <div class="swiper-pagination"></div>
         </div>
-
-
         <div class="shops">
             <ul>
                 <li v-for = "item in shops">
@@ -65,9 +59,10 @@
                             <p class="local">{{item.address}}</p>
                             <p class="shopName">{{item.name}}</p>
                             <div class="status">
+                                <span class="notBeginning">总预约人数：<b>{{item.shopAppointmentGamerCount || 0}}</b>人</span>
                                 <span class="gaming">游戏中：<b>{{item.shopPlayGamerCount || 0}}</b>人</span>
-                                <span class="lineUp">排队中：<b>{{item.shopIdleGamerCount || 0}}</b>人</span>
-                                <span class="notBeginning">未开始：<b>{{item.shopAppointmentGamerCount || 0}}</b>人</span>
+                                <span class="lineUp">等待中：<b>{{item.shopIdleGamerCount || 0}}</b>人</span>
+
                             </div>
                         </div>
                     </a>

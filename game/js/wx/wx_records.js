@@ -26,11 +26,14 @@ new Vue({
                 url: 'game/queryGameHistoryList',
                 data: {
                     "pageIndex": 1,
-                    "pageSize": 10
+                    "pageSize": 0
                 },
                 success: function (d) {
                     console.log(d)
                     if(d.status.code=="OK" && d.data){
+                        for(var i=0;i<d.data.dataList.length;i++){
+                            d.data.dataList[i].head = '../'+interfaceValue.shenfen[d.data.dataList[i].identityId].headf
+                        }
                         _self.gameHistoryList = d.data
                         setTimeout(function(){
                             new IScroll(".container .records", {click:true});
@@ -53,13 +56,10 @@ new Vue({
                     console.log(d)
                     _self.gameHistoryDetail = d
                     _self.gameHistoryDetailInfo = d.gameHistoryDetailInfo
-
-
-
                     wglobal.layerEnter($(".gameHistoryLayer"))
                 }
             }
             wglobal.ajax(d)
-        },
+        }
     }
 })

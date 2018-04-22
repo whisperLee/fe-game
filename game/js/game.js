@@ -519,7 +519,7 @@ var game = new Vue({
             var _self = this;
             el.on('click', function () {
                 if(el.hasClass('no')){
-                    alert('您的玉米不够，请选择其它身份')
+                    alert('您的遇米不够，请选择其它身份')
                 }else{
                     _self.submitQiang(el)
                 }

@@ -24,8 +24,11 @@ new Vue({
                 },
                 success: function (d) {
                     console.log(d)
+                    for(var k in d.data.identityCountMap){
+                        d.data.identityCountMap[k].name = interfaceValue.shenfen[k].name
+                        d.data.identityCountMap[k].head = '../'+interfaceValue.shenfen[k].head
+                    }
                     _self.record = d.data
-                    _self.record.totalWinCount = parseInt(d.data.totalScreeningCount *  d.data.totalWinRate)
                 }
             }
             wglobal.ajax(d)

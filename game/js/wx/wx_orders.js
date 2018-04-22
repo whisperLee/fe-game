@@ -17,6 +17,10 @@ new Vue({
         init:function(){
             var _self = this
             _self.getOrderList()//查询订单信息
+            var orderId = wglobal.urlHash().orderId
+            if(orderId && orderId!='undefined'){
+                _self.showOrderDetail(orderId)
+            }
         },
         getOrderList:function(){
             var _self = this
@@ -27,7 +31,11 @@ new Vue({
                     "pageSize": 0
                 },
                 success: function (d) {
+                    console.log(d.data)
                     if(d.status.code == "OK" && d.data){
+                        for(var i=0;i<d.data.dataList.length;i++){
+                            d.data.dataList[i].statusName = interfaceValue.orderStatus[d.data.dataList[i].status]
+                        }
                         _self.orderList = d.data
                         setTimeout(function(){
                             new IScroll(".container .orders", {click:true});
@@ -37,28 +45,55 @@ new Vue({
             }
             wglobal.ajax(d)
         },
-        showOrderDetail:function(event){
+        showOrderDetail:function(orderId){
             var _self = this
             var d = {
                 url: 'order/orderDetail',
                 data: {
-                    "orderId": $(event.currentTarget).attr("orderId")
+                    "orderId": orderId
                 },
                 success: function (d) {
                     console.log(d)
                     if(d.status.code=="OK" && d.data){
                         var address = wglobal.returnAddress(d.data.userLocationResponse)
-
-                        d.data.payTypeName = dataValue['payType'][d.data.payType]
+                        d.data.statusName = interfaceValue.orderStatus[d.data.status]
+                        d.data.payTypeName = interfaceValue['payType'][d.data.payType]
                         d.data.userLocationResponse.address = address
                         _self.orderDatail = d.data
                         wglobal.layerEnter($(".orderDetailLayer"))
+                    }else{
+                        wglobal.pop_tips(d.status.msg)
                     }
 
                 }
             }
             wglobal.ajax(d)
 
+        },
+        orderCancel:function(orderId){
+            var _self = this
+            var d = {
+                url: 'order/orderCancel',
+                data: {
+                    "id": orderId
+                },
+                success: function (d) {
+                    if(d.status.code=="OK" && d.data){
+                        wglobal.pop_tips("订单取消成功")
+                        _self.orderDatail.status = 70
+                        _self.orderDatail.statusName = interfaceValue.orderStatus[_self.orderDatail.status]
+                    }else{
+                        wglobal.pop_tips(d.status.msg)
+                    }
+                }
+            }
+            wglobal.ajax(d)
+        },
+        toPay:function(orderId){
+            wglobal.router('wx_pay.html?orderId='+orderId)
+        },
+        toShop:function(orderId){
+            wglobal.router('wx_shop.html')
         },
         active:function(){
             $('.container .bar li').each(function(idx){

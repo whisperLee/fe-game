@@ -6,7 +6,7 @@ new Vue({
     el: '#wx_shop',
     data: {
         shopId:0,
-        shopName:'你猜猜',
+        shopName:'商城',
         bulletin:'今天天气好，所有商品8折优惠',
         topList:{}, // 顶部推荐
         goodsD:{},// 所有商品按照id存储，不做展示，做数据调取用
@@ -42,7 +42,7 @@ new Vue({
                 url: 'goods/getGoodsAndClassifyList',
                 data: {
                     //'classifyId': 0,//商品分类id,不传为全部 ,
-                    'type': 1, //0:虚拟,1:现实,不传为全部 ,
+                    //'type': 1, //0:虚拟,1:现实,不传为全部 ,
                 },
                 success: function (d) {
                     console.log(d)
@@ -63,6 +63,7 @@ new Vue({
                                     classifyName:g.classifyName,
                                     goodsList:{}
                                 }
+                                console.log(_self.goodsD)
                                 for(var j=0; j<g.goodsList.length; j++){
                                     _self.goodsD[g.classifyId].goodsList[g.goodsList[j].id] = g.goodsList[j]
                                 }
@@ -130,21 +131,21 @@ new Vue({
         changeGood:function(event,item,type){
             var _self = this
             var el = $(event.currentTarget)
-            var $num = item.num || 0
+            item.num = item.num || 0
             var classifyId = item.classifyId
             var goodId = el.closest('.js-goodList').attr('goodId')
             if(type==1){ //加
-                $num++
+                item.num++
             }else if(type==-1) { // 减
-                $num--
-                if ($num < 1) {
-                    $num = 0
+                item.num--
+                if (item.num < 1) {
+                    item.num = 0
                 }
             }else if(type==2){
-                $num = _self.goods[classifyId].goodsList[goodId].num || 0
-                $num++
+                item.num = _self.goods[classifyId].goodsList[goodId].num || 0
+                item.num++
             }
-            _self.setData(classifyId,goodId,$num)
+            _self.setData(classifyId,goodId,item.num)
 
         },
         setData:function(classifyId,goodId,num){
@@ -259,7 +260,8 @@ new Vue({
         },
         active:function () {
             var _self = this
-
+            var h = $(window).height()
+            $(".cartList .bd").css("maxHeight",h/2)
             $('.cart .cartIcon').off().on('click',function(){
 
                 if($('.cartList').hasClass('on')){

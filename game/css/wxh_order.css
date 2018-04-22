@@ -1,4 +1,283 @@
 @charset "UTF-8";
+.user-list {
+  position: relative;
+  width: 100%;
+  height: auto;
+  z-index: 3; }
+  .user-list li {
+    position: absolute;
+    -webkit-transform-origin: center center;
+    opacity: 0; }
+    .user-list li .user {
+      width: 100%;
+      height: 100%;
+      -webkit-transform-origin: center center; }
+  .user-list.choosing .user {
+    opacity: 0.5; }
+    .user-list.choosing .user.canVote {
+      opacity: 1;
+      -webkit-animation: flash 1s infinite; }
+
+.user {
+  position: relative; }
+  .user .level {
+    width: 100%;
+    height: 100%; }
+    .user .level .userInner:before, .user .level .star, .user .level .star:before, .user .level .num, .user .level .num:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-position: center; }
+    .user .level .userInner {
+      position: relative;
+      text-align: center;
+      padding: 9%;
+      box-sizing: border-box;
+      line-height: 0;
+      background: none;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-position: center;
+      width: 80%;
+      height: 80%;
+      margin: .1rem auto; }
+      .user .level .userInner .num {
+        background-image: url(../image/newLevel/0_1_0.png);
+        z-index: 2; }
+        .user .level .userInner .num b {
+          display: none; }
+      .user .level .userInner .num1:before {
+        background-image: url("../image/newLevel/n1.png"); }
+      .user .level .userInner .num2:before {
+        background-image: url("../image/newLevel/n2.png"); }
+      .user .level .userInner .num3:before {
+        background-image: url("../image/newLevel/n3.png"); }
+      .user .level .userInner .num4:before {
+        background-image: url("../image/newLevel/n4.png"); }
+      .user .level .userInner .num5:before {
+        background-image: url("../image/newLevel/n5.png"); }
+      .user .level .userInner .num6:before {
+        background-image: url("../image/newLevel/n6.png"); }
+      .user .level .userInner .num7:before {
+        background-image: url("../image/newLevel/n7.png"); }
+      .user .level .userInner .num8:before {
+        background-image: url("../image/newLevel/n8.png"); }
+      .user .level .userInner .num9:before {
+        background-image: url("../image/newLevel/n9.png"); }
+      .user .level .userInner .num10:before {
+        background-image: url("../image/newLevel/n10.png"); }
+      .user .level .userInner .num11:before {
+        background-image: url("../image/newLevel/n11.png"); }
+      .user .level .userInner .num12:before {
+        background-image: url("../image/newLevel/n12.png"); }
+      .user .level .userInner .num13:before {
+        background-image: url("../image/newLevel/n13.png"); }
+      .user .level .userInner .num14:before {
+        background-image: url("../image/newLevel/n14.png"); }
+      .user .level .userInner .num15:before {
+        background-image: url("../image/newLevel/n15.png"); }
+      .user .level .userInner .head {
+        width: 100%;
+        height: 100%;
+        position: relative; }
+        .user .level .userInner .head img {
+          width: 100%;
+          height: auto;
+          margin: 0 auto;
+          z-index: 2;
+          position: relative; }
+      .user .level .userInner .status {
+        position: absolute;
+        right: 2%;
+        top: 1%;
+        width: 100%;
+        height: 33%;
+        /**上警**/
+        /**警长**/
+        /**存活**/
+        /**禁言**/
+        /**白痴翻牌**/
+        /**刀死**/
+        /**毒死**/
+        /**晚上殉情**/
+        /**白天殉情**/
+        /**殉情**/
+        /**放逐**/
+        /**开枪带走**/
+        /**自爆**/
+        /**炸弹人**/
+        /**白痴超时死亡**/
+        /**白狼王开枪带走**/
+        /**白狼王自爆**/ }
+        .user .level .userInner .status b.state {
+          position: relative;
+          z-index: 9;
+          width: 31%;
+          height: 100%;
+          float: right;
+          margin-left: 2%;
+          opacity: 0;
+          -webkit-animation: fadeInRight 1s forwards;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center; }
+        .user .level .userInner .status b.campaign {
+          background-image: url(../image/state/s1.png); }
+        .user .level .userInner .status b.sergeant {
+          background-image: url(../image/state/s2.png); }
+        .user .level .userInner .status b.SHUTUP {
+          background-image: url(../image/state/s4.png); }
+        .user .level .userInner .status b.IDIOT {
+          background-image: url(../image/state/s5.png); }
+        .user .level .userInner .status b.KNIFE {
+          background-image: url(../image/state/s14.png); }
+        .user .level .userInner .status b.POISON {
+          background-image: url(../image/state/s15.png); }
+        .user .level .userInner .status b.NIGHT_LOVE {
+          background-image: url(../image/state/s17.png); }
+        .user .level .userInner .status b.DAY_LOVE {
+          background-image: url(../image/state/s16.png); }
+        .user .level .userInner .status b.LOVE_DEAD {
+          background-image: url(../image/state/s6.png); }
+        .user .level .userInner .status b.EXILE {
+          background-image: url(../image/state/s7.png); }
+        .user .level .userInner .status b.SHOOT {
+          background-image: url(../image/state/s8.png); }
+        .user .level .userInner .status b.SELF_DESTRUCT {
+          background-image: url(../image/state/s9.png); }
+        .user .level .userInner .status b.BOMBERMAN {
+          background-image: url(../image/state/s10.png); }
+        .user .level .userInner .status b.IDIOT_TIMEOUT {
+          background-image: url(../image/state/s11.png); }
+        .user .level .userInner .status b.WHITE_SHOOT {
+          background-image: url(../image/state/s12.png); }
+        .user .level .userInner .status b.WHITE_SELF_DESTRUCT {
+          background-image: url(../image/state/s13.png); }
+      .user .level .userInner:before {
+        background-image: url(../image/newLevel/0.png); }
+  .user .level1 .userInner .num {
+    background-image: url(../image/newLevel/1_1_0.png); }
+  .user .level1 .userInner .star1 {
+    background-image: url("../image/newLevel/1_1.png");
+    z-index: 3; }
+  .user .level1 .userInner .star2 {
+    background-image: url("../image/newLevel/1_2.png");
+    z-index: 3; }
+  .user .level1 .userInner .star3 {
+    background-image: url("../image/newLevel/1_3.png");
+    z-index: 3; }
+  .user .level1 .userInner:before {
+    background-image: url(../image/newLevel/1.png); }
+  .user .level2 .userInner .num {
+    background-image: url(../image/newLevel/2_1_0.png); }
+  .user .level2 .userInner .star1 {
+    background-image: url("../image/newLevel/2_1.png");
+    z-index: 3; }
+  .user .level2 .userInner .star2 {
+    background-image: url("../image/newLevel/2_2.png");
+    z-index: 3; }
+  .user .level2 .userInner .star3 {
+    background-image: url("../image/newLevel/2_3.png");
+    z-index: 3; }
+  .user .level2 .userInner:before {
+    background-image: url(../image/newLevel/2.png); }
+  .user .level3 .userInner .num {
+    background-image: url(../image/newLevel/3_1_0.png); }
+  .user .level3 .userInner .star1 {
+    background-image: url("../image/newLevel/3_1.png");
+    z-index: 3; }
+  .user .level3 .userInner .star2 {
+    background-image: url("../image/newLevel/3_2.png");
+    z-index: 3; }
+  .user .level3 .userInner .star3 {
+    background-image: url("../image/newLevel/3_3.png");
+    z-index: 3; }
+  .user .level3 .userInner:before {
+    background-image: url(../image/newLevel/3.png); }
+  .user .level4 .userInner .num {
+    background-image: url(../image/newLevel/4_1_0.png); }
+  .user .level4 .userInner .star1 {
+    background-image: url("../image/newLevel/4_1.png");
+    z-index: 3; }
+  .user .level4 .userInner .star2 {
+    background-image: url("../image/newLevel/4_2.png");
+    z-index: 3; }
+  .user .level4 .userInner .star3 {
+    background-image: url("../image/newLevel/4_3.png");
+    z-index: 3; }
+  .user .level4 .userInner:before {
+    background-image: url(../image/newLevel/4.png); }
+  .user .level5 .userInner .num {
+    background-image: url(../image/newLevel/5_1_0.png); }
+  .user .level5 .userInner .star1 {
+    background-image: url("../image/newLevel/5_1.png");
+    z-index: 3; }
+  .user .level5 .userInner .star2 {
+    background-image: url("../image/newLevel/5_2.png");
+    z-index: 3; }
+  .user .level5 .userInner .star3 {
+    background-image: url("../image/newLevel/5_3.png");
+    z-index: 3; }
+  .user .level5 .userInner:before {
+    background-image: url(../image/newLevel/5.png); }
+  .user[dead=true] {
+    opacity: 0.8; }
+    .user[dead=true] .head {
+      background: url(../image/dead.png) no-repeat center;
+      background-size: contain; }
+      .user[dead=true] .head img {
+        visibility: hidden; }
+  .user .nick {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: .12rem;
+    line-height: .12rem; }
+  .user .designation {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: .12rem;
+    line-height: .12rem; }
+  .user.userBack .level {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center; }
+    .user.userBack .level .userInner {
+      width: 46%;
+      padding: 5%; }
+  .user.userBack .level1 {
+    background-image: url(../image/newLevel/1_0.png); }
+  .user.userBack .level2 {
+    background-image: url(../image/newLevel/2_0.png); }
+  .user.userBack .level3 {
+    background-image: url(../image/newLevel/3_0.png); }
+  .user.userBack .level4 {
+    background-image: url(../image/newLevel/4_0.png); }
+  .user.userBack .level5 {
+    background-image: url(../image/newLevel/5_0.png); }
+
+#game .mine {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto; }
+  #game .mine .userWrap {
+    width: 70%; }
+    #game .mine .userWrap .user {
+      width: 35%;
+      overflow: hidden;
+      float: left; }
+    #game .mine .userWrap .info {
+      float: left;
+      padding-top: 10%; }
+
 ._page {
   position: absolute;
   width: 100%;
@@ -40,7 +319,7 @@ body {
   overflow: auto;
   font-size: .16rem;
   line-height: 150%;
-  font-family: Helvetica, STHeiti, Droid Sans Fallback; }
+  font-family: Microsoft YaHei, Helvetica, STHeiti, Droid Sans Fallback; }
 
 textarea {
   resize: none; }
@@ -56,7 +335,9 @@ input, select, textarea {
   -webkit-user-modify: read-write-plaintext-only; }
 
 input {
-  -webkit-appearance: none; }
+  -webkit-appearance: none;
+  background: none;
+  border: none; }
 
 a {
   text-decoration: none; }
@@ -81,8 +362,11 @@ video {
 [v-cloak] {
   display: none; }
 
+html {
+  background: #f1f5fa; }
+
 body .main {
-  background: #ffffff;
+  background: #f1f5fa;
   padding-bottom: .55rem;
   overflow: hidden; }
   body .main .header {
@@ -111,6 +395,8 @@ body .main {
         color: #ffffff;
         height: .55rem;
         line-height: .55rem; }
+  body .main .container {
+    background: #f1f5fa; }
   body .main .fl {
     float: left; }
   body .main .fr {
@@ -321,16 +607,95 @@ body .footer {
     height: 100%;
     overflow: hidden; }
 
+.radios li {
+  padding-left: .2rem;
+  height: .4rem;
+  line-height: .4rem;
+  background: url(../wxImage/r.png) no-repeat left center;
+  background-size: .2rem;
+  float: left;
+  margin-right: .15rem; }
+  .radios li.on {
+    background-image: url("../wxImage/r_on.png");
+    color: #00bea1; }
+
+.input {
+  position: relative;
+  background: #ffffff;
+  height: .44rem;
+  line-height: .44rem;
+  color: #2d313f;
+  padding: 0 .15rem;
+  border-radius: .22rem;
+  margin-bottom: .3rem;
+  text-align: left; }
+  .input input {
+    font-size: .16rem;
+    height: .44rem;
+    line-height: .44rem;
+    width: 100%; }
+  .input input::-webkit-input-placeholder {
+    color: #a6afc5; }
+  .input .clear {
+    position: absolute;
+    top: .06rem;
+    right: .1rem;
+    width: .3rem;
+    height: .3rem;
+    background: url("../wxImage/close.png") no-repeat center;
+    background-size: 100% 100%;
+    display: none; }
+
+body .main {
+  padding-top: 0; }
+  body .main .header {
+    margin-bottom: 0; }
+  body .main .userCenter {
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: .12rem; }
+    body .main .userCenter .top {
+      width: 55%;
+      margin: 0 auto;
+      padding: .1rem 0; }
+      body .main .userCenter .top .nickname {
+        text-align: center; }
+  body .main .list li {
+    width: 100%;
+    background: #ffffff; }
+    body .main .list li a {
+      display: block;
+      height: .5rem;
+      line-height: .5rem;
+      font-size: .16rem;
+      color: #2d313f;
+      border-bottom: 1px solid #ebedf2;
+      padding-left: .1rem;
+      background: url("../wxImage/list.png") no-repeat right center;
+      background-size: .4rem .4rem; }
+  body .main .btn.logout {
+    position: fixed;
+    bottom: .75rem;
+    left: 5%;
+    height: .4rem;
+    width: 90%;
+    line-height: .4rem;
+    color: #ffffff;
+    background: #ee6262;
+    text-align: center;
+    display: block;
+    border-radius: 5px; }
+
 /*订单列表*/
 .orders ul li.order {
   margin-bottom: .1rem;
-  padding: .1rem;
+  padding: 0 .1rem .1rem .1rem;
   background: #ffffff; }
   .orders ul li.order .hd {
     background: #ffffff;
     border-bottom: 0.5px solid #ebedf2;
     margin-bottom: .1rem;
-    line-height: .35rem;
+    line-height: .4rem;
     overflow: hidden;
     font-size: .14rem; }
     .orders ul li.order .hd p {
@@ -379,6 +744,9 @@ body .footer {
       background: none;
       width: auto;
       margin: 0; }
+      .orders ul li.order .info .btn.pay {
+        border-color: #ee6262;
+        color: #ee6262; }
 
 /*订单详情 模块*/
 ul.goodList, .amount, .userResponse {
@@ -393,14 +761,16 @@ ul.goodList {
   margin-bottom: .1rem;
   background: #ffffff; }
   ul.goodList li {
-    border-bottom: 0.5px solid #ebedf2; }
+    border-bottom: 0.5px solid #f1f5fa; }
     ul.goodList li a {
       display: block;
       overflow: hidden;
       padding: .1rem; }
       ul.goodList li a .picWrap {
         float: left;
-        width: .8rem; }
+        width: .8rem;
+        line-height: 0;
+        border: 1px solid #f1f5fa; }
         ul.goodList li a .picWrap img {
           width: 100%;
           height: auto; }
@@ -411,6 +781,16 @@ ul.goodList {
         color: #2d313f; }
         ul.goodList li a .goodWrap .unitPrice {
           text-decoration: line-through;
+          padding-right: .05rem; }
+    ul.goodList li a.promot {
+      padding-left: .2rem;
+      padding-top: 0; }
+      ul.goodList li a.promot .picWrap {
+        width: .7rem; }
+      ul.goodList li a.promot .goodWrap {
+        margin-left: .8rem; }
+        ul.goodList li a.promot .goodWrap .promotName {
+          color: #ee6262;
           padding-right: .05rem; }
 
 /*金额详情*/
@@ -506,24 +886,18 @@ ul.goodList {
 .payType {
   background: #ffffff;
   margin-bottom: .1rem;
-  line-height: .4rem;
-  height: .4rem;
+  line-height: .3rem;
   font-size: .14rem;
-  padding: 0 .1rem; }
+  padding: 0 .1rem;
+  overflow: hidden; }
   .payType span {
-    float: left; }
-  .payType .radio {
-    float: left; }
-    .payType .radio li {
-      padding-left: .2rem;
-      height: .4rem;
-      line-height: .4rem;
-      background: url("../wxImage/r.png") no-repeat left center;
-      background-size: .2rem;
-      float: left;
-      margin-left: .15rem; }
-      .payType .radio li.active {
-        background-image: url("../wxImage/r_on.png"); }
+    display: block;
+    padding-top: .1rem; }
+  .payType .radios {
+    display: block;
+    padding-left: .1rem; }
+    .payType .radios li .tip {
+      color: #ee6262; }
 
 /*按钮*/
 .btns {
@@ -544,45 +918,46 @@ ul.goodList {
     padding: 0 .1rem;
     float: right;
     margin: .1rem .1rem .1rem 0; }
+    .btns .btn.pay {
+      border-color: #ee6262;
+      color: #ee6262; }
 
 .consumptionScoreChoose {
   display: none; }
 
 body {
   background: #ebedf2; }
-  body .orderDetail .hd {
+  body .layerWrap .orderDetail {
+    bottom: .6rem; }
+    body .layerWrap .orderDetail .hd {
+      height: .4rem;
+      line-height: .4rem;
+      position: relative;
+      font-size: .16rem;
+      color: #2d313f;
+      padding: 0 .1rem;
+      margin-top: .1rem;
+      background: #ffffff;
+      border-bottom: 0.5px solid #ebedf2; }
+      body .layerWrap .orderDetail .hd .orderSatus {
+        float: right;
+        color: #00bea1; }
+      body .layerWrap .orderDetail .hd ul li {
+        float: left;
+        width: 50%;
+        line-height: .4rem;
+        font-size: .14rem;
+        text-align: center; }
+        body .layerWrap .orderDetail .hd ul li.active {
+          color: #ee6262; }
+    body .layerWrap .orderDetail .bd .cards {
+      display: none; }
+      body .layerWrap .orderDetail .bd .cards.active {
+        display: block; }
+  body .consumptionScoreChoose {
     height: .4rem;
-    line-height: .4rem;
-    position: relative;
-    font-size: .16rem;
-    color: #2d313f;
-    padding: 0 .1rem;
-    margin-top: .1rem;
-    background: #ffffff;
-    border-bottom: 0.5px solid #ebedf2; }
-    body .orderDetail .hd .orderSatus {
-      float: right;
-      color: #ee6262; }
-
-.layerNavContent .hd {
-  height: .4rem; }
-  .layerNavContent .hd ul li {
-    float: left;
-    width: 50%;
-    line-height: .4rem;
-    font-size: .14rem;
-    text-align: center; }
-    .layerNavContent .hd ul li.active {
-      color: #ee6262; }
-.layerNavContent .bd .cards {
-  display: none; }
-  .layerNavContent .bd .cards.active {
-    display: block; }
-
-.consumptionScoreChoose {
-  height: .4rem;
-  width: 100%;
-  display: none;
-  border-top: 0.5px solid #ebedf2; }
+    width: 100%;
+    display: none;
+    border-top: 0.5px solid #ebedf2; }
 
 /*# sourceMappingURL=wxh_order.css.map */

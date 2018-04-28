@@ -46,7 +46,7 @@
       </div>
     </div>
     <div class="ranking barSCon on">
-      <ul :class="dataList.length<=0?'none':''">
+      <ul :class="dataList.length<=0?'none':''" v-if="dataList.length>0">
         <li v-for = "(item,idx) in dataList">
           <p class="num">NO.{{idx+1}}</p>
           <p class="head"><img src="../wxImage/head.png"></p>
@@ -54,6 +54,7 @@
           <p class="value">190</p>
         </li>
       </ul>
+      <p v-else class="noData">暂无数据</p>
     </div>
   </div>
 </div>

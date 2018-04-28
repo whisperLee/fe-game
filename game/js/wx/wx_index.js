@@ -35,8 +35,8 @@ new Vue({
                     if(d.status.code=="OK" && d.data){
                         var d = d.data
                         console.log(d)
-                        d.gameTimeMin && _self.setCard('天卡',d.gameTimeMin,'')
-                        d.gameTimeExpire && _self.setCard('月卡',d.gameTimeExpire,'')
+                        d.gameTimeMin && _self.setCard('点卡',d.gameTimeMin,'分')
+                        d.gameTimeExpire && _self.setCard('畅玩',d.gameTimeExpire,'')
                         d.consumptionScore && _self.setCard('遇米',d.consumptionScore,'')
                         _self.user = {
                             "nickName":d.name,

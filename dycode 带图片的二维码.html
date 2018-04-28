@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection"content="telephone=no">
+    <link href="../css/dycode.css" rel="stylesheet" type="text/css" media="screen" />
+    <title>动态二维码</title>
+</head>
+<body>
+<div class="main" id="dycode">
+    <div class="inner">
+        <h2>英雄无敌 1号玩家</h2>
+        <div id="code">
+            <canvas id="canvas"></canvas>
+        </div>
+        <p>扫描二维码进行入座</p>
+    </div>
+
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<!--<script type="application/javascript" src="../../js/jquery.qrcode.min.js"></script>-->
+<script type="application/javascript" src="../../js/utf1.js"></script>
+<script type="application/javascript" src="../../js/jquery.qrcode1.js"></script>
+<script type="application/javascript" src="../../js/vue.js"></script>
+<script type="application/javascript" src="../js/global.js"></script>
+<script>
+    var code = {
+        url : 'wx_game.html',
+        time:3600,
+        init:function(){
+            var _self = this
+            var urlHash = global.urlHash()
+            _self.boxId = urlHash.boxId
+            _self.gameNumber = urlHash.gameNumber
+            _self.qrcode()
+            _self.showInfo()
+        },
+        showInfo:function () {
+            var _self = this
+            var d = {
+                url: 'http://liyn.me:7777/web-api/v1/face/box/queryById?boxId=' + _self.boxId,
+                contentType: 'application/json',
+                timeout: 30000,
+                type: 'GET',
+                dataType: 'json',
+                headers: {
+                    'Content-Type':'application/json1',
+                    'Origin':"http://liyn.me:7777"
+                },
+                success: function (d) {
+                    if(d.status.code=="OK" && d.data ){
+                        $("h2").html(d.data.name+' '+_self.gameNumber+'号玩家')
+                    }
+
+                }
+            }
+            $.ajax(d)
+        },
+        getTimestamp:function(){
+            var t = new Date().getTime()+2*60*60*1000
+            return t
+        },
+        qrcode:function(){
+            var _self = this
+            //var url = _self.url+'?boxId='+_self.boxId+'&gameNumber='+_self.gameNumber+'&timestamp'+_self.getTimestamp()
+//            $("#code").qrcode({
+//                render: "canvas", //table方式
+//                width: 400, //宽度
+//                height:400, //高度
+//                text: url //任意内容
+//            });
+//            setTimeout(function(){
+//                _self.qrcode()
+//            },_self.time*1000)
+            var url = 'http://www.baidu.com?boxId='+_self.boxId+'&gameNumber='+_self.gameNumber+'&timestamp'+_self.getTimestamp()
+            $("#code").qrcode(
+                {
+                    render : "canvas",    //设置渲染方式，有table和canvas，使用canvas方式渲染性能相对来说比较好
+                    text : url,    //扫描二维码后显示的内容,可以直接填一个网址，扫描二维码后自动跳向该链接
+                    width : "200",            // //二维码的宽度
+                    height : "200",              //二维码的高度
+                    background : "#333",       //二维码的后景色
+                    foreground : "#eee",        //二维码的前景色
+                    src: '../image/logo.png'             //二维码中间的图片
+                }
+            );
+        }
+    }
+    code.init()
+</script>
+</body>
+</html>

@@ -92,8 +92,8 @@ new Vue({
         toPay:function(orderId){
             wglobal.router('wx_pay.html?orderId='+orderId)
         },
-        toShop:function(orderId){
-            wglobal.router('wx_shop.html')
+        toShop:function(orderId,type){
+            wglobal.router('wx_shop.html?shopId=1&type='+type)
         },
         active:function(){
             $('.container .bar li').each(function(idx){

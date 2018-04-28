@@ -39,13 +39,13 @@ var wglobal = {
             url: '',
             data: {},
             contentType: 'application/json',
-            timeout: 30000,
+            timeout: 10000,
             type: 'POST',
             dataType: 'json',
             success: function () {}
         }, data)
         d.url = host + d.url
-        d.data.userToken =  "101"
+        d.data.userToken =  "201"
         d.data = JSON.stringify(d.data)
 
         $.ajax(d)
@@ -106,12 +106,12 @@ var wglobal = {
             },
             {
                 type:"game",
-                link:"game.html",
+                link:"wx_game.html",
                 name:"游戏"
             },
             {
                 type:"shop",
-                link:"wx_shop.html",
+                link:"wx_shop.html?shopId=1",
                 name:"商城"
             },
             {
@@ -184,6 +184,13 @@ var wglobal = {
         } else {
             return true;
         }
+    },
+    timestampToTime:function(timestamp) {
+        var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+        Y = date.getFullYear() + '-'
+        M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-'
+        D = date.getDate() + ' '
+        return Y+M+D;
     },
     returnVoucherList:function(d){
         var h = ''

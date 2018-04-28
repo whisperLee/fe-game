@@ -5,6 +5,7 @@ html{
   background: $wxColor2;
 }
 body {
+  height:100%;
   .main {
     background: $wxColor2;
     padding-bottom: .55rem;
@@ -178,7 +179,7 @@ body {
     height:.55rem;
     border-top:1px solid $wxColor3;
     ul{
-      padding-top: .07rem;
+      padding-top: .1rem;
       li{
         float: left;
         width:20%;
@@ -188,14 +189,54 @@ body {
           text-align: center;
           color: $wxColor7;
           font-size: .14rem;
-          line-height: .25rem;
+          line-height: .22rem;
           background: url("../wxImage/mine.png") no-repeat center top;
           background-size: .2rem .2rem;
         }
 
         &.on a{
           color: $wxColor9;
-          background-image: url("../wxImage/mine_on.png");
+        }
+
+      }
+      .index{
+        a{
+          background-image:url("../wxImage/index.png")
+        }
+        &.on a{
+          background-image:url("../wxImage/index_on.png")
+        }
+      }
+      .appoint{
+        a{
+          background-image:url("../wxImage/appoint.png")
+        }
+        &.on a{
+          background-image:url("../wxImage/appoint_on.png")
+        }
+      }
+      .game{
+        a{
+          background-image:url("../wxImage/game.png")
+        }
+        &.on a{
+          background-image:url("../wxImage/game_on.png")
+        }
+      }
+      .shop{
+        a{
+          background-image:url("../wxImage/shop.png")
+        }
+        &.on a{
+          background-image:url("../wxImage/shop_on.png")
+        }
+      }
+      .mine{
+        a{
+          background-image:url("../wxImage/mine.png")
+        }
+        &.on a{
+          background-image:url("../wxImage/mine_on.png")
         }
       }
     }
@@ -257,6 +298,38 @@ body {
     position: relative; width:100%; height:100%; overflow: hidden;
   }
 }
+.imgScroll{
+  margin: .1rem;
+  overflow: hidden;
+  line-height: 0;
+  ul{
+    width:100%;
+    height:auto;
+    li{
+      float: left;
+      a{
+        position: relative;
+        display: block;
+        line-height: 0;
+        img{
+          width:100%;
+          height:auto;
+        }
+        p{
+          position: absolute;
+          left:0;
+          right:0;
+          bottom:0;
+          line-height: .3rem;
+          background: rgba(0,0,0,0.8);
+          color: $wxColor1;
+          padding: 0 .1rem;
+        }
+      }
+    }
+  }
+
+}
 .radios li {
   padding-left: .2rem;
   height: .4rem;
@@ -300,4 +373,10 @@ body {
     background-size: 100% 100%;
     display: none;
   }
+}
+.btn{
+  background:$wxColor9; width:80%; height:.4rem; display:block; line-height: .4rem; margin:0 auto; border-radius: 5px; color:$wxColor1; text-align:center;
+}
+.noData{
+  text-align:center; font-size:.16rem; color:$wxColor5; margin:.4rem auto; width:100%;
 }

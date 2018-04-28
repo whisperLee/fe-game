@@ -12,8 +12,8 @@
 <div class="main" id="wx_records" v-cloak>
   <div class="header"><div><a class="back"></a> <h1 class="pageName"><span>游戏记录</span></h1></div></div>
   <div class="container iscrollWrap">
-    <div class="records iscroll" :total="getGameHistoryList.totalCount">
-      <ul>
+    <div class="records iscroll" :total="getGameHistoryList.totalCount" >
+      <ul v-if="getGameHistoryList.totalCount>0">
         <li v-on:click="showGameHistoryDetail($event)" v-for = "item in gameHistoryList.dataList" :gameId="item.id" >
           <div class="fl"><img :src="item.head" alt=""></div>
           <div class="info">
@@ -22,7 +22,9 @@
           </div>
         </li>
       </ul>
+      <p v-else class="noData">暂无数据</p>
     </div>
+
   </div>
   <div class="layerWrap gameHistoryLayer gameEnd">
     <div class="layerNavTop">
@@ -35,7 +37,7 @@
         <ul class="userList">
           <li v-for="(user,idx) in gameHistoryDetailInfo.winUsers" v-on:click="voteMvp($event)" :userid="user.userId" class="zan">
             <userwin v-bind:user="user"></userwin>
-            <!--<p><span>{{user.identityName}}</span></p>-->
+            <p><span>{{user.identityName}}</span></p>
           </li>
 
         </ul>
@@ -44,7 +46,7 @@
         <ul class="userList">
           <li v-for="(user,idx) in gameHistoryDetailInfo.loseUsers" :userid="user.userId">
             <userlose v-bind:user="user"></userlose>
-            <!--<p><span>{{user.identityName}}</span></p>-->
+            <p><span>{{user.identityName}}</span></p>
           </li>
         </ul>
       </div>

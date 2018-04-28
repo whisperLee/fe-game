@@ -1,0 +1,93 @@
+@charset "utf-8";
+@import "_wx";
+@import "users";
+body{
+  .main{
+    .header{
+      margin-bottom: 0;
+    }
+    .box{
+      h2{
+        line-height: .4rem; font-size: .16rem; color: $wxColor7; background: $wxColor1; padding: 0 .1rem;
+        .status{
+          float: right;
+        }
+      }
+      ul{
+        overflow: hidden;
+        li{
+          position: relative; float: left; width:25%; margin: .1rem 0; font-size: .14rem; line-height: .2rem;
+          .user{
+            width:90%; margin: 0 auto;
+            .level .userInner{
+              margin: 0 auto;
+            }
+          }
+          .nick{
+             width:100%; text-align: center; heighy:.2rem;
+            &.unsit{
+              color: $wxColor5;
+            }
+            //span{
+            //  padding-left: .2rem; background:url("../wxImage/male.png") no-repeat center left ; background-size: .15rem;
+            //}
+            //
+            //&.nick1{
+            //  span{
+            //    background-image:url("../wxImage/female.png")
+            //  }
+            //}
+          }
+          .give{
+            width:.7rem; height:.26rem; line-height: .26rem; margin: .05rem auto; background: $wxColor9; color: $wxColor1; text-align: center; border-radius: 5px;
+          }
+        }
+      }
+      .sitTip{
+        text-align: center; line-height: .2rem; color: $wxColor11; font-size: .12rem;
+      }
+      .quitSeat{
+        background: $wxColor11; width:80%; height:.4rem; line-height: .4rem; margin: .1rem auto; color: $wxColor1; font-size: .16rem; text-align: center;
+        display: block;
+      }
+    }
+    .pay{
+      display: none;
+      .imgScroll{
+        margin: 0;
+      }
+      .payType{
+        margin: .1rem 0;
+        background: #fff;
+        h2{
+          line-height: .4rem;
+          margin-left: .1rem;
+          font-size: .16rem;
+          border-bottom: 1px solid #ccc;
+        }
+        .radios{
+          padding: 0 .15rem; overflow: hidden;
+          .radio{
+            width:100%; box-sizing: border-box; padding-left: .25rem;
+            &[isLess='less']{
+              color: $wxColor4;
+            }
+            span{
+              float: right;
+            }
+          }
+        }
+
+      }
+
+      .btn{
+        margin: .2rem auto;
+      }
+      .mustBuy{
+        background: $wxColor11;
+      }
+
+    }
+  }
+}
+

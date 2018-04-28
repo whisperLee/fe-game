@@ -100,8 +100,6 @@ body {
   font-family: Microsoft YaHei, Helvetica, STHeiti, Droid Sans Fallback;
   color: #f1f1f1; }
   body .main {
-    background: url("../image/n1.jpg") no-repeat center top;
-    background-size: cover;
     overflow-y: auto; }
     body .main .page {
       position: relative;
@@ -351,5 +349,9 @@ body {
         background-image: url(../image/mine/2.png); }
       .userBtns.active a[event='SPEAK_END']:before {
         background-image: url(../image/mine/1.png); }
+
+body .main {
+  background: url("../image/n1.jpg") no-repeat center top;
+  background-size: cover; }
 
 /*# sourceMappingURL=game_set.css.map */

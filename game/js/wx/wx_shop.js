@@ -5,7 +5,6 @@
 new Vue({
     el: '#wx_shop',
     data: {
-        shopId:0,
         shopName:'商城',
         bulletin:'今天天气好，所有商品8折优惠',
         topList:{}, // 顶部推荐
@@ -14,35 +13,39 @@ new Vue({
         goods:{}, // 商品列表
         cartList:{},// 购物车
         cartNum:0,
-        cartTotal:0
+        cartTotal:0,
+        type:-1
     },
     created: function () {
         var _self = this
-        _self.shopId = wglobal.urlHash().shopId
-        // setTimeout(function(){
-        //     _self.init()
-        // },1)
         _self.init()
     },
     methods: {
         init:function(){
             var _self = this
+
+            var urlHash = wglobal.urlHash()
+            _self.type = urlHash.type
+            _self.shopId = urlHash.shopId
+            if(_self.type && _self.type!='undefined'){
+                _self.getGoods();
+            }else{
+                $(".shopType").show()
+            }
             _self._w = $(window).width()
             _self._h = $(window).height()
-            _self.getGoods();
+
             $(function(){
                 _self.active()
             })
-
         },
         getGoods:function(){
-            var _self = this
             var _self = this
             var d = {
                 url: 'goods/getGoodsAndClassifyList',
                 data: {
                     //'classifyId': 0,//商品分类id,不传为全部 ,
-                    //'type': 1, //0:虚拟,1:现实,不传为全部 ,
+                    'type':_self.type, //0:虚拟,1:现实,不传为全部 ,
                 },
                 success: function (d) {
                     console.log(d)
@@ -82,19 +85,21 @@ new Vue({
         getCart:function(){
             var _self = this
             // 获取本地存储，并更新数据
-            var carts = wglobal.getStorage('carts');
-            var shopId = _self.shopId;
-            var cartNum=cartTotal = 0;
-            var soldName = '';
-            if(carts[shopId]){
-                for(var goodId in carts[shopId]){
-                    var num = carts[shopId][goodId].num;
-                    var classifyId = carts[shopId][goodId].classifyId;
-                    var price = _self.goodsD[classifyId].goodsList[goodId].actualPrice;
-                    if(num>0){
+            var carts = wglobal.getStorage('carts')
+            var shopId = _self.shopId
+            var type = _self.type
+            var cartNum=cartTotal = 0
+            var soldName = ''
+            if(carts[shopId] && carts[shopId][type]){
+                var typeGoods = carts[shopId][type]
+                for(var goodId in typeGoods){
+                    var num = typeGoods[goodId].num;
+                    var classifyId = typeGoods[goodId].classifyId;
+                    if(num>0 && _self.goodsD[classifyId]){
+                        var price = _self.goodsD[classifyId].goodsList[goodId].actualPrice;
                         if(_self.goodsD[classifyId].goodsList[goodId].soldOutFlag==1){
                             soldName+=' '+_self.goodsD[classifyId].goodsList[goodId].name
-                            delete carts[shopId][goodId]
+                            delete typeGoods[goodId]
                         }else{
                             cartTotal+=parseFloat(price*num);
                             cartNum+=num;
@@ -189,7 +194,7 @@ new Vue({
         addlocalStorCart:function(){
             var _self = this
             var carts = wglobal.getStorage('carts')
-            carts[_self.shopId] =  _self.cartList
+            carts[_self.shopId][_self.type] =  _self.cartList
             wglobal.setStorage('carts',carts)
         },
         clearCart:function(){
@@ -205,7 +210,10 @@ new Vue({
             _self.modifyCart()
             // 清空本地存储，并修改内容
             var shopId = _self.shopId
-            wglobal.setStorage('carts',{shopId:{}})
+            var type = _self.type
+            var carts = wglobal.getStorage('carts')
+            carts[shopId][type] = {}
+            wglobal.setStorage('carts',carts)
         },
         cartListHide:function(){
             $('.cartList').removeClass('on')
@@ -252,11 +260,21 @@ new Vue({
         account:function(){
             var _self = this
             if(_self.cartNum>0){
-                wglobal.router('wx_orderSubmit.html?shopId='+_self.shopId)
+                wglobal.router('wx_orderSubmit.html?shopId='+_self.shopId+'&type='+_self.type)
             }
         },
         back:function(){
             wglobal.router("wx_mine.html")
+        },
+        changeType:function(){
+            var _self = this
+            var type
+            if(_self.type==0){
+                type=1
+            }else{
+                type=0
+            }
+            wglobal.router('wx_shop.html?shopId='+_self.shopId+'&type='+type)
         },
         active:function () {
             var _self = this
@@ -276,6 +294,11 @@ new Vue({
                 $('.j-mask').hide()
             })
 
+            $(".shopType .types li").off().on("click",function(){
+                _self.type = $(this).attr("type")
+                _self.getGoods()
+                $(".shopType").hide()
+            })
 
         }
     }

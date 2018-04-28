@@ -1,4 +1,4 @@
-_DESTRUCT(81),// 狼人自爆
+/*_DESTRUCT(81),// 狼人自爆
     EVENT_GAME_OVER(82),// 游戏结束
     EVENT_AGAIN(83),// 游戏结束,调起扫码进入下一次游戏
     EVENT_DIE_SPEAK(84),// 死亡遗言
@@ -12,7 +12,7 @@ _DESTRUCT(81),// 狼人自爆
     EVENT_SCREENING_OVER(91),// 本局场次结束 真的结束
 
 
-存活状态取值:  （identityStatus） 
+存活状态取值 (identityStatus)
 SURVIVAL(0), // 存活
     SHUTUP(1), // 禁言
     IDIOT(2), // 白痴翻牌
@@ -24,7 +24,7 @@ SURVIVAL(0), // 存活
     BOMBERMAN(58), //炸弹人
     IDIOT_TIMEOUT(59); //白痴超时死亡
 
-女巫：
+女巫
 PAPA(0), // 双药
 SAVE(1), // 解药
 POISON(2),// 毒药
@@ -243,4 +243,6 @@ DIE_SPEAK
     SELF_DESTRUCT(59, "狼人自爆"),// 狼人自爆？？？？？？？？？？？？？？？
     GAME_REPLAY(82, "游戏复盘"),// 游戏复盘？？？？？？？？？？？
     SCREENING_OVER(83, "场次结束"),// 本局场次结束 真的结束
+
+    */
 

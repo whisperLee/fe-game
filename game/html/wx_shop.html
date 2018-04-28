@@ -14,6 +14,7 @@
         <div>
             <a class="back" v-on:click="back()"></a>
             <h1 class="pageName"><span>{{shopName}}</span></h1>
+            <a v-show="type>=0" :class="`type type${type==1?0:1}`" v-on:click="changeType()"></a>
         </div>
     </div>
     <div class="topWrap">
@@ -113,9 +114,10 @@
     <div class="j-mask mask"></div>
     <div class="shopType">
         <div class="types">
+            <h2>请选择你要购买的商品总类</h2>
             <ul>
-                <li></li>
-                <li></li>
+                <li type="0"><span>游戏点卡</span></li>
+                <li type="1"><span>酒水小吃</span></li>
             </ul>
         </div>
     </div>

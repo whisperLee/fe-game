@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection"content="telephone=no">
+    <link href="../css/dycode.css" rel="stylesheet" type="text/css" media="screen" />
+    <title>动态二维码</title>
+</head>
+<body>
+<div class="main" id="dycode">
+    <div class="inner">
+        <h2></h2>
+        <div id="code">
+            <canvas id="canvas"></canvas>
+        </div>
+        <p>扫描二维码入座游戏</p>
+        <h3></h3>
+    </div>
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<script type="application/javascript" src="../../js/jquery.qrcode.min.js"></script>
+<script type="application/javascript" src="../../js/vue.js"></script>
+<script type="application/javascript" src="../js/global.js"></script>
+<script>
+    var code = {
+        url : 'wx_game.html',
+        time:3600,
+        init:function(){
+            var _self = this
+            var urlHash = global.urlHash()
+            _self.boxId = urlHash.boxId
+            _self.gameNumber = urlHash.gameNumber
+            _self.qrcode()
+            _self.showInfo()
+        },
+        showInfo:function () {
+            var _self = this
+            var d = {
+                url:'game/play/queryBoxById',
+                data:{
+                    "id":_self.boxId
+                },
+                success: function (d) {
+                    console.log(d)
+                    if(d.status.code=="OK" && d.data){
+                        $("h2").html(d.data.name)
+                        $("h3").html(_self.gameNumber)
+                        $("#code").show()
+                    }else{
+                        global.pop_tips(d.status.msg)
+                    }
+                }
+            }
+            global.ajax(d)
+
+        },
+        getTimestamp:function(){
+            var t = new Date().getTime()+2*60*60*1000
+            return t
+        },
+        qrcode:function(){
+            var _self = this
+            var url = _self.url+'?boxId='+_self.boxId+'&gameNumber='+_self.gameNumber+'&timestamp'+_self.getTimestamp()
+            $("#code").qrcode({
+                render: "canvas", //table方式
+                width: 400, //宽度
+                height:400, //高度
+                text: url //任意内容
+            });
+            setTimeout(function(){
+                _self.qrcode()
+            },_self.time*1000)
+
+        }
+    }
+    code.init()
+</script>
+</body>
+</html>

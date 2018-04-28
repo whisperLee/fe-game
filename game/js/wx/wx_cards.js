@@ -31,7 +31,12 @@ new Vue({
                 success: function (d) {
                     if(d.status.code == "OK" && d.data){
                         console.log('userCash')
-                        $('.cards .cash').html(wglobal.returnVoucherList(d.data.dataList))
+                        if(d.data.dataList.length>0){
+                            $('.cards .cash').html(wglobal.returnVoucherList(d.data.dataList))
+                        }else{
+                            $('.cards .cash').html('<p class="noData">暂无可用抵价券</p>')
+                        }
+
                         $(".cards .cash").off().on("click",function(){
                             wglobal.router("wx_shop.html")
                         })
@@ -52,7 +57,12 @@ new Vue({
                 success: function (d) {
                     if(d.status.code == "OK" && d.data){
                         console.log('UserExperience')
-                        $('.cards .experience').html(wglobal.returnVoucherList(d.data.dataList))
+                        if(d.data.dataList.length>0){
+                            $('.cards .experience').html(wglobal.returnVoucherList(d.data.dataList))
+                        }else{
+                            $('.cards .experience').html('<p class="noData">暂无可用体验券</p>')
+                        }
+
 
                         $(".cards .experience").off().on("click",function(){
                             wglobal.router("game.html")

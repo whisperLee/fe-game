@@ -3,4 +3,10 @@
 @import "_list";
 @import "_num_set";
 @import "_btns";
+body{
+  .main{
+    background: url("../image/n1.jpg") no-repeat center top;
+    background-size: cover;
+  }
+}
 

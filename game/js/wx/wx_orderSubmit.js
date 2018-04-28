@@ -6,8 +6,7 @@ new Vue({
     data: {
         shopId:0,
         orderConfirmDate:{
-            'goodsInfoList': [],
-            'type': 1 // 0 虚拟 1 现实
+            'goodsInfoList': []
         },
         goods:{},//订单详情
         orderConsumptionScore:{},// 用户可用积分
@@ -17,6 +16,7 @@ new Vue({
     created: function () {
         var _self = this
         _self.shopId = wglobal.urlHash().shopId
+        _self.type = wglobal.urlHash().type || 0
         _self.init()
     },
     methods: {
@@ -29,10 +29,13 @@ new Vue({
             // 获取本地存储，并提交请求
             var carts = wglobal.getStorage('carts');
             var shopId = _self.shopId
+            var type = _self.type
             var cartNum=cartTotal = 0;
-            if(carts[shopId]){
-                for(var goodId in carts[shopId]){
-                    var num = carts[shopId][goodId].num;
+            _self.orderConfirmDate.type = type
+            if(carts[shopId][type]){
+                var typeGoods = carts[shopId][type]
+                for(var goodId in typeGoods){
+                    var num = typeGoods[goodId].num;
                     if(num>0){
                         _self.orderConfirmDate.goodsInfoList.push({
                             'goodsId': goodId,
@@ -183,14 +186,17 @@ new Vue({
                     "goodsInfoList":_self.orderConfirmDate.goodsInfoList,
                     "payType": payType,
                     "remark": "",
-                    "type": 1,
+                    "type": _self.type,
                     "voucherId": _self.orderConfirmDate.voucherId || null
                 },
                 success: function (d) {
                     if(d.status.code=="OK"){
                         //清空购物车
                         var shopId = _self.shopId
-                        wglobal.setStorage('carts',{shopId:{}})
+                        var type = _self.type
+                        var carts = wglobal.getStorage('carts')
+                        carts[shopId][type] = {}
+                        wglobal.setStorage('carts',carts)
                         if(payType==0){
                             wglobal.router('wx_pay.html?orderId='+d.data.orderId+"&amount="+d.data.amount)
                         }else if(payType==50){
@@ -204,7 +210,7 @@ new Vue({
         },
         back:function(){
             var _self = this
-            wglobal.router("wx_shop.html?shopId="+_self.shopId)
+            wglobal.router("wx_shop.html?shopId="+_self.shopId+'&type='+_self.type)
         }
     }
 })

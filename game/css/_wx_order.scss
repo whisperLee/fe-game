@@ -234,7 +234,7 @@
   background: $wxColor1;
   border-top: .5px solid $wxColor3;
   .btn{
-    height:.35rem; line-height: .35rem; font-size: .14rem; color: $wxColor7; border: 1px solid $wxColor3; border-radius: .05rem; padding: 0 .1rem; float: right; margin: .1rem .1rem .1rem 0;
+    height:.35rem; line-height: .35rem; font-size: .14rem; color: $wxColor7; border: 1px solid $wxColor3; border-radius: .05rem; padding: 0 .1rem; float: right; margin: .1rem .1rem .1rem 0; width:auto; background: $wxColor1; color: $wxColor7;
     &.pay{
       border-color:$wxColor11; color: $wxColor11;
     }

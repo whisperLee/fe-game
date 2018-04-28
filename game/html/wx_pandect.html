@@ -12,12 +12,12 @@
 <div class="main" id="wx_pandect" v-cloak>
   <div class="header"><div><a class="back"></a> <h1 class="pageName"><span>游戏战绩</span></h1></div></div>
   <div class="container">
-    <div class="pandect">
+    <div class="pandect" v-if="record.totalScreeningCount>0">
       <div class="title">
         <span class="fl">获胜：<b>{{record.totalWinScreeningCount}}</b></span>
         <span class="fr">总场次：{{record.totalScreeningCount}}</span>
       </div>
-      <ul>
+      <ul >
         <li v-for = "item in record.identityCountMap">
           <img :src="item.head" alt="">
           <p>
@@ -26,8 +26,8 @@
           </p>
         </li>
       </ul>
-
     </div>
+    <p v-else class="noData">暂无数据</p>
   </div>
 </div>
 <script type="application/javascript" src="../../js/zepto.min.js"></script>

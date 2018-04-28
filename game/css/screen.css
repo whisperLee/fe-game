@@ -40,7 +40,7 @@ body {
   overflow: auto;
   font-size: .16rem;
   line-height: 150%;
-  font-family: Microsoft YaHei Helvetica, STHeiti, Droid Sans Fallback; }
+  font-family: Microsoft YaHei, Helvetica, STHeiti, Droid Sans Fallback; }
 
 textarea {
   resize: none; }
@@ -98,11 +98,9 @@ video {
   -webkit-transform: translateY(-50%); }
 
 body {
-  font-family: Microsoft YaHei Helvetica, STHeiti, Droid Sans Fallback;
+  font-family: Microsoft YaHei, Helvetica, STHeiti, Droid Sans Fallback;
   color: #f1f1f1; }
   body .main {
-    background: url("../image/n1.jpg") no-repeat center top;
-    background-size: cover;
     overflow-y: auto; }
     body .main .page {
       position: relative;

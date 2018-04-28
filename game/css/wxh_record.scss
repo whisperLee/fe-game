@@ -12,6 +12,8 @@
           margin-bottom: .1rem;
           overflow: hidden;
           box-shadow:0 2px 0 $wxColor3;
+          background: url(../wxImage/list.png) no-repeat center right $wxColor1;
+          background-size: .4rem auto;
           .fl{
             width:1rem; margin: 0 .1rem; line-height: 0;
             img{

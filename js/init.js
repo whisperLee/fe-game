@@ -1,7 +1,7 @@
 /**
  * Created by nielinlin on 2018/4/19.
  */
-window.codeType='test'//test测试环境,online线上环境
+window.codeType=''//test测试环境,online线上环境
 //用户端footer配置
 window.wFooter = [
     {

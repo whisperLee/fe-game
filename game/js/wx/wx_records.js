@@ -10,6 +10,7 @@ new Vue({
         gameHistoryList:{},
         gameHistoryDetail:{},
         gameHistoryDetailInfo:{},
+        defaultMess:'加载中，请稍候...'
     },
     created: function () {
         var _self = this
@@ -31,15 +32,18 @@ new Vue({
                 success: function (d) {
                     console.log(d)
                     if(d.status.code=="OK" && d.data){
-                        for(var i=0;i<d.data.dataList.length;i++){
-                            d.data.dataList[i].head = '../'+interfaceValue.shenfen[d.data.dataList[i].identityId].headf
+                        if(d.data.dataList.length>0){
+                            for(var i=0;i<d.data.dataList.length;i++){
+                                d.data.dataList[i].head = interfaceValue.shenfen[d.data.dataList[i].identityId].headf
+                            }
+                            _self.gameHistoryList = d.data
+                            setTimeout(function(){
+                                new IScroll(".container .records", {click:true});
+                            },10)
+                        }else{
+                            _self.defaultMess = '暂无数据'
                         }
-                        _self.gameHistoryList = d.data
-                        setTimeout(function(){
-                            new IScroll(".container .records", {click:true});
-                        },10)
                     }
-
                 }
             }
             wglobal.ajax(d)

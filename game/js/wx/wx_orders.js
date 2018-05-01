@@ -7,7 +7,8 @@ new Vue({
         orderList:{},
         orderDatail:{
             userLocationResponse:{}
-        }
+        },
+        defaultMess:'加载中，请稍候...'
     },
     created: function () {
         var _self = this
@@ -33,13 +34,18 @@ new Vue({
                 success: function (d) {
                     console.log(d.data)
                     if(d.status.code == "OK" && d.data){
-                        for(var i=0;i<d.data.dataList.length;i++){
-                            d.data.dataList[i].statusName = interfaceValue.orderStatus[d.data.dataList[i].status]
+                        if(d.data.dataList.length>0){
+                            for(var i=0;i<d.data.dataList.length;i++){
+                                d.data.dataList[i].statusName = interfaceValue.orderStatus[d.data.dataList[i].status]
+                            }
+                            _self.orderList = d.data
+                            setTimeout(function(){
+                                new IScroll(".container .orders", {click:true});
+                            },10)
+                        }else{
+                            _self.defaultMess = '暂无数据'
                         }
-                        _self.orderList = d.data
-                        setTimeout(function(){
-                            new IScroll(".container .orders", {click:true});
-                        },10)
+
                     }
                 }
             }

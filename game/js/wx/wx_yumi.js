@@ -5,7 +5,8 @@
 new Vue({
     el: '#wx_yumi',
     data: {
-        yumi:{}
+        yumi:{},
+        defaultMess:'加载中，请稍候...'
     },
     created: function () {
         var _self = this
@@ -29,11 +30,17 @@ new Vue({
                 success: function (d) {
                     console.log(d)
                     if(d.status.code == "OK" && d.data){
-                        for(var i=0;i<d.data.dataList.length;i++){
-                            d.data.dataList[i].typeName = interfaceValue.yumiType[d.data.dataList[i].type]
+                        if(d.data.dataList.length>0){
+                            for(var i=0;i<d.data.dataList.length;i++){
+                                d.data.dataList[i].typeName = interfaceValue.yumiType[d.data.dataList[i].type]
+                            }
+                            _self.yumi = d.data.dataList
+                        }else{
+                            _self.defaultMess = '暂无数据'
                         }
+
                     }
-                    _self.yumi = d.data.dataList
+
                 }
             }
             wglobal.ajax(d)

@@ -98,20 +98,50 @@
     .info{padding-bottom: .1rem}
   }
 }
-
+//身份
 .layer.layerShenfen{
   .inner{
     top:10%; height:80%;
     -webkit-transform:translateY(0); background: none; border:none; border-radius: 10px;
     .title{background: none;}
-    .content{position: absolute; left:0; top:.6rem; bottom: .6rem; width:100%; height:auto;  }
+    .content{position: absolute; left:0; top:.6rem; bottom: .6rem; width:100%; height:auto;
+      div{
+        height:100%; width:auto; margin: 0 auto; display: inline-block;
+        img{
+          width: auto; height:100%;
+        }
+      }
+
+    }
     .btnWrap{position: absolute; left:0; bottom:0; width: 100%;
       display: none;
       .btn{margin-top:0; margin-bottom: 0;}
     }
   }
 }
-
+//盗贼选择身份
+.layer.layerEventRobber{
+  .content{
+    .voteList{
+      margin: .2rem 0;
+      li{
+        position: relative; height:auto; line-height: 0; padding: .1rem; box-sizing: border-box; border: 3px solid $color0; opacity: 0.8;
+        img{
+          width:100%; height:auto;
+        }
+        &.on{
+          //&:before{
+          //  content:" "; position: absolute; width:.2rem; height:.2rem; right:0; bottom:0; background: url("../image/sf_select.png") no-repeat center; background-size: 100%;
+          //}
+          border-color: $color4; opacity: 1;
+        }
+        &.unchoose{
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
 
 //投票结果展示
 .layer.layerEventVoteResult{
@@ -161,7 +191,7 @@
     }
   }
 }
-
+//死亡提示
 .layer.layerDead{
  .content{
    width:80%; height:100%; margin: 0 auto; background: url(../image/dead1.png) no-repeat center; background-size: contain;

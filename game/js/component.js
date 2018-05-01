@@ -17,6 +17,7 @@ var component = {
                         '<b v-show="user.campaignFlag" class="state campaign"></b>'+
                         '<b v-show="user.sergeantFlag" class="state sergeant"></b>'+
                         '<b v-show="user.identityStatus" v-bind:class="`state ${user.identityStatus}`"></b>'+
+                        '<b v-show="user.loverNumber" class="state lover"></b>'+
                     '</div>'+
                 '</div>'+
             '</div>'+

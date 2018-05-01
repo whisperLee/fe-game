@@ -6,6 +6,8 @@ new Vue({
     el: '#wx_ranking',
     data: {
         dataList:[],
+        defaultMess:'加载中，请稍候...'
+
     },
     created: function () {
         var _self = this
@@ -23,7 +25,9 @@ new Vue({
             var _self = this
             if(_self.charmT && _self.charmT.length>0){
                 _self.setData(_self.charmT)
-            }else{
+            }
+            else{
+                _self.defaultMess = '加载中，请稍候...'
                 var d = {
                     url: 'ranking/rankingQuery',
                     data: {
@@ -45,7 +49,9 @@ new Vue({
             var _self = this
             if(_self.charmY && _self.charmY.length>0){
                 _self.setData(_self.charmY)
-            }else{
+            }
+            else{
+                _self.defaultMess = '加载中，请稍候...'
                 var d = {
                     url: 'ranking/rankingQuery',
                     data: {
@@ -67,7 +73,9 @@ new Vue({
             var _self = this
             if(_self.charmW && _self.charmW.length>0){
                 _self.setData(_self.charmW)
-            }else{
+            }
+            else{
+                _self.defaultMess = '加载中，请稍候...'
                 var d = {
                     url: 'ranking/rankingQuery',
                     data: {
@@ -89,7 +97,9 @@ new Vue({
             var _self = this
             if(_self.charmTt && _self.charmTt.length>0){
                 _self.setData(_self.charmTt)
-            }else{
+            }
+            else{
+                _self.defaultMess = '加载中，请稍候...'
                 var d = {
                     url: 'ranking/rankingQuery',
                     data: {
@@ -111,7 +121,9 @@ new Vue({
             var _self = this
             if(_self.gameT && _self.gameT.length>0){
                 _self.setData(_self.gameT)
-            }else{
+            }
+            else{
+                _self.defaultMess = '加载中，请稍候...'
                 var d = {
                     url: 'ranking/rankingQuery',
                     data: {
@@ -133,7 +145,9 @@ new Vue({
             var _self = this
             if(_self.gameY && _self.gameY.length>0){
                 _self.setData(_self.gameY)
-            }else{
+            }
+            else{
+                _self.defaultMess = '加载中，请稍候...'
                 var d = {
                     url: 'ranking/rankingQuery',
                     data: {
@@ -155,7 +169,9 @@ new Vue({
             var _self = this
             if(_self.gameW && _self.gameW.length>0){
                 _self.setData(_self.gameW)
-            }else{
+            }
+            else{
+                _self.defaultMess = '加载中，请稍候...'
                 var d = {
                     url: 'ranking/rankingQuery',
                     data: {
@@ -177,7 +193,9 @@ new Vue({
             var _self = this
             if(_self.gameTt && _self.gameTt.length>0){
                 _self.setData(_self.gameTt)
-            }else{
+            }
+            else{
+                _self.defaultMess = '加载中，请稍候...'
                 var d = {
                     url: 'ranking/rankingQuery',
                     data: {
@@ -199,7 +217,9 @@ new Vue({
             var _self = this
             if(_self.mvpT && _self.mvpT.length>0){
                 _self.setData(_self.mvpT)
-            }else{
+            }
+            else{
+                _self.defaultMess = '加载中，请稍候...'
                 var d = {
                     url: 'ranking/rankingQuery',
                     data: {
@@ -221,7 +241,9 @@ new Vue({
             var _self = this
             if(_self.mvpY && _self.mvpY.length>0){
                 _self.setData(_self.mvpY)
-            }else{
+            }
+            else{
+                _self.defaultMess = '加载中，请稍候...'
                 var d = {
                     url: 'ranking/rankingQuery',
                     data: {
@@ -243,7 +265,9 @@ new Vue({
             var _self = this
             if(_self.mvpW && _self.mvpW.length>0){
                 _self.setData(_self.mvpW)
-            }else{
+            }
+            else{
+                _self.defaultMess = '加载中，请稍候...'
                 var d = {
                     url: 'ranking/rankingQuery',
                     data: {
@@ -265,7 +289,9 @@ new Vue({
             var _self = this
             if(_self.mvpTt && _self.mvpTt.length>0){
                 _self.setData(_self.mvpTt)
-            }else{
+            }
+            else{
+                _self.defaultMess = '加载中，请稍候...'
                 var d = {
                     url: 'ranking/rankingQuery',
                     data: {
@@ -301,7 +327,10 @@ new Vue({
         setData:function(d){
             var _self = this
             _self.dataList = d
-            _self.gameHistoryList = d.data
+            if(d.length<=0){
+                _self.defaultMess = '暂无数据'
+            }
+            //_self.gameHistoryList = d.data
             // setTimeout(function(){
             //     new IScroll(".container .records", {click:true});
             // },10)

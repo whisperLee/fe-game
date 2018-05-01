@@ -34,7 +34,7 @@ new Vue({
                         if(d.data.dataList.length>0){
                             $('.cards .cash').html(wglobal.returnVoucherList(d.data.dataList))
                         }else{
-                            $('.cards .cash').html('<p class="noData">暂无可用抵价券</p>')
+                            $('.cards .cash').html('<p class="defaultMess">暂无可用抵价券</p>')
                         }
 
                         $(".cards .cash").off().on("click",function(){
@@ -60,7 +60,7 @@ new Vue({
                         if(d.data.dataList.length>0){
                             $('.cards .experience').html(wglobal.returnVoucherList(d.data.dataList))
                         }else{
-                            $('.cards .experience').html('<p class="noData">暂无可用体验券</p>')
+                            $('.cards .experience').html('<p class="defaultMess">暂无可用体验券</p>')
                         }
 
 

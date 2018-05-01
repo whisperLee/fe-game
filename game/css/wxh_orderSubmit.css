@@ -113,6 +113,7 @@
         /**炸弹人**/
         /**白痴超时死亡**/
         /**白狼王开枪带走**/
+        /**白狼王自爆**/
         /**白狼王自爆**/ }
         .user .level .userInner .status b.state {
           position: relative;
@@ -158,6 +159,9 @@
           background-image: url(../image/state/s12.png); }
         .user .level .userInner .status b.WHITE_SELF_DESTRUCT {
           background-image: url(../image/state/s13.png); }
+        .user .level .userInner .status b.lover {
+          background-image: url(../image/state/s18.png);
+          display: none; }
       .user .level .userInner:before {
         background-image: url(../image/newLevel/0.png); }
   .user .level1 .userInner .num {
@@ -261,6 +265,11 @@
     background-image: url(../image/newLevel/4_0.png); }
   .user.userBack .level5 {
     background-image: url(../image/newLevel/5_0.png); }
+
+/*情侣身份只有在投票和游戏结束才会显示在头像上*/
+.choosing .user .level .userInner .status b.lover, .gameEnd .user .level .userInner .status b.lover {
+  display: block;
+  -webkit-animation: flash 1s 1s infinite; }
 
 #game .mine {
   position: absolute;
@@ -704,7 +713,7 @@ body {
   color: #ffffff;
   text-align: center; }
 
-.noData {
+.defaultMess {
   text-align: center;
   font-size: .16rem;
   color: #a6afc5;
@@ -955,7 +964,6 @@ ul.goodList {
 
 .card {
   height: 1rem;
-  background: #ffffff;
   margin-bottom: .1rem; }
   .card .left {
     position: relative;
@@ -984,9 +992,11 @@ ul.goodList {
   .card .right {
     position: relative;
     height: 100%;
-    margin-left: 1.6rem;
+    margin-left: 1.5rem;
+    padding-left: .1rem;
     font-size: .12rem;
-    line-height: .2rem; }
+    line-height: .2rem;
+    background: #ffffff; }
     .card .right h3 {
       font-size: .18rem;
       line-height: .4rem;
@@ -995,7 +1005,7 @@ ul.goodList {
       color: #686b75; }
     .card .right .endTime {
       position: absolute;
-      left: 0;
+      left: .1rem;
       bottom: .05rem;
       color: #cccccc;
       padding-top: .1rem;
@@ -1053,6 +1063,28 @@ ul.goodList {
 .card[canuse=false] .use {
   display: none; }
 
+.voucherListLayer .layerNavContent {
+  bottom: .5rem; }
+  .voucherListLayer .layerNavContent .bd {
+    padding: 0 .1rem; }
+    .voucherListLayer .layerNavContent .bd .enabledVoucher .card .right {
+      background: url("../wxImage/r.png") no-repeat 93% center #fff;
+      background-size: .3rem; }
+    .voucherListLayer .layerNavContent .bd .enabledVoucher .card .use {
+      display: none; }
+    .voucherListLayer .layerNavContent .bd .enabledVoucher .card.active .right {
+      background-image: url("../wxImage/r_on.png"); }
+.voucherListLayer .layerNavBottom .btn {
+  background: #00bea1;
+  border: none;
+  color: #ffffff;
+  width: 80%;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  height: .4rem;
+  line-height: .4rem; }
+
 body .main {
   background: #f1f5fa; }
   body .main .orderSubmit {
@@ -1063,27 +1095,6 @@ body .main {
     overflow-y: auto;
     width: 100%;
     background: #f1f5fa; }
-  body .main .enabledVoucher .card .right {
-    background: url("../wxImage/r.png") no-repeat 93% center;
-    background-size: .3rem; }
-  body .main .enabledVoucher .card.active .right {
-    background-image: url("../wxImage/r_on.png"); }
-  body .main .layerNavContent {
-    bottom: .5rem; }
-    body .main .layerNavContent .bd {
-      padding: 0 .1rem; }
-      body .main .layerNavContent .bd .card .use {
-        display: none; }
-  body .main .layerNavBottom .btn {
-    background: #00bea1;
-    border: none;
-    color: #ffffff;
-    width: 80%;
-    text-align: center;
-    display: block;
-    margin: 0 auto;
-    height: .4rem;
-    line-height: .4rem; }
   body .main .footer {
     text-align: right; }
     body .main .footer .btn.btn1 {

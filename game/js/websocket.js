@@ -14,6 +14,9 @@ var websocket = {
             error()
         })
     },
+    disconnect:function(){
+        stompClient.disconnect();
+    },
     connectpc: function (vue, url, callback) {
         var _self = this
         var socket = new SockJS(_self.host+'stompEndpoints');
@@ -45,6 +48,7 @@ var websocket = {
     // 用户事件
     receiveUserEvent:function (data) {
         data = JSON.stringify(data)
+        console.log(data)
         stompClient.send('/gameUser/receiveUserEvent', {},data)
     },
     // 大屏事件

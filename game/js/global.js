@@ -3,14 +3,7 @@
 var host = 'http://liyn.me:8888/web-api/v1/'
 //var host = 'http://192.168.3.28:8888/web-api/v1/'
 var staticUrl = '..'
-var identitys = [
-    {
-        id:1,
-        name:"白痴",
-        cardImg:"",
-        gameImg:"../wxImage/baichi.jpg"
-    }
-]
+document.write("<script language=javascript src='../../js/init.js'></script>");
 var global = {
   tipsTime: '',
   countDowmTime: '',
@@ -37,18 +30,20 @@ var global = {
       url: '',
       data: {},
       contentType: 'application/json',
-      timeout: 30000,
+      timeout: 10000,
       type: 'POST',
       dataType: 'json',
       success: function () {}
     }, data)
     d.url = host + d.url
-      if(this.urlHash().gameNumber<10){
-          d.data.userToken = '10'+ this.urlHash().gameNumber
-      }else{
-          d.data.userToken = '1' + this.urlHash().gameNumber
-      }
-        global.setCookie('a__b',d.data.userToken)
+    if(codeType=="test" && this.urlHash().gameNumber){ // 测试环境执行
+          if(this.urlHash().gameNumber<10){
+              d.data.userToken = '20'+ this.urlHash().gameNumber
+          }else{
+              d.data.userToken = '1' + this.urlHash().gameNumber
+          }
+          global.setCookie('a__b',d.data.userToken)
+    }
     d.data = JSON.stringify(d.data)
     $.ajax(d)
   },

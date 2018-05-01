@@ -164,6 +164,7 @@ var eglobal = {
         }
     },
     showNav:function(d){
+        var _self = this
         var navList = {
             "首页":{
                 name:"首页",
@@ -205,7 +206,7 @@ var eglobal = {
         $(".main .nav ul").html(h)
 
         $(".js-logout").off().on("click",function(){
-            _this.logout()
+            _self.logout()
         })
 
         var pathname = window.location.pathname.split("/")

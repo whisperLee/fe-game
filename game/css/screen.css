@@ -249,6 +249,7 @@ body {
         /**炸弹人**/
         /**白痴超时死亡**/
         /**白狼王开枪带走**/
+        /**白狼王自爆**/
         /**白狼王自爆**/ }
         .user .level .userInner .status b.state {
           position: relative;
@@ -294,6 +295,9 @@ body {
           background-image: url(../image/state/s12.png); }
         .user .level .userInner .status b.WHITE_SELF_DESTRUCT {
           background-image: url(../image/state/s13.png); }
+        .user .level .userInner .status b.lover {
+          background-image: url(../image/state/s18.png);
+          display: none; }
       .user .level .userInner:before {
         background-image: url(../image/newLevel/0.png); }
   .user .level1 .userInner .num {
@@ -398,6 +402,11 @@ body {
   .user.userBack .level5 {
     background-image: url(../image/newLevel/5_0.png); }
 
+/*情侣身份只有在投票和游戏结束才会显示在头像上*/
+.choosing .user .level .userInner .status b.lover, .gameEnd .user .level .userInner .status b.lover {
+  display: block;
+  -webkit-animation: flash 1s 1s infinite; }
+
 #game .mine {
   position: absolute;
   left: 0;
@@ -436,23 +445,31 @@ body {
     opacity: 1; } }
 @-webkit-keyframes flash {
   0%,100% {
+    opacity: 1;
     transform: scale(1); }
   50% {
+    opacity: 1;
     transform: scale(1.1); } }
 @-moz-keyframes flash {
   0%,100% {
+    opacity: 1;
     transform: scale(1); }
   50% {
+    opacity: 1;
     transform: scale(1.1); } }
 @-o-keyframes flash {
   0%,100% {
+    opacity: 1;
     transform: scale(1); }
   50% {
+    opacity: 1;
     transform: scale(1.1); } }
 @keyframes flash {
   0%,100% {
+    opacity: 1;
     transform: scale(1); }
   50% {
+    opacity: 1;
     transform: scale(1.1); } }
 @-webkit-keyframes fadeInUp {
   0% {
@@ -574,7 +591,8 @@ body {
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
     background: url("../sImage/bg.jpg") no-repeat center bottom;
-    background-size: 100% auto; }
+    background-size: 100% auto;
+    height: auto; }
     body .main .gameInfo {
       position: absolute;
       left: 0;
@@ -973,6 +991,10 @@ body {
                 color: #f1f1f1;
                 font-size: .14rem;
                 white-space: nowrap; }
+              body .gameEnd .endInner .result .userList li p b {
+                color: #16afec;
+                font-size: .14rem;
+                font-weight: normal; }
             body .gameEnd .endInner .result .userList li.mvp:before {
               content: "";
               position: absolute;
@@ -1020,6 +1042,70 @@ body {
           body .gameEnd .endInner .result.lose:after {
             background-image: url("../sImage/l_r.png");
             background-position: right bottom; }
+
+#s_login {
+  left: 0;
+  top: 0;
+  -webkit-transform: translate(0, 0);
+  height: 100%;
+  background-size: cover; }
+  #s_login .login {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    -webkit-transform: translate(-50%, -50%);
+    width: 4.1rem;
+    padding: 0.25rem 0 0.4rem;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #f1f1f1;
+    border-radius: 10px; }
+    #s_login .login .input {
+      width: 70%;
+      height: .4rem;
+      line-height: .4rem;
+      border: 1px solid #f1f1f1;
+      margin: .3rem auto 0; }
+      #s_login .login .input input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: none;
+        font-size: .16rem;
+        color: #34495e;
+        padding: 0 .1rem; }
+    #s_login .login .btn {
+      position: absolute;
+      left: 32%;
+      bottom: -.2rem;
+      width: 36%;
+      height: .4rem;
+      line-height: .4rem;
+      border-radius: 5px;
+      font-size: .16rem;
+      text-align: center;
+      background: #16afec;
+      color: #fff;
+      cursor: pointer; }
+    #s_login .login .mess {
+      font-size: .14rem;
+      color: #e74c3c;
+      text-align: center;
+      height: .2rem;
+      line-height: .2rem;
+      margin-top: .2rem; }
+
+.logout {
+  font-size: .2rem;
+  color: #16afec;
+  line-height: .3rem;
+  position: absolute;
+  right: 2%;
+  top: 1%;
+  opacity: 0;
+  cursor: pointer; }
+  .logout:hover {
+    opacity: 1; }
 
 .scrollBar::-webkit-scrollbar {
   width: 8px; }

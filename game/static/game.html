@@ -56,6 +56,9 @@
         <h2 class="title"></h2>
         <div class="countDown">倒计时:<span></span></div>
         <ul class="shenfens">
+          <li class="no"><div class="shenfen shenfen1"></div><div class="price">30</div></li>
+          <li class="no"><div class="shenfen shenfen2"></div><div class="price">30</div></li>
+          <li class="no"><div class="shenfen shenfen3"></div><div class="price">30</div></li>
         </ul>
       </div>
     </div>
@@ -175,7 +178,31 @@
       </div>
     </div>
   </div>
-
+  <!--用户事件-盗贼选牌-->
+  <div class="layer layerEventRobber">
+    <div class="inner">
+      <h2 class="title">选择两个身份中的一个,有狼必须选狼</h2>
+      <div class="content">
+        <p class="info"></p>
+        <ul class="voteList">
+          <li class="on">
+            <img src="../shenfen/1.png" alt="">
+          </li>
+          <li>
+            <img src="../shenfen/2.png" alt="">
+          </li>
+        </ul>
+        <p class="tips">请长按提交按钮进行提交</p>
+        <div class="btnWrap">
+          <div class="btn btn2 longPress js-longPress">
+            <span class="process"><b></b></span>
+            <span class="text">提交</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--查看用户详情-->
     <div class="layer layerUserInfo" v-if="JSON.stringify(userinfo)!='{}'">
       <div class="inner">
         <userinfo v-bind:user="userinfo"></userinfo>
@@ -184,7 +211,7 @@
         </div>
       </div>
     </div>
-
+  <!--用户死亡-->
     <div class="layer layerDead">
         <div class="content">
             你已死亡！

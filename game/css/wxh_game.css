@@ -425,7 +425,7 @@ body {
   color: #ffffff;
   text-align: center; }
 
-.noData {
+.defaultMess {
   text-align: center;
   font-size: .16rem;
   color: #a6afc5;
@@ -546,6 +546,7 @@ body {
         /**炸弹人**/
         /**白痴超时死亡**/
         /**白狼王开枪带走**/
+        /**白狼王自爆**/
         /**白狼王自爆**/ }
         .user .level .userInner .status b.state {
           position: relative;
@@ -591,6 +592,9 @@ body {
           background-image: url(../image/state/s12.png); }
         .user .level .userInner .status b.WHITE_SELF_DESTRUCT {
           background-image: url(../image/state/s13.png); }
+        .user .level .userInner .status b.lover {
+          background-image: url(../image/state/s18.png);
+          display: none; }
       .user .level .userInner:before {
         background-image: url(../image/newLevel/0.png); }
   .user .level1 .userInner .num {
@@ -695,6 +699,11 @@ body {
   .user.userBack .level5 {
     background-image: url(../image/newLevel/5_0.png); }
 
+/*情侣身份只有在投票和游戏结束才会显示在头像上*/
+.choosing .user .level .userInner .status b.lover, .gameEnd .user .level .userInner .status b.lover {
+  display: block;
+  -webkit-animation: flash 1s 1s infinite; }
+
 #game .mine {
   position: absolute;
   left: 0;
@@ -710,6 +719,129 @@ body {
     #game .mine .userWrap .info {
       float: left;
       padding-top: 10%; }
+
+.card {
+  height: 1rem;
+  margin-bottom: .1rem; }
+  .card .left {
+    position: relative;
+    width: 1.5rem;
+    height: 100%;
+    float: left;
+    color: #ffffff;
+    background: url("../wxImage/r0.png") no-repeat left center;
+    background-size: cover; }
+    .card .left .inner {
+      position: absolute;
+      left: 5%;
+      top: 50%;
+      width: 90%;
+      -webkit-transform: translate(0, -50%);
+      text-align: center; }
+      .card .left .inner .money {
+        font-size: .16rem;
+        line-height: .4rem; }
+        .card .left .inner .money span {
+          font-size: .4rem;
+          padding: 0 .05rem; }
+      .card .left .inner .limit {
+        font-size: .14rem;
+        line-height: .2rem; }
+  .card .right {
+    position: relative;
+    height: 100%;
+    margin-left: 1.5rem;
+    padding-left: .1rem;
+    font-size: .12rem;
+    line-height: .2rem;
+    background: #ffffff; }
+    .card .right h3 {
+      font-size: .18rem;
+      line-height: .4rem;
+      color: #2d313f; }
+    .card .right .info {
+      color: #686b75; }
+    .card .right .endTime {
+      position: absolute;
+      left: .1rem;
+      bottom: .05rem;
+      color: #cccccc;
+      padding-top: .1rem;
+      -webkit-transform-origin: left center;
+      -webkit-transform: scale(0.8); }
+    .card .right .use {
+      position: absolute;
+      right: .05rem;
+      bottom: .05rem;
+      font-size: .12rem;
+      color: #2d313f;
+      line-height: .2rem;
+      height: .2rem;
+      border-radius: .1rem;
+      border: 0.5px solid #2d313f;
+      display: inline-block;
+      padding: 0 .08rem; }
+
+.card[type="50"][canuse=true] .left {
+  background-image: url("../wxImage/r1.png"); }
+.card[type="50"][canuse=true] .right .use {
+  border-color: #f6dc4b;
+  color: #f6dc4b; }
+
+.card[type="51"][canuse=true] .left {
+  background-image: url("../wxImage/r2.png"); }
+.card[type="51"][canuse=true] .right .use {
+  border-color: #fe8228;
+  color: #fe8228; }
+
+.card[type="0"][canuse=true] .left {
+  background-image: url("../wxImage/r3.png"); }
+.card[type="0"][canuse=true] .right .use {
+  border-color: #3aeabb;
+  color: #3aeabb; }
+
+.card[type="1"][canuse=true] .left {
+  background-image: url("../wxImage/r4.png"); }
+.card[type="1"][canuse=true] .right .use {
+  border-color: #a087fd;
+  color: #a087fd; }
+
+.card[type="2"][canuse=true] .left {
+  background-image: url("../wxImage/r5.png"); }
+.card[type="2"][canuse=true] .right .use {
+  border-color: #b443d3;
+  color: #b443d3; }
+
+.card[type="3"][canuse=true] .left {
+  background-image: url("../wxImage/r6.png"); }
+.card[type="3"][canuse=true] .right .use {
+  border-color: #e74c3c;
+  color: #e74c3c; }
+
+.card[canuse=false] .use {
+  display: none; }
+
+.voucherListLayer .layerNavContent {
+  bottom: .5rem; }
+  .voucherListLayer .layerNavContent .bd {
+    padding: 0 .1rem; }
+    .voucherListLayer .layerNavContent .bd .enabledVoucher .card .right {
+      background: url("../wxImage/r.png") no-repeat 93% center #fff;
+      background-size: .3rem; }
+    .voucherListLayer .layerNavContent .bd .enabledVoucher .card .use {
+      display: none; }
+    .voucherListLayer .layerNavContent .bd .enabledVoucher .card.active .right {
+      background-image: url("../wxImage/r_on.png"); }
+.voucherListLayer .layerNavBottom .btn {
+  background: #00bea1;
+  border: none;
+  color: #ffffff;
+  width: 80%;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  height: .4rem;
+  line-height: .4rem; }
 
 body .main .header {
   margin-bottom: 0; }

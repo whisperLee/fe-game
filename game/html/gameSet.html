@@ -21,9 +21,11 @@
         <div class="inner" v-if="comType==0">
             <ul class="comList">
                 <li v-for="content in combinats[0].content.combination" v-on:click="chooseBaseCom" :typeid="content.id" :playercount="content.playerCount">
-                    <p v-for="item in content.list">
-                        {{ item }}
-                    </p>
+                    <div class="mod">
+                        <p v-for="item in content.list">
+                            {{ item }}
+                        </p>
+                    </div>
                 </li>
             </ul>
         </div>

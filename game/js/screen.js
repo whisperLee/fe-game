@@ -29,7 +29,6 @@ var screen = new Vue({
 
         console.log('页面开始:' + new Date())
         _self.init()
-        _self.connectWebScoket()
     },
     methods: {
         init:function(){
@@ -51,12 +50,42 @@ var screen = new Vue({
             $('html').css({
                 "fontSize":_self._w/10+'px'
             })
+            _self.getBoxId()
+
+        },
+        getBoxId:function(){
+            var _self = this
+            var d = {
+                url: 'game/screen/getBoxId',
+                success: function (d) {
+                    console.log(d)
+                    if (d.status.code === 'OK') {
+                        _self.boxId = d
+                        _self.connectWebScoket()
+                    } else {
+                        global.pop_tips(d.status.msg)
+                        //global.router("screen_login.html")
+                    }
+                }
+            }
+            global.ajax(d)
+        },
+        logout:function(){
+            var d = {
+                url: 'game/screen/logout',
+                success: function (d) {
+                    console.log(d)
+                    if(d.status.code == "OK"){
+                        window.location.href="screen_login.html"
+                    }
+                }
+            }
+            global.ajax(d)
         },
         // 连接websocket
         connectWebScoket: function () {
             var _self = this
-            _self.boxId = global.urlHash().boxId || 0
-            document.cookie = "jm_x=" + _self.boxId + "; path=/" // 设置cookie
+
             console.log('websocket开始:' + new Date())
             var url = '/userTopic/game/screen/' + _self.boxId
             websocket.connectpc(_self, url , _self.socketCallback)
@@ -72,29 +101,28 @@ var screen = new Vue({
                 location.reload() // 游戏开始，重新刷新页面
             }
 
-            if( d.userInfoList && d.userInfoList.length>0){ // 玩家信息
-                if(d.msgType == 'QUEUE'){
-                    $('.welcome').hide()
+            if( d.userInfoList && d.userInfoList.length>0) { // 玩家信息
+                $('.welcome').hide()
+            }
+            if(d.msgType == 'QUEUE' || d.msgType == 'CUR_GAME_STATUS'){
                     _self.setUser(d)
                     setTimeout(function () {
                         _self.setUserQueueStyle()
                     }, 10)
-                }else{
-                    if(d.msgType == 'CAMPAIGN_RESULT' || d.msgType =='CAMPAIGN_PK_SPEAK' || d.msgType =='CAMPAIGN_OUT_PK_SPEAK'){
-                        for(var i=0; i<_self.users.length;i++){
-                            if(_self.users[i].campaignFlag){
-                                _self.users[i].campaignFlag = false
-                                _self.$set(_self.users,i,_self.users[i])
-                            }
-                        }
-                    }
-                    for(var i=0;i<d.userInfoList.length; i++){
-                        var num = d.userInfoList[i].number
-                        _self.users[num-1] =  $.extend({}, _self.users[num-1], d.userInfoList[i])
-                        _self.$set(_self.users,num-1,_self.users[num-1])
+            }
+
+            if(d.msgType == 'CAMPAIGN_RESULT' || d.msgType =='CAMPAIGN_PK_SPEAK' || d.msgType =='CAMPAIGN_OUT_PK_SPEAK'){
+                for(var i=0; i<_self.users.length;i++){
+                    if(_self.users[i].campaignFlag){
+                        _self.users[i].campaignFlag = false
+                        _self.$set(_self.users,i,_self.users[i])
                     }
                 }
-
+            }
+            for(var i=0;i<d.userInfoList.length; i++){
+                var num = d.userInfoList[i].number
+                _self.users[num-1] =  $.extend({}, _self.users[num-1], d.userInfoList[i])
+                _self.$set(_self.users,num-1,_self.users[num-1])
             }
 
             if(d.boxInfo){ // 包房信息

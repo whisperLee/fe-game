@@ -21,7 +21,6 @@ new Vue({
     methods: {
         init:function(){
             var _self = this
-
             _self.getSeat()
         },
         getSeat:function(orderId){
@@ -111,6 +110,7 @@ new Vue({
                         }
                         if(d.data.voucherList.length>0){
                             balance["0"].info = '共'+d.data.voucherList.length+'张可用'
+                            $(".voucherListLayer .enabledVoucher").html(wglobal.returnVoucherList(d.data.voucherList))
                         }else{
                             balance["0"].info = "无可用"
                             balance["0"].less = true
@@ -123,11 +123,36 @@ new Vue({
                         }else{
                             if(d.data.voucherList.length>0){
                                 balance["1"].on = true // 优惠券有的情况下暂时不处理
+
                             }else{
                                 _self.mustBuy = true // 三种情况都没有的话，显示余额不足，去商城购买
                             }
                         }
                         _self.balance = balance
+                        setTimeout(function(){
+                            $(".radios").each(function(){
+                                var el = $(this)
+                                el.find(".radio").off().on("click",function(){
+                                    var f = $(this)
+                                    if(f.attr("isless")!="less"){
+                                        el.find(".radio").removeClass("on")
+                                        f.addClass("on")
+                                        if(f.attr("typeid")==0){
+                                            wglobal.layerEnter($(".voucherListLayer"))
+                                        }
+                                    }
+                                })
+                            })
+                            $(".voucherListLayer .enabledVoucher .card").each(function(idx){
+                                $(this).off().on("click",function(){
+                                    if($(this).hasClass("active")){
+                                        $(this).removeClass("active")
+                                    }else{
+                                        $(".voucherListLayer .enabledVoucher .card").removeClass("active").eq(idx).addClass("active")
+                                    }
+                                })
+                            })
+                        },10)
                     }
                 }
             }
@@ -165,11 +190,27 @@ new Vue({
         },
         sit:function(){
             var _self = this
+            var feeType = $(".payType .radio.on").attr("typeid")
+            var voucherId
+            if(feeType!=0){
+                voucherId = 0
+            }else{
+                var card = $(".voucherListLayer .enabledVoucher .card.active")
+                if(card.length>0){
+                    voucherId = card.eq(0).attr("cardId")
+                }else{
+                    wglobal.pop_tips('你还没有选择要使用的体验券哦')
+                    return
+                }
+
+            }
             var d = {
                 url: 'game/play/sit',
                 data: {
-                    boxId: _self.boxId,
-                    gameNumber: _self.gameNumber
+                    "boxId": _self.boxId,
+                    "gameNumber": _self.gameNumber,
+                    "feeType": feeType,
+                    "voucherId": voucherId
                 },
                 success: function (d) {
                     if (d.status.code === 'OK') {
@@ -208,11 +249,21 @@ new Vue({
         saoyisao:function () {
             console.log('saoyisao')
         },
+        changeCard:function(){
+            wglobal.layerOuter($(".voucherListLayer"))
+            var card = $(".voucherListLayer .enabledVoucher .card.active")
+            if(card.length>0){
+                $(".payType .radio[typeid='0'] span").html("已选择一张")
+            }else{
+                $(".payType .radio[typeid='0'] span").html("共"+$(".voucherListLayer .enabledVoucher .card").length+"张可用")
+            }
+        },
         showUsers:function(d,status){
             var _self = this
             _self.users = []
             if(status=='队列中'){
                 var total = 15
+
                 for (var t = 1; t <= total; t++) {
                     _self.users.push({
                         number: t,

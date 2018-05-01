@@ -5,7 +5,8 @@
 new Vue({
     el: '#wx_pandect',
     data: {
-        record:{}
+        record:{},
+        defaultMess:'加载中，请稍候...'
     },
     created: function () {
         var _self = this
@@ -24,11 +25,16 @@ new Vue({
                 },
                 success: function (d) {
                     console.log(d)
-                    for(var k in d.data.identityCountMap){
-                        d.data.identityCountMap[k].name = interfaceValue.shenfen[k].name
-                        d.data.identityCountMap[k].head = '../'+interfaceValue.shenfen[k].head
+                    if(d.data.totalScreeningCount>0){
+                        for(var k in d.data.identityCountMap){
+                            d.data.identityCountMap[k].name = interfaceValue.shenfen[k].name
+                            d.data.identityCountMap[k].head = interfaceValue.shenfen[k].head
+                        }
+                        _self.record = d.data
+                    }else{
+                        _self.defaultMess = '暂无数据'
                     }
-                    _self.record = d.data
+
                 }
             }
             wglobal.ajax(d)

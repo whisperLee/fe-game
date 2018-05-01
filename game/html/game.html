@@ -6,7 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
         <meta name="format-detection" content="telephone=no">
         <link href="../css/game.css?v1" rel="stylesheet" type="text/css" media="screen" />
-        <title>游戏页面</title>
+        <title>
+
+        </title>
       <style>
 
         /*.user-list{position: fixed; top:0}*/
@@ -14,21 +16,32 @@
       </style>
     </head>
 <body>
-<!--<div class="main" id="game" :class="screenCenterMessage.nightFlag==1? 'night' : screenCenterMessage.nightFlag==0?'day':'' " v-cloak>-->
-<div class="main" id="game" :class="screenCenterMessage.nightFlag==1? 'night' : screenCenterMessage.nightFlag==0?'day':'' " v-cloak>
+<div class="main" id="game"  v-cloak>
+  <!--入座二维码 begin-->
+  <div class="dyCode">
+    <div class="inner">
+      <h2></h2>
+      <div id="code">
+        <canvas id="canvas"></canvas>
+      </div>
+      <p>扫描二维码入座游戏</p>
+      <h3></h3>
+    </div>
+  </div>
+  <!--入座二维码 end-->
+  <div class="game" :nightFlag="screenCenterMessage.nightFlag">
     <h2 v-if="queueFlow <= 2" class="readyTitle">{{readyMess}}</h2>
     <ul class="user-list">
-        <li v-for="(user,idx) in users" v-on:click="userClick(user,$event)" :userid="user.userId">
-            <user v-bind:user="user"></user>
-        </li>
+      <li v-for="(user,idx) in users" v-on:click="userClick(user,$event)" :userid="user.userId">
+        <user v-bind:user="user"></user>
+      </li>
     </ul>
-     <!-- <ul class="user-list" style="height: auto;"><li userid="101" class="left" style="width: 75px; height: 75px; opacity: 1; left: 0px; top: 300px;"><div num="1" class="user"><div class="level level1"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star2"></i><div class="num num1"><b>1</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state SURVIVAL" style=""></b></div></div></div></div></li><li userid="2" class="left" style="width: 75px; height: 75px; opacity: 1; left: 0px; top: 225px;"><div num="2" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num2"><b>2</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="3" class="left" style="width: 75px; height: 75px; opacity: 1; left: 0px; top: 150px;"><div num="3" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num3"><b>3</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="4" class="left" style="width: 75px; height: 75px; opacity: 1; left: 0px; top: 75px;"><div num="4" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num4"><b>4</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="5" class="left" style="width: 75px; height: 75px; opacity: 1; left: 0px; top: 0px;"><div num="5" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num5"><b>5</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="6" class="center" style="width: 75px; height: 75px; opacity: 1; left: 100px; top: 0px;"><div num="6" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num6"><b>6</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="7" class="center" style="width: 75px; height: 75px; opacity: 1; left: 200px; top: 0px;"><div num="7" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num7"><b>7</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="8" class="right" style="width: 75px; height: 75px; opacity: 1; left: 300px; top: 0px;"><div num="8" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num8"><b>8</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="9" class="right" style="width: 75px; height: 75px; opacity: 1; left: 300px; top: 75px;"><div num="9" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num9"><b>9</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="10" class="right" style="width: 75px; height: 75px; opacity: 1; left: 300px; top: 150px;"><div num="10" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num10"><b>10</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="11" class="right" style="width: 75px; height: 75px; opacity: 1; left: 300px; top: 225px;"><div num="11" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num11"><b>11</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="12" class="right" style="width: 75px; height: 75px; opacity: 1; left: 300px; top: 300px;"><div num="12" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num12"><b>12</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li></ul> -->
+<!--     <ul class="user-list" style="height: auto;"><li userid="101" class="left" style="width: 75px; height: 75px; opacity: 1; left: 0px; top: 300px;"><div num="1" class="user"><div class="level level1"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star2"></i><div class="num num1"><b>1</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state SURVIVAL" style=""></b></div></div></div></div></li><li userid="2" class="left" style="width: 75px; height: 75px; opacity: 1; left: 0px; top: 225px;"><div num="2" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num2"><b>2</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="3" class="left" style="width: 75px; height: 75px; opacity: 1; left: 0px; top: 150px;"><div num="3" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num3"><b>3</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="4" class="left" style="width: 75px; height: 75px; opacity: 1; left: 0px; top: 75px;"><div num="4" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num4"><b>4</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="5" class="left" style="width: 75px; height: 75px; opacity: 1; left: 0px; top: 0px;"><div num="5" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num5"><b>5</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="6" class="center" style="width: 75px; height: 75px; opacity: 1; left: 100px; top: 0px;"><div num="6" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num6"><b>6</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="7" class="center" style="width: 75px; height: 75px; opacity: 1; left: 200px; top: 0px;"><div num="7" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num7"><b>7</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="8" class="right" style="width: 75px; height: 75px; opacity: 1; left: 300px; top: 0px;"><div num="8" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num8"><b>8</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="9" class="right" style="width: 75px; height: 75px; opacity: 1; left: 300px; top: 75px;"><div num="9" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num9"><b>9</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="10" class="right" style="width: 75px; height: 75px; opacity: 1; left: 300px; top: 150px;"><div num="10" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num10"><b>10</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="11" class="right" style="width: 75px; height: 75px; opacity: 1; left: 300px; top: 225px;"><div num="11" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num11"><b>11</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li><li userid="12" class="right" style="width: 75px; height: 75px; opacity: 1; left: 300px; top: 300px;"><div num="12" class="user"><div class="level level0"><div class="userInner"><div class="head"><img src="../image/head.png"></div><i class="star star0"></i><div class="num num12"><b>12</b></div><div class="status"><b class="state campaign" style="display: none;"></b><b class="state sergeant" style="display: none;"></b><b class="state undefined" style="display: none;"></b></div></div></div></div></li></ul> -->
     <div class="queueBtns" style="display: none" v-show="queueFlow >= 1 && queueFlow < 3">
-        <a class="btn"  v-on:click="quitSeat">退出座位</a>
-        <a class="btn" style="display: none" v-show="leaderFlag"  v-on:click="modifyGameSet">修改配置</a>
-        <a class="btn js-start" style="display: none" v-show="queueFlow >= 2 && leaderFlag" v-on:click="startGame">开始游戏</a>
+      <a class="btn"  v-on:click="quitSeat">退出座位</a>
+      <a class="btn" style="display: none" v-show="leaderFlag"  v-on:click="modifyGameSet">修改配置</a>
+      <a class="btn js-start" style="display: none" v-show="queueFlow >= 2 && leaderFlag" v-on:click="startGame">开始游戏</a>
     </div>
-    <!--<div class="messageCenter" style="display: none" v-show="screenCenterMessage.nightFlag!=-1">-->
     <div class="messageCenter">
       <div class="top" style="display: none" v-show="screenCenterMessage.gameTime>0">第<span>{{ screenCenterMessage.gameTime }}</span>天<span  v-show="screenCenterMessage.nightFlag">黑天</span><span  v-show="!screenCenterMessage.nightFlag">白天</span></div>
       <div class="dialog status" style="display: none" v-show="screenCenterMessage.gameStatusStr && screenCenterMessage.gameStatusStr!=``">
@@ -41,10 +54,11 @@
       </div>
       <div class="btn btn2 voteResult" v-on:click="showVoteResult">查看上一次投票结果</div>
     </div>
+  </div>
 
-  <!--<div class="mine" style="display: none" v-show="JSON.stringify(mine)!='{}'">-->
-  <div class="mine" style="display: none" v-show="mine.identityId">
-    <usermine class="userBack" v-bind:user="mine"></usermine>
+
+  <div class="mine" style="display: none" v-show="personalInfo.identityId">
+    <usermine class="userBack" v-bind:user="personalInfo"></usermine>
     <div class="userBtns" v-on:click="userBtntoggle">
       <a class="identity" v-on:click="showSF"></a>
       <a v-for="(btn,idx) in leaderButton" class="leaderBtn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'leader')"></a>
@@ -64,7 +78,9 @@
     <div class="layer layerShenfen">
       <div class="inner">
         <h2 class="title">长按身份牌查看您的身份</h2>
-        <div class="content shenfen"></div>
+        <div :class="`content shenfen shenfen${personalInfo.identityId}`" :old="personalInfo.oldIdentityId">
+          <p class="lover" v-if="personalInfo.loverNumber">{{personalInfo.loverNumber}}</p>
+        </div>
         <div class="btnWrap"><a class="btn btn2">知道了</a></div>
       </div>
     </div>
@@ -148,7 +164,25 @@
       </div>
     </div>
   </div>
-
+  <!--用户事件-盗贼选牌-->
+  <div class="layer layerEventRobber">
+    <div class="inner">
+      <h2 class="title"></h2>
+      <div class="content">
+        <p class="info"></p>
+        <ul class="voteList">
+        </ul>
+        <p class="tips">请长按提交按钮进行提交</p>
+        <div class="btnWrap">
+          <div class="btn btn2 longPress js-longPress">
+            <span class="process"><b></b></span>
+            <span class="text">提交</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--查看用户详情-->
     <div class="layer layerUserInfo" v-if="JSON.stringify(userinfo)!='{}'">
       <div class="inner">
         <userinfo v-bind:user="userinfo"></userinfo>
@@ -157,7 +191,7 @@
         </div>
       </div>
     </div>
-
+  <!--用户死亡-->
     <div class="layer layerDead">
         <div class="content">
         </div>
@@ -170,7 +204,10 @@
         <ul class="userList">
           <li v-for="(user,idx) in accountInfo.winUsers" v-on:click="voteMvp($event)" :userid="user.userId" class="zan">
             <userwin v-bind:user="user"></userwin>
-            <p><span>{{user.identityName}}</span></p>
+            <p>
+              <span>{{user.identityName}}</span>
+              <b v-if="user.oldIdentityName">({{user.oldIdentityName}})</b>
+            </p>
           </li>
 
         </ul>
@@ -180,7 +217,10 @@
         <ul class="userList">
           <li v-for="(user,idx) in accountInfo.loseUsers" v-on:click="mvp($event)" :userid="user.userId">
             <userlose v-bind:user="user"></userlose>
-            <p><span>{{user.identityName}}</span></p>
+            <p>
+              <span>{{user.identityName}}</span>
+              <b v-if="user.oldIdentityName">({{user.oldIdentityName}})</b>
+            </p>
           </li>
         </ul>
       </div>
@@ -218,49 +258,52 @@
 <script type="application/javascript" src="../../js/velocity.min.js"></script>
 <script type="application/javascript" src="../../js/sockjs.min.js"></script>
 <script type="application/javascript" src="../../js/stomp.js"></script>
-
+<script type="application/javascript" src="../../js/jquery.qrcode.min.js"></script>
 <script type="application/javascript" src="../js/global.js?v1"></script>
 <script type="application/javascript" src="../js/websocket.js?v1"></script>
 <script type="application/javascript" src="../js/component.js?v1"></script>
 <script type="application/javascript" src="../js/animate.js?v1"></script>
 <script type="application/javascript" src="../js/game.js?v1"></script>
 <script>
-//   $(function(){
-//       game.active()
-//       var el = $('.layer')
-//       var el = $('.layerShenfen')
-//       var el = $('.layerEventVoteResult')
-//       var el = $('.layerUserInfo')
-//       var el = $('.layerEventVoteResult')
-//       //var el = $('.layerDead')
-//       //animate.layerEnter(el)
-//       var data = {}
-//       game.users = [
-//           {userId:101,nickName:"aaa",number:1,stage:1,star:1},
-//           {userId:102,nickName:"bbb",number:2,stage:1,star:1},
-//           {userId:103,nickName:"ccc",number:3,stage:1,star:1},
-//           {userId:104,nickName:"ddd",number:4,stage:1,star:1},
-//           {userId:105,nickName:"eee",number:5,stage:1,star:1},
-//           {userId:106,nickName:"fff",number:6,stage:1,star:1},
-//           {userId:107,nickName:"ggg",number:7,stage:1,star:1},
-//           {userId:108,nickName:"xxx",number:8,stage:1,star:1},
-//           {userId:109,nickName:"zzz",number:9,stage:1,star:1},
-//           {userId:110,nickName:"ggg",number:7,stage:1,star:1},
-//           {userId:111,nickName:"xxx",number:8,stage:1,star:1},
-//           {userId:112,nickName:"zzz",number:9,stage:1,star:1}]
-//       data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"GAME_ACCOUNT","gameStatusStr":"游戏结算"},"gameAccountInfo":{"endTime":"2017-11-13 23:08","costTime":"01:14:16","winUsers":[{"userId": 203,"nickName": "203","number": 3,"identityName":"平民", "identityId":1,"gameIdentityStatusEnum":"SURVIVAL","stage":1,"deadFlag":false,"star":2},{"userId":204,"nickName":"204","number":4,"identityName":"女巫","identityId":4,"gameIdentityStatusEnum":"SHUTUP","stage":1,"deadFlag": true, "star":1,"likeTime":1},{"userId":205,"nickName":"205","number":5,"identityName":"猎人","identityId":5,"gameIdentityStatusEnum":"EXILE","stage":1,"deadFlag": true, "star":1},{"userId":206,"nickName":"206","number":6,"identityName":"平民","identityId":1,"gameIdentityStatusEnum":"SURVIVAL","stage":1,"deadFlag": false, "star":1},{"userId":207,"nickName":"207","number":7,"identityName":"白痴","identityId":9,"gameIdentityStatusEnum":"IDIOT","stage":1,"deadFlag": true, "star":1},{"userId":208,"nickName":"208","number":8,"identityName":"平民","identityId":1,"gameIdentityStatusEnum":"KNIFE","stage":1,"deadFlag": true, "star":1},{"userId":209,"nickName":"209","number":9,"identityName":"预言家","identityId":3,"gameIdentityStatusEnum":"SHOOT","stage":1,"deadFlag": true, "star":1},{"userId":210,"nickName":"210","number":10,"identityName":"守卫","identityId":6,"gameIdentityStatusEnum":"POISON","stage":1,"deadFlag": true, "star":1},{"userId":211,"nickName":"211","number":11,"identityName":"平民","identityId":1,"gameIdentityStatusEnum":"NIGHT_LOVE","stage":1,"deadFlag": true, "star":1}],"loseUsers":[{"userId":201,"nickName":"201","number":1,"identityName":"狼人","identityId":2,"gameIdentityStatusEnum":"DAY_LOVE","stage":1,"deadFlag": true, "star":1},{"userId":202,"nickName":"202","number":2,"identityName":"白狼王","identityId":8,"gameIdentityStatusEnum":"SELF_DESTRUCT","stage":1,"deadFlag": true, "star":1},{"userId":212,"nickName":"212","number":12,"identityName":"狼王","identityId":7,"gameIdentityStatusEnum":"IDIOT_TIMEOUT","stage":1,"deadFlag": true, "star":1}],"gameStatus":"GOOD_WIN","gameStatusStr":"好人阵营胜利","surplusTime":10},"personalInfo":{"userId":204,"number":4,"buttons":[]}}'
-//       game.socketCallback(data)
-////
-////
-//        // setTimeout(function(){
-//        //     data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_WITCH","witchStatusEnum":"SAVE","eventName":"女巫救人/毒人","eventDesc":"昨天中刀的是:7号,是否使用解药?","chooseCount":1,"eventSurplusTime":15}}'
-//        //     game.socketCallback(data)
-//        // },1000)
-//      // setTimeout(function(){
-//      //      data.body='{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT_SLEEP"}'
-//      //      game.socketCallback(data)
-//      //  },3000)
-//   });
+  //$(function(){
+//      game.active()
+//      var el = $('.layer')
+//      var el = $('.layerShenfen')
+//      var el = $('.layerEventVoteResult')
+//      var el = $('.layerUserInfo')
+//      var el = $('.layerEventVoteResult')
+//      //var el = $('.layerDead')
+//      //animate.layerEnter(el)
+//      var data = {}
+//      game.users = [
+//          {userId:101,nickName:"aaa",number:1,stage:1,star:1},
+//          {userId:102,nickName:"bbb",number:2,stage:1,star:1},
+//          {userId:103,nickName:"ccc",number:3,stage:1,star:1},
+//          {userId:104,nickName:"ddd",number:4,stage:1,star:1},
+//          {userId:105,nickName:"eee",number:5,stage:1,star:1},
+//          {userId:106,nickName:"fff",number:6,stage:1,star:1},
+//          {userId:107,nickName:"ggg",number:7,stage:1,star:1},
+//          {userId:108,nickName:"xxx",number:8,stage:1,star:1},
+//          {userId:109,nickName:"zzz",number:9,stage:1,star:1},
+//          {userId:110,nickName:"ggg",number:7,stage:1,star:1},
+//          {userId:111,nickName:"xxx",number:8,stage:1,star:1},
+//          {userId:112,nickName:"zzz",number:9,stage:1,star:1}]
+//      data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"QUEUE","leaderInfo":{"leaderFlag":true,"leaderButton":[]},"boxInfo":{"boxName":"ggg"},"userInfoList":[{"userId":101,"nickName":"aaa","number":1,"sex":1,"stage":1,"star":1},{"userId":102,"nickName":"bbb","number":2,"stage":1,"star":1},{"userId":103,"nickName":"ccc","number":3,"stage":1,"star":1},{"userId":104,"nickName":"ddd","number":4,"stage":1,"star":1},{"userId":105,"nickName":"eee","number":5,"stage":1,"star":1},{"userId":106,"nickName":"fff","number":6,"stage":1,"star":1},{"userId":107,"nickName":"ggg","number":7,"stage":1,"star":1},{"userId":108,"nickName":"xxx","number":8,"stage":1,"star":1},{"userId":109,"nickName":"zzz","number":9,"stage":1,"star":1}],"screeningInfo":{"combinationConfigStr":"预言家 女巫 猎人 守卫 白痴 白狼王","combinationName":"什么都有","playerCount":12},"personalInfo":{"userId":101,"nickName":"aaa","number":1,"sex":1,"stage":1,"star":1,"consumptionScore":946}}'
+//      game.socketCallback(data)
+//
+//
+     
+//     setTimeout(function(){
+//          data.body='{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"GAME_ACCOUNT","gameStatusStr":"游戏结算"},"gameAccountInfo":{"endTime":"2017-11-13 23:08","costTime":"01:14:16","winUsers":[{"userId":101,"nickName":"222","number":1,"sex":1,"identityName":"平民","deadFlag":false,"identityId":1,"loverNumber":12,"identityStatus":"SURVIVAL","gameIdentityStatusEnum":"IDIOT","stage":1,"star":2,"likeTime":5,"mvpTime":3},{"userId":111,"nickName":"jjj","number":11,"identityName":"丘比特","deadFlag":false,"identityId":10,"loverNumber":0,"identityStatus":"SURVIVAL","gameIdentityStatusEnum":"IDIOT","stage":1,"star":1,"likeTime":3,"mvpTime":2},{"userId":112,"nickName":"kkk","number":12,"identityName":"狼人","deadFlag":false,"identityId":2,"oldIdentityName":"盗贼","oldIdentityId":11,"loverNumber":1,"identityStatus":"SURVIVAL","gameIdentityStatusEnum":"IDIOT","stage":1,"star":1}],"loseUsers":[{"userId":105,"nickName":"eee","number":5,"identityName":"狼人","deadFlag":false,"identityId":2,"loverNumber":0,"identityStatus":"DEAD","gameIdentityStatusEnum":"IDIOT","stage":1,"star":2},{"userId":106,"nickName":"fff","number":6,"identityName":"狼人","deadFlag":false,"identityId":2,"loverNumber":0,"identityStatus":"SHOOT","gameIdentityStatusEnum":"IDIOT","stage":1,"star":2,"likeTime":4,"mvpTime":3},{"userId":102,"nickName":"bbb","number":2,"sex":1,"identityName":"平民","deadFlag":false,"identityId":1,"loverNumber":0,"identityStatus":"DEAD","gameIdentityStatusEnum":"IDIOT","stage":1,"star":2,"likeTime":5,"mvpTime":2},{"userId":103,"nickName":"ccc","number":3,"identityName":"平民","deadFlag":false,"identityId":1,"loverNumber":0,"identityStatus":"EXILE","gameIdentityStatusEnum":"IDIOT","stage":1,"star":2},{"userId":104,"nickName":"ddd","number":4,"identityName":"平民","deadFlag":false,"identityId":1,"loverNumber":0,"identityStatus":"DEAD","gameIdentityStatusEnum":"IDIOT","stage":1,"star":2},{"userId":107,"nickName":"ggg","number":7,"identityName":"猎人","deadFlag":false,"identityId":5,"loverNumber":0,"identityStatus":"EXILE","gameIdentityStatusEnum":"IDIOT","stage":1,"star":2,"likeTime":6,"mvpTime":1},{"userId":108,"nickName":"xxx","number":8,"identityName":"白痴","deadFlag":false,"identityId":9,"loverNumber":0,"identityStatus":"DEAD","gameIdentityStatusEnum":"IDIOT","stage":1,"star":2,"likeTime":1},{"userId":109,"nickName":"zzz","number":9,"identityName":"预言家","deadFlag":false,"identityId":3,"loverNumber":0,"identityStatus":"EXILE","gameIdentityStatusEnum":"IDIOT","stage":1,"star":2},{"userId":110,"nickName":"yyy","number":10,"identityName":"女巫","deadFlag":false,"identityId":4,"loverNumber":0,"identityStatus":"EXILE","gameIdentityStatusEnum":"IDIOT","stage":1,"star":1,"likeTime":2,"mvpTime":1}],"gameStatus":"THIRD_WIN","gameStatusStr":"第三方阵营获胜","surplusTime":15},"personalInfo":{"userId":204,"number":4,"buttons":[]}}'
+//          game.socketCallback(data)
+//      },1000)
+//      setTimeout(function(){
+//          data.body='{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"CUR_GAME_STATUS","boxInfo":{"boxName":"超级英雄"},"userInfoList":[{"userId":101,"nickName":"222","number":1,"sex":1,"identityName":"平民","deadFlag":false,"identityId":1,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":2,"likeTime":5,"mvpTime":3},{"userId":102,"nickName":"bbb","number":2,"sex":1,"identityName":"平民","deadFlag":false,"identityId":1,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":2,"likeTime":5,"mvpTime":2},{"userId":103,"nickName":"ccc","number":3,"identityName":"平民","deadFlag":false,"identityId":1,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":2},{"userId":104,"nickName":"ddd","number":4,"identityName":"平民","deadFlag":false,"identityId":1,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":2},{"userId":105,"nickName":"eee","number":5,"identityName":"狼人","deadFlag":false,"identityId":2,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":2},{"userId":106,"nickName":"fff","number":6,"identityName":"狼人","deadFlag":false,"identityId":2,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":2,"likeTime":4,"mvpTime":3},{"userId":107,"nickName":"ggg","number":7,"identityName":"狼人","deadFlag":false,"identityId":2,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":2,"likeTime":6,"mvpTime":1},{"userId":108,"nickName":"xxx","number":8,"identityName":"狼王","deadFlag":false,"identityId":7,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":2,"likeTime":1},{"userId":109,"nickName":"zzz","number":9,"identityName":"预言家","deadFlag":false,"identityId":3,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":2},{"userId":110,"nickName":"yyy","number":10,"identityName":"女巫","deadFlag":false,"identityId":4,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":1,"likeTime":2,"mvpTime":1},{"userId":111,"nickName":"jjj","number":11,"identityName":"猎人","deadFlag":false,"identityId":5,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":1,"likeTime":3,"mvpTime":2},{"userId":112,"nickName":"kkk","number":12,"identityName":"魔术师","deadFlag":false,"identityId":14,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":1}],"screeningInfo":{"combinationConfigStr":"预言家 守卫 魔术师 狼王 白狼王","combinationName":"狼王vs魔术师","playerCount":12},"gameInfo":{"nightFlag":true,"gameTime":1,"gameStatus":"WITCH","gameStatusStr":"女巫活动","voteInfoList":[{"voteTitle":"暂无投票","voteDetailList":[{"votedNumber":0,"voteNumberList":[1,2,3,4,5,6,7,8,9,10,11,12],"poll":12.0}],"maxNumbers":[],"sergeantNumber":0,"poll":"12"}],"voteShowType":"LAST"},"eventInfo":{"eventType":"EVENT_WITCH","witchStatusEnum":"POISON","eventName":"女巫救人/毒人","eventDesc":"昨天狼队空刀,是否使用毒药,要毒谁?","chooseCount":1,"sourceNumber":10},"buttons":[]}'
+//          game.socketCallback(data)
+//      },1000)
+
+     
+  //});
 </script>
 </body>
 </html>

@@ -13,7 +13,7 @@
   <div class="header"><div><a class="back"></a> <h1 class="pageName"><span>游戏记录</span></h1></div></div>
   <div class="container iscrollWrap">
     <div class="records iscroll" :total="getGameHistoryList.totalCount" >
-      <ul v-if="getGameHistoryList.totalCount>0">
+      <ul v-if="gameHistoryList.dataList && gameHistoryList.dataList.length>0">
         <li v-on:click="showGameHistoryDetail($event)" v-for = "item in gameHistoryList.dataList" :gameId="item.id" >
           <div class="fl"><img :src="item.head" alt=""></div>
           <div class="info">
@@ -22,7 +22,7 @@
           </div>
         </li>
       </ul>
-      <p v-else class="noData">暂无数据</p>
+      <p v-else class="defaultMess">{{defaultMess}}</p>
     </div>
 
   </div>

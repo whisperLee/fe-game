@@ -46,12 +46,25 @@
             </div>
             <a v-if="!mustBuy" class="btn sit" v-on:click="sit">确定入座</a>
             <a v-else class="btn mustBuy" v-on:click="shop">余额不足，去商城购买</a>
-
         </div>
 
     </div>
-    <!--<div class="gift">-->
-    <!--</div>-->
+    <div class="layerWrap voucherListLayer">
+        <div class="layerNavTop">
+            <a class="back"></a>
+            <h2>使用体验券</h2>
+        </div>
+        <div class="layerNavContent voucherList barWrap">
+            <div class="bd">
+                <ul class="cards barCon enabledVoucher on">
+
+                </ul>
+            </div>
+        </div>
+        <div class="layerNavBottom">
+            <a class="btn" v-on:click="changeCard()">确认</a>
+        </div>
+    </div>
 </div>
 <script type="application/javascript" src="../../js/zepto.min.js"></script>
 <script type="application/javascript" src="../../js/vue.js"></script>

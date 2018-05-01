@@ -15,13 +15,13 @@ var game = new Vue({
     el: '#game',
     data :{
         readyMess:'游戏准备中，请稍候...',
-        queueFlow: 0, // 0是入座，1是游戏准备，2是入座完成，3是抢身份
+        queueFlow: 0, // 0是入座，1是游戏准备，2是入座完成
         screeningId: 0,
         leaderFlag: 0,
         leaderButton:[],
         personalButton:[],
         users: [],
-        mine: { },
+        personalInfo: { },
         userinfo:{},//查看用户个人信息
         lookOverIdentity:0,//判定用户是否已经查看身份
         screenCenterMessage: {
@@ -30,58 +30,107 @@ var game = new Vue({
             gameStatusStr:'',
             result:''
         },
-        accountInfo:{},
-        personalAccountInfo:{},
-        myAccountInfo:{},
-        isDead:0
+        accountInfo:{},//游戏结束
+        personalAccountInfo:{},//个人结算临时变量
+        myAccountInfo:{},//个人结算最终变量
+        isDead:0//是否死亡
     },
     created: function () {
         var _self = this
         console.log('页面开始:' + new Date())
-        _self.sit()
-        setTimeout(function(){_self.active()},100)
+        _self.boxId = global.urlHash().boxId || 0
+        _self.gameNumber = global.urlHash().gameNumber || 0
+        $(function(){
+            _self.getSeat()
+            _self.active()
+        })
     },
     methods: {
-        // 入座
-        sit: function () {
+        // 判断当前座位是否有人
+        getSeat: function () {
             var _self = this
-            _self.boxId = global.urlHash().boxId || 0
-            _self.gameNumber = global.urlHash().gameNumber || 0
-
             var d = {
-                url: 'game/play/sit',
+                url: 'game/play/getSeatUserId',
                 data: {
                     boxId: _self.boxId,
                     gameNumber: _self.gameNumber
-                    // userToken: '10' + _self.gameNumber // 105-120
                 },
                 success: function (d) {
+                    console.log(d)
                     if (d.status.code === 'OK') {
-                        console.log('入座成功:' + new Date())
-                        //_self.queueFlow = 1
-                        _self.leaderFlag = d.data.leaderFlag
-                        _self.screeningId = d.data.screeningId
-                        _self.userId = d.data.userId
-                        if (d.data.leaderFlag && !d.data.screeningId) {
-                            global.router('gameSet.html?boxId=' + _self.boxId + '&gameNumber='+_self.gameNumber +'&event=add')
-                        } else {
-                            _self.connectWebScoket()
+                        if(d.data.userId==0){
+                            _self.showCode()
+                            setTimeout(function(){
+                                _self.getSeat()
+                            },5000)
+                        }else{
+                            $(".dyCode.on").removeClass("on")
+                            _self.leaderFlag = d.data.leaderFlag
+                            _self.screeningId = d.data.screeningId
+                            _self.userId = d.data.userId
+                            if (d.data.leaderFlag && !d.data.screeningId) {
+                                global.router('gameSet.html?boxId=' + _self.boxId + '&gameNumber='+_self.gameNumber +'&event=add')
+                            } else {
+                                $(".game").show()
+                                _self.connectWebScoket()
+                            }
                         }
-                    } else if (d.status.retcode === 1003) {
-                        global.pop_tips('您还没有签到， 稍后为您跳转到签到页面', function () {
-                            global.router('check.html')
-                        })
-                    } else if (d.status.retcode === 1008) {
-                        // 状态是通过开始游戏按钮进入游戏时，传递gameNumber=0，如果没有任何游戏状态则调取二维码功能
-                        global.pop_tips('请打开微信扫一扫功能， 扫描座位上二维码， 即可开始游戏', function () {
-                            global.saoyisao()
-                        })
+
+
                     } else {
                         global.pop_tips(d.status.msg)
                     }
                 }
             }
             global.ajax(d)
+        },
+        showCode:function(){
+            var _self = this
+
+            if(!$(".dyCode").hasClass("on")){
+                $(".dyCode").addClass("on")
+                _self.qrcode()
+                _self.showBoxInfo()
+            }
+        },
+        showBoxInfo:function () {
+            var _self = this
+            var d = {
+                url:'game/play/queryBoxById',
+                data:{
+                    "id":_self.boxId
+                },
+                success: function (d) {
+                    console.log(d)
+                    if(d.status.code=="OK" && d.data){
+                        $(".dyCode h2").html(d.data.name)
+                        $(".dyCode h3").html('<span>'+_self.gameNumber+'</span>')
+                        $(".dyCode #code").show()
+                    }else{
+                        global.pop_tips(d.status.msg)
+                    }
+                }
+            }
+            global.ajax(d)
+
+        },
+        getTimestamp:function(){
+            var t = new Date().getTime()+2*60*60*1000
+            return t
+        },
+        qrcode:function(){
+            var _self = this
+            var url = 'wx_game.html?boxId='+_self.boxId+'&gameNumber='+_self.gameNumber+'&timestamp='+_self.getTimestamp()
+            $("#code").qrcode({
+                render: "canvas", //table方式
+                width: 400, //宽度
+                height:400, //高度
+                text: url //任意内容
+            });
+            setTimeout(function(){
+                _self.qrcode()
+            },3600*1000)
+
         },
         // 离座
         quitSeat: function () {
@@ -142,7 +191,7 @@ var game = new Vue({
             // 队列
             if (d.msgType === 'QUEUE') {
                 if(d.personalInfo){
-                    _self.mine = d.personalInfo
+                    _self.personalInfo = d.personalInfo
                 }
 
                 _self.setUser(d)
@@ -154,9 +203,15 @@ var game = new Vue({
                 _self.$set(_self.screenCenterMessage,'result',d.showMsg)
                 //_self.screenCenterMessage.result = d.gameInfo.result
             }
+            // 断开连接,重新开始
+            if(d.msgType === 'EVENT_NEW'){
+                websocket.disconnect()
+                window.location.reload()
+            }
+
             // 游戏开始后事件
             if(d.msgType == 'UPDATE'){ //需要获取GameInfo和userInfoList
-                _self.gameInfo(d)
+                _self.update(d)
             }
             else if(d.msgType == 'UPDATE_LEADER'){//需要获取leaderInfo
                 _self.setLeaderBtn(d.leaderInfo)
@@ -171,7 +226,7 @@ var game = new Vue({
                 _self.eventInfo(d.eventInfo)
             }
             else if(d.msgType == 'UPDATE_AND_EVENT'){
-                _self.gameInfo(d)
+                _self.update(d)
                 _self.eventInfo(d.eventInfo)
             }
             else if(d.msgType == 'EVENT_RESULT'){ // 游戏事件返回结果,需要获取eventResultInfo
@@ -181,27 +236,18 @@ var game = new Vue({
                 _self.setUser(d)
                 setTimeout(function () {
                     _self.setUserGameStyle()
-                    // 设置自己的身份
-
-                    $('.layerShenfen .shenfen').addClass('shenfen'+d.personalInfo.identityId)
+                    // 更新静态信息
+                    _self.update(d)
                     // 设置自己的游戏信息
                     if(d.eventInfo){ //防止用户队列没有创建
                         _self.eventInfo(d.eventInfo)
                     }
                 }, 10)
-                if(d.personalInfo){
-                    _self.mine = d.personalInfo
-                }
 
-                if(d.gameInfo){
-                    _self.gameInfo(d)
-                }
                 if(global.isExit(d.leaderInfo.leaderButton)){
                     _self.setLeaderBtn(d.leaderInfo)
                 }
-                if(d.personalInfo.deadFlag){
-                    _self.dead(d)
-                }
+
             }
         },
         eventInfo:function(info){
@@ -210,27 +256,59 @@ var game = new Vue({
             var count = info.chooseCount
             var el
             if(!_self.isDead){
-                if(e == 'EVENT_WITCH'){// 特殊事件----女巫
-                    el = $('.layerEventWitch')
-                    if(count>0){
-                        el.find('.content ul').html('<li class="unchoose"></li>')
-                    }
-                    if(info.witchStatusEnum == 'PAPA'){
-                        el.find('.btn[event="EVENT_SAVE"]').show()
-                        el.find('.btn[event="EVENT_POISON"]').show()
-                        $('.user-list').addClass('choosing')//?????
-                    }else if(info.witchStatusEnum == 'POISON'){
-                        el.find('.btn[event="EVENT_SAVE"]').hide()
-                        el.find('.btn[event="EVENT_POISON"]').show()
-                        $('.user-list').addClass('choosing')//?????
-                    }else if(info.witchStatusEnum == 'SAVE'){
-                        el.find('.btn[event="EVENT_SAVE"]').show()
-                        el.find('.btn[event="EVENT_POISON"]').hide()
-                        $('.user-list').addClass('choosing')//?????
-                    }else if(info.witchStatusEnum == 'RUBBISH'){
-                        el = $('.layerEventKnow')
+                if(e == 'EVENT_ROBBER'){ //盗贼选牌
+                    el = $('.layerEventRobber')
+                    var h = '';
+                    var mustChoose
+
+                    for(var k in info.robberChoose){
+
+                        if(info.robberChoose[k]){
+                            mustChoose = k
+                            h+='<li identityId="'+k+'" class="on"><img src="'+interfaceValue["shenfen"][k].bg+'"></li>'
+                        }else{
+                            h+='<li identityId="'+k+'"><img src="'+interfaceValue["shenfen"][k].bg+'"></li>'
+                        }
                     }
 
+                    el.find('.content .voteList').html(h)
+                    if(mustChoose){
+                        el.find('.content .voteList li').each(function(){
+                            if(!$(this).hasClass("on")){
+                                $(this).addClass("unchoose")
+                            }
+                        })
+                    }
+                    el.find(".voteList li").off().on("click",function(){
+                        if(!$(this).hasClass("unchoose")){
+                            el.find(".voteList li").removeClass("on")
+                            $(this).addClass("on")
+                        }
+                    })
+                }
+                else if(e == 'EVENT_WITCH') {// 特殊事件----女巫
+                        el = $('.layerEventWitch')
+                        if (count > 0) {
+                            el.find('.content ul').html('<li class="unchoose"></li>')
+                        }
+                        if (info.witchStatusEnum == 'PAPA') {
+                            el.find('.btn[event="EVENT_SAVE"]').show()
+                            el.find('.btn[event="EVENT_POISON"]').show()
+                            $('.user-list').addClass('choosing')//?????
+                        }
+                        else if (info.witchStatusEnum == 'POISON') {
+                            el.find('.btn[event="EVENT_SAVE"]').hide()
+                            el.find('.btn[event="EVENT_POISON"]').show()
+                            $('.user-list').addClass('choosing')//?????
+                        }
+                        else if (info.witchStatusEnum == 'SAVE') {
+                            el.find('.btn[event="EVENT_SAVE"]').show()
+                            el.find('.btn[event="EVENT_POISON"]').hide()
+                            $('.user-list').addClass('choosing')//?????
+                        }
+                        else if (info.witchStatusEnum == 'RUBBISH') {
+                            el = $('.layerEventKnow')
+                        }
                 }
                 else{ // 其它事件
                     if(count==-1){
@@ -274,7 +352,7 @@ var game = new Vue({
                 })
             }
             if(info.eventType=='EVENT_SHOOT' || info.eventType=='EVENT_WHITE_SELF_DESTRUCT'){ //猎人开抢带走和白狼王自爆的时候不能选择自己
-                $('.user-list li .user[num="'+_self.mine.number+'"]').removeClass('canVote')
+                $('.user-list li .user[num="'+_self.personalInfo.number+'"]').removeClass('canVote')
             }
 
             el.attr('event',info.eventType)
@@ -284,7 +362,7 @@ var game = new Vue({
                 animate.layerEnter(el)
             }
         },
-        gameInfo:function(d){
+        update:function(d){
             var _self = this
             if(d.gameInfo){
                  var s = d.gameInfo.gameStatus
@@ -296,9 +374,7 @@ var game = new Vue({
                         _self.showQiang(d.identityInfoList)
                     }
                     else if(s == 'LOOK_IDENTITY'){
-                        _self.$set(_self.mine,'identityName',d.personalInfo.identityName)
-                        _self.$set(_self.mine,'identityId',d.personalInfo.identityId)
-                        $('.layerShenfen .shenfen').addClass('shenfen'+d.personalInfo.identityId)
+                        _self.personalInfo = $.extend({},_self.personalInfo,d.personalInfo)
                         _self.showSF()
                     }
 
@@ -360,12 +436,23 @@ var game = new Vue({
                     _self.$set(_self.users,num-1,_self.users[num-1])
                 }
             }
-            if(d.personalInfo && d.personalInfo.buttons){
-                if(d.personalInfo.buttons.length==0 || d.personalInfo.buttons[0]=='EMPTY'){
-                    _self.personalButton = []
-                }else{
-                    _self.personalButton = d.personalInfo.buttons
+            if(d.personalInfo){
+                _self.personalInfo = $.extend({},_self.personalInfo,d.personalInfo)
+                if(d.personalInfo.buttons){
+                    if(d.personalInfo.buttons.length==0 || d.personalInfo.buttons[0]=='EMPTY'){
+                        _self.personalButton = []
+                    }else{
+                        _self.personalButton = d.personalInfo.buttons
+                    }
                 }
+                if(d.personalInfo.deadFlag){
+                    _self.dead(d)
+                }
+                if(d.personalInfo.loverNumber){
+                    _self.users[d.personalInfo.loverNumber-1] =  $.extend({}, _self.users[d.personalInfo.loverNumber-1], {"loverNumber":_self.personalInfo.number})
+                    _self.$set(_self.users,d.personalInfo.loverNumber-1,_self.users[d.personalInfo.loverNumber-1])
+                }
+
             }
         },
 
@@ -389,14 +476,15 @@ var game = new Vue({
                     }
                     _self.users[d.userInfoList[j].number - 1] = d.userInfoList[j]
                 }
-                if (_self.gameEvent === 'QUEUE' && d.userInfoList.length === total) { // 队列状态下，所有用户都入座完成之后，可以开始游戏
-                    _self.queueFlow = 2
-                    _self.readyMess=_self.leaderFlag?'所有人入座完成，请开始游戏':'所有人入座完成，等待桌长开始游戏'
-                } else {
-                    _self.queueFlow = 1
+                if (_self.gameEvent === 'QUEUE'){
+                    if(d.userInfoList.length === total){// 队列状态下，所有用户都入座完成之后，可以开始游戏
+                        _self.queueFlow = 2
+                        _self.readyMess=_self.leaderFlag?'所有人入座完成，请开始游戏':'所有人入座完成，等待桌长开始游戏'
+                    } else {
+                        _self.queueFlow = 1
+                    }
                 }
             }
-
         },
         // 队列页面用户样式设置
         setUserQueueStyle: function () {
@@ -477,7 +565,7 @@ var game = new Vue({
             var h = ''
             var className = ''
             for(var i=0;i<d.length;i++){
-                className = _self.mine.consumptionScore < d[i].cost?'no':''
+                className = _self.personalInfo.consumptionScore < d[i].cost?'no':''
                 h+='<li identityid="'+d[i].identityId+'" name="'+d[i].name+'" class="'+className+'"><div class="shenfen shenfen'+d[i].identityId+'"></div><div class="price">'+d[i].cost+'</div></li>'
             }
             $('.qiang .shenfens').html(h)
@@ -609,11 +697,23 @@ var game = new Vue({
         userEventForUserChoose: function(el){
             var _self = this
             var num = []
-            el.find('.user').each(function(){
-                num.push($(this).attr('num'))
-            })
-            $('.user-list').removeClass('choosing')
+            if(el.hasClass("layerEventRobber")){
+                num.push(el.find(".voteList li.on").attr("identityId"))
+                el.find(".voteList li").each(function(){
+                    if(!$(this).hasClass("on")){
+                        num.push($(this).attr("identityId"))
+                    }
+                })
+            }else{
+                el.find('.user').each(function(){
+                    num.push($(this).attr('num'))
+                })
+                $('.user-list').removeClass('choosing')
+
+            }
             _self.userEventSubmit(el,num,1)
+
+
         },
         setLeaderBtn:function(info){
             var _self = this
@@ -635,7 +735,7 @@ var game = new Vue({
                 'SELF_DESTRUCT':'EVENT_SELF_DESTRUCT'
             }
 
-            if(e == 'SELF_DESTRUCT' && _self.mine.identityId==8){
+            if(e == 'SELF_DESTRUCT' && _self.personalInfo.identityId==8){
                 var el = $('.layerEventChoose')
                 el.find('.content ul').html('<li class="unchoose"></li>')
                 var info = {
@@ -926,9 +1026,12 @@ var game = new Vue({
                 var el = $(this)
                 el.find('.longPress.btn').off().on(
                     'touchstart',function(){
-
                         if(el.find('.unchoose').length>0){
                             global.pop_tips('还有'+el.find('.unchoose').length+'名玩家没有选择')
+                        }else if(el.hasClass("layerEventRobber") && el.find(".voteList li.on").length<=0){
+                            global.pop_tips('你还没有选择身份')
+                        }else if(el.find(".voteList li").length==2 && el.find(".voteList li").eq(0).find(".user").attr("num")==el.find(".voteList li").eq(1).find(".user").attr("num") ){
+                            global.pop_tips('同一玩家不能被选择两次，请重新选择')
                         }else{
                             var _btn = $(this)
                             var _pro = _btn.find('.process b')
@@ -950,8 +1053,7 @@ var game = new Vue({
                             })
                         }
 
-                }).on(
-                    'touchend',function(){
+                }).on('touchend',function(){
                         var _self = $(this)
                         var _pro = _self.find('.process b')
                         console.log(press_flow)

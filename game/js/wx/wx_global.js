@@ -2,18 +2,8 @@
  * Created by nielinlin on 2018/1/21.
  */
 var host = 'http://liyn.me:7777/web-api/v1/face/'
-Vue.config.productionTip = false
+//Vue.config.productionTip = false
 document.write("<script language=javascript src='../../js/init.js'></script>");
-// var dataValue = {
-//     'payType':{
-//         '0':'微信',
-//         '1':'支付宝',
-//         '2':'线下'
-//     }
-//
-// }
-
-
 
 var wglobal = {
     urlHash: function () {
@@ -45,9 +35,10 @@ var wglobal = {
             success: function () {}
         }, data)
         d.url = host + d.url
-        d.data.userToken =  "201"
+        if(codeType=="test"){ // 测试环境执行
+            d.data.userToken =  "101"
+        }
         d.data = JSON.stringify(d.data)
-
         $.ajax(d)
     },
     pop_tips: function (msg, callback,time) {
@@ -93,34 +84,7 @@ var wglobal = {
         window.localStorage.removeItem(Key);
     },
     footer:function(currType){
-        var d = [
-            {
-                type:"index",
-                link:"wx_index.html",
-                name:"首页"
-            },
-            {
-                type:"appoint",
-                link:"wx_appoint.html",
-                name:"预约"
-            },
-            {
-                type:"game",
-                link:"wx_game.html",
-                name:"游戏"
-            },
-            {
-                type:"shop",
-                link:"wx_shop.html?shopId=1",
-                name:"商城"
-            },
-            {
-                type:"mine",
-                link:"wx_mine.html",
-                name:"我的"
-            },
-
-        ]
+        var d = wFooter
         var h = ''
         var curr = ''
         for(var i=0;i< d.length;i++){
@@ -196,33 +160,23 @@ var wglobal = {
         var h = ''
         var name,quantity,limit
         for(i=0;i<d.length;i++){
+            name=interfaceValue.voucher.carType[d[i].type]
             if(d[i].type==0){ // 次卡
-                name='次卡'
                 quantity='<p class="money"><span>'+d[i].quantity+'</span>次</p>'
             }else if(d[i].type==1){ //天卡
-                name='天卡'
                 quantity='<p class="money"><span>'+d[i].quantity+'</span>天</p>'
             }else if(d[i].type==2){ //月卡
-                name='月卡'
                 quantity='<p class="money"><span>'+d[i].quantity+'</span>月</p>'
             }else if(d[i].type==3){ //vip体验卡
-                name='Vip体验卡'
                 quantity='<p class="money">VIP体验</p>'
             }else if(d[i].type==50){ //满额减
-                name='满减券'
                 quantity='<p class="money">￥<span>'+d[i].quantity+'</span></p><p class="limit">满'+d[i].reductionM+'元可用</p>'
             }else if(d[i].type==51){ //直减
-                name='直减券'
                 quantity='<p class="money">￥<span>'+d[i].quantity+'</span></p>'
             }
 
-            if(d[i].goodsType==0){
-                limit = '<p class="info">仅限虚拟商品使用</p>'
-            }else if(d[i].goodsType==1){
-                limit = '<p class="info">仅限餐饮小吃使用</p>'
-            }else if(d[i].goodsType==-1){
-                limit = '<p class="info">全品类可用</p>'
-            }
+            limit = '<p class="info">'+interfaceValue.voucher.goodsType[d[i].goodsType]+'</p>'
+
             h+='<li class="card" canUse="'+d[i].canUse+'" type="'+d[i].type+'" cardId="'+d[i].id+'"><div class="left"><div class="inner">'+quantity+'</div></div><div class="right"><h3>'+name+'</h3>'+limit+'<p class="endTime">'+d[i].beginTime.split(" ")[0]+'-'+d[i].endTime.split(" ")[0]+'</p><span class="use">立即使用</span> </div> <b class="status"></b> </li>'
         }
         return h

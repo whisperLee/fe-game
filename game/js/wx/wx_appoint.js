@@ -12,6 +12,7 @@ new Vue({
     created: function () {
         var _self = this
         _self.init()
+        //信用评分太低无法进行预约，请直接到店游戏以恢复信用评分
     },
     methods: {
         init:function(){

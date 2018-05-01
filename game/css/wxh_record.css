@@ -113,6 +113,7 @@
         /**炸弹人**/
         /**白痴超时死亡**/
         /**白狼王开枪带走**/
+        /**白狼王自爆**/
         /**白狼王自爆**/ }
         .user .level .userInner .status b.state {
           position: relative;
@@ -158,6 +159,9 @@
           background-image: url(../image/state/s12.png); }
         .user .level .userInner .status b.WHITE_SELF_DESTRUCT {
           background-image: url(../image/state/s13.png); }
+        .user .level .userInner .status b.lover {
+          background-image: url(../image/state/s18.png);
+          display: none; }
       .user .level .userInner:before {
         background-image: url(../image/newLevel/0.png); }
   .user .level1 .userInner .num {
@@ -261,6 +265,11 @@
     background-image: url(../image/newLevel/4_0.png); }
   .user.userBack .level5 {
     background-image: url(../image/newLevel/5_0.png); }
+
+/*情侣身份只有在投票和游戏结束才会显示在头像上*/
+.choosing .user .level .userInner .status b.lover, .gameEnd .user .level .userInner .status b.lover {
+  display: block;
+  -webkit-animation: flash 1s 1s infinite; }
 
 #game .mine {
   position: absolute;
@@ -704,7 +713,7 @@ body {
   color: #ffffff;
   text-align: center; }
 
-.noData {
+.defaultMess {
   text-align: center;
   font-size: .16rem;
   color: #a6afc5;
@@ -811,22 +820,24 @@ body .main {
           position: relative;
           width: 25%;
           float: left;
-          padding-bottom: 5%;
           text-align: center; }
+          .gameEnd .endInner .result .userList li .user .userInner {
+            margin: 0 auto; }
           .gameEnd .endInner .result .userList li p {
             text-align: center;
-            position: absolute;
-            left: 0;
-            top: 78%;
             width: 100%;
-            height: .2rem;
+            height: .4rem;
             line-height: .2rem;
             overflow: hidden; }
-            .gameEnd .endInner .result .userList li p span {
+            .gameEnd .endInner .result .userList li p span, .gameEnd .endInner .result .userList li p b {
               display: inline-block;
               color: #666;
               font-size: .14rem;
               white-space: nowrap; }
+            .gameEnd .endInner .result .userList li p b {
+              font-size: .13rem;
+              font-weight: normal;
+              color: #16a085; }
           .gameEnd .endInner .result .userList li.mvp:before {
             content: "";
             position: absolute;
@@ -1094,6 +1105,7 @@ body .main {
         /**炸弹人**/
         /**白痴超时死亡**/
         /**白狼王开枪带走**/
+        /**白狼王自爆**/
         /**白狼王自爆**/ }
         .user .level .userInner .status b.state {
           position: relative;
@@ -1139,6 +1151,9 @@ body .main {
           background-image: url(../image/state/s12.png); }
         .user .level .userInner .status b.WHITE_SELF_DESTRUCT {
           background-image: url(../image/state/s13.png); }
+        .user .level .userInner .status b.lover {
+          background-image: url(../image/state/s18.png);
+          display: none; }
       .user .level .userInner:before {
         background-image: url(../image/newLevel/0.png); }
   .user .level1 .userInner .num {
@@ -1242,6 +1257,11 @@ body .main {
     background-image: url(../image/newLevel/4_0.png); }
   .user.userBack .level5 {
     background-image: url(../image/newLevel/5_0.png); }
+
+/*情侣身份只有在投票和游戏结束才会显示在头像上*/
+.choosing .user .level .userInner .status b.lover, .gameEnd .user .level .userInner .status b.lover {
+  display: block;
+  -webkit-animation: flash 1s 1s infinite; }
 
 #game .mine {
   position: absolute;

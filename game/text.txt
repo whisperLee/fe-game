@@ -34,6 +34,15 @@ ctrl+t 拉取服务器最新代码
 
  ======
  提交的按钮，统一加一个遮罩
+  d.gameAccountInfo.winUsers[i].identityStatus =  d.gameAccountInfo.winUsers[i].gameIdentityStatusEnum  game.js  813行
+  1.支付的时候需要选择体验券，体验券样式以及支付形式
+
+  大屏：恢复，暂停，重新开始晚上流程；登录，登出
+  法官：
+
+
+
+
 
 
 

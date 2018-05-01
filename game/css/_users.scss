@@ -110,6 +110,7 @@
         b.IDIOT_TIMEOUT{background-image: url(../image/state/s11.png);} /**白痴超时死亡**/
         b.WHITE_SHOOT{background-image: url(../image/state/s12.png);} /**白狼王开枪带走**/
         b.WHITE_SELF_DESTRUCT{background-image: url(../image/state/s13.png);} /**白狼王自爆**/
+        b.lover{background-image: url(../image/state/s18.png); display: none;} /**白狼王自爆**/
       }
       &:before{
         background-image: url(../image/newLevel/0.png);
@@ -170,6 +171,11 @@
       }
     }
 }
+}
+/*情侣身份只有在投票和游戏结束才会显示在头像上*/
+.choosing .user .level .userInner .status b.lover,.gameEnd .user .level .userInner .status b.lover{
+  display: block;
+  -webkit-animation: flash 1s 1s infinite;
 }
 #game{
   .mine{

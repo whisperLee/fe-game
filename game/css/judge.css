@@ -1,0 +1,1422 @@
+@charset "UTF-8";
+._page, body .main {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0; }
+
+._verCenter, body .main .page .inner {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%); }
+
+body, div, ol, ul, h1, h2, h3, h4, h5, h6, p, th, td, dl, dd, form, iframe, input, textarea, select, label, article, aside, footer, header, menu, nav, section, time, audio, video {
+  margin: 0;
+  padding: 0; }
+
+article, aside, footer, header, nav, section, audio, canvas, video {
+  display: block; }
+
+html {
+  font-size: 80px; }
+
+@media screen and (min-width: 320px) and (orientation: portrait) {
+  html {
+    font-size: 80px; } }
+@media screen and (min-width: 375px) and (orientation: portrait) {
+  html {
+    font-size: 100px; } }
+@media screen and (min-width: 414px) and (orientation: portrait) {
+  html {
+    font-size: 110px; } }
+body {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-user-select: none;
+  overflow: auto;
+  font-size: .16rem;
+  line-height: 150%;
+  font-family: Microsoft YaHei, Helvetica, STHeiti, Droid Sans Fallback; }
+
+textarea {
+  resize: none; }
+
+iframe, img {
+  border: 0; }
+
+ul, ol, ul li {
+  list-style: none; }
+
+input, select, textarea {
+  outline: 0;
+  -webkit-user-modify: read-write-plaintext-only; }
+
+input {
+  -webkit-appearance: none;
+  background: none;
+  border: none; }
+
+a {
+  text-decoration: none; }
+
+.cf:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.cf {
+  *zoom: 1; }
+
+h1, h2, h3 {
+  font-weight: 100; }
+
+i {
+  font-style: normal; }
+
+video {
+  font-size: 0; }
+
+[v-cloak] {
+  display: none; }
+
+._page, body .main {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0; }
+
+._verCenter, body .main .page .inner {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%); }
+
+body {
+  font-family: Microsoft YaHei, Helvetica, STHeiti, Droid Sans Fallback;
+  color: #f1f1f1; }
+  body .main {
+    overflow-y: auto; }
+    body .main .page {
+      position: relative;
+      width: 100%;
+      height: 100%; }
+      body .main .page .inner .total {
+        font-size: .2rem;
+        padding-left: .15rem; }
+    body .main h2 {
+      font-size: .2rem;
+      line-height: .24rem;
+      padding: .2rem 0;
+      color: #f1f1f1;
+      text-align: center; }
+
+.hide {
+  display: none; }
+
+.simple_tips {
+  position: fixed;
+  z-index: 999;
+  left: 50%;
+  top: 50%;
+  width: 2.6rem;
+  line-height: 0.2rem;
+  -webkit-transform: translate(-50%, -50%);
+  padding: 0.2rem;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #f1f1f1;
+  border-radius: 5px;
+  font-size: 0.14rem;
+  text-align: center; }
+
+.btn {
+  display: block;
+  width: 60%;
+  height: .4rem;
+  border-radius: 5px;
+  margin: .1rem auto;
+  line-height: .4rem;
+  background: rgba(36, 74, 111, 0.8);
+  text-align: center;
+  font-size: .16rem;
+  color: #f1f1f1; }
+  .btn.btn2 {
+    background: #16a085; }
+  .btn.btn3 {
+    background: #34495e; }
+  .btn.btn4 {
+    background: #e74c3c; }
+
+.btnWrap.twoCol {
+  text-align: center; }
+  .btnWrap.twoCol .btn {
+    width: 40%;
+    display: inline-block;
+    margin-left: 2%;
+    margin-right: 2%; }
+
+.longPress {
+  position: relative;
+  overflow: hidden; }
+  .longPress .process b {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0%;
+    height: 100%; }
+  .longPress .text {
+    position: relative;
+    z-index: 2; }
+  .longPress.state-success .text {
+    background: url("../image/success.png") no-repeat left center;
+    background-size: 0.2rem auto;
+    padding-left: .25rem;
+    -webkit-transition: all .5s ease-in-out; }
+  .longPress.btn2 .process b {
+    background: #1abc9c; }
+  .longPress.btn4 .process b {
+    background: #d34132; }
+
+.userBtns {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: .8rem;
+  height: .8rem;
+  -webkit-transform: translateY(0%);
+  background: url(../image/mine/c.png) center no-repeat;
+  background-size: contain; }
+  .userBtns a {
+    display: none;
+    width: 22.2%;
+    height: 34%;
+    position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain; }
+  .userBtns.active {
+    background-image: url(../image/mine/ca.png);
+    width: 1.5rem;
+    height: 1.5rem; }
+    .userBtns.active a {
+      display: block; }
+      .userBtns.active a:nth-child(1) {
+        left: 20%;
+        top: 59%;
+        -webkit-transform: rotate(-72deg);
+        background-image: url(../image/mine/b1.png); }
+      .userBtns.active a:nth-child(2) {
+        left: 20%;
+        top: 31%;
+        -webkit-transform: rotate(-46deg);
+        background-image: url(../image/mine/b2.png); }
+      .userBtns.active a:nth-child(3) {
+        left: 37%;
+        top: 14%;
+        -webkit-transform: rotate(-43deg);
+        background-image: url(../image/mine/b3.png); }
+      .userBtns.active a:nth-child(4) {
+        left: 67%;
+        top: 14%;
+        -webkit-transform: rotate(-19deg);
+        background-image: url(../image/mine/b4.png); }
+      .userBtns.active a:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain; }
+      .userBtns.active a.identity:before {
+        background-image: url(../image/mine/4.png); }
+      .userBtns.active a[event='SELF_DESTRUCT']:before {
+        background-image: url(../image/mine/3.png); }
+      .userBtns.active a[event='SELF_DESTRUCT']:before {
+        background-image: url(../image/mine/3.png); }
+      .userBtns.active a[event='GIVE_UP']:before {
+        background-image: url(../image/mine/2.png); }
+      .userBtns.active a[event='SPEAK_END']:before {
+        background-image: url(../image/mine/1.png); }
+
+.user-list {
+  position: relative;
+  width: 100%;
+  height: auto;
+  z-index: 3; }
+  .user-list li {
+    position: absolute;
+    -webkit-transform-origin: center center;
+    opacity: 0; }
+    .user-list li .user {
+      width: 100%;
+      height: 100%;
+      -webkit-transform-origin: center center; }
+  .user-list.choosing .user {
+    opacity: 0.5; }
+    .user-list.choosing .user.canVote {
+      opacity: 1;
+      -webkit-animation: flash 1s infinite; }
+
+.user {
+  position: relative; }
+  .user .level {
+    width: 100%;
+    height: 100%; }
+    .user .level .userInner:before, .user .level .star, .user .level .star:before, .user .level .num, .user .level .num:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-position: center; }
+    .user .level .userInner {
+      position: relative;
+      text-align: center;
+      padding: 9%;
+      box-sizing: border-box;
+      line-height: 0;
+      background: none;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      background-position: center;
+      width: 80%;
+      height: 80%;
+      margin: .1rem auto; }
+      .user .level .userInner .num {
+        background-image: url(../image/newLevel/0_1_0.png);
+        z-index: 2; }
+        .user .level .userInner .num b {
+          display: none; }
+      .user .level .userInner .num1:before {
+        background-image: url("../image/newLevel/n1.png"); }
+      .user .level .userInner .num2:before {
+        background-image: url("../image/newLevel/n2.png"); }
+      .user .level .userInner .num3:before {
+        background-image: url("../image/newLevel/n3.png"); }
+      .user .level .userInner .num4:before {
+        background-image: url("../image/newLevel/n4.png"); }
+      .user .level .userInner .num5:before {
+        background-image: url("../image/newLevel/n5.png"); }
+      .user .level .userInner .num6:before {
+        background-image: url("../image/newLevel/n6.png"); }
+      .user .level .userInner .num7:before {
+        background-image: url("../image/newLevel/n7.png"); }
+      .user .level .userInner .num8:before {
+        background-image: url("../image/newLevel/n8.png"); }
+      .user .level .userInner .num9:before {
+        background-image: url("../image/newLevel/n9.png"); }
+      .user .level .userInner .num10:before {
+        background-image: url("../image/newLevel/n10.png"); }
+      .user .level .userInner .num11:before {
+        background-image: url("../image/newLevel/n11.png"); }
+      .user .level .userInner .num12:before {
+        background-image: url("../image/newLevel/n12.png"); }
+      .user .level .userInner .num13:before {
+        background-image: url("../image/newLevel/n13.png"); }
+      .user .level .userInner .num14:before {
+        background-image: url("../image/newLevel/n14.png"); }
+      .user .level .userInner .num15:before {
+        background-image: url("../image/newLevel/n15.png"); }
+      .user .level .userInner .head {
+        width: 100%;
+        height: 100%;
+        position: relative; }
+        .user .level .userInner .head img {
+          width: 100%;
+          height: auto;
+          margin: 0 auto;
+          z-index: 2;
+          position: relative; }
+      .user .level .userInner .status {
+        position: absolute;
+        right: 2%;
+        top: 1%;
+        width: 100%;
+        height: 33%;
+        /**上警**/
+        /**警长**/
+        /**存活**/
+        /**禁言**/
+        /**白痴翻牌**/
+        /**刀死**/
+        /**毒死**/
+        /**晚上殉情**/
+        /**白天殉情**/
+        /**殉情**/
+        /**放逐**/
+        /**开枪带走**/
+        /**自爆**/
+        /**炸弹人**/
+        /**白痴超时死亡**/
+        /**白狼王开枪带走**/
+        /**白狼王自爆**/
+        /**白狼王自爆**/ }
+        .user .level .userInner .status b.state {
+          position: relative;
+          z-index: 9;
+          width: 31%;
+          height: 100%;
+          float: right;
+          margin-left: 2%;
+          opacity: 0;
+          -webkit-animation: fadeInRight 1s forwards;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center; }
+        .user .level .userInner .status b.campaign {
+          background-image: url(../image/state/s1.png); }
+        .user .level .userInner .status b.sergeant {
+          background-image: url(../image/state/s2.png); }
+        .user .level .userInner .status b.SHUTUP {
+          background-image: url(../image/state/s4.png); }
+        .user .level .userInner .status b.IDIOT {
+          background-image: url(../image/state/s5.png); }
+        .user .level .userInner .status b.KNIFE {
+          background-image: url(../image/state/s14.png); }
+        .user .level .userInner .status b.POISON {
+          background-image: url(../image/state/s15.png); }
+        .user .level .userInner .status b.NIGHT_LOVE {
+          background-image: url(../image/state/s17.png); }
+        .user .level .userInner .status b.DAY_LOVE {
+          background-image: url(../image/state/s16.png); }
+        .user .level .userInner .status b.LOVE_DEAD {
+          background-image: url(../image/state/s6.png); }
+        .user .level .userInner .status b.EXILE {
+          background-image: url(../image/state/s7.png); }
+        .user .level .userInner .status b.SHOOT {
+          background-image: url(../image/state/s8.png); }
+        .user .level .userInner .status b.SELF_DESTRUCT {
+          background-image: url(../image/state/s9.png); }
+        .user .level .userInner .status b.BOMBERMAN {
+          background-image: url(../image/state/s10.png); }
+        .user .level .userInner .status b.IDIOT_TIMEOUT {
+          background-image: url(../image/state/s11.png); }
+        .user .level .userInner .status b.WHITE_SHOOT {
+          background-image: url(../image/state/s12.png); }
+        .user .level .userInner .status b.WHITE_SELF_DESTRUCT {
+          background-image: url(../image/state/s13.png); }
+        .user .level .userInner .status b.lover {
+          background-image: url(../image/state/s18.png);
+          display: none; }
+      .user .level .userInner:before {
+        background-image: url(../image/newLevel/0.png); }
+  .user .level1 .userInner .num {
+    background-image: url(../image/newLevel/1_1_0.png); }
+  .user .level1 .userInner .star1 {
+    background-image: url("../image/newLevel/1_1.png");
+    z-index: 3; }
+  .user .level1 .userInner .star2 {
+    background-image: url("../image/newLevel/1_2.png");
+    z-index: 3; }
+  .user .level1 .userInner .star3 {
+    background-image: url("../image/newLevel/1_3.png");
+    z-index: 3; }
+  .user .level1 .userInner:before {
+    background-image: url(../image/newLevel/1.png); }
+  .user .level2 .userInner .num {
+    background-image: url(../image/newLevel/2_1_0.png); }
+  .user .level2 .userInner .star1 {
+    background-image: url("../image/newLevel/2_1.png");
+    z-index: 3; }
+  .user .level2 .userInner .star2 {
+    background-image: url("../image/newLevel/2_2.png");
+    z-index: 3; }
+  .user .level2 .userInner .star3 {
+    background-image: url("../image/newLevel/2_3.png");
+    z-index: 3; }
+  .user .level2 .userInner:before {
+    background-image: url(../image/newLevel/2.png); }
+  .user .level3 .userInner .num {
+    background-image: url(../image/newLevel/3_1_0.png); }
+  .user .level3 .userInner .star1 {
+    background-image: url("../image/newLevel/3_1.png");
+    z-index: 3; }
+  .user .level3 .userInner .star2 {
+    background-image: url("../image/newLevel/3_2.png");
+    z-index: 3; }
+  .user .level3 .userInner .star3 {
+    background-image: url("../image/newLevel/3_3.png");
+    z-index: 3; }
+  .user .level3 .userInner:before {
+    background-image: url(../image/newLevel/3.png); }
+  .user .level4 .userInner .num {
+    background-image: url(../image/newLevel/4_1_0.png); }
+  .user .level4 .userInner .star1 {
+    background-image: url("../image/newLevel/4_1.png");
+    z-index: 3; }
+  .user .level4 .userInner .star2 {
+    background-image: url("../image/newLevel/4_2.png");
+    z-index: 3; }
+  .user .level4 .userInner .star3 {
+    background-image: url("../image/newLevel/4_3.png");
+    z-index: 3; }
+  .user .level4 .userInner:before {
+    background-image: url(../image/newLevel/4.png); }
+  .user .level5 .userInner .num {
+    background-image: url(../image/newLevel/5_1_0.png); }
+  .user .level5 .userInner .star1 {
+    background-image: url("../image/newLevel/5_1.png");
+    z-index: 3; }
+  .user .level5 .userInner .star2 {
+    background-image: url("../image/newLevel/5_2.png");
+    z-index: 3; }
+  .user .level5 .userInner .star3 {
+    background-image: url("../image/newLevel/5_3.png");
+    z-index: 3; }
+  .user .level5 .userInner:before {
+    background-image: url(../image/newLevel/5.png); }
+  .user[dead=true] {
+    opacity: 0.8; }
+    .user[dead=true] .head {
+      background: url(../image/dead.png) no-repeat center;
+      background-size: contain; }
+      .user[dead=true] .head img {
+        visibility: hidden; }
+  .user .nick {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: .12rem;
+    line-height: .12rem; }
+  .user .designation {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: .12rem;
+    line-height: .12rem; }
+  .user.userBack .level {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center; }
+    .user.userBack .level .userInner {
+      width: 46%;
+      padding: 5%; }
+  .user.userBack .level1 {
+    background-image: url(../image/newLevel/1_0.png); }
+  .user.userBack .level2 {
+    background-image: url(../image/newLevel/2_0.png); }
+  .user.userBack .level3 {
+    background-image: url(../image/newLevel/3_0.png); }
+  .user.userBack .level4 {
+    background-image: url(../image/newLevel/4_0.png); }
+  .user.userBack .level5 {
+    background-image: url(../image/newLevel/5_0.png); }
+
+/*情侣身份只有在投票和游戏结束才会显示在头像上*/
+.choosing .user .level .userInner .status b.lover, .gameEnd .user .level .userInner .status b.lover {
+  display: block;
+  -webkit-animation: flash 1s 1s infinite; }
+
+#game .mine {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto; }
+  #game .mine .userWrap {
+    width: 70%; }
+    #game .mine .userWrap .user {
+      width: 35%;
+      overflow: hidden;
+      float: left; }
+    #game .mine .userWrap .info {
+      float: left;
+      padding-top: 10%; }
+
+.shenfen {
+  position: relative;
+  background: url(../image/sf.png) no-repeat center bottom;
+  background-size: contain; }
+  .shenfen.on.shenfen1 {
+    background-image: url(../shenfen/1.png); }
+  .shenfen.on.shenfen2 {
+    background-image: url(../shenfen/2.png); }
+  .shenfen.on.shenfen3 {
+    background-image: url(../shenfen/3.png); }
+  .shenfen.on.shenfen4 {
+    background-image: url(../shenfen/4.png); }
+  .shenfen.on.shenfen5 {
+    background-image: url(../shenfen/5.png); }
+  .shenfen.on.shenfen6 {
+    background-image: url(../shenfen/6.png); }
+  .shenfen.on.shenfen7 {
+    background-image: url(../shenfen/7.png); }
+  .shenfen.on.shenfen8 {
+    background-image: url(../shenfen/8.png); }
+  .shenfen.on.shenfen9 {
+    background-image: url(../shenfen/9.png); }
+  .shenfen.on.shenfen10 {
+    background-image: url(../shenfen/10.png); }
+  .shenfen.on.shenfen11 {
+    background-image: url(../shenfen/11.png); }
+  .shenfen:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none; }
+  .shenfen .lover {
+    position: absolute;
+    right: 12%;
+    top: 9%;
+    width: .8rem;
+    height: .4rem;
+    font-size: .2rem;
+    line-height: .4rem;
+    background: url("../image/lover.png") no-repeat center;
+    background-size: 100% 100%;
+    text-align: center;
+    font-weight: bold;
+    display: none; }
+  .shenfen.on:before, .shenfen.on .lover {
+    display: block; }
+  .shenfen[old="11"]:before {
+    background: url("../shenfen/11_o.png") no-repeat center bottom;
+    background-size: contain; }
+
+/*qiangshenfen*/
+.qiang {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 99;
+  display: none; }
+  .qiang .inner {
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    width: 90%;
+    height: auto;
+    -webkit-transform: translateY(-60%); }
+    .qiang .inner h2 {
+      text-align: center;
+      font-size: .2rem;
+      color: #fff;
+      padding: .3rem 0; }
+    .qiang .inner ul {
+      position: relative;
+      text-align: center; }
+      .qiang .inner ul li {
+        width: 33%;
+        height: auto;
+        float: left; }
+        .qiang .inner ul li .shenfen {
+          position: relative;
+          width: 80%;
+          padding-top: 120%;
+          height: 0;
+          margin: 0 auto; }
+        .qiang .inner ul li .price {
+          text-align: center;
+          margin-top: .1rem; }
+          .qiang .inner ul li .price .yumi {
+            position: relative;
+            padding-left: .35rem;
+            font-size: .16rem;
+            line-height: .3rem;
+            display: inline-block; }
+            .qiang .inner ul li .price .yumi:before {
+              content: '';
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: .3rem;
+              height: .3rem;
+              background: url(../image/yumi2.png) no-repeat center;
+              background-size: contain; }
+        .qiang .inner ul li.unselect {
+          opacity: 0.8; }
+        .qiang .inner ul li.no .shenfen:before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.5); }
+        .qiang .inner ul li.no .price {
+          color: #e74c3c; }
+    .qiang .inner .countDown {
+      position: absolute;
+      left: 0;
+      top: -0.2rem;
+      width: 100%;
+      font-size: .2rem;
+      color: #fff;
+      text-align: center;
+      display: none; }
+      .qiang .inner .countDown span {
+        color: #d34132;
+        display: inline-block;
+        width: .4rem; }
+
+.layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  display: none; }
+  .layer.active {
+    background: rgba(0, 0, 0, 0.8); }
+  .layer .inner {
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    width: 80%;
+    height: auto;
+    z-index: 99;
+    -webkit-transform: translateY(-50%);
+    background: #fff;
+    border: 2px solid #1abc9c;
+    border-radius: 10px; }
+    .layer .inner .title {
+      background: #1abc9c;
+      color: #f1f1f1;
+      text-align: center; }
+    .layer .inner .info {
+      font-size: .16rem;
+      color: #1abc9c;
+      line-height: .2rem;
+      text-align: center;
+      padding: .2rem .1rem 0; }
+      .layer .inner .info b {
+        color: #e74c3c;
+        font-size: .2rem;
+        padding: 0 .05rem; }
+    .layer .inner .tips {
+      color: #e74c3c;
+      font-size: .16rem;
+      text-align: center;
+      line-height: .3rem; }
+    .layer .inner .content {
+      position: relative;
+      overflow: hidden; }
+      .layer .inner .content .voteList {
+        text-align: center; }
+        .layer .inner .content .voteList li {
+          position: relative;
+          width: 40%;
+          height: 0;
+          padding-top: 40%;
+          display: inline-block; }
+          .layer .inner .content .voteList li .user {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%; }
+            .layer .inner .content .voteList li .user .state {
+              display: none; }
+          .layer .inner .content .voteList li .user:before {
+            content: "";
+            position: absolute;
+            right: 5%;
+            top: 5%;
+            background: url(../image/delete.png) no-repeat center;
+            background-size: 100% 100%;
+            width: 20%;
+            height: 20%; }
+        .layer .inner .content .voteList li.unchoose {
+          background: url("../image/level/0_0.png") no-repeat center;
+          background-size: 80% 80%; }
+    .layer .inner .btn {
+      margin: .2rem auto; }
+    .layer .inner .countDown {
+      line-height: .24rem;
+      text-align: center;
+      font-size: .2rem;
+      font-weight: bold;
+      color: #e74c3c;
+      padding-left: .1rem;
+      display: inline; }
+
+.layer.layerSixCenter {
+  position: absolute;
+  left: 20%;
+  top: 50%;
+  width: 60%;
+  height: auto;
+  background: none;
+  -webkit-transform: translateY(-50%); }
+  .layer.layerSixCenter .inner {
+    width: 100%;
+    height: auto;
+    top: 50%;
+    left: 0;
+    -webkit-transform: translateY(-50%); }
+
+.layer.layerEventChoose .content .info {
+  padding-bottom: .1rem; }
+
+.layer.layerShenfen .inner {
+  top: 10%;
+  height: 80%;
+  -webkit-transform: translateY(0);
+  background: none;
+  border: none;
+  border-radius: 10px; }
+  .layer.layerShenfen .inner .title {
+    background: none; }
+  .layer.layerShenfen .inner .content {
+    position: absolute;
+    left: 0;
+    top: .6rem;
+    bottom: .6rem;
+    width: 100%;
+    height: auto; }
+    .layer.layerShenfen .inner .content div {
+      height: 100%;
+      width: auto;
+      margin: 0 auto;
+      display: inline-block; }
+      .layer.layerShenfen .inner .content div img {
+        width: auto;
+        height: 100%; }
+  .layer.layerShenfen .inner .btnWrap {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: none; }
+    .layer.layerShenfen .inner .btnWrap .btn {
+      margin-top: 0;
+      margin-bottom: 0; }
+
+.layer.layerEventRobber .content .voteList {
+  margin: .2rem 0; }
+  .layer.layerEventRobber .content .voteList li {
+    position: relative;
+    height: auto;
+    line-height: 0;
+    padding: .1rem;
+    box-sizing: border-box;
+    border: 3px solid #fff;
+    opacity: 0.8; }
+    .layer.layerEventRobber .content .voteList li img {
+      width: 100%;
+      height: auto; }
+    .layer.layerEventRobber .content .voteList li.on {
+      border-color: #16a085;
+      opacity: 1; }
+    .layer.layerEventRobber .content .voteList li.unchoose {
+      opacity: 0.5; }
+
+.layer.layerEventVoteResult .content .result {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid #1abc9c;
+  padding: .1rem .05rem .1rem 20%; }
+  .layer.layerEventVoteResult .content .result .userNum {
+    font-size: .14rem;
+    color: #e74c3c;
+    width: .24rem;
+    height: .24rem;
+    line-height: .24rem;
+    border-radius: 50%;
+    background: #f1f1f1;
+    display: block;
+    text-align: center;
+    border: 1px solid #e74c3c; }
+  .layer.layerEventVoteResult .content .result .left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20%;
+    height: 100%; }
+    .layer.layerEventVoteResult .content .result .left .userNum {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      -webkit-transform: translate(-50%, -50%); }
+    .layer.layerEventVoteResult .content .result .left .userNum.qi {
+      border-color: #34495e;
+      color: #34495e; }
+  .layer.layerEventVoteResult .content .result .right {
+    position: relative;
+    width: 100%; }
+    .layer.layerEventVoteResult .content .result .right:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: .15rem;
+      height: 100%;
+      background: url(../image/jiantou.png) no-repeat center;
+      background-size: contain; }
+    .layer.layerEventVoteResult .content .result .right ul {
+      overflow: hidden;
+      margin-left: .2rem; }
+      .layer.layerEventVoteResult .content .result .right ul li {
+        position: relative;
+        float: left;
+        width: 20%; }
+        .layer.layerEventVoteResult .content .result .right ul li .userNum {
+          border-color: #1abc9c;
+          color: #1abc9c;
+          margin: .08rem auto; }
+        .layer.layerEventVoteResult .content .result .right ul li .sergean {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          width: 45%;
+          height: 45%;
+          border: none;
+          background: url(../image/state/s2.png) no-repeat right bottom;
+          background-size: contain; }
+
+.layer.layerDead .content {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  background: url(../image/dead1.png) no-repeat center;
+  background-size: contain; }
+  .layer.layerDead .content b {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translateY(-45%);
+    width: 100%;
+    padding-bottom: 100%;
+    font-size: .2rem;
+    color: #e74c3c;
+    text-align: center; }
+
+.layerUserInfo .inner {
+  margin-top: -.3rem; }
+  .layerUserInfo .inner .infos {
+    width: 75%;
+    margin: 0 auto .1rem; }
+    .layerUserInfo .inner .infos li {
+      font-size: .12rem;
+      color: #000; }
+      .layerUserInfo .inner .infos li span {
+        width: .8rem;
+        display: inline-block;
+        text-align: left;
+        color: #16a085;
+        text-align: right; }
+      .layerUserInfo .inner .infos li p {
+        display: inline-block;
+        color: #34495e; }
+  .layerUserInfo .inner .close {
+    position: absolute;
+    bottom: -.6rem;
+    left: 50%;
+    width: .6rem;
+    height: .6rem;
+    margin-left: -.3rem;
+    background: url("../image/close1.png") no-repeat center;
+    background-size: .6rem auto; }
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-webkit-keyframes flash {
+  0%,100% {
+    opacity: 1;
+    transform: scale(1); }
+  50% {
+    opacity: 1;
+    transform: scale(1.1); } }
+@-moz-keyframes flash {
+  0%,100% {
+    opacity: 1;
+    transform: scale(1); }
+  50% {
+    opacity: 1;
+    transform: scale(1.1); } }
+@-o-keyframes flash {
+  0%,100% {
+    opacity: 1;
+    transform: scale(1); }
+  50% {
+    opacity: 1;
+    transform: scale(1.1); } }
+@keyframes flash {
+  0%,100% {
+    opacity: 1;
+    transform: scale(1); }
+  50% {
+    opacity: 1;
+    transform: scale(1.1); } }
+@-webkit-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+@-moz-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+@-o-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+@-webkit-keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateX(100%); }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0); } }
+@-moz-keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateX(100%); }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0); } }
+@-o-keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateX(100%); }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0); } }
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateX(100%); }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateX(0); } }
+@-webkit-keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0); }
+  100% {
+    opacity: 1;
+    transform: scale(1); } }
+@-moz-keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0); }
+  100% {
+    opacity: 1;
+    transform: scale(1); } }
+@-o-keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0); }
+  100% {
+    opacity: 1;
+    transform: scale(1); } }
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0); }
+  100% {
+    opacity: 1;
+    transform: scale(1); } }
+@-webkit-keyframes seal {
+  0% {
+    opacity: .5;
+    transform: translate(-20%, -20%) scale(3) rotate(-23deg); }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(-23deg); } }
+@-moz-keyframes seal {
+  0% {
+    opacity: .5;
+    transform: translate(-20%, -20%) scale(3) rotate(-23deg); }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(-23deg); } }
+@-o-keyframes seal {
+  0% {
+    opacity: .5;
+    transform: translate(-20%, -20%) scale(3) rotate(-23deg); }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(-23deg); } }
+@keyframes seal {
+  0% {
+    opacity: .5;
+    transform: translate(-20%, -20%) scale(3) rotate(-23deg); }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(-23deg); } }
+.gameEnd {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background-image: url("../image/3.jpg");
+  z-index: 9;
+  display: none; }
+  .gameEnd .endInner {
+    padding-top: .2rem; }
+    .gameEnd .endInner .resultInfo {
+      color: #666;
+      width: 82%;
+      margin: 0 auto;
+      line-height: .2rem; }
+      .gameEnd .endInner .resultInfo span {
+        padding-left: .25rem;
+        background: url("../image/time.png") no-repeat left center;
+        background-size: contain; }
+        .gameEnd .endInner .resultInfo span.endTime {
+          float: right;
+          background-image: url("../image/clock.png"); }
+    .gameEnd .endInner .result {
+      position: relative;
+      width: 76%;
+      margin: .1rem auto 0;
+      background: #fff;
+      border-radius: 5px;
+      box-sizing: border-box;
+      border: 1px solid #a3cfff; }
+      .gameEnd .endInner .result h3.title {
+        position: absolute;
+        top: 0;
+        left: 8%;
+        width: 84%;
+        text-align: center;
+        background: url("../image/t1.png") no-repeat center top;
+        background-size: contain;
+        color: #fff;
+        height: 0;
+        padding-top: 15%;
+        margin-top: -9.7%; }
+        .gameEnd .endInner .result h3.title span {
+          font-size: .16rem;
+          line-height: 100%;
+          position: absolute;
+          left: 0;
+          top: 37%;
+          width: 100%;
+          text-align: center;
+          -webkit-transform: translateY(-50%); }
+      .gameEnd .endInner .result .userList {
+        overflow: hidden;
+        padding: .2rem; }
+        .gameEnd .endInner .result .userList li {
+          position: relative;
+          width: 25%;
+          float: left;
+          text-align: center; }
+          .gameEnd .endInner .result .userList li .user .userInner {
+            margin: 0 auto; }
+          .gameEnd .endInner .result .userList li p {
+            text-align: center;
+            width: 100%;
+            height: .4rem;
+            line-height: .2rem;
+            overflow: hidden; }
+            .gameEnd .endInner .result .userList li p span, .gameEnd .endInner .result .userList li p b {
+              display: inline-block;
+              color: #666;
+              font-size: .14rem;
+              white-space: nowrap; }
+            .gameEnd .endInner .result .userList li p b {
+              font-size: .13rem;
+              font-weight: normal;
+              color: #16a085; }
+          .gameEnd .endInner .result .userList li.mvp:before {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: 25%;
+            width: 60%;
+            height: 25%;
+            background: url("../image/mvp2.png") no-repeat right bottom;
+            background-size: contain;
+            z-index: 9;
+            -webkit-animation: seal .5s forwards; }
+          .gameEnd .endInner .result .userList li.zan span, .gameEnd .endInner .result .userList li.zaned span {
+            padding-left: .2rem;
+            background: url("../image/zan.png") no-repeat left center;
+            background-size: contain; }
+          .gameEnd .endInner .result .userList li.zaned span {
+            background-image: url("../image/zan_a.png"); }
+      .gameEnd .endInner .result.win {
+        width: 82%;
+        margin-top: .4rem;
+        border-color: #e8685b; }
+        .gameEnd .endInner .result.win h3.title {
+          background-image: url("../image/t2.png"); }
+
+.layer.userAccount .inner {
+  padding-top: .15rem; }
+  .layer.userAccount .inner .mvp {
+    position: absolute;
+    left: 10%;
+    top: 0;
+    margin-top: -20%;
+    width: 80%;
+    height: 0;
+    padding-top: 32%; }
+    .layer.userAccount .inner .mvp:before, .layer.userAccount .inner .mvp:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0; }
+    .layer.userAccount .inner .mvp:before {
+      background: url("../image/mvp1.png") no-repeat center;
+      background-size: contain;
+      -webkit-animation: bounceIn .5s 1s forwards; }
+    .layer.userAccount .inner .mvp:after {
+      background: url("../image/mvp_b.png") no-repeat center;
+      background-size: contain;
+      -webkit-animation: fadeInUp 1s .5s forwards; }
+  .layer.userAccount .inner .levelChange {
+    padding-left: 12%;
+    padding-bottom: .2rem; }
+    .layer.userAccount .inner .levelChange li {
+      position: relative;
+      height: .4rem;
+      color: #666;
+      font-size: .16rem;
+      line-height: .4rem; }
+      .layer.userAccount .inner .levelChange li span.left {
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-weight: bold; }
+      .layer.userAccount .inner .levelChange li div.right {
+        position: relative;
+        margin-left: .5rem;
+        margin-right: .3rem;
+        height: 100%;
+        color: #16a085; }
+        .layer.userAccount .inner .levelChange li div.right .star {
+          width: .2rem;
+          height: .4rem;
+          display: block;
+          margin-right: .15rem;
+          float: left; }
+        .layer.userAccount .inner .levelChange li div.right .pro {
+          position: absolute;
+          background: url("../image/pro.png") no-repeat center;
+          background-size: 100% 100%;
+          left: 0;
+          right: 0;
+          height: .2rem;
+          top: .1rem;
+          box-sizing: border-box; }
+          .layer.userAccount .inner .levelChange li div.right .pro b {
+            background: #16a085;
+            width: 0;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0; }
+          .layer.userAccount .inner .levelChange li div.right .pro .bound {
+            font-size: .12rem;
+            padding-top: 4px;
+            line-height: 100%;
+            position: absolute;
+            top: .2rem;
+            width: .3rem;
+            height: .1rem;
+            text-align: center;
+            margin-left: -.15rem; }
+            .layer.userAccount .inner .levelChange li div.right .pro .bound:before {
+              content: "";
+              position: absolute;
+              left: 50%;
+              height: 4px;
+              width: 1px;
+              margin-left: -1px;
+              top: 0;
+              background: #16a085; }
+            .layer.userAccount .inner .levelChange li div.right .pro .bound.pre {
+              left: 10%; }
+            .layer.userAccount .inner .levelChange li div.right .pro .bound.next {
+              left: 90%; }
+            .layer.userAccount .inner .levelChange li div.right .pro .bound i {
+              width: .1rem;
+              height: .1rem;
+              display: inline-block;
+              float: none;
+              margin: 0; }
+        .layer.userAccount .inner .levelChange li div.right .totalAccount {
+          position: relative;
+          display: block;
+          width: 100%;
+          text-align: center;
+          color: #f1f1f1; }
+        .layer.userAccount .inner .levelChange li div.right .count {
+          position: absolute;
+          right: 0;
+          top: -.15rem;
+          font-size: .12rem;
+          line-height: .15rem;
+          color: #16a085;
+          opacity: 0; }
+        .layer.userAccount .inner .levelChange li div.right .subcount {
+          color: #e74c3c; }
+    .layer.userAccount .inner .levelChange .level1 .star {
+      background: url("../image/level/start1.png") no-repeat center;
+      background-size: contain; }
+    .layer.userAccount .inner .levelChange .level2 .star {
+      background: url("../image/level/start2.png") no-repeat center;
+      background-size: contain; }
+    .layer.userAccount .inner .levelChange .level3 .star {
+      background: url("../image/level/start3.png") no-repeat center;
+      background-size: contain; }
+    .layer.userAccount .inner .levelChange .level4 .star {
+      background: url("../image/level/start4.png") no-repeat center;
+      background-size: contain; }
+    .layer.userAccount .inner .levelChange .level5 .star {
+      background: url("../image/level/start5.png") no-repeat center;
+      background-size: contain; }
+
+body .main {
+  background: #fff; }
+  body .main .dyCode {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: none; }
+    body .main .dyCode.on {
+      display: block; }
+    body .main .dyCode .inner {
+      position: absolute;
+      left: 0;
+      top: 45%;
+      width: 100%;
+      -webkit-transform: translateY(-50%); }
+      body .main .dyCode .inner h2, body .main .dyCode .inner h3 {
+        font-size: .4rem;
+        line-height: .8rem;
+        height: .8rem;
+        color: #16a085;
+        font-weight: bold; }
+      body .main .dyCode .inner h3 span {
+        border: 3px solid #16a085;
+        display: block;
+        width: .8rem;
+        height: .8rem;
+        line-height: .8rem;
+        border-radius: 50%;
+        text-align: center;
+        margin: .4rem auto; }
+      body .main .dyCode .inner #code {
+        position: relative;
+        width: 50%;
+        margin: .1rem auto;
+        display: none;
+        padding-top: 50%;
+        height: 0; }
+        body .main .dyCode .inner #code #canvas {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%; }
+      body .main .dyCode .inner p {
+        color: #666;
+        text-align: center;
+        font-size: .12rem; }
+  body .main .game {
+    background: url(../image/n1.jpg) no-repeat center top;
+    background-size: cover;
+    height: 100%;
+    display: none; }
+    body .main .game[nightFlag="0"] {
+      background-image: url(../image/d.jpg);
+      background-color: #68d6f6;
+      background-size: 100% auto; }
+    body .main .game[nightFlag="1"] {
+      background-image: url(../image/n.jpg);
+      background-color: #565fd4;
+      background-size: 100% auto; }
+body .messageCenter {
+  position: absolute;
+  left: 20%;
+  top: 0;
+  width: 60%;
+  height: auto; }
+  body .messageCenter .top {
+    position: absolute;
+    left: 0;
+    top: -.4rem;
+    width: auto;
+    background: rgba(36, 74, 111, 0.5);
+    padding: 0 .1rem;
+    line-height: .3rem;
+    border-radius: 5px;
+    display: inline-block;
+    color: #f1f1f1; }
+    body .messageCenter .top span {
+      padding: 0 .03rem;
+      color: #e74c3c; }
+  body .messageCenter .dialog {
+    position: relative;
+    margin: .1rem 0;
+    font-size: .14rem;
+    line-height: 150%;
+    background: rgba(36, 74, 111, 0.5);
+    border-radius: 5px;
+    padding: 0.1rem; }
+    body .messageCenter .dialog .name {
+      color: #34495e; }
+    body .messageCenter .dialog .name {
+      color: #e74c3c; }
+    body .messageCenter .dialog .message {
+      color: #f1f1f1; }
+  body .messageCenter .voteResult {
+    width: 100%;
+    display: none; }
+
+/*# sourceMappingURL=judge.css.map */

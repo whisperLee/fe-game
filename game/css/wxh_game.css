@@ -455,7 +455,8 @@ body {
   position: relative; }
   .user .level {
     width: 100%;
-    height: 100%; }
+    height: 100%;
+    border: .1px solid transparent; }
     .user .level .userInner:before, .user .level .star, .user .level .star:before, .user .level .num, .user .level .num:before {
       content: "";
       position: absolute;
@@ -478,7 +479,7 @@ body {
       background-position: center;
       width: 80%;
       height: 80%;
-      margin: .1rem auto; }
+      margin: 10% auto; }
       .user .level .userInner .num {
         background-image: url(../image/newLevel/0_1_0.png);
         z-index: 2; }

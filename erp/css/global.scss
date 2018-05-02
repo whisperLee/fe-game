@@ -47,6 +47,10 @@
         a{background-image: url("../image/i1.png");}
         &.on a,&:hover a{background-image: url("../image/i2.png");}
       }
+      &.game{
+        a{background-image: url("../image/i22.png");}
+        &.on a,&:hover a{background-image: url("../image/i23.png");}
+      }
     }
   }
 }

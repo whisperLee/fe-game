@@ -5,13 +5,6 @@ new Vue({
     el: '#e_boxRoom',
     data: {
         roomList:{},
-        gameStatus:["空闲","准备中","进行中","结算中"],
-        roomStatus:{
-            "STOP":"停用",
-            "IDLE":"空闲",
-            "APPOINTMENT":"预定",
-            "INUSE":"使用中"
-        }
     },
     created: function () {
         var _self = this
@@ -34,8 +27,8 @@ new Vue({
                     console.log(d)
                     if(d.status.code=="OK" && d.data){
                         for(i=0;i<d.data.length;i++){
-                            d.data[i].gameStatus = _self.gameStatus[d.data[i].gameScreeningStatus]
-                            d.data[i].roomStatus = _self.roomStatus[d.data[i].status]
+                            d.data[i].gameStatus = interfaceValue.gameStatus[d.data[i].gameScreeningStatus]
+                            d.data[i].roomStatus = interfaceValue.roomStatus[d.data[i].status]
                             if(d.data[i].gameScreeningStatus == 2){
                                 var nightFlag = d.data[i].nightFlag?'晚上':'白天'
                                 d.data[i].gameDate = '第'+d.data[i].gameDay+'天 '+ nightFlag
@@ -131,6 +124,9 @@ new Vue({
                 eglobal.pop_tips('请选择或输入呼叫原因')
             }
 
+        },
+        enter:function(boxId){
+            eglobal.router("../../game/html/judge.html?boxId="+boxId)
         }
 
     }

@@ -143,12 +143,13 @@ body .main {
     top: 45%;
     width: 100%;
     -webkit-transform: translateY(-50%); }
-    body .main .inner h2, body .main .inner h3 {
-      font-size: .4rem;
-      line-height: .8rem;
-      height: .8rem;
-      color: #16a085;
-      font-weight: bold; }
+    body .main .inner h2 {
+      background: url("../image/logo.png") no-repeat center bottom;
+      background-size: contain;
+      width: 70%;
+      margin: .2rem auto;
+      height: 1rem;
+      padding: 0; }
     body .main .inner h3 {
       border: 3px solid #16a085;
       display: block;
@@ -162,8 +163,12 @@ body .main {
       position: relative;
       width: 50%;
       margin: .1rem auto;
-      display: none; }
+      padding-top: 50%;
+      height: 0; }
       body .main .inner #code #canvas {
+        position: absolute;
+        left: 0;
+        top: 0;
         width: 100%;
         height: 100%; }
     body .main .inner p {

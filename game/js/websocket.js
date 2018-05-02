@@ -2,6 +2,7 @@ var stompClient
 var websocket = {
     host: 'http://liyn.me:8888/',
     //host: 'http://192.168.3.28:8888/',
+    // 用户连接
     connect: function (vue, url, callback,error) {
         var _self = this
         var socket = new SockJS(_self.host+'stompEndpoints');
@@ -17,6 +18,7 @@ var websocket = {
     disconnect:function(){
         stompClient.disconnect();
     },
+    // 大屏连接
     connectpc: function (vue, url, callback) {
         var _self = this
         var socket = new SockJS(_self.host+'stompEndpoints');
@@ -27,11 +29,23 @@ var websocket = {
             console.log('msg: ' + msg)
         })
     },
-    // 初次进入，通知服务器
+    // 法官连接
+    connectJudge:function(vue, url, callback){
+        var _self = this
+        var socket = new SockJS(_self.host+'stompEndpoints');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
+            stompClient.subscribe(url, callback)
+            _self.judgeJustEnter()
+        }, function (msg) {
+            console.log('msg: ' + msg)
+        })
+    },
+    // 用户初次进入，通知服务器
     userJustEnter: function () {
         stompClient.send('/gameUser/userJustEnter', {}, {})
     },
-    // 开始游戏
+    // 用户开始游戏
     userStartGame: function () {
         stompClient.send('/gameUser/userStartGame', {}, {})
     },
@@ -56,6 +70,22 @@ var websocket = {
         data = JSON.stringify(data)
         console.log(new Date() +'receiveScreenEvent:'+data)
         stompClient.send('/screen/receiveScreenEvent', {}, data);
-    }
+    },
+    // 法官事件
+    receiveJudgeEvent:function(data){
+        data = JSON.stringify(data)
+        stompClient.send('/judge/receiveJudgeEvent', {}, data);
+    },
+    // 法官开始事件
+    judgeStartGame:function(data){
+        data = JSON.stringify(data)
+        stompClient.send('/judge/judgeStartGame', {}, data);
+    },
+    // 法官初次进入，通知服务器
+    judgeJustEnter:function(data){
+        data
+        data = JSON.stringify(data)
+        stompClient.send('/judge/judgeJustEnter', {}, data);
+    },
 
 }

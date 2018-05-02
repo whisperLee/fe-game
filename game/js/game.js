@@ -37,15 +37,19 @@ var game = new Vue({
     },
     created: function () {
         var _self = this
-        console.log('页面开始:' + new Date())
-        _self.boxId = global.urlHash().boxId || 0
-        _self.gameNumber = global.urlHash().gameNumber || 0
-        $(function(){
-            _self.getSeat()
-            _self.active()
-        })
+        _self.init()
     },
     methods: {
+        init:function(){
+            var _self = this
+            console.log('页面开始:' + new Date())
+            _self.boxId = global.urlHash().boxId || 0
+            _self.gameNumber = global.urlHash().gameNumber || 0
+            $(function(){
+                _self.getSeat()
+                _self.active()
+            })
+        },
         // 判断当前座位是否有人
         getSeat: function () {
             var _self = this
@@ -718,7 +722,7 @@ var game = new Vue({
         setLeaderBtn:function(info){
             var _self = this
             var btn = info.leaderButton
-            if(btn.length==0 || btn[0]=='EMPTY'){
+            if(btn.length==0 || btn[0]=='EMPTY'){ //SPEAK_END,
                 _self.leaderButton = []
             }else{
                 _self.leaderButton = info.leaderButton
@@ -951,7 +955,10 @@ var game = new Vue({
                 },10)
             }
         },
-        addAtten:function(){
+        addAtten:function(){//关注
+
+        },
+        give:function(){// 送礼物
 
         },
         userBtntoggle:function(){
@@ -1073,12 +1080,10 @@ var game = new Vue({
                 el.find('.js-affirm').off().on('click',function(){
                     _self.userEventSubmit(el,null)
                 })
+                el.find('.close').off().on('click',function(){
+                    animate.layerOuter(el)
+                })
             })
-
-            $('.layerUserInfo .close').off().on('click',function(){
-                animate.layerOuter($('.layerUserInfo'))
-            })
-
 
         }
     }

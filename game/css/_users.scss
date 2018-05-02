@@ -26,6 +26,7 @@
   .level{
     width:100%;
     height:100%;
+    border:.1px solid transparent;
     .userInner:before,.star,.star:before,.num, .num:before {
       content: "";
       position: absolute;
@@ -47,7 +48,7 @@
       background-position: center;
       width:80%;
       height:80%;
-      margin: .1rem auto;
+      margin: 10% auto;
       //.star{background-image:url(../image/newLevel/l_b.png); z-index: 2;}
       .num{
         background-image:url(../image/newLevel/0_1_0.png); z-index: 2;
@@ -57,7 +58,7 @@
       }
       @for $i from 1 through 15{
         .num#{$i}:before{
-        background-image: url('../image/newLevel/n#{$i}.png');
+          background-image: url('../image/newLevel/n#{$i}.png');
         }
       }
       .head{
@@ -170,7 +171,7 @@
         background-image:url(../image/newLevel/#{$i}_0.png);
       }
     }
-}
+  }
 }
 /*情侣身份只有在投票和游戏结束才会显示在头像上*/
 .choosing .user .level .userInner .status b.lover,.gameEnd .user .level .userInner .status b.lover{

@@ -11,6 +11,11 @@ ctrl+k 提交本地
 ctrl+shift+k 提交服务器
 ctrl+t 拉取服务器最新代码
 
+正常更新代码
+./build_fe.sh
+
+重启nginx服务器
+service nginx reload
 
 要有新手视频指导
 
@@ -22,10 +27,9 @@ ctrl+t 拉取服务器最新代码
  手机端：预约，微信支付
 
  法官端：1周
- 游戏新增身份3个:1.5周
+
  大屏刷新回复：2天
 
- 扫码签到，到店签到：2天
 
  其他：3天
 
@@ -35,9 +39,9 @@ ctrl+t 拉取服务器最新代码
  ======
  提交的按钮，统一加一个遮罩
   d.gameAccountInfo.winUsers[i].identityStatus =  d.gameAccountInfo.winUsers[i].gameIdentityStatusEnum  game.js  813行
-  1.支付的时候需要选择体验券，体验券样式以及支付形式
 
-  大屏：恢复，暂停，重新开始晚上流程；登录，登出
+
+  大屏：恢复，暂停，重新开始晚上流程；
   法官：
 
 

@@ -64,7 +64,7 @@ var global = {
         this.tipsTime = setTimeout(function () {
             $('.simple_tips').remove()
             callback()
-        }, 3000)
+        }, 2000)
     }
 
   },

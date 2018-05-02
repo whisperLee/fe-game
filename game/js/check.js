@@ -3,26 +3,30 @@
  */
 new Vue({
     el: '#game',
-    data: {
-    },
+    data: {},
     created: function () {
         var _self = this
-        global.pop_tips('签到中，请稍候...')
-        _self.check_in()
+        var nowtimestamp=new Date().getTime()
+        var urlHash = global.urlHash()
+        var shopId = urlHash.shopId
+        if(nowtimestamp<urlHash.timestamp){
+            global.pop_tips('签到中，请稍候...')
+            _self.check_in(shopId)
+        }else{
+            global.pop_tips('签到失败，请重新扫码签到！',global.saoyisao)
+        }
     },
     methods: {
-        check_in: function () {
+        check_in: function (shopId) {
             var _self = this
-            var shopId = global.urlHash().shopId || 0
             var d = {
                 url: 'game/play/checkin',
                 data: {shopId: shopId},
                 success: function (d) {
                     if (d.status.code === 'OK') {
-                        global.pop_tips('签到成功')
+                        global.pop_tips('签到成功,即将为您跳转首页...',function(){global.router('wx_index.html')})
                     } else {
-                        global.pop_tips('签到失败，请重新扫码签到！',global.saoyisao)
-
+                        global.pop_tips('签到失败，即将为您拉取扫一扫',function(){global.saoyisao()})
                     }
                 }
             }

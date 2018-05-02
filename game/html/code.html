@@ -15,8 +15,7 @@
         <div id="code">
             <canvas id="canvas"></canvas>
         </div>
-        <p>扫描二维码入座游戏</p>
-        <h3></h3>
+        <p>扫描二维码签到</p>
     </div>
 </div>
 <script type="application/javascript" src="../../js/zepto.min.js"></script>
@@ -25,36 +24,13 @@
 <script type="application/javascript" src="../js/global.js"></script>
 <script>
     var code = {
-        url : 'wx_game.html',
+        url : 'check.html',
         time:3600,
         init:function(){
             var _self = this
             var urlHash = global.urlHash()
-            _self.boxId = urlHash.boxId
-            _self.gameNumber = urlHash.gameNumber
+            _self.shopId = urlHash.shopId
             _self.qrcode()
-            _self.showInfo()
-        },
-        showInfo:function () {
-            var _self = this
-            var d = {
-                url:'game/play/queryBoxById',
-                data:{
-                    "id":_self.boxId
-                },
-                success: function (d) {
-                    console.log(d)
-                    if(d.status.code=="OK" && d.data){
-                        $("h2").html(d.data.name)
-                        $("h3").html(_self.gameNumber)
-                        $("#code").show()
-                    }else{
-                        global.pop_tips(d.status.msg)
-                    }
-                }
-            }
-            global.ajax(d)
-
         },
         getTimestamp:function(){
             var t = new Date().getTime()+2*60*60*1000
@@ -62,7 +38,7 @@
         },
         qrcode:function(){
             var _self = this
-            var url = _self.url+'?boxId='+_self.boxId+'&gameNumber='+_self.gameNumber+'&timestamp'+_self.getTimestamp()
+            var url = _self.url+'?shopId='+_self.shopId+'&timestamp='+_self.getTimestamp()
             $("#code").qrcode({
                 render: "canvas", //table方式
                 width: 400, //宽度

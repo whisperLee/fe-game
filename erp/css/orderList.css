@@ -150,6 +150,10 @@ video {
       background-image: url("../image/i1.png"); }
     .nav ul li.data.on a, .nav ul li.data:hover a {
       background-image: url("../image/i2.png"); }
+    .nav ul li.game a {
+      background-image: url("../image/i22.png"); }
+    .nav ul li.game.on a, .nav ul li.game:hover a {
+      background-image: url("../image/i23.png"); }
 
 /*多选框*/
 .check {

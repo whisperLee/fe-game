@@ -5,12 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
         <meta name="format-detection" content="telephone=no">
-        <link href="../css/game.css?v1" rel="stylesheet" type="text/css" media="screen" />
-        <title>
-
-        </title>
+        <link href="../css/g_game.css" rel="stylesheet" type="text/css" media="screen" />
+        <title></title>
       <style>
-
         /*.user-list{position: fixed; top:0}*/
         /*.user-list li{position: relative; width:25%; float:left; opacity: 1;}*/
       </style>
@@ -183,12 +180,15 @@
     </div>
   </div>
   <!--查看用户详情-->
-    <div class="layer layerUserInfo" v-if="JSON.stringify(userinfo)!='{}'">
+    <!--<div class="layer layerUserInfo" v-if="JSON.stringify(userinfo)!='{}'">-->
+  <div class="layer layerUserInfo">
       <div class="inner">
         <userinfo v-bind:user="userinfo"></userinfo>
         <div class="btnWrap">
           <a class="btn btn2" v-on:click="addAtten">关注</a>
+          <a class="btn btn4" v-on:click="give">赠送</a>
         </div>
+        <b class="close"></b>
       </div>
     </div>
   <!--用户死亡-->
@@ -259,22 +259,22 @@
 <script type="application/javascript" src="../../js/sockjs.min.js"></script>
 <script type="application/javascript" src="../../js/stomp.js"></script>
 <script type="application/javascript" src="../../js/jquery.qrcode.min.js"></script>
-<script type="application/javascript" src="../js/global.js?v1"></script>
+<script type="application/javascript" src="../js/global.js"></script>
 <script type="application/javascript" src="../js/websocket.js?v1"></script>
 <script type="application/javascript" src="../js/component.js?v1"></script>
 <script type="application/javascript" src="../js/animate.js?v1"></script>
 <script type="application/javascript" src="../js/game.js?v1"></script>
 <script>
-  //$(function(){
-//      game.active()
-//      var el = $('.layer')
-//      var el = $('.layerShenfen')
-//      var el = $('.layerEventVoteResult')
-//      var el = $('.layerUserInfo')
-//      var el = $('.layerEventVoteResult')
-//      //var el = $('.layerDead')
-//      //animate.layerEnter(el)
-//      var data = {}
+  $(function(){
+      game.active()
+      var el = $('.layer')
+      var el = $('.layerShenfen')
+      var el = $('.layerEventVoteResult')
+      var el = $('.layerUserInfo')
+      var el = $('.layerEventVoteResult')
+      //var el = $('.layerDead')
+      //animate.layerEnter(el)
+      var data = {}
 //      game.users = [
 //          {userId:101,nickName:"aaa",number:1,stage:1,star:1},
 //          {userId:102,nickName:"bbb",number:2,stage:1,star:1},
@@ -288,22 +288,15 @@
 //          {userId:110,nickName:"ggg",number:7,stage:1,star:1},
 //          {userId:111,nickName:"xxx",number:8,stage:1,star:1},
 //          {userId:112,nickName:"zzz",number:9,stage:1,star:1}]
-//      data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"QUEUE","leaderInfo":{"leaderFlag":true,"leaderButton":[]},"boxInfo":{"boxName":"ggg"},"userInfoList":[{"userId":101,"nickName":"aaa","number":1,"sex":1,"stage":1,"star":1},{"userId":102,"nickName":"bbb","number":2,"stage":1,"star":1},{"userId":103,"nickName":"ccc","number":3,"stage":1,"star":1},{"userId":104,"nickName":"ddd","number":4,"stage":1,"star":1},{"userId":105,"nickName":"eee","number":5,"stage":1,"star":1},{"userId":106,"nickName":"fff","number":6,"stage":1,"star":1},{"userId":107,"nickName":"ggg","number":7,"stage":1,"star":1},{"userId":108,"nickName":"xxx","number":8,"stage":1,"star":1},{"userId":109,"nickName":"zzz","number":9,"stage":1,"star":1}],"screeningInfo":{"combinationConfigStr":"预言家 女巫 猎人 守卫 白痴 白狼王","combinationName":"什么都有","playerCount":12},"personalInfo":{"userId":101,"nickName":"aaa","number":1,"sex":1,"stage":1,"star":1,"consumptionScore":946}}'
-//      game.socketCallback(data)
-//
-//
-     
-//     setTimeout(function(){
-//          data.body='{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"GAME_ACCOUNT","gameStatusStr":"游戏结算"},"gameAccountInfo":{"endTime":"2017-11-13 23:08","costTime":"01:14:16","winUsers":[{"userId":101,"nickName":"222","number":1,"sex":1,"identityName":"平民","deadFlag":false,"identityId":1,"loverNumber":12,"identityStatus":"SURVIVAL","gameIdentityStatusEnum":"IDIOT","stage":1,"star":2,"likeTime":5,"mvpTime":3},{"userId":111,"nickName":"jjj","number":11,"identityName":"丘比特","deadFlag":false,"identityId":10,"loverNumber":0,"identityStatus":"SURVIVAL","gameIdentityStatusEnum":"IDIOT","stage":1,"star":1,"likeTime":3,"mvpTime":2},{"userId":112,"nickName":"kkk","number":12,"identityName":"狼人","deadFlag":false,"identityId":2,"oldIdentityName":"盗贼","oldIdentityId":11,"loverNumber":1,"identityStatus":"SURVIVAL","gameIdentityStatusEnum":"IDIOT","stage":1,"star":1}],"loseUsers":[{"userId":105,"nickName":"eee","number":5,"identityName":"狼人","deadFlag":false,"identityId":2,"loverNumber":0,"identityStatus":"DEAD","gameIdentityStatusEnum":"IDIOT","stage":1,"star":2},{"userId":106,"nickName":"fff","number":6,"identityName":"狼人","deadFlag":false,"identityId":2,"loverNumber":0,"identityStatus":"SHOOT","gameIdentityStatusEnum":"IDIOT","stage":1,"star":2,"likeTime":4,"mvpTime":3},{"userId":102,"nickName":"bbb","number":2,"sex":1,"identityName":"平民","deadFlag":false,"identityId":1,"loverNumber":0,"identityStatus":"DEAD","gameIdentityStatusEnum":"IDIOT","stage":1,"star":2,"likeTime":5,"mvpTime":2},{"userId":103,"nickName":"ccc","number":3,"identityName":"平民","deadFlag":false,"identityId":1,"loverNumber":0,"identityStatus":"EXILE","gameIdentityStatusEnum":"IDIOT","stage":1,"star":2},{"userId":104,"nickName":"ddd","number":4,"identityName":"平民","deadFlag":false,"identityId":1,"loverNumber":0,"identityStatus":"DEAD","gameIdentityStatusEnum":"IDIOT","stage":1,"star":2},{"userId":107,"nickName":"ggg","number":7,"identityName":"猎人","deadFlag":false,"identityId":5,"loverNumber":0,"identityStatus":"EXILE","gameIdentityStatusEnum":"IDIOT","stage":1,"star":2,"likeTime":6,"mvpTime":1},{"userId":108,"nickName":"xxx","number":8,"identityName":"白痴","deadFlag":false,"identityId":9,"loverNumber":0,"identityStatus":"DEAD","gameIdentityStatusEnum":"IDIOT","stage":1,"star":2,"likeTime":1},{"userId":109,"nickName":"zzz","number":9,"identityName":"预言家","deadFlag":false,"identityId":3,"loverNumber":0,"identityStatus":"EXILE","gameIdentityStatusEnum":"IDIOT","stage":1,"star":2},{"userId":110,"nickName":"yyy","number":10,"identityName":"女巫","deadFlag":false,"identityId":4,"loverNumber":0,"identityStatus":"EXILE","gameIdentityStatusEnum":"IDIOT","stage":1,"star":1,"likeTime":2,"mvpTime":1}],"gameStatus":"THIRD_WIN","gameStatusStr":"第三方阵营获胜","surplusTime":15},"personalInfo":{"userId":204,"number":4,"buttons":[]}}'
-//          game.socketCallback(data)
-//      },1000)
-//      setTimeout(function(){
-//          data.body='{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"CUR_GAME_STATUS","boxInfo":{"boxName":"超级英雄"},"userInfoList":[{"userId":101,"nickName":"222","number":1,"sex":1,"identityName":"平民","deadFlag":false,"identityId":1,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":2,"likeTime":5,"mvpTime":3},{"userId":102,"nickName":"bbb","number":2,"sex":1,"identityName":"平民","deadFlag":false,"identityId":1,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":2,"likeTime":5,"mvpTime":2},{"userId":103,"nickName":"ccc","number":3,"identityName":"平民","deadFlag":false,"identityId":1,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":2},{"userId":104,"nickName":"ddd","number":4,"identityName":"平民","deadFlag":false,"identityId":1,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":2},{"userId":105,"nickName":"eee","number":5,"identityName":"狼人","deadFlag":false,"identityId":2,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":2},{"userId":106,"nickName":"fff","number":6,"identityName":"狼人","deadFlag":false,"identityId":2,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":2,"likeTime":4,"mvpTime":3},{"userId":107,"nickName":"ggg","number":7,"identityName":"狼人","deadFlag":false,"identityId":2,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":2,"likeTime":6,"mvpTime":1},{"userId":108,"nickName":"xxx","number":8,"identityName":"狼王","deadFlag":false,"identityId":7,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":2,"likeTime":1},{"userId":109,"nickName":"zzz","number":9,"identityName":"预言家","deadFlag":false,"identityId":3,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":2},{"userId":110,"nickName":"yyy","number":10,"identityName":"女巫","deadFlag":false,"identityId":4,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":1,"likeTime":2,"mvpTime":1},{"userId":111,"nickName":"jjj","number":11,"identityName":"猎人","deadFlag":false,"identityId":5,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":1,"likeTime":3,"mvpTime":2},{"userId":112,"nickName":"kkk","number":12,"identityName":"魔术师","deadFlag":false,"identityId":14,"loverNumber":0,"identityStatus":"SURVIVAL","stage":1,"star":1}],"screeningInfo":{"combinationConfigStr":"预言家 守卫 魔术师 狼王 白狼王","combinationName":"狼王vs魔术师","playerCount":12},"gameInfo":{"nightFlag":true,"gameTime":1,"gameStatus":"WITCH","gameStatusStr":"女巫活动","voteInfoList":[{"voteTitle":"暂无投票","voteDetailList":[{"votedNumber":0,"voteNumberList":[1,2,3,4,5,6,7,8,9,10,11,12],"poll":12.0}],"maxNumbers":[],"sergeantNumber":0,"poll":"12"}],"voteShowType":"LAST"},"eventInfo":{"eventType":"EVENT_WITCH","witchStatusEnum":"POISON","eventName":"女巫救人/毒人","eventDesc":"昨天狼队空刀,是否使用毒药,要毒谁?","chooseCount":1,"sourceNumber":10},"buttons":[]}'
-//          game.socketCallback(data)
-//      },1000)
+      data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"CUR_GAME_STATUS","leaderInfo":{"leaderFlag":false},"boxInfo":{"boxName":"ggg"},"userInfoList":[{"userId":101,"nickName":"aaa","number":1,"sex":1,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":2},{"userId":102,"nickName":"bbb","number":2,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":103,"nickName":"ccc","number":3,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":104,"nickName":"ddd","number":4,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":105,"nickName":"eee","number":5,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":106,"nickName":"fff","number":6,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1}],"screeningInfo":{"combinationConfigStr":"预言家 女巫 猎人 守卫 白痴 狼王 白狼王","combinationName":"什么都有","playerCount":12},"gameInfo":{"nightFlag":false,"gameTime":1,"gameStatus":"COMMON_SPEAK","gameStatusStr":"白天放逐发言"},"personalInfo":{"userId":103,"nickName":"ccc","number":3,"identityName":"狼人","identityId":2,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1,"consumptionScore":995,"buttons":["SELF_DESTRUCT"]}}'
+      game.socketCallback(data)
+
 
      
-  //});
+
+
+     
+  });
 </script>
 </body>
 </html>

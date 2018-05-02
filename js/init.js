@@ -1,7 +1,7 @@
 /**
  * Created by nielinlin on 2018/4/19.
  */
-window.codeType=''//test测试环境,online线上环境
+window.codeType='test'//test测试环境,online线上环境
 //用户端footer配置
 window.wFooter = [
     {
@@ -192,5 +192,14 @@ window.interfaceValue = {
             '1':'仅限餐饮小吃使用',
             '-1':'全品类可用'
         }
-    }
+    },
+    roomStatus:{ //包房状态
+        "STOP":"停用",
+        "IDLE":"空闲",
+        "APPOINTMENT":"预定",
+        "INUSE":"使用中"
+    },
+    gameStatus:[//游戏状态
+        "空闲","准备中","进行中","结算中"
+    ],
 }

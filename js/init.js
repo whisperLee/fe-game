@@ -203,4 +203,9 @@ window.interfaceValue = {
     gameStatus:[//游戏状态
         "空闲","准备中","进行中","结算中"
     ],
+    gameBtn:{
+        "SPEAK_END":"发言结束",
+        "GIVE_UP":"退水",
+        "SELF_DESTRUCT":"自爆",
+    }
 }

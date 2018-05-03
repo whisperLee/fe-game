@@ -277,7 +277,8 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  height: auto; }
+  height: auto;
+  min-height: .8rem; }
   #game .mine .userWrap {
     width: 70%; }
     #game .mine .userWrap .user {
@@ -593,7 +594,7 @@ body {
   padding: 0.2rem;
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.75);
-  color: #f1f1f1;
+  color: #f1f5fa;
   border-radius: 5px;
   font-size: 0.14rem;
   text-align: center; }

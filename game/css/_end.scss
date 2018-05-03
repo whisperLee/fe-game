@@ -11,7 +11,7 @@
   .endInner{
     padding-top: .2rem;
     .resultInfo{
-      color: $color2; width:82%; margin: 0 auto; line-height: .2rem;
+      color: $gColor3; width:82%; margin: 0 auto; line-height: .2rem;
       span{
         padding-left: .25rem; background: url("../image/time.png") no-repeat left center; background-size: contain;
         &.endTime{
@@ -24,7 +24,7 @@
       position: relative;
       width:76%;
       margin: .1rem auto 0;
-      background: $color0;
+      background: $gColor1;
       border-radius: 5px;
       box-sizing: border-box;
       border: 1px solid #a3cfff;
@@ -36,7 +36,7 @@
         text-align: center;
         background: url("../image/t1.png") no-repeat center top;
         background-size: contain;
-        color: $color0;
+        color: $gColor1;
         height:0;
         padding-top: 15%;
         margin-top: -9.7%;
@@ -70,14 +70,14 @@
             overflow: hidden;
             span,b{
               display: inline-block;
-              color: $color2;
+              color: $gColor3;
               font-size: .14rem;
               white-space: nowrap;
             }
             b{
               font-size: .13rem;
               font-weight: normal;
-              color: $color4;
+              color: $gColor11;
             }
           }
           &.mvp:before{
@@ -145,7 +145,7 @@
       li{
         position: relative;
         height:.4rem;
-        color: $color2;
+        color: $gColor3;
         font-size: .16rem;
         line-height: .4rem;
         span.left{
@@ -159,7 +159,7 @@
           margin-left: .5rem;
           margin-right: .3rem;
           height:100%;
-          color: $color4;
+          color: $gColor11;
           .star{
             width:.2rem;
             height:.4rem;
@@ -177,7 +177,7 @@
             top: .1rem;
             box-sizing: border-box;
             b {
-              background: $color4;
+              background: $gColor11;
               width:0;
               height:100%;
               position: absolute;
@@ -202,7 +202,7 @@
                 width:1px;
                 margin-left: -1px;
                 top:0;
-                background: $color4;
+                background: $gColor11;
               }
               &.pre{
                 left:10%;
@@ -224,7 +224,7 @@
             display: block;
             width:100%;
             text-align: center;
-            color: $color;
+            color: $gColor2;
           }
           .count{
             position: absolute;
@@ -232,11 +232,11 @@
             top:-.15rem;
             font-size: .12rem;
             line-height: .15rem;
-            color: $color4;
+            color: $gColor11;
             opacity: 0;
           }
           .subcount{
-            color: $color3;
+            color: $gColor20;
           }
         }
       }

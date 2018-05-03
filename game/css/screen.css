@@ -129,7 +129,7 @@ body {
   -webkit-transform: translate(-50%, -50%);
   padding: 0.2rem;
   box-sizing: border-box;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.8);
   color: #f1f1f1;
   border-radius: 5px;
   font-size: 0.14rem;
@@ -413,7 +413,8 @@ body {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: auto; }
+  height: auto;
+  min-height: .8rem; }
   #game .mine .userWrap {
     width: 70%; }
     #game .mine .userWrap .user {
@@ -959,7 +960,7 @@ body {
           background-size: contain;
           background-position: center;
           background-repeat: no-repeat;
-          color: #fff;
+          color: #ffffff;
           height: 0; }
           body .gameEnd .endInner .result h3.title span {
             font-size: .16rem;
@@ -1058,7 +1059,7 @@ body {
     width: 4.1rem;
     padding: 0.25rem 0 0.4rem;
     margin: 0 auto;
-    background: #fff;
+    background: #ffffff;
     border: 1px solid #f1f1f1;
     border-radius: 10px; }
     #s_login .login .input {
@@ -1086,7 +1087,7 @@ body {
       font-size: .16rem;
       text-align: center;
       background: #16afec;
-      color: #fff;
+      color: #ffffff;
       cursor: pointer; }
     #s_login .login .mess {
       font-size: .14rem;

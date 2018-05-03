@@ -12,18 +12,18 @@
   }
   .inner{
     position: absolute; left:10%; top:50%; width:80%; height:auto;z-index: 99;
-    -webkit-transform:translateY(-50%); background: #fff; border:2px solid $color7; border-radius: 10px;
+    -webkit-transform:translateY(-50%); background: #fff; border:2px solid $gColor10; border-radius: 10px;
     .title{
-      background: $color7; color: $color; text-align: center;
+      background: $gColor10; color: $gColor2; text-align: center;
     }
     .info{
-      font-size: .16rem; color: $color7; line-height: .2rem; text-align: center;padding: .2rem .1rem 0;
+      font-size: .16rem; color: $gColor10; line-height: .2rem; text-align: center;padding: .2rem .1rem 0;
       b{
-        color: $color3; font-size: .2rem; padding: 0 .05rem;
+        color: $gColor20; font-size: .2rem; padding: 0 .05rem;
       }
     }
     .tips{
-      color: $color3; font-size: .16rem; text-align: center; line-height:.3rem;
+      color: $gColor20; font-size: .16rem; text-align: center; line-height:.3rem;
     }
     .content{
       position: relative;
@@ -73,7 +73,7 @@
       text-align: center;
       font-size: .2rem;
       font-weight: bold;
-      color: $color3;
+      color: $gColor20;
       padding-left: .1rem;
       display: inline;
     }
@@ -125,7 +125,7 @@
     .voteList{
       margin: .2rem 0;
       li{
-        position: relative; height:auto; line-height: 0; padding: .1rem; box-sizing: border-box; border: 3px solid $color0; opacity: 0.8;
+        position: relative; height:auto; line-height: 0; padding: .1rem; box-sizing: border-box; border: 3px solid $gColor1; opacity: 0.8;
         img{
           width:100%; height:auto;
         }
@@ -133,7 +133,7 @@
           //&:before{
           //  content:" "; position: absolute; width:.2rem; height:.2rem; right:0; bottom:0; background: url("../image/sf_select.png") no-repeat center; background-size: 100%;
           //}
-          border-color: $color4; opacity: 1;
+          border-color: $gColor11; opacity: 1;
         }
         &.unchoose{
           opacity: 0.5;
@@ -147,16 +147,16 @@
 .layer.layerEventVoteResult{
   .content{
     .result{
-      position: relative; overflow: hidden; border-bottom:  1px solid $color7; padding: .1rem .05rem .1rem 20%;
+      position: relative; overflow: hidden; border-bottom:  1px solid $gColor10; padding: .1rem .05rem .1rem 20%;
       .userNum{
-        font-size: .14rem; color: $color3; width:.24rem; height:.24rem; line-height: .24rem; border-radius: 50%; background: $color; display: block; text-align: center; border: 1px solid $color3;
+        font-size: .14rem; color: $gColor20; width:.24rem; height:.24rem; line-height: .24rem; border-radius: 50%; background: $gColor2; display: block; text-align: center; border: 1px solid $gColor20;
       }
       .left{
         position: absolute; left:0; top:0; width:20%; height:100%;
         .userNum{
           position: absolute; left:50%; top:50%; -webkit-transform: translate(-50%,-50%);
         }
-        .userNum.qi{border-color: $color5; color: $color5;}
+        .userNum.qi{border-color: $gColor15; color: $gColor15;}
       }
       .right{
         position: relative; width:100%;
@@ -169,7 +169,7 @@
           li{
             position: relative; float: left; width:20%;
             .userNum{
-              border-color: $color7; color:$color7;  margin: .08rem auto;
+              border-color: $gColor10; color:$gColor10;  margin: .08rem auto;
 
             }
             .sergean{
@@ -203,7 +203,7 @@
       width:100%;
       padding-bottom: 100%;
       font-size: .2rem;
-      color: $color3;
+      color: $gColor20;
       text-align: center;
     }
   }
@@ -218,12 +218,12 @@
     .infos{
       width:75%; margin: 0 auto .1rem;
       li{
-        font-size: .12rem; color: $color1;
+        font-size: .12rem; color: $gColor4;
         span{
-          width:.8rem; display: inline-block; text-align: left; color: $color4; text-align: right;
+          width:.8rem; display: inline-block; text-align: left; color: $gColor11; text-align: right;
         }
         p{
-          display: inline-block; color: $color5;
+          display: inline-block; color: $gColor15;
         }
       }
     }

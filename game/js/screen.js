@@ -26,7 +26,6 @@ var screen = new Vue({
     },
     created: function () {
         var _self = this
-
         console.log('页面开始:' + new Date())
         _self.init()
     },

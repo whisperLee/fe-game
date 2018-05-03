@@ -1,6 +1,6 @@
 @charset "utf-8";
 .list li{
-  background: $color6;
+  background: $gColor17;
   border-radius: 5px; width:50%;
   display: block;
   margin: .3rem auto;
@@ -8,7 +8,7 @@
   line-height: .44rem;
   font-size: .2rem;
   text-align: center;
-  color: $color;
+  color: $gColor2;
 }
 .comList{
   padding: .1rem;
@@ -57,7 +57,7 @@
   overflow: hidden;
   font-size: .16rem;
   line-height: 150%;
-  color: $color;
+  color: $gColor2;
   h3{
     font-size:.2rem;
     line-height: 150%;
@@ -77,10 +77,10 @@
         line-height: .3rem;
         border-radius: .15rem;
         text-align: center;
-        background:$color6;
+        background:$gColor17;
       }
       &.active{
-        a{border: 2px solid $color;}
+        a{border: 2px solid $gColor2;}
       }
     }
   }

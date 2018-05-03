@@ -129,7 +129,7 @@ body {
   -webkit-transform: translate(-50%, -50%);
   padding: 0.2rem;
   box-sizing: border-box;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.8);
   color: #f1f1f1;
   border-radius: 5px;
   font-size: 0.14rem;
@@ -188,64 +188,48 @@ body {
   right: 0;
   bottom: 0;
   width: .8rem;
-  height: .8rem;
+  height: 100%;
   -webkit-transform: translateY(0%);
-  background: url(../image/mine/c.png) center no-repeat;
-  background-size: contain; }
-  .userBtns a {
-    display: none;
-    width: 22.2%;
-    height: 34%;
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  -webkit-transition: all .5s ease-in-out;
+  z-index: 10; }
+  .userBtns .menu {
     position: absolute;
-    background-position: center;
-    background-repeat: no-repeat;
+    right: .12rem;
+    top: 50%;
+    margin-top: -.3rem;
+    width: .6rem;
+    height: .6rem;
+    background: url(../image/menu.png) center no-repeat;
     background-size: contain; }
+  .userBtns .btns {
+    position: absolute;
+    top: 50%;
+    left: .08rem;
+    right: .8rem;
+    -webkit-transform: translateY(-50%);
+    display: none; }
+    .userBtns .btns a {
+      display: block;
+      float: right;
+      width: 27%;
+      height: .3rem;
+      line-height: .3rem;
+      margin: .05rem 3%;
+      background: rgba(22, 160, 130, 0.8);
+      color: #f1f1f1;
+      text-align: center;
+      font-size: .14rem;
+      border-radius: 3px;
+      overflow: hidden; }
   .userBtns.active {
-    background-image: url(../image/mine/ca.png);
-    width: 1.5rem;
-    height: 1.5rem; }
-    .userBtns.active a {
+    background: rgba(0, 0, 0, 0.8);
+    width: 100%; }
+    .userBtns.active .menu {
+      background-image: url(../image/menu_on.png); }
+    .userBtns.active .btns {
       display: block; }
-      .userBtns.active a:nth-child(1) {
-        left: 20%;
-        top: 59%;
-        -webkit-transform: rotate(-72deg);
-        background-image: url(../image/mine/b1.png); }
-      .userBtns.active a:nth-child(2) {
-        left: 20%;
-        top: 31%;
-        -webkit-transform: rotate(-46deg);
-        background-image: url(../image/mine/b2.png); }
-      .userBtns.active a:nth-child(3) {
-        left: 37%;
-        top: 14%;
-        -webkit-transform: rotate(-43deg);
-        background-image: url(../image/mine/b3.png); }
-      .userBtns.active a:nth-child(4) {
-        left: 67%;
-        top: 14%;
-        -webkit-transform: rotate(-19deg);
-        background-image: url(../image/mine/b4.png); }
-      .userBtns.active a:before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain; }
-      .userBtns.active a.identity:before {
-        background-image: url(../image/mine/4.png); }
-      .userBtns.active a[event='SELF_DESTRUCT']:before {
-        background-image: url(../image/mine/3.png); }
-      .userBtns.active a[event='SELF_DESTRUCT']:before {
-        background-image: url(../image/mine/3.png); }
-      .userBtns.active a[event='GIVE_UP']:before {
-        background-image: url(../image/mine/2.png); }
-      .userBtns.active a[event='SPEAK_END']:before {
-        background-image: url(../image/mine/1.png); }
 
 .user-list {
   position: relative;
@@ -525,7 +509,8 @@ body {
   left: 0;
   bottom: 0;
   width: 100%;
-  height: auto; }
+  height: auto;
+  min-height: .8rem; }
   #game .mine .userWrap {
     width: 70%; }
     #game .mine .userWrap .user {
@@ -629,7 +614,7 @@ body {
           margin-top: .1rem; }
           .qiang .inner ul li .price .yumi {
             position: relative;
-            padding-left: .35rem;
+            padding-left: .22rem;
             font-size: .16rem;
             line-height: .3rem;
             display: inline-block; }
@@ -637,9 +622,9 @@ body {
               content: '';
               position: absolute;
               left: 0;
-              top: 0;
-              width: .3rem;
-              height: .3rem;
+              top: .01rem;
+              width: .2rem;
+              height: .28rem;
               background: url(../image/yumi2.png) no-repeat center;
               background-size: contain; }
         .qiang .inner ul li.unselect {
@@ -810,7 +795,7 @@ body {
     line-height: 0;
     padding: .1rem;
     box-sizing: border-box;
-    border: 3px solid #fff;
+    border: 3px solid #ffffff;
     opacity: 0.8; }
     .layer.layerEventRobber .content .voteList li img {
       width: 100%;
@@ -1119,7 +1104,7 @@ body {
       position: relative;
       width: 76%;
       margin: .1rem auto 0;
-      background: #fff;
+      background: #ffffff;
       border-radius: 5px;
       box-sizing: border-box;
       border: 1px solid #a3cfff; }
@@ -1131,7 +1116,7 @@ body {
         text-align: center;
         background: url("../image/t1.png") no-repeat center top;
         background-size: contain;
-        color: #fff;
+        color: #ffffff;
         height: 0;
         padding-top: 15%;
         margin-top: -9.7%; }
@@ -1323,14 +1308,14 @@ body {
       background-size: contain; }
 
 body .main {
-  background: #fff; }
+  background: #ffffff; }
   body .main .dyCode {
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background: #fff;
+    background: #ffffff;
     display: none; }
     body .main .dyCode.on {
       display: block; }

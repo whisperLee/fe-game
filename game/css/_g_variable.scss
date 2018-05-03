@@ -1,16 +1,38 @@
 @charset "utf-8";
 $fontStack:Microsoft YaHei,Helvetica,STHeiti,Droid Sans Fallback;
-$color: #f1f1f1;
-$color0:#fff;
-$color1: #000;
-$color2: #666;
-$color3:#e74c3c; // 橙
-$color8:#d34132; //深橙
-$color5:#34495e; // 深蓝
-$color6:rgba(36,74,111,0.8); // 深蓝.8
-$color4:#16a085; // 蓝
-$color7:#1abc9c; // 蓝+
+//$color: #f1f1f1;
+//$color0:#fff;
+//$color1: #000;
+//$color2: #666;
+//$color3:#e74c3c; // 橙
+//$color8:#d34132; //深橙
+//$color5:#34495e; // 深蓝
+//$color6:rgba(36,74,111,0.8); // 深蓝.8
+//$color7:#1abc9c; // 蓝+$color7:#1abc9c; // 蓝+
+//$color4:#16a085; // 蓝
+//
+//$color12:rgba(0,0,0,0.8);
 
+$gColor1:#ffffff;// 主文字，背景色
+$gColor2:#f1f1f1; // 次文字色
+$gColor3:#666; // 
+$gColor4:#000; //
+
+$gColor7:rgba(0,0,0,0.3); // 提示消息背景色
+$gColor8:rgba(0,0,0,0.6); // 提示消息背景色
+$gColor9:rgba(0,0,0,0.8); // 提示消息背景色
+
+$gColor10:#1abc9c; //主颜色1，弹层标题，边框颜色
+$gColor11:#16a085; //主颜色1+,按钮颜色
+$gColor12:rgba(22,160,130,0.8); // 主颜色1+ 半透明
+
+$gColor15:#34495e; //主颜色2
+$gColor16:#244a6f; // 主颜色2+
+$gColor17:rgba(36,74,111,0.8); // 主颜色2+ 半透明
+
+$gColor20:#e74c3c; //强调色
+$gColor21:#d34132; //强调色+
+$gColor22:rgba(211,65,50,0.8); // 主颜色1+ 半透明
 ._page{
   position:absolute;
   width:100%;

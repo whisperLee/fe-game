@@ -3,7 +3,7 @@
 @import "_g_variable";
 body {
   font-family: $fontStack;
-  color: $color;
+  color: $gColor2;
   .main{
     @extend ._page;
     overflow-y: auto;
@@ -24,7 +24,7 @@ body {
       font-size: .2rem;
       line-height: .24rem;
       padding: .2rem 0;
-      color: $color;
+      color: $gColor2;
       text-align: center;
     }
   }
@@ -43,8 +43,8 @@ body {
   -webkit-transform:translate(-50%,-50%);
   padding:0.2rem;
   box-sizing: border-box;
-  background-color:rgba(0,0,0,.75);
-  color:$color;
+  background-color:$gColor9;
+  color:$gColor2;
   border-radius:5px;
   font-size:0.14rem;
   text-align:center;

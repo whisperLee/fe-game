@@ -33,7 +33,8 @@ var game = new Vue({
         accountInfo:{},//游戏结束
         personalAccountInfo:{},//个人结算临时变量
         myAccountInfo:{},//个人结算最终变量
-        isDead:0//是否死亡
+        isDead:0,//是否死亡
+        gameBtn:{}
     },
     created: function () {
         var _self = this
@@ -46,6 +47,7 @@ var game = new Vue({
             _self.boxId = global.urlHash().boxId || 0
             _self.gameNumber = global.urlHash().gameNumber || 0
             $(function(){
+                _self.gameBtn = interfaceValue.gameBtn
                 _self.getSeat()
                 _self.active()
             })
@@ -570,7 +572,7 @@ var game = new Vue({
             var className = ''
             for(var i=0;i<d.length;i++){
                 className = _self.personalInfo.consumptionScore < d[i].cost?'no':''
-                h+='<li identityid="'+d[i].identityId+'" name="'+d[i].name+'" class="'+className+'"><div class="shenfen shenfen'+d[i].identityId+'"></div><div class="price">'+d[i].cost+'</div></li>'
+                h+='<li identityid="'+d[i].identityId+'" name="'+d[i].name+'" class="'+className+'"><div class="shenfen shenfen'+d[i].identityId+'"></div><div class="price"><span class="yumi">'+d[i].cost+'</span></div></li>'
             }
             $('.qiang .shenfens').html(h)
 

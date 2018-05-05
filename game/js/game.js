@@ -95,7 +95,7 @@ var game = new Vue({
                     console.log(d)
                     if (d.status.code === 'OK') {
                         if(d.data.userId==0){
-                            if(codeType=="test"){ // 测试的时候如果没有user信息，直接入座
+                            if(codeType=="test" && _self.userToken && _self.userToken!=''){ // 测试的时候如果没有user信息，直接入座
                                 console.log('直接进行入座')
                                 _self.sit()
                             }

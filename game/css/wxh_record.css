@@ -289,14 +289,14 @@
       float: left;
       padding-top: 10%; }
 
-._page {
+._page, body .main {
   position: absolute;
   width: 100%;
   height: 100%;
   left: 0;
   top: 0; }
 
-._verCenter {
+._verCenter, body .main .page .inner {
   position: absolute;
   width: 100%;
   left: 0;
@@ -726,16 +726,6 @@ body .main {
   padding-top: 0; }
   body .main .header {
     margin-bottom: 0; }
-  body .main .userCenter {
-    width: 80%;
-    margin: 0 auto;
-    padding-bottom: .12rem; }
-    body .main .userCenter .top {
-      width: 55%;
-      margin: 0 auto;
-      padding: .1rem 0; }
-      body .main .userCenter .top .nickname {
-        text-align: center; }
   body .main .list li {
     width: 100%;
     background: #ffffff; }
@@ -749,18 +739,142 @@ body .main {
       padding-left: .1rem;
       background: url("../wxImage/list.png") no-repeat right center;
       background-size: .4rem .4rem; }
-  body .main .btn.logout {
-    position: fixed;
-    bottom: .75rem;
-    left: 5%;
-    height: .4rem;
-    width: 90%;
-    line-height: .4rem;
-    color: #ffffff;
-    background: #ee6262;
-    text-align: center;
-    display: block;
-    border-radius: 5px; }
+
+._page, body .main {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0; }
+
+._verCenter, body .main .page .inner {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%); }
+
+body, div, ol, ul, h1, h2, h3, h4, h5, h6, p, th, td, dl, dd, form, iframe, input, textarea, select, label, article, aside, footer, header, menu, nav, section, time, audio, video {
+  margin: 0;
+  padding: 0; }
+
+article, aside, footer, header, nav, section, audio, canvas, video {
+  display: block; }
+
+html {
+  font-size: 80px; }
+
+@media screen and (min-width: 320px) and (orientation: portrait) {
+  html {
+    font-size: 80px; } }
+@media screen and (min-width: 375px) and (orientation: portrait) {
+  html {
+    font-size: 100px; } }
+@media screen and (min-width: 414px) and (orientation: portrait) {
+  html {
+    font-size: 110px; } }
+body {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-user-select: none;
+  overflow: auto;
+  font-size: .16rem;
+  line-height: 150%;
+  font-family: Microsoft YaHei, Helvetica, STHeiti, Droid Sans Fallback; }
+
+textarea {
+  resize: none; }
+
+iframe, img {
+  border: 0; }
+
+ul, ol, ul li {
+  list-style: none; }
+
+input, select, textarea {
+  outline: 0;
+  -webkit-user-modify: read-write-plaintext-only; }
+
+input {
+  -webkit-appearance: none;
+  background: none;
+  border: none; }
+
+a {
+  text-decoration: none; }
+
+.cf:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.cf {
+  *zoom: 1; }
+
+h1, h2, h3 {
+  font-weight: 100; }
+
+i {
+  font-style: normal; }
+
+video {
+  font-size: 0; }
+
+[v-cloak] {
+  display: none; }
+
+._page, body .main {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0; }
+
+._verCenter, body .main .page .inner {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%); }
+
+body {
+  font-family: Microsoft YaHei, Helvetica, STHeiti, Droid Sans Fallback;
+  color: #f1f5fa; }
+  body .main {
+    overflow-y: auto; }
+    body .main .page {
+      position: relative;
+      width: 100%;
+      height: 100%; }
+      body .main .page .inner .total {
+        font-size: .2rem;
+        padding-left: .15rem; }
+    body .main h2 {
+      font-size: .2rem;
+      line-height: .24rem;
+      padding: .2rem 0;
+      color: #f1f5fa;
+      text-align: center; }
+
+.hide {
+  display: none; }
+
+.simple_tips {
+  position: fixed;
+  z-index: 999;
+  left: 50%;
+  top: 50%;
+  width: 2.6rem;
+  line-height: 0.2rem;
+  -webkit-transform: translate(-50%, -50%);
+  padding: 0.2rem;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #f1f5fa;
+  border-radius: 5px;
+  font-size: 0.14rem;
+  text-align: center; }
 
 .gameEnd {
   position: absolute;
@@ -966,7 +1080,7 @@ body .main {
           display: block;
           width: 100%;
           text-align: center;
-          color: #f1f1f1; }
+          color: #f1f5fa; }
         .layer.userAccount .inner .levelChange li div.right .count {
           position: absolute;
           right: 0;
@@ -978,19 +1092,19 @@ body .main {
         .layer.userAccount .inner .levelChange li div.right .subcount {
           color: #e74c3c; }
     .layer.userAccount .inner .levelChange .level1 .star {
-      background: url("../image/level/start1.png") no-repeat center;
+      background: url("../image/newLevel/start1.png") no-repeat center;
       background-size: contain; }
     .layer.userAccount .inner .levelChange .level2 .star {
-      background: url("../image/level/start2.png") no-repeat center;
+      background: url("../image/newLevel/start2.png") no-repeat center;
       background-size: contain; }
     .layer.userAccount .inner .levelChange .level3 .star {
-      background: url("../image/level/start3.png") no-repeat center;
+      background: url("../image/newLevel/start3.png") no-repeat center;
       background-size: contain; }
     .layer.userAccount .inner .levelChange .level4 .star {
-      background: url("../image/level/start4.png") no-repeat center;
+      background: url("../image/newLevel/start4.png") no-repeat center;
       background-size: contain; }
     .layer.userAccount .inner .levelChange .level5 .star {
-      background: url("../image/level/start5.png") no-repeat center;
+      background: url("../image/newLevel/start5.png") no-repeat center;
       background-size: contain; }
 
 .user-list {

@@ -41,8 +41,18 @@ service nginx reload
   d.gameAccountInfo.winUsers[i].identityStatus =  d.gameAccountInfo.winUsers[i].gameIdentityStatusEnum  game.js  813行
 
 
+  ====== 启动本地host
+  cd C:\Program Files\nginx-1.14.0
+  start nginx
+  nginx -s reload
+
+  http://nll.com//game/html/screen.html
+
   大屏：恢复，暂停，重新开始晚上流程；
-  法官：
+  法官： 其他功能
+
+  游戏端顶部样式显示
+
 
 
 

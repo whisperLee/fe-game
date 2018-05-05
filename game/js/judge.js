@@ -14,8 +14,29 @@ var judge = new Vue({
         judgeInit:function(){
             var _self = this
             _self.boxId = global.urlHash().boxId || 0
-            _self.enter()
+            _self.check()
        },
+        check:function(){
+            var _self = this
+            var d = {
+                url: 'game/judge/check',
+                data: {
+                    "id": _self.boxId
+                },
+                success: function (d) {
+                    console.log(d)
+                    if(d.status.code == "OK" && d.data){
+                        //global.setCookie("yy_z_q",d.data)
+                        _self.enter()
+                    }else{
+                    }
+                },
+                error:function(){
+                    $(".mess").html(d.status.msg)
+                }
+            }
+            global.ajax(d)
+        },
         enter:function(){
             var _self = this
             console.log('websocket开始:' + new Date())
@@ -28,6 +49,12 @@ var judge = new Vue({
         },
         receiveJudgeEvent:function(eventType){
             websocket.receiveJudgeEvent({'eventType': eventType})
+        },
+        kick:function(eventType){
+            var data = {
+                'targetNumberList': [$("input[name='number']").val()],
+                'eventType': eventType}
+            websocket.receiveJudgeEvent(data)
         },
         kill:function(){
             var _self = this

@@ -99,7 +99,7 @@ video {
 
 body {
   font-family: Microsoft YaHei, Helvetica, STHeiti, Droid Sans Fallback;
-  color: #f1f1f1; }
+  color: #f1f5fa; }
   body .main {
     overflow-y: auto; }
     body .main .page {
@@ -113,7 +113,7 @@ body {
       font-size: .2rem;
       line-height: .24rem;
       padding: .2rem 0;
-      color: #f1f1f1;
+      color: #f1f5fa;
       text-align: center; }
 
 .hide {
@@ -130,7 +130,7 @@ body {
   padding: 0.2rem;
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.8);
-  color: #f1f1f1;
+  color: #f1f5fa;
   border-radius: 5px;
   font-size: 0.14rem;
   text-align: center; }
@@ -145,7 +145,7 @@ body {
   background: rgba(36, 74, 111, 0.8);
   text-align: center;
   font-size: .16rem;
-  color: #f1f1f1; }
+  color: #f1f5fa; }
   .btn.btn2 {
     background: #16a085; }
   .btn.btn3 {
@@ -218,7 +218,7 @@ body {
       line-height: .3rem;
       margin: .05rem 3%;
       background: rgba(22, 160, 130, 0.8);
-      color: #f1f1f1;
+      color: #f1f5fa;
       text-align: center;
       font-size: .14rem;
       border-radius: 3px;
@@ -676,7 +676,7 @@ body {
     border-radius: 10px; }
     .layer .inner .title {
       background: #1abc9c;
-      color: #f1f1f1;
+      color: #f1f5fa;
       text-align: center; }
     .layer .inner .info {
       font-size: .16rem;
@@ -818,7 +818,7 @@ body {
     height: .24rem;
     line-height: .24rem;
     border-radius: 50%;
-    background: #f1f1f1;
+    background: #f1f5fa;
     display: block;
     text-align: center;
     border: 1px solid #e74c3c; }
@@ -1076,6 +1076,142 @@ body {
   100% {
     opacity: 1;
     transform: translate(0, 0) scale(1) rotate(-23deg); } }
+._page, body .main {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0; }
+
+._verCenter, body .main .page .inner {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%); }
+
+body, div, ol, ul, h1, h2, h3, h4, h5, h6, p, th, td, dl, dd, form, iframe, input, textarea, select, label, article, aside, footer, header, menu, nav, section, time, audio, video {
+  margin: 0;
+  padding: 0; }
+
+article, aside, footer, header, nav, section, audio, canvas, video {
+  display: block; }
+
+html {
+  font-size: 80px; }
+
+@media screen and (min-width: 320px) and (orientation: portrait) {
+  html {
+    font-size: 80px; } }
+@media screen and (min-width: 375px) and (orientation: portrait) {
+  html {
+    font-size: 100px; } }
+@media screen and (min-width: 414px) and (orientation: portrait) {
+  html {
+    font-size: 110px; } }
+body {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-user-select: none;
+  overflow: auto;
+  font-size: .16rem;
+  line-height: 150%;
+  font-family: Microsoft YaHei, Helvetica, STHeiti, Droid Sans Fallback; }
+
+textarea {
+  resize: none; }
+
+iframe, img {
+  border: 0; }
+
+ul, ol, ul li {
+  list-style: none; }
+
+input, select, textarea {
+  outline: 0;
+  -webkit-user-modify: read-write-plaintext-only; }
+
+input {
+  -webkit-appearance: none;
+  background: none;
+  border: none; }
+
+a {
+  text-decoration: none; }
+
+.cf:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.cf {
+  *zoom: 1; }
+
+h1, h2, h3 {
+  font-weight: 100; }
+
+i {
+  font-style: normal; }
+
+video {
+  font-size: 0; }
+
+[v-cloak] {
+  display: none; }
+
+._page, body .main {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0; }
+
+._verCenter, body .main .page .inner {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%); }
+
+body {
+  font-family: Microsoft YaHei, Helvetica, STHeiti, Droid Sans Fallback;
+  color: #f1f5fa; }
+  body .main {
+    overflow-y: auto; }
+    body .main .page {
+      position: relative;
+      width: 100%;
+      height: 100%; }
+      body .main .page .inner .total {
+        font-size: .2rem;
+        padding-left: .15rem; }
+    body .main h2 {
+      font-size: .2rem;
+      line-height: .24rem;
+      padding: .2rem 0;
+      color: #f1f5fa;
+      text-align: center; }
+
+.hide {
+  display: none; }
+
+.simple_tips {
+  position: fixed;
+  z-index: 999;
+  left: 50%;
+  top: 50%;
+  width: 2.6rem;
+  line-height: 0.2rem;
+  -webkit-transform: translate(-50%, -50%);
+  padding: 0.2rem;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #f1f5fa;
+  border-radius: 5px;
+  font-size: 0.14rem;
+  text-align: center; }
+
 .gameEnd {
   position: absolute;
   left: 0;
@@ -1280,7 +1416,7 @@ body {
           display: block;
           width: 100%;
           text-align: center;
-          color: #f1f1f1; }
+          color: #f1f5fa; }
         .layer.userAccount .inner .levelChange li div.right .count {
           position: absolute;
           right: 0;
@@ -1292,19 +1428,19 @@ body {
         .layer.userAccount .inner .levelChange li div.right .subcount {
           color: #e74c3c; }
     .layer.userAccount .inner .levelChange .level1 .star {
-      background: url("../image/level/start1.png") no-repeat center;
+      background: url("../image/newLevel/start1.png") no-repeat center;
       background-size: contain; }
     .layer.userAccount .inner .levelChange .level2 .star {
-      background: url("../image/level/start2.png") no-repeat center;
+      background: url("../image/newLevel/start2.png") no-repeat center;
       background-size: contain; }
     .layer.userAccount .inner .levelChange .level3 .star {
-      background: url("../image/level/start3.png") no-repeat center;
+      background: url("../image/newLevel/start3.png") no-repeat center;
       background-size: contain; }
     .layer.userAccount .inner .levelChange .level4 .star {
-      background: url("../image/level/start4.png") no-repeat center;
+      background: url("../image/newLevel/start4.png") no-repeat center;
       background-size: contain; }
     .layer.userAccount .inner .levelChange .level5 .star {
-      background: url("../image/level/start5.png") no-repeat center;
+      background: url("../image/newLevel/start5.png") no-repeat center;
       background-size: contain; }
 
 body .main {
@@ -1362,20 +1498,74 @@ body .main {
     background-size: cover;
     height: 100%;
     display: none; }
+    body .main .game .top {
+      position: relative;
+      height: .8rem; }
+      body .main .game .top .queueTitle {
+        position: absolute;
+        left: 5%;
+        top: 50%;
+        width: 90%;
+        -webkit-transform: translateY(-50%);
+        line-height: .24rem;
+        font-size: .2rem;
+        text-align: center; }
+      body .main .game .top .boxInfo {
+        height: .3rem;
+        line-height: .3rem;
+        font-size: .2rem;
+        padding: 0 .1rem;
+        display: none; }
+        body .main .game .top .boxInfo .boxName {
+          float: left; }
+        body .main .game .top .boxInfo .comName {
+          float: right; }
+      body .main .game .top .gameTime {
+        position: absolute;
+        left: 10%;
+        top: 0;
+        bottom: 0;
+        width: 80%; }
+        body .main .game .top .gameTime p {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          font-size: .2rem;
+          line-height: .2rem;
+          text-align: center; }
+          body .main .game .top .gameTime p .time {
+            padding: 0 .1rem;
+            font-weight: bold;
+            font-size: .3rem;
+            color: #e74c3c; }
     body .main .game[nightFlag="0"] {
       background-image: url(../image/d.jpg);
       background-color: #68d6f6;
       background-size: 100% auto; }
+      body .main .game[nightFlag="0"] .top {
+        background: url("../image/d_tbg.jpg") no-repeat center bottom;
+        background-size: cover; }
+        body .main .game[nightFlag="0"] .top .gameTime {
+          background: url("../image/d_t.png") no-repeat center bottom;
+          background-size: contain; }
     body .main .game[nightFlag="1"] {
       background-image: url(../image/n.jpg);
       background-color: #565fd4;
       background-size: 100% auto; }
+      body .main .game[nightFlag="1"] .top {
+        background: url("../image/n_tbg.jpg") no-repeat center bottom;
+        background-size: cover; }
+        body .main .game[nightFlag="1"] .top .gameTime {
+          background: url("../image/n_t.png") no-repeat center bottom;
+          background-size: contain; }
 body .messageCenter {
   position: absolute;
   left: 20%;
   top: 0;
   width: 60%;
-  height: auto; }
+  height: auto;
+  margin-top: .8rem; }
   body .messageCenter .top {
     position: absolute;
     left: 0;
@@ -1386,7 +1576,7 @@ body .messageCenter {
     line-height: .3rem;
     border-radius: 5px;
     display: inline-block;
-    color: #f1f1f1; }
+    color: #f1f5fa; }
     body .messageCenter .top span {
       padding: 0 .03rem;
       color: #e74c3c; }
@@ -1403,7 +1593,7 @@ body .messageCenter {
     body .messageCenter .dialog .name {
       color: #e74c3c; }
     body .messageCenter .dialog .message {
-      color: #f1f1f1; }
+      color: #f1f5fa; }
   body .messageCenter .voteResult {
     width: 100%;
     display: none; }

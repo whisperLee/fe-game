@@ -1,0 +1,20 @@
+@charset "utf-8";
+@import "global";
+@import "_btns";
+body{
+  .main{
+    background: $gColor2;
+    .login{
+      margin: .2rem;
+      .input{
+        background: $gColor1; height: .4rem; padding-left: .1rem; margin: .2rem 0; border-radius: 5px; border: 1px solid $gColor10;
+        input{
+          width:100%; height:100%; line-height: .4rem; font-size: .16rem; color: $gColor4;
+        }
+      }
+      .btn{
+        margin: .3rem auto; background: $gColor10;
+      }
+    }
+  }
+}

@@ -6,83 +6,11 @@
 var host = 'http://liyn.me:9999/web-api/v1/lair/'
 //var host = 'http://192.168.3.28:8888/web-api/v1/'
 document.write("<script language=javascript src='../../js/init.js'></script>");
-var eglobal = {
+var eglobal = $.extend({},global,{
     init:function(){
         var _this = this
         _this.navInit()
         _this.active()
-    },
-    urlHash: function () {
-        var name, value
-        var str = location.href // 取得整个地址栏
-        var num = str.indexOf('?')
-        var urlHash = {}
-        str = str.substr(num + 1)  // 取得所有参数stringvar.substr(start [, length ]
-
-        var arr = str.split('&') // 各个参数放到数组里
-        for (var i = 0; i < arr.length; i++) {
-            num = arr[i].indexOf('=')
-            if (num > 0) {
-                name = arr[i].substring(0, num)
-                value = arr[i].substr(num + 1)
-                urlHash[name] = value
-            }
-        }
-        return urlHash
-    },
-    ajax: function (data) {
-        var d = $.extend({}, {
-            url: '',
-            data: {},
-            contentType: 'application/json',
-            timeout: 30000,
-            type: 'POST',
-            dataType: 'json',
-            success: function () {}
-        }, data)
-        d.url = host + d.url
-        d.data = JSON.stringify(d.data)
-        $.ajax(d)
-    },
-    pop_tips: function (msg, callback,time) {
-        console.log('pop')
-        clearTimeout(this.tipsTime)
-        if ($('.simple_tips').length > 0) {
-            $('.simple_tips .tips_inner').html(msg)
-        } else {
-            $('body').append('<div class="simple_tips"><div class="tips_inner">' + msg + '</div></div>')
-        }
-        $(".simple_tips").off().on("click",function(){
-            $(this).remove()
-        })
-        callback = callback || function () {}
-
-        if(!time){
-            this.tipsTime = setTimeout(function () {
-                $('.simple_tips').remove()
-                callback()
-            }, 3000)
-        }
-
-    },
-    getStorage:function(Key){
-        var storage = window.localStorage.getItem(Key) || "{}";
-        return JSON.parse(storage);
-    },
-    //设置本地存储数据
-    setStorage:function(key,value){
-        window.localStorage.setItem( key,JSON.stringify(value));
-    },
-    getMenuType:function(){
-        var ua = navigator.userAgent;
-        var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),
-            isIphone =!ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),
-            isAndroid = ua.match(/(Android)\s+([\d.]+)/)
-        if(isIphone || isAndroid){
-            return "MOBILE"
-        }else{
-            return "pc"
-        }
     },
     getCurrentEmployee:function(){
         var _this = this
@@ -116,9 +44,11 @@ var eglobal = {
         if(menuType == 'MOBILE'){
             $(".main").addClass('mobile')
         }
-
-        if(erp["menu"][menuType]){
-            _this.showNav(erp["menu"])
+        if(!erp["menu"]){
+            erp["menu"] = {}
+        }
+        if(erp["menu"] && erp["menu"][menuType]){
+            _this.showNav(erp["menu"][menuType])
         }else{
 
             var d = {
@@ -220,11 +150,11 @@ var eglobal = {
         // })
         /*复选框*/
         $(".js-check").off().on("click",function(){
-                if($(this).hasClass("on")){
-                    $(this).removeClass("on")
-                }else{
-                    $(this).addClass("on")
-                }
+            if($(this).hasClass("on")){
+                $(this).removeClass("on")
+            }else{
+                $(this).addClass("on")
+            }
         })
         $(".radioSelect").each(function(){
             var f = $(this)
@@ -263,12 +193,9 @@ var eglobal = {
             })
         })
 
-    },
-    router: function (path) {
-        window.location.href = path
-    },
+    }
+})
 
-}
 
 $(function(){
     eglobal.init()

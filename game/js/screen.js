@@ -22,7 +22,8 @@ var screen = new Vue({
         accountInfo:{},
         voiceUrl:'',//音频url
         bgmUrl:'',//背景音频url
-        countdownSec:0// 倒计时
+        countdownSec:0,// 倒计时
+        recoverNumber:1
     },
     created: function () {
         var _self = this
@@ -59,15 +60,22 @@ var screen = new Vue({
                 success: function (d) {
                     console.log(d)
                     if (d.status.code === 'OK') {
-                        _self.boxId = d
+                        _self.boxId = d.data
                         _self.connectWebScoket()
                     } else {
-                        global.pop_tips(d.status.msg)
+                        //global.pop_tips(d.status.msg)
                         //global.router("screen_login.html")
                     }
                 }
             }
             global.ajax(d)
+
+            // if(codeType=='test'){
+            //     _self.boxId = global.urlHash().boxId || 3
+            //     _self.connectWebScoket()
+            // }else{
+            //     global.ajax(d)
+            // }
         },
         logout:function(){
             var d = {
@@ -95,13 +103,34 @@ var screen = new Vue({
             console.log('得到返回数据:' + new Date())
             console.log(data.body)
             var d = JSON.parse(data.body)
-
+            var bgmUrl = document.getElementById('bgMusic');
             if(d.msgType == 'EVENT_NEW'){
                 location.reload() // 游戏开始，重新刷新页面
+            }else if(d.msgType == 'EVENT_PAUSE'){
+                if(!bgmUrl.paused){
+                    bgmUrl.pause()
+                }
+                clearInterval(timer)
+                d.countdownSec = 0;
+                $(".countDown").html("游戏暂停")
+
+            }else if(d.msgType == 'EVENT_CONTINUE'){
+                if(bgmUrl.paused){
+                    bgmUrl.play();
+                }
+
+            }else if(d.msgType == 'QUEUE'){
+                _self.$set(_self.screenCenterMessage,'message','入座中，请等待请他玩家入座')
             }
+
 
             if( d.userInfoList && d.userInfoList.length>0) { // 玩家信息
                 $('.welcome').hide()
+                for(var i=0;i<d.userInfoList.length; i++){
+                    var num = d.userInfoList[i].number
+                    _self.users[num-1] =  $.extend({}, _self.users[num-1], d.userInfoList[i])
+                    _self.$set(_self.users,num-1,_self.users[num-1])
+                }
             }
             if(d.msgType == 'QUEUE' || d.msgType == 'CUR_GAME_STATUS'){
                     _self.setUser(d)
@@ -117,11 +146,6 @@ var screen = new Vue({
                         _self.$set(_self.users,i,_self.users[i])
                     }
                 }
-            }
-            for(var i=0;i<d.userInfoList.length; i++){
-                var num = d.userInfoList[i].number
-                _self.users[num-1] =  $.extend({}, _self.users[num-1], d.userInfoList[i])
-                _self.$set(_self.users,num-1,_self.users[num-1])
             }
 
             if(d.boxInfo){ // 包房信息
@@ -140,6 +164,9 @@ var screen = new Vue({
                 if(global.isExit(d.gameInfo.gameTime)){
                     //_self.screenCenterMessage.gameTime = d.gameInfo.gameTime
                     _self.$set(_self.screenCenterMessage,'gameTime',d.gameInfo.gameTime)
+                }
+                if(global.isExit(d.gameInfo.gameStatusStr)){
+                    _self.$set(_self.screenCenterMessage,'message',d.gameInfo.gameStatusStr)
                 }
             }
 
@@ -173,7 +200,7 @@ var screen = new Vue({
                 //     false);
                 // console.log(_self.voiceUrl)
             }
-
+            // 发送倒计时事件
             _self.sendEventForScreen(d)
 
             if(d.voteInfo && d.voteInfo.voteDetailList.length>0){ // 投票结果
@@ -198,25 +225,24 @@ var screen = new Vue({
             var _self = this
             if(a.countdownSec && a.countdownSec>0) {
                 var data;
-                if(!_self.recoverType) {
-                    _self.recoverType = a.msgType;
-                    _self.thisType = a.msgType;
-                }
-                else{
-                    if(a.msgType!='EVENT_PAUSE' && a.msgType!='EVENT_CONTINUE') {
+                if(a.msgType!='EVENT_PAUSE' && a.msgType!='EVENT_CONTINUE') {
+                    if(!_self.thisType) {
+                        _self.recoverType = a.msgType;
+                    }else{
                         _self.recoverType = _self.thisType;
-                        if(a.msgType=='EVENT_RESULT'){
-                            _self.thisType = a.eventResultInfo.eventType;
-                        }else{
-                            _self.thisType = a.msgType;
-                        }
                     }
-
+                    if(a.msgType=='EVENT_RESULT'){ // 如果是结果事件，则把具体执行的是什么事件，赋值给当前事件
+                        _self.thisType = a.eventResultInfo.eventType;
+                        _self.recoverNumber = 0; // 对于的结果事件，需要recover一下
+                    }else{
+                        _self.thisType = a.msgType;
+                        _self.recoverNumber = 1;
+                    }
                 }
                 if(a.msgType=='EVENT_CONTINUE') {
                     data = {
                         'eventType': _self.recoverType,
-                        'sourceNumber':1
+                        'sourceNumber':_self.recoverNumber
                     }
                 }
                 else{
@@ -224,8 +250,10 @@ var screen = new Vue({
                         'eventType': _self.thisType
                     }
                 }
+                console.log(data)
                 _self.countDown(a.countdownSec,function(){
                     setTimeout(function(){
+                        _self.nowDate = {}
                         websocket.receiveScreenEvent(data)
                     },2000)
                 },a)

@@ -16,10 +16,10 @@
 <div class="main" id="screen" :class="screenCenterMessage.nightFlag==1? 'night' : screenCenterMessage.nightFlag==0?'day':'' " v-cloak>
   <div class="gameInfo">
     <div class="box" style="display: none" v-show="boxInfo.boxName">{{boxInfo.boxName}}</div>
-    <div class="combinats"  style="display: none" v-show="screeningInfo.combinationConfigStr" >{{screeningInfo.combinationConfigStr}}</div>
+    <div class="combinats"  style="display: none" v-show="screeningInfo.combinationConfigStr" ><p>{{screeningInfo.combinationConfigStr}}</p></div>
   </div>
   <div class="table" style="display: none" v-show="users.length>0">
-    <div class="combinationName" style="display: none" v-show="screeningInfo.combinationName" >{{screeningInfo.combinationName}}</div>
+    <div class="combinationName" style="display: none" v-show="screeningInfo.combinationName" >{{screeningInfo.playerCount}}人局<p class="count">{{screeningInfo.combinationName}}</p></div>
     <ul class="user-list">
         <li v-for="(user,idx) in users" :userid="user.userId">
             <user v-bind:user="user"></user>
@@ -93,8 +93,8 @@
 <script type="application/javascript" src="../../js/velocity.min.js"></script>
 <script type="application/javascript" src="../../js/sockjs.min.js"></script>
 <script type="application/javascript" src="../../js/stomp.js"></script>
-
-<script type="application/javascript" src="../js/global.js?v1"></script>
+<script type="application/javascript" src="../../js/global.js"></script>
+<script type="application/javascript" src="../js/gglobal.js?v1"></script>
 <script type="application/javascript" src="../js/websocket.js"></script>
 <script type="application/javascript" src="../js/component.js?v1"></script>
 <script type="application/javascript" src="../js/animate.js?v1"></script>

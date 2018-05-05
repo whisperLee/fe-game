@@ -45,7 +45,7 @@ var component = {
             '</div>'+
         '</div>'
     },
-    userend : {
+    useraccount : {
         props: ['user'],
         template:
         '<div class="user userBack" v-bind:dead="user.deadFlag">'+

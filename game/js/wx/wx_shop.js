@@ -194,6 +194,13 @@ new Vue({
         addlocalStorCart:function(){
             var _self = this
             var carts = wglobal.getStorage('carts')
+            if(!wglobal.isExit(carts[_self.shopId])){
+                carts[_self.shopId] = {}
+                carts[_self.shopId][_self.type] ={}
+            }
+            if(!wglobal.isExit(carts[_self.shopId][_self.type])){
+                carts[_self.shopId][_self.type] ={}
+            }
             carts[_self.shopId][_self.type] =  _self.cartList
             wglobal.setStorage('carts',carts)
         },

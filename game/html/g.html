@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+        <meta name="format-detection" content="telephone=no">
+        <link href="../css/g_game.css" rel="stylesheet" type="text/css" media="screen" />
+        <title>游戏测试</title>
+    </head>
+<body>
+<div class="main" id="game"  v-cloak>
+  <!--入座二维码 begin-->
+  <div class="dyCode">
+    <div class="inner">
+      <h2></h2>
+      <div id="code">
+        <canvas id="canvas"></canvas>
+      </div>
+      <p>扫描二维码入座游戏</p>
+      <h3></h3>
+    </div>
+  </div>
+  <!--入座二维码 end-->
+  <div class="game" :nightFlag="screenCenterMessage.nightFlag">
+    <h2 v-if="queueFlow <= 2" class="readyTitle">{{readyMess}}</h2>
+    <ul class="user-list">
+      <li v-for="(user,idx) in users" v-on:click="userClick(user,$event)" :userid="user.userId">
+        <user v-bind:user="user"></user>
+      </li>
+    </ul>
+    <div class="queueBtns" style="display: none" v-show="queueFlow >= 1 && queueFlow < 3">
+      <a class="btn"  v-on:click="quitSeat">退出座位</a>
+      <a class="btn" style="display: none" v-show="leaderFlag"  v-on:click="modifyGameSet">修改配置</a>
+      <a class="btn js-start" style="display: none" v-show="queueFlow >= 2 && leaderFlag" v-on:click="startGame">开始游戏</a>
+    </div>
+    <div class="messageCenter">
+      <div class="top" style="display: none" v-show="screenCenterMessage.gameTime>0">第<span>{{ screenCenterMessage.gameTime }}</span>天<span  v-show="screenCenterMessage.nightFlag">黑天</span><span  v-show="!screenCenterMessage.nightFlag">白天</span></div>
+      <div class="dialog status" style="display: none" v-show="screenCenterMessage.gameStatusStr && screenCenterMessage.gameStatusStr!=``">
+        <div class="name">系统：</div>
+        <div class="message">{{ screenCenterMessage.gameStatusStr }}</div>
+      </div>
+      <div class="dialog result" style="display: none" v-show="screenCenterMessage.result && screenCenterMessage.result!=``">
+        <div class="name">法官：</div>
+        <div class="message">{{ screenCenterMessage.result }}</div>
+      </div>
+      <div class="btn btn2 voteResult" v-on:click="showVoteResult">查看上一次投票结果</div>
+    </div>
+  </div>
+  <div class="mine" style="display: none" v-show="personalInfo.identityId">
+    <usermine class="userBack" v-bind:user="personalInfo"></usermine>
+    <div class="userBtns" v-on:click="userBtntoggle">
+      <a class="menu"></a>
+      <div class="btns">
+        <a v-for="(btn,idx) in leaderButton" class="leaderBtn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'leader')">{{gameBtn[btn]}}</a>
+        <a v-for="(btn,idx) in personalButton" class="personBtn" v-bind:event="btn" v-on:click="eventForPersonalButton($event,idx,'person')" >{{gameBtn[btn]}}</a>
+        <a class="identity" v-on:click="showSF">身份</a>
+      </div>
+    </div>
+  </div>
+  <!--抢身份-->
+    <div class="qiang">
+      <div class="inner">
+        <h2 class="title"></h2>
+        <div class="countDown">倒计时:<span></span></div>
+        <ul class="shenfens">
+        </ul>
+      </div>
+    </div>
+    <!--查看身份-->
+    <div class="layer layerShenfen">
+      <div class="inner">
+        <h2 class="title">长按身份牌查看您的身份</h2>
+        <div :class="`content shenfen shenfen${personalInfo.identityId}`" :old="personalInfo.oldIdentityId">
+          <p class="lover" v-if="personalInfo.loverNumber">{{personalInfo.loverNumber}}</p>
+        </div>
+        <div class="btnWrap"><a class="btn btn2">知道了</a></div>
+      </div>
+    </div>
+
+    <!--用户事件通知-->
+  <div class="layer layerEventKnow">
+    <div class="inner">
+      <h2 class="title"></h2>
+      <div class="content">
+        <p class="info"></p>
+        <div class="btnWrap">
+          <div class="btn btn2 js-affirm">知道了</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 投票结果-->
+  <div class="layer layerEventVoteResult">
+    <div class="inner">
+      <h2 class="title">投票结果</h2>
+      <div class="content">
+        <p class="info"></p>
+        <ul class="resultList">
+        </ul>
+      </div>
+      <div class="btnWrap"><div class="btn btn2 js-affirm">知道了</div></div>
+    </div>
+  </div>
+  <!--决定事件-->
+  <div class="layer layerEventDecide">
+    <div class="inner">
+      <h2 class="title"></h2>
+      <div class="content">
+        <p class="info"></p>
+        <div class="btnWrap twoCol">
+            <div class="btn btn3 js-withdraw" type='no' >放弃</div>
+            <div class="btn btn2 js-affirm" type='yes'>竞选</div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!--用户事件-选择-->
+    <div class="layer layerSixCenter layerEventChoose">
+      <div class="inner">
+        <h2 class="title"></h2>
+        <div class="content">
+          <p class="info"></p>
+          <ul class="voteList"></ul>
+          <p class="tips">请长按提交按钮进行提交</p>
+          <div class="btnWrap">
+            <div class="btn btn2 longPress js-longPress">
+              <span class="process"><b></b></span>
+              <span class="text">提交</span>
+            </div>
+            <div class="btn btn3 js-withdraw" >放弃</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!--用户事件-女巫-->
+  <div class="layer layerSixCenter layerEventWitch">
+    <div class="inner">
+      <h2 class="title">女巫</h2>
+      <div class="content">
+        <p class="info"></p>
+        <ul class="voteList">
+          <li class="unchoose"></li>
+        </ul>
+        <p class="tips">请长按救人/毒人按钮进行提交</p>
+        <div class="btnWrap">
+          <div class="btn btn2 longPress" event="EVENT_SAVE">
+            <span class="process"><b></b></span>
+            <span class="text">救人</span>
+          </div>
+          <div class="btn btn4 longPress" event="EVENT_POISON">
+            <span class="process"><b></b></span>
+            <span class="text">毒人</span>
+          </div>
+          <div class="btn btn3 js-withdraw" event="EVENT_WITCH">放弃</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--用户事件-盗贼选牌-->
+  <div class="layer layerEventRobber">
+    <div class="inner">
+      <h2 class="title"></h2>
+      <div class="content">
+        <p class="info"></p>
+        <ul class="voteList">
+        </ul>
+        <p class="tips">请长按提交按钮进行提交</p>
+        <div class="btnWrap">
+          <div class="btn btn2 longPress js-longPress">
+            <span class="process"><b></b></span>
+            <span class="text">提交</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--查看用户详情-->
+    <!--<div class="layer layerUserInfo" v-if="JSON.stringify(userinfo)!='{}'">-->
+  <div class="layer layerUserInfo">
+      <div class="inner">
+        <userinfo v-bind:user="userinfo"></userinfo>
+        <div class="btnWrap">
+          <a class="btn btn2" v-on:click="addAtten">关注</a>
+          <a class="btn btn4" v-on:click="give">赠送</a>
+        </div>
+        <b class="close"></b>
+      </div>
+    </div>
+  <!--用户死亡-->
+    <div class="layer layerDead">
+        <div class="content">
+        </div>
+    </div>
+    <div class="gameEnd" >
+    <div class="endInner">
+      <p class="resultInfo"><span class="costTime">{{accountInfo.costTime}}</span><span class="endTime">{{accountInfo.endTime}}</span></p>
+      <div class="result win">
+        <h3 class="title"><span>{{accountInfo.gameStatusStr}}</span></h3>
+        <ul class="userList">
+          <li v-for="(user,idx) in accountInfo.winUsers" v-on:click="voteMvp($event)" :userid="user.userId" class="zan">
+            <userwin v-bind:user="user"></userwin>
+            <p>
+              <span>{{user.identityName}}</span>
+              <b v-if="user.oldIdentityName">({{user.oldIdentityName}})</b>
+            </p>
+          </li>
+
+        </ul>
+      </div>
+      <div class="result lose">
+        <!--<h3 class="title"><span>失败</span></h3>-->
+        <ul class="userList">
+          <li v-for="(user,idx) in accountInfo.loseUsers" :userid="user.userId">
+            <userlose v-bind:user="user"></userlose>
+            <p>
+              <span>{{user.identityName}}</span>
+              <b v-if="user.oldIdentityName">({{user.oldIdentityName}})</b>
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+    <div class="layer userAccount">
+      <div class="inner">
+        <div :class="myAccountInfo.mvpFlag? 'mvp' : '' "></div>
+        <useraccount class="userBack" v-bind:user="myAccountInfo"></useraccount>
+        <ul class="levelChange" >
+          <li>
+            <span class="left">等级：</span><div class="right"><p>{{myAccountInfo.showStage}}阶</p></div>
+          </li>
+          <li v-bind:class="`level${myAccountInfo.showStage || 0 }`">
+            <span class="left">星级：</span><div class="right"><b class="star" v-for="(user,idx) in myAccountInfo.showStar"></b></div>
+          </li>
+          <li>
+            <span class="left">积分：</span>
+            <div class="right">
+              <div class="pro">
+                <b></b>
+                <span v-bind:class="`pre bound level${myAccountInfo.thisStage || 0 }`"><i class="star" v-for="(user,idx) in myAccountInfo.thisStar"></i></span>
+                <span v-bind:class="`next bound level${myAccountInfo.nextStage || 0 }`"><i class="star" v-for="(user,idx) in myAccountInfo.nextStar"></i></span>
+                <span v-bind:class="`count ${myAccountInfo.upFlag?'addcount':'subcount'}`">{{myAccountInfo.newScore-myAccountInfo.oldScore}}分</span>
+              </div>
+              <span class="totalAccount">{{myAccountInfo.showScore}}分</span></div>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<script type="application/javascript" src="../../js/vue.min.js"></script>
+<script type="application/javascript" src="../../js/velocity.min.js"></script>
+<script type="application/javascript" src="../../js/sockjs.min.js"></script>
+<script type="application/javascript" src="../../js/stomp.js"></script>
+<script type="application/javascript" src="../../js/jquery.qrcode.min.js"></script>
+<script type="application/javascript" src="../../js/global.js"></script>
+<script type="application/javascript" src="../js/gglobal.js"></script>
+<script type="application/javascript" src="../js/websocket.js?v1"></script>
+<script type="application/javascript" src="../js/component.js?v1"></script>
+<script type="application/javascript" src="../js/animate.js?v1"></script>
+<script type="application/javascript" src="../js/game.js?v1"></script>
+<script>
+  $(function(){
+      game.active()
+      var el = $('.layer')
+      var el = $('.layerShenfen')
+      var el = $('.layerEventVoteResult')
+      var el = $('.layerUserInfo')
+      var el = $('.layerEventVoteResult')
+      //var el = $('.layerDead')
+      //animate.layerEnter(el)
+      var data = {}
+//      game.users = [
+//          {userId:101,nickName:"aaa",number:1,stage:1,star:1},
+//          {userId:102,nickName:"bbb",number:2,stage:1,star:1},
+//          {userId:103,nickName:"ccc",number:3,stage:1,star:1},
+//          {userId:104,nickName:"ddd",number:4,stage:1,star:1},
+//          {userId:105,nickName:"eee",number:5,stage:1,star:1},
+//          {userId:106,nickName:"fff",number:6,stage:1,star:1},
+//          {userId:107,nickName:"ggg",number:7,stage:1,star:1},
+//          {userId:108,nickName:"xxx",number:8,stage:1,star:1},
+//          {userId:109,nickName:"zzz",number:9,stage:1,star:1},
+//          {userId:110,nickName:"ggg",number:7,stage:1,star:1},
+//          {userId:111,nickName:"xxx",number:8,stage:1,star:1},
+//          {userId:112,nickName:"zzz",number:9,stage:1,star:1}]
+      data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"QUEUE","leaderInfo":{"leaderFlag":true,"leaderButton":[]},"boxInfo":{"boxName":"ggg"},"userInfoList":[{"userId":101,"nickName":"aaa","number":1,"sex":1,"stage":1,"star":1},{"userId":102,"nickName":"bbb","number":2,"stage":1,"star":1},{"userId":103,"nickName":"ccc","number":3,"stage":1,"star":1},{"userId":104,"nickName":"ddd","number":4,"stage":1,"star":1},{"userId":105,"nickName":"eee","number":5,"stage":1,"star":1},{"userId":106,"nickName":"fff","number":6,"stage":1,"star":1},{"userId":107,"nickName":"ggg","number":7,"stage":1,"star":1},{"userId":108,"nickName":"xxx","number":8,"stage":1,"star":1},{"userId":109,"nickName":"zzz","number":9,"stage":1,"star":1}],"screeningInfo":{"combinationConfigStr":"预言家 女巫 猎人 守卫 白痴 白狼王","combinationName":"什么都有","playerCount":12},"personalInfo":{"userId":101,"nickName":"aaa","number":1,"sex":1,"stage":1,"star":1,"consumptionScore":946}}'
+      game.socketCallback(data)
+
+  });
+</script>
+</body>
+</html>

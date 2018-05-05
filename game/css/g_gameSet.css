@@ -98,7 +98,7 @@ video {
 
 body {
   font-family: Microsoft YaHei, Helvetica, STHeiti, Droid Sans Fallback;
-  color: #f1f1f1; }
+  color: #f1f5fa; }
   body .main {
     overflow-y: auto; }
     body .main .page {
@@ -112,7 +112,7 @@ body {
       font-size: .2rem;
       line-height: .24rem;
       padding: .2rem 0;
-      color: #f1f1f1;
+      color: #f1f5fa;
       text-align: center; }
 
 .hide {
@@ -129,7 +129,7 @@ body {
   padding: 0.2rem;
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.8);
-  color: #f1f1f1;
+  color: #f1f5fa;
   border-radius: 5px;
   font-size: 0.14rem;
   text-align: center; }
@@ -144,7 +144,7 @@ body {
   line-height: .44rem;
   font-size: .2rem;
   text-align: center;
-  color: #f1f1f1; }
+  color: #f1f5fa; }
 
 .comList {
   padding: .1rem; }
@@ -186,7 +186,7 @@ body {
   overflow: hidden;
   font-size: .16rem;
   line-height: 150%;
-  color: #f1f1f1; }
+  color: #f1f5fa; }
   .tab-box h3 {
     font-size: .2rem;
     line-height: 150%; }
@@ -207,7 +207,7 @@ body {
         text-align: center;
         background: rgba(36, 74, 111, 0.8); }
       .tab-box .tabs li.active a {
-        border: 2px solid #f1f1f1; }
+        border: 2px solid #f1f5fa; }
 
 .num-set {
   position: relative;
@@ -253,7 +253,7 @@ body {
   background: rgba(36, 74, 111, 0.8);
   text-align: center;
   font-size: .16rem;
-  color: #f1f1f1; }
+  color: #f1f5fa; }
   .btn.btn2 {
     background: #16a085; }
   .btn.btn3 {
@@ -326,7 +326,7 @@ body {
       line-height: .3rem;
       margin: .05rem 3%;
       background: rgba(22, 160, 130, 0.8);
-      color: #f1f1f1;
+      color: #f1f5fa;
       text-align: center;
       font-size: .14rem;
       border-radius: 3px;
@@ -343,4 +343,4 @@ body .main {
   background: url("../image/n1.jpg") no-repeat center top;
   background-size: cover; }
 
-/*# sourceMappingURL=game_set.css.map */
+/*# sourceMappingURL=g_gameSet.css.map */

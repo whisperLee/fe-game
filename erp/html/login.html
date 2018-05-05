@@ -26,7 +26,8 @@
 <script type="application/javascript" src="../../js/zepto.min.js"></script>
 <script type="application/javascript" src="../../js/vue.js"></script>
 <script type="application/javascript" src="../../js/velocity.min.js"></script>
-<script type="application/javascript" src="../js/global.js"></script>
+<script type="application/javascript" src="../../js/global.js"></script>
+<script type="application/javascript" src="../js/eglobal.js"></script>
 <script>
   $(function(){
       $(".js-login").off().on("click",function(){
@@ -42,6 +43,7 @@
                   success: function (d) {
                       console.log(d)
                       if(d.status.code == "OK" && d.data){
+                          //eglobal.setCookie("y_Ys_F",d.data)
                           window.location.href="index.html"
                       }else{
                           $(".mess").html(d.status.msg)

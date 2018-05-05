@@ -58,6 +58,7 @@ new Vue({
                         success: function (d) {
                             console.log(d)
                             if(d.status.code=="OK"){
+                                //global.setCookie("a__b",d.data)
                                 wglobal.router('wx_index.html')
                             }else{
                                 wglobal.pop_tips(d.status.msg)

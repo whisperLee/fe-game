@@ -52,31 +52,43 @@ new Vue({
                             }
                             console.log(_self.sitTip)
                         }else if(_self.gameStatus=="游戏结束"){
-                            if(codeType=='test' && _self.boxId && _self.gameNumber){
-                                //调取用户余额接口，显示支付和购买界面
-                                $(".pay").show()
-                                _self.toPayConfig()
-                                _self.queryShowBanner()//显示支付页面广告
-                            }else{
-                                if(timestamp && _self.boxId && _self.gameNumber){ // 判断当前也没面有没有参数 ，boxId，gameNumber,时间戳
-                                    if(nowtimestamp-timestamp>0){
-                                        //二维码无效需要重新调取扫一扫接口
-                                        console.log('二维码无效需要重新调取扫一扫接口')
-                                        _self.saoyisao()
-                                    }else{
-                                        //调取用户余额接口，显示支付和购买界面
-                                        $(".pay").show()
-                                        _self.toPayConfig()
-                                        _self.queryShowBanner()//显示支付页面广告
-                                    }
-                                }else{
-                                    //调取扫一扫接口,仍旧打开当前页面
+                            // if(codeType=='test' && _self.boxId && _self.gameNumber){
+                            //     //调取用户余额接口，显示支付和购买界面
+                            //     $(".pay").show()
+                            //     _self.toPayConfig()
+                            //     _self.queryShowBanner()//显示支付页面广告
+                            // }else{
+                            //     if(timestamp && _self.boxId && _self.gameNumber){ // 判断当前也没面有没有参数 ，boxId，gameNumber,时间戳
+                            //         if(nowtimestamp-timestamp>0){
+                            //             //二维码无效需要重新调取扫一扫接口
+                            //             console.log('二维码无效需要重新调取扫一扫接口')
+                            //             _self.saoyisao()
+                            //         }else{
+                            //             //调取用户余额接口，显示支付和购买界面
+                            //             $(".pay").show()
+                            //             _self.toPayConfig()
+                            //             _self.queryShowBanner()//显示支付页面广告
+                            //         }
+                            //     }else{
+                            //         //调取扫一扫接口,仍旧打开当前页面
+                            //         _self.saoyisao()
+                            //     }
+                            // }
+                            if(timestamp && _self.boxId && _self.gameNumber){ // 判断当前也没面有没有参数 ，boxId，gameNumber,时间戳
+                                if(nowtimestamp-timestamp>0){
+                                    //二维码无效需要重新调取扫一扫接口
+                                    console.log('二维码无效需要重新调取扫一扫接口')
                                     _self.saoyisao()
+                                }else{
+                                    //调取用户余额接口，显示支付和购买界面
+                                    $(".pay").show()
+                                    _self.toPayConfig()
+                                    _self.queryShowBanner()//显示支付页面广告
                                 }
+                            }else{
+                                //调取扫一扫接口,仍旧打开当前页面
+                                _self.saoyisao()
                             }
-
-
-
                         }
                     }
                 }

@@ -7,10 +7,10 @@ Vue.component('messagecenter',component.messagecenter)
 Vue.component('userinfo',component.userinfo)
 Vue.component('userwin',component.user)
 Vue.component('userlose',component.user)
-Vue.component('userAccount',component.userend)
+Vue.component('useraccount',component.useraccount)
 // Vue.component('qiangshenfen', component.qiangshenfen)
 // Vue.component('identitylayer', component.identitylayer)
-
+//
 var game = new Vue({
     el: '#game',
     data :{
@@ -34,7 +34,8 @@ var game = new Vue({
         personalAccountInfo:{},//个人结算临时变量
         myAccountInfo:{},//个人结算最终变量
         isDead:0,//是否死亡
-        gameBtn:{}
+        gameBtn:{},
+        boxName:''
     },
     created: function () {
         var _self = this
@@ -44,13 +45,42 @@ var game = new Vue({
         init:function(){
             var _self = this
             console.log('页面开始:' + new Date())
-            _self.boxId = global.urlHash().boxId || 0
-            _self.gameNumber = global.urlHash().gameNumber || 0
+
+            _self.boxId = global.urlHash().boxId || 3
+            _self.gameNumber = global.urlHash().gameNumber || 1
+
+            if(codeType=="test"){
+                //document.write("<script language=javascript src='../js/test/gjson.js'></script>");
+                _self.userToken = global.urlHash().userToken
+            }
+            _self.gameBtn = interfaceValue.gameBtn
+            _self.getSeat()
             $(function(){
-                _self.gameBtn = interfaceValue.gameBtn
-                _self.getSeat()
                 _self.active()
             })
+
+        },
+        sit:function(){
+            var _self = this
+            var d = {
+                url: 'game/play/sit',
+                data: {
+                    "boxId": _self.boxId,
+                    "gameNumber": _self.gameNumber,
+                    "feeType": 2,
+                    "userToken":_self.userToken
+                },
+                success: function (d) {
+                    if (d.status.code === 'OK') {
+                        console.log('入座成功:' + new Date())
+                        //_self.queueFlow = 1
+                        window.location.reload() //刷新当前页面
+                    } else {
+                        global.pop_tips(d.status.msg)
+                    }
+                }
+            }
+            global.ajax(d)
         },
         // 判断当前座位是否有人
         getSeat: function () {
@@ -65,6 +95,10 @@ var game = new Vue({
                     console.log(d)
                     if (d.status.code === 'OK') {
                         if(d.data.userId==0){
+                            if(codeType=="test"){ // 测试的时候如果没有user信息，直接入座
+                                console.log('直接进行入座')
+                                _self.sit()
+                            }
                             _self.showCode()
                             setTimeout(function(){
                                 _self.getSeat()
@@ -74,12 +108,30 @@ var game = new Vue({
                             _self.leaderFlag = d.data.leaderFlag
                             _self.screeningId = d.data.screeningId
                             _self.userId = d.data.userId
-                            if (d.data.leaderFlag && !d.data.screeningId) {
-                                global.router('gameSet.html?boxId=' + _self.boxId + '&gameNumber='+_self.gameNumber +'&event=add')
-                            } else {
-                                $(".game").show()
-                                _self.connectWebScoket()
+                            var d = {
+                                url: 'game/client/genUserToken',
+                                data: {
+                                    "id": d.data.userId,
+                                    "string": "yjnb666"
+                                },
+                                success: function (d) {
+                                    console.log(d)
+                                    if (d.status.code === 'OK') {
+                                        if (d.data.leaderFlag && !d.data.screeningId) {
+                                            global.router('gameSet.html?boxId=' + _self.boxId + '&gameNumber='+_self.gameNumber +'&event=add')
+                                        } else {
+                                            $(".game").show()
+                                            _self.connectWebScoket()
+                                        }
+                                    }else{
+                                        global.pop_tips(d.status.msg)
+                                    }
+                                }
                             }
+                            global.ajax(d)
+
+
+
                         }
 
 
@@ -109,8 +161,8 @@ var game = new Vue({
                 success: function (d) {
                     console.log(d)
                     if(d.status.code=="OK" && d.data){
-                        $(".dyCode h2").html(d.data.name)
-                        $(".dyCode h3").html('<span>'+_self.gameNumber+'</span>')
+                        _self.boxName = d.data.name
+                        // $(".boxName").html()
                         $(".dyCode #code").show()
                     }else{
                         global.pop_tips(d.status.msg)
@@ -209,12 +261,17 @@ var game = new Vue({
                 _self.$set(_self.screenCenterMessage,'result',d.showMsg)
                 //_self.screenCenterMessage.result = d.gameInfo.result
             }
+            if(global.isExit(d.boxInfo)){
+                _self.boxName = d.boxInfo.boxName
+            }
+            if(global.isExit(d.screeningInfo) && global.isExit(d.screeningInfo.combinationName)){
+                _self.combinationName = d.screeningInfo.combinationName
+            }
             // 断开连接,重新开始
             if(d.msgType === 'EVENT_NEW'){
                 websocket.disconnect()
                 window.location.reload()
             }
-
             // 游戏开始后事件
             if(d.msgType == 'UPDATE'){ //需要获取GameInfo和userInfoList
                 _self.update(d)
@@ -523,15 +580,8 @@ var game = new Vue({
             var width = height = $(window).width() / col
             var styles = _self.returnUserStyle(total,row,col,width,height,center_user)
 
-            $('.readyTitle').velocity({
-                height: 0,
-                opacity: 0
-            }, {
-                'duration': 500,
-                'complete': function () {
-                    $('.readyTitle').remove()
-                }
-            })
+            $('.queueTitle').hide()
+            $(".boxInfo").show()
             $('.queueBtns').velocity({
                 height: 0,
                 opacity: 0
@@ -546,7 +596,7 @@ var game = new Vue({
             //     height: row * width
             // }, 500)
             $('.user-list').css({height:'auto'})
-            $('.messageCenter').css({'top':width*2+'px'})
+            $('.messageCenter').css({'top':width+'px'})
 
             $('.user-list li').each(function (idx) {
                 var f = $(this)
@@ -958,9 +1008,6 @@ var game = new Vue({
             }
         },
         addAtten:function(){//关注
-
-        },
-        give:function(){// 送礼物
 
         },
         userBtntoggle:function(){

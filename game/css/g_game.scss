@@ -35,16 +35,52 @@ body{
     }
     .game{
       background: url(../image/n1.jpg) no-repeat center top;  background-size: cover; height:100%; display: none;
+      .top{
+        position: relative; height:.8rem;
+
+        .queueTitle{
+          position: absolute; left:5%; top:50%; width:90%; -webkit-transform:translateY(-50%); line-height: .24rem; font-size: .2rem; text-align: center;
+        }
+        .boxInfo{
+          height:.3rem; line-height: .3rem; font-size: .2rem; padding: 0 .1rem; display: none;
+          .boxName{
+            float: left;
+          }
+          .comName{
+            float: right;
+          }
+        }
+        .gameTime{
+          position: absolute; left:10%; top:0; bottom:0; width:80%;
+          p{
+            position: absolute; left:0; bottom:0; width:100%; font-size: .2rem; line-height: .2rem; text-align: center;
+            .time{padding: 0 .1rem; font-weight: bold; font-size: .3rem; color: $gColor20;}
+          }
+
+        }
+      }
       &[nightFlag="0"]{
         background-image:url(../image/d.jpg); background-color:#68d6f6; background-size: 100% auto;
+        .top{
+          background: url("../image/d_tbg.jpg") no-repeat center bottom; background-size: cover;
+          .gameTime{
+            background: url("../image/d_t.png") no-repeat center bottom; background-size: contain;
+          }
+        }
       }
       &[nightFlag="1"]{
         background-image:url(../image/n.jpg); background-color:#565fd4; background-size: 100% auto;
+        .top{
+          background: url("../image/n_tbg.jpg") no-repeat center bottom; background-size: cover;
+          .gameTime{
+            background: url("../image/n_t.png") no-repeat center bottom; background-size: contain;
+          }
+        }
       }
     }
   }
   .messageCenter{
-    position: absolute; left:20%; top:0; width:60%; height:auto;
+    position: absolute; left:20%; top:0; width:60%; height:auto; margin-top: .8rem;
     .top{
       position: absolute; left:0; top:-.4rem; width:auto; background: rgba(36,74,111,0.5); padding: 0 .1rem; line-height: .3rem; border-radius:5px; display: inline-block; color: $gColor2;
       span{
@@ -60,3 +96,5 @@ body{
     .voteResult{width:100%; display: none}
   }
 }
+
+

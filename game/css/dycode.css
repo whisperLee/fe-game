@@ -98,7 +98,7 @@ video {
 
 body {
   font-family: Microsoft YaHei, Helvetica, STHeiti, Droid Sans Fallback;
-  color: #f1f1f1; }
+  color: #f1f5fa; }
   body .main {
     overflow-y: auto; }
     body .main .page {
@@ -112,7 +112,7 @@ body {
       font-size: .2rem;
       line-height: .24rem;
       padding: .2rem 0;
-      color: #f1f1f1;
+      color: #f1f5fa;
       text-align: center; }
 
 .hide {
@@ -129,7 +129,7 @@ body {
   padding: 0.2rem;
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.8);
-  color: #f1f1f1;
+  color: #f1f5fa;
   border-radius: 5px;
   font-size: 0.14rem;
   text-align: center; }

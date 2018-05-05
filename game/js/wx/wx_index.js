@@ -50,6 +50,8 @@ new Vue({
                             "levelPro":parseInt(d.totalGameScore*100/(d.nextNeedScore-d.preNeedScore))
                         }
                         console.log(_self.user)
+                    }else{
+                        wglobal.router("wx_login.html")
                     }
 
                 }

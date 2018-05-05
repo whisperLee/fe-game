@@ -726,16 +726,6 @@ body .main {
   padding-top: 0; }
   body .main .header {
     margin-bottom: 0; }
-  body .main .userCenter {
-    width: 80%;
-    margin: 0 auto;
-    padding-bottom: .12rem; }
-    body .main .userCenter .top {
-      width: 55%;
-      margin: 0 auto;
-      padding: .1rem 0; }
-      body .main .userCenter .top .nickname {
-        text-align: center; }
   body .main .list li {
     width: 100%;
     background: #ffffff; }
@@ -749,18 +739,6 @@ body .main {
       padding-left: .1rem;
       background: url("../wxImage/list.png") no-repeat right center;
       background-size: .4rem .4rem; }
-  body .main .btn.logout {
-    position: fixed;
-    bottom: .75rem;
-    left: 5%;
-    height: .4rem;
-    width: 90%;
-    line-height: .4rem;
-    color: #ffffff;
-    background: #ee6262;
-    text-align: center;
-    display: block;
-    border-radius: 5px; }
 
 .pandect {
   padding-top: 0; }

@@ -3,86 +3,8 @@
  */
 var host = 'http://liyn.me:7777/web-api/v1/face/'
 //Vue.config.productionTip = false
-document.write("<script language=javascript src='../../js/init.js'></script>");
+var wglobal = $.extend({},global,{
 
-var wglobal = {
-    urlHash: function () {
-        var name, value
-        var str = location.href // 取得整个地址栏
-        var num = str.indexOf('?')
-        var urlHash = {}
-        str = str.substr(num + 1)  // 取得所有参数stringvar.substr(start [, length ]
-
-        var arr = str.split('&') // 各个参数放到数组里
-        for (var i = 0; i < arr.length; i++) {
-            num = arr[i].indexOf('=')
-            if (num > 0) {
-                name = arr[i].substring(0, num)
-                value = arr[i].substr(num + 1)
-                urlHash[name] = value
-            }
-        }
-        return urlHash
-    },
-    ajax: function (data) {
-        var d = $.extend({}, {
-            url: '',
-            data: {},
-            contentType: 'application/json',
-            timeout: 10000,
-            type: 'POST',
-            dataType: 'json',
-            success: function () {}
-        }, data)
-        d.url = host + d.url
-        if(codeType=="test"){ // 测试环境执行
-            d.data.userToken =  "101"
-        }
-        d.data = JSON.stringify(d.data)
-        $.ajax(d)
-    },
-    pop_tips: function (msg, callback,time) {
-        console.log('pop')
-        clearTimeout(this.tipsTime)
-        if ($('.simple_tips').length > 0) {
-            $('.simple_tips .tips_inner').html(msg)
-        } else {
-            $('body').append('<div class="simple_tips"><div class="tips_inner">' + msg + '</div></div>')
-        }
-        $(".simple_tips").off().on("click",function(){
-            $(this).remove()
-        })
-        callback = callback || function () {}
-
-        if(!time){
-            this.tipsTime = setTimeout(function () {
-                $('.simple_tips').remove()
-                callback()
-            }, 2000)
-        }
-
-    },
-    router: function (path) {
-        window.location.href = path
-    },
-    setCookie: function (name, value) {
-        var Days = 30
-        var exp = new Date()
-        exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000)
-        document.cookie = name + '=' + value + ';path=/'
-    },
-    getStorage:function(Key){
-        var storage = window.localStorage.getItem(Key) || "{}";
-        return JSON.parse(storage);
-    },
-    //设置本地存储数据
-    setStorage:function(key,value){
-        window.localStorage.setItem( key,JSON.stringify(value));
-    },
-    //清空本地存储
-    clearStorage:function(Key){
-        window.localStorage.removeItem(Key);
-    },
     footer:function(currType){
         var d = wFooter
         var h = ''
@@ -185,7 +107,7 @@ var wglobal = {
         var el = $(event.currentTarget).closest(".layerWrap")
         animate.layerOuter(el)
     }
-}
+})
 
 $(function(){
     var pageInit = {

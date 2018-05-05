@@ -1,3 +1,4 @@
+@import "global";
 .gameEnd{
   position: absolute;
   left:0;
@@ -240,14 +241,16 @@
           }
         }
       }
+
+
       @for $i from 1 through 5{
         .level#{$i}{
           .star{
-            background: url('../image/level/start#{$i}.png') no-repeat center;
+            background: url('../image/newLevel/start#{$i}.png') no-repeat center;
             background-size: contain;
           }
         }
       }
-    }
+      }
   }
 }

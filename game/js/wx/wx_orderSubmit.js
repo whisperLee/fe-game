@@ -15,8 +15,8 @@ new Vue({
     },
     created: function () {
         var _self = this
-        _self.shopId = wglobal.urlHash().shopId
-        _self.type = wglobal.urlHash().type || 0
+        _self.shopId = global.urlHash().shopId
+        _self.type = global.urlHash().type || 0
         _self.init()
     },
     methods: {
@@ -27,7 +27,7 @@ new Vue({
         getCart:function(){
             var _self = this
             // 获取本地存储，并提交请求
-            var carts = wglobal.getStorage('carts');
+            var carts = global.getStorage('carts');
             var shopId = _self.shopId
             var type = _self.type
             var cartNum=cartTotal = 0;
@@ -56,7 +56,7 @@ new Vue({
                     if(d.status.code=="OK" && d.data){
                         _self.goods = d.data.orderGoodsInfoResponseList
                         _self.user = d.data.userLocationResponse
-                        _self.user.address = wglobal.returnAddress(d.data.userLocationResponse)
+                        _self.user.address = global.returnAddress(d.data.userLocationResponse)
                         _self.amount = {
                             actualAmount: d.data.actualAmount,
                             amount:d.data.amount,
@@ -64,8 +64,8 @@ new Vue({
                         }
                         _self.getOrderConsumptionScore(d.data.actualAmount) //获取可用遇米数
                         setTimeout(function(){
-                            $(".voucherListLayer .enabledVoucher").html(wglobal.returnVoucherList(d.data.enabledVoucherResponseList))
-                            $(".voucherListLayer .disabledVoucher").html(wglobal.returnVoucherList(d.data.disabledVoucherResponseList))
+                            $(".voucherListLayer .enabledVoucher").html(global.returnVoucherList(d.data.enabledVoucherResponseList))
+                            $(".voucherListLayer .disabledVoucher").html(global.returnVoucherList(d.data.disabledVoucherResponseList))
                             $(".userCash .enable").html(d.data.enabledVoucherResponseList.length+'张可用')
                             $(".voucherListLayer .hd .enabled a").html('可用抵价券('+d.data.enabledVoucherResponseList.length+')')
                             $(".voucherListLayer .hd .disabled a").html('不可用抵价券('+d.data.disabledVoucherResponseList.length+')')
@@ -83,8 +83,8 @@ new Vue({
                         },10)
 
                     }else{
-                        d.status.msg && wglobal.pop_tips(d.status.msg,function(){
-                            wglobal.router('wx_shop.html?shopId='+_self.shopId)
+                        d.status.msg && global.pop_tips(d.status.msg,function(){
+                            global.router('wx_shop.html?shopId='+_self.shopId)
                         })
 
 
@@ -92,7 +92,7 @@ new Vue({
 
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         },
         getOrderConsumptionScore:function(aDouble){
             var _self = this
@@ -115,7 +115,7 @@ new Vue({
 
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         },
         changeVoucherOrConsume:function(isGetConScore){ // 使用抵价券or积分
             var _self = this
@@ -132,12 +132,12 @@ new Vue({
                         _self.amount.voucherDiscounts   = d.data.voucherDiscounts
                         isGetConScore && _self.getOrderConsumptionScore(d.data.actualAmount) //获取可用遇米数
                     }else{
-                        d.status.msg && wglobal.pop_tips(d.status.msg)
+                        d.status.msg && global.pop_tips(d.status.msg)
                     }
 
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         },
         changeCard:function(){
             var _self = this
@@ -147,13 +147,13 @@ new Vue({
             }else{
                 _self.orderConfirmDate.voucherId = null
             }
-            wglobal.layerOuter($(".voucherListLayer"))
+            global.layerOuter($(".voucherListLayer"))
             //遇米数置为0
             _self.conScoreClose()
             _self.changeVoucherOrConsume(true)
         },
         showVoucher:function(){
-            wglobal.layerEnter($(".voucherListLayer"))
+            global.layerEnter($(".voucherListLayer"))
         },
         conScoreClose:function(){
             var _self = this
@@ -194,23 +194,23 @@ new Vue({
                         //清空购物车
                         var shopId = _self.shopId
                         var type = _self.type
-                        var carts = wglobal.getStorage('carts')
+                        var carts = global.getStorage('carts')
                         carts[shopId][type] = {}
-                        wglobal.setStorage('carts',carts)
+                        global.setStorage('carts',carts)
                         if(payType==0){
-                            wglobal.router('wx_pay.html?orderId='+d.data.orderId+"&amount="+d.data.amount)
+                            global.router('wx_pay.html?orderId='+d.data.orderId+"&amount="+d.data.amount)
                         }else if(payType==50){
-                            wglobal.router('wx_orders.html?orderId='+d.data.orderId)
+                            global.router('wx_orders.html?orderId='+d.data.orderId)
                         }
                     }
 
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         },
         back:function(){
             var _self = this
-            wglobal.router("wx_shop.html?shopId="+_self.shopId+'&type='+_self.type)
+            global.router("wx_shop.html?shopId="+_self.shopId+'&type='+_self.type)
         }
     }
 })

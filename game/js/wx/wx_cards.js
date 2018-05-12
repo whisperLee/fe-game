@@ -32,19 +32,19 @@ new Vue({
                     if(d.status.code == "OK" && d.data){
                         console.log('userCash')
                         if(d.data.dataList.length>0){
-                            $('.cards .cash').html(wglobal.returnVoucherList(d.data.dataList))
+                            $('.cards .cash').html(global.returnVoucherList(d.data.dataList))
                         }else{
                             $('.cards .cash').html('<p class="defaultMess">暂无可用抵价券</p>')
                         }
 
                         $(".cards .cash").off().on("click",function(){
-                            wglobal.router("wx_shop.html")
+                            global.router("wx_shop.html")
                         })
                     }
 
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         },
         getUserExperience:function(){
             var _self = this
@@ -58,20 +58,20 @@ new Vue({
                     if(d.status.code == "OK" && d.data){
                         console.log('UserExperience')
                         if(d.data.dataList.length>0){
-                            $('.cards .experience').html(wglobal.returnVoucherList(d.data.dataList))
+                            $('.cards .experience').html(global.returnVoucherList(d.data.dataList))
                         }else{
                             $('.cards .experience').html('<p class="defaultMess">暂无可用体验券</p>')
                         }
 
 
                         $(".cards .experience").off().on("click",function(){
-                            wglobal.router("game.html")
+                            global.router("game.html")
                         })
                     }
 
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         },
         active:function(){
 

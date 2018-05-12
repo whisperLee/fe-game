@@ -10,6 +10,8 @@
       height: 100%;
       -webkit-transform-origin: center center;
     }
+    &.my{
+      background:url("../image/my.png") no-repeat center; background-size:contain;  }
   }
   &.choosing{
     .user{
@@ -108,10 +110,10 @@
         b.SHOOT{background-image: url(../image/state/s8.png);} /**开枪带走**/
         b.SELF_DESTRUCT{background-image: url(../image/state/s9.png);} /**自爆**/
         b.BOMBERMAN{background-image: url(../image/state/s10.png);} /**炸弹人**/
-        b.IDIOT_TIMEOUT{background-image: url(../image/state/s11.png);} /**白痴超时死亡**/
+        b.IDIOT_TIMEOUT{background-image: url(../image/state/s5.png);} /**白痴超时死亡**/
         b.WHITE_SHOOT{background-image: url(../image/state/s12.png);} /**白狼王开枪带走**/
-        b.WHITE_SELF_DESTRUCT{background-image: url(../image/state/s13.png);} /**白狼王自爆**/
-        b.lover{background-image: url(../image/state/s18.png); display: none;} /**白狼王自爆**/
+        b.WHITE_SELF_DESTRUCT{background-image: url(../image/state/s13.png);} /**狼王自爆**/
+        b.lover{background-image: url(../image/state/s18.png); display: none;} /**情侣**/
       }
       &:before{
         background-image: url(../image/newLevel/0.png);
@@ -186,6 +188,7 @@
     width:100%;
     height:auto;
     min-height: .8rem;
+    z-index: 3;
     .userWrap{
       width:70%;
       .user{

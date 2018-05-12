@@ -14,7 +14,7 @@ new Vue({
     methods: {
         init:function(){
             var _self = this
-            _self.erp = eglobal.getStorage('yjerp')
+            _self.erp = global.getStorage('yjerp')
             _self.getTodayOrderList()
         },
         isToday:function(str){
@@ -58,7 +58,7 @@ new Vue({
                     }
                 }
             }
-            eglobal.ajax(d)
+            global.ajax(d)
         },
         viewWholeContact:function(event,item){
             var _self = this

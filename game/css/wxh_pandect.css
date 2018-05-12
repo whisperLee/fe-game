@@ -12,6 +12,9 @@
       width: 100%;
       height: 100%;
       -webkit-transform-origin: center center; }
+    .user-list li.my {
+      background: url("../image/my.png") no-repeat center;
+      background-size: contain; }
   .user-list.choosing .user {
     opacity: 0.5; }
     .user-list.choosing .user.canVote {
@@ -114,8 +117,8 @@
         /**炸弹人**/
         /**白痴超时死亡**/
         /**白狼王开枪带走**/
-        /**白狼王自爆**/
-        /**白狼王自爆**/ }
+        /**狼王自爆**/
+        /**情侣**/ }
         .user .level .userInner .status b.state {
           position: relative;
           z-index: 9;
@@ -155,7 +158,7 @@
         .user .level .userInner .status b.BOMBERMAN {
           background-image: url(../image/state/s10.png); }
         .user .level .userInner .status b.IDIOT_TIMEOUT {
-          background-image: url(../image/state/s11.png); }
+          background-image: url(../image/state/s5.png); }
         .user .level .userInner .status b.WHITE_SHOOT {
           background-image: url(../image/state/s12.png); }
         .user .level .userInner .status b.WHITE_SELF_DESTRUCT {
@@ -278,7 +281,8 @@
   bottom: 0;
   width: 100%;
   height: auto;
-  min-height: .8rem; }
+  min-height: .8rem;
+  z-index: 3; }
   #game .mine .userWrap {
     width: 70%; }
     #game .mine .userWrap .user {

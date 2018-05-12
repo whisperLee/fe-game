@@ -24,7 +24,7 @@ new Vue({
         init:function(){
             var _self = this
 
-            var urlHash = wglobal.urlHash()
+            var urlHash = global.urlHash()
             _self.type = urlHash.type
             _self.shopId = urlHash.shopId
             if(_self.type && _self.type!='undefined'){
@@ -80,12 +80,12 @@ new Vue({
                     }
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         },
         getCart:function(){
             var _self = this
             // 获取本地存储，并更新数据
-            var carts = wglobal.getStorage('carts')
+            var carts = global.getStorage('carts')
             var shopId = _self.shopId
             var type = _self.type
             var cartNum=cartTotal = 0
@@ -112,8 +112,8 @@ new Vue({
                 }
             }
             if(soldName!=''){
-                wglobal.pop_tips('您购物车中的'+soldName+'已售罄，请选择其他商品')
-                wglobal.setStorage('carts',carts) //修改本地缓存
+                global.pop_tips('您购物车中的'+soldName+'已售罄，请选择其他商品')
+                global.setStorage('carts',carts) //修改本地缓存
             }
             cartTotal = cartTotal.toFixed(2);
             if($('.cartIcon').find('input[name="cartTotal"]').length>0){
@@ -193,16 +193,16 @@ new Vue({
         },
         addlocalStorCart:function(){
             var _self = this
-            var carts = wglobal.getStorage('carts')
-            if(!wglobal.isExit(carts[_self.shopId])){
+            var carts = global.getStorage('carts')
+            if(!global.isExit(carts[_self.shopId])){
                 carts[_self.shopId] = {}
                 carts[_self.shopId][_self.type] ={}
             }
-            if(!wglobal.isExit(carts[_self.shopId][_self.type])){
+            if(!global.isExit(carts[_self.shopId][_self.type])){
                 carts[_self.shopId][_self.type] ={}
             }
             carts[_self.shopId][_self.type] =  _self.cartList
-            wglobal.setStorage('carts',carts)
+            global.setStorage('carts',carts)
         },
         clearCart:function(){
             var _self  =this
@@ -218,9 +218,9 @@ new Vue({
             // 清空本地存储，并修改内容
             var shopId = _self.shopId
             var type = _self.type
-            var carts = wglobal.getStorage('carts')
+            var carts = global.getStorage('carts')
             carts[shopId][type] = {}
-            wglobal.setStorage('carts',carts)
+            global.setStorage('carts',carts)
         },
         cartListHide:function(){
             $('.cartList').removeClass('on')
@@ -267,11 +267,11 @@ new Vue({
         account:function(){
             var _self = this
             if(_self.cartNum>0){
-                wglobal.router('wx_orderSubmit.html?shopId='+_self.shopId+'&type='+_self.type)
+                global.router('wx_orderSubmit.html?shopId='+_self.shopId+'&type='+_self.type)
             }
         },
         back:function(){
-            wglobal.router("wx_mine.html")
+            global.router("wx_mine.html")
         },
         changeType:function(){
             var _self = this
@@ -281,7 +281,7 @@ new Vue({
             }else{
                 type=0
             }
-            wglobal.router('wx_shop.html?shopId='+_self.shopId+'&type='+type)
+            global.router('wx_shop.html?shopId='+_self.shopId+'&type='+type)
         },
         active:function () {
             var _self = this

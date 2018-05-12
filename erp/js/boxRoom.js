@@ -13,7 +13,7 @@ new Vue({
     methods: {
         init:function(){
             var _self = this
-            _self.erp = eglobal.getStorage('yjerp')
+            _self.erp = global.getStorage('yjerp')
             _self.getBoxList()
         },
         getBoxList:function(){
@@ -41,7 +41,7 @@ new Vue({
 
                 }
             }
-            eglobal.ajax(d)
+            global.ajax(d)
         },
         lock:function(event,item){
             var _self = this
@@ -61,7 +61,7 @@ new Vue({
 
                 }
             }
-            eglobal.ajax(d)
+            global.ajax(d)
         },
         unlock:function(event,item){
             var _self = this
@@ -81,7 +81,7 @@ new Vue({
 
                 }
             }
-            eglobal.ajax(d)
+            global.ajax(d)
         },
         showCancelReason:function(event,item){
             var _self = this
@@ -119,14 +119,14 @@ new Vue({
 
                     }
                 }
-                eglobal.ajax(d)
+                global.ajax(d)
             }else{
-                eglobal.pop_tips('请选择或输入呼叫原因')
+                global.pop_tips('请选择或输入呼叫原因')
             }
 
         },
         enter:function(boxId){
-            eglobal.router("../../game/html/judge.html?boxId="+boxId)
+            global.router("../../game/html/game_judge.html?boxId="+boxId)
         }
 
     }

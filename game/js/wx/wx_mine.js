@@ -29,12 +29,12 @@ new Vue({
     methods: {
         init:function(){
             var _self = this
-            wglobal.footer('mine')
+            global.footer('mine')
             _self.getCurrentUser()//查询用户信息
         },
         getCurrentUser:function(){
             var _self = this
-            //_self.shopId = wglobal.urlHash().shopId || 0
+            //_self.shopId = global.urlHash().shopId || 0
             var d = {
                 url: 'user/getCurrentUser',
                 data: {},
@@ -60,7 +60,7 @@ new Vue({
 
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         },
         setCard:function(name,value,unit){
             var _self = this
@@ -77,12 +77,12 @@ new Vue({
                 success: function (d) {
                     if(d.status.code=="OK"){
                         var d = d.data
-                        wglobal.router('wx_login.html')
+                        global.router('wx_login.html')
                     }
 
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         }
     }
 })

@@ -63,8 +63,8 @@ var screen = new Vue({
                         _self.boxId = d.data
                         _self.connectWebScoket()
                     } else {
-                        //global.pop_tips(d.status.msg)
-                        //global.router("screen_login.html")
+                        global.pop_tips(d.status.msg)
+                        global.router("screen_login.html")
                     }
                 }
             }
@@ -100,27 +100,28 @@ var screen = new Vue({
         // socket 接收方法
         socketCallback: function (data) {
             var _self = this
-            console.log('得到返回数据:' + new Date())
-            console.log(data.body)
             var d = JSON.parse(data.body)
             var bgmUrl = document.getElementById('bgMusic');
-            if(d.msgType == 'EVENT_NEW'){
-                location.reload() // 游戏开始，重新刷新页面
-            }else if(d.msgType == 'EVENT_PAUSE'){
+            if(d.msgType == 'EVENT_PAUSE'){
                 if(!bgmUrl.paused){
                     bgmUrl.pause()
                 }
                 clearInterval(timer)
                 d.countdownSec = 0;
-                $(".countDown").html("游戏暂停")
+                //$(".countDown").html("游戏暂停")
 
-            }else if(d.msgType == 'EVENT_CONTINUE'){
-                if(bgmUrl.paused){
+            }
+            else if(d.msgType == 'EVENT_CONTINUE'){
+                if(bgmUrl && bgmUrl.paused){
                     bgmUrl.play();
                 }
 
             }else if(d.msgType == 'QUEUE'){
                 _self.$set(_self.screenCenterMessage,'message','入座中，请等待请他玩家入座')
+            }
+            else if(d.msgType == 'EVENT_SCREENING_OVER' || d.msgType == 'EVENT_RESTART' || d.msgType == 'EVENT_NEW'){
+                websocket.disconnect()
+                location.reload() // 游戏开始，重新刷新页面
             }
 
 
@@ -139,12 +140,19 @@ var screen = new Vue({
                     }, 10)
             }
 
-            if(d.msgType == 'CAMPAIGN_RESULT' || d.msgType =='CAMPAIGN_PK_SPEAK' || d.msgType =='CAMPAIGN_OUT_PK_SPEAK'){
+            if(d.msgType == 'EVENT_CAMPAIGN_RESULT' || d.msgType =='EVENT_CAMPAIGN_PK_SPEAK' || d.msgType =='EVENT_CAMPAIGN_OUT_PK_SPEAK'){
                 for(var i=0; i<_self.users.length;i++){
                     if(_self.users[i].campaignFlag){
                         _self.users[i].campaignFlag = false
                         _self.$set(_self.users,i,_self.users[i])
                     }
+                }
+            }
+            if(d.userInfoList){
+                for(var i=0;i<d.userInfoList.length; i++){
+                    var num = d.userInfoList[i].number
+                    _self.users[num-1] =  $.extend({}, _self.users[num-1], d.userInfoList[i])
+                    _self.$set(_self.users,num-1,_self.users[num-1])
                 }
             }
 
@@ -239,6 +247,7 @@ var screen = new Vue({
                         _self.recoverNumber = 1;
                     }
                 }
+                console.log("recoverType:"+_self.recoverType +",thisType"+_self.thisType)
                 if(a.msgType=='EVENT_CONTINUE') {
                     data = {
                         'eventType': _self.recoverType,
@@ -250,7 +259,7 @@ var screen = new Vue({
                         'eventType': _self.thisType
                     }
                 }
-                console.log(data)
+                //console.log(data)
                 _self.countDown(a.countdownSec,function(){
                     setTimeout(function(){
                         _self.nowDate = {}
@@ -324,6 +333,7 @@ var screen = new Vue({
         showVoteList:function(d,time){
             var _self = this
             var el = $('.layerEventVoteResult')
+            var time = time || 10
             el.find('.title').html(d.voteTitle)
             var info = []
             if(d.maxNumbers.length>0){

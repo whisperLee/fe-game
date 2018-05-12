@@ -100,6 +100,7 @@
 }
 //身份
 .layer.layerShenfen{
+  z-index: 100;
   .inner{
     top:10%; height:80%;
     -webkit-transform:translateY(0); background: none; border:none; border-radius: 10px;
@@ -239,6 +240,43 @@
     }
   }
 
+}
+
+.layer.gameResult{
+  background: $gColor9;
+  .inner{
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    left: 10%;
+    top: 10%;
+    background-color: transparent;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    -webkit-transform: translate(0,0);
+
+  }
+  &.TIE .inner{
+    background-image: url("../sImage/w0.png");
+  }
+
+  &.WOLF_WIN .inner{
+    background-image: url("../sImage/w1.png");
+  }
+  &.GOOD_WIN .inner{
+    background-image: url("../sImage/w2.png");
+  }
+  &.THIRD_WIN .inner{
+    background-image: url("../sImage/w3.png");
+  }
+}
+.layer.pause{
+  background:$gColor9; z-index: 101;
+  .inner{
+    background: none; border: none; text-align: center; font-size: .2rem; color: $gColor10;
+  }
 }
 
 

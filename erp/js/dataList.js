@@ -19,7 +19,7 @@ new Vue({
     methods: {
         init:function(){
             var _self = this
-            _self.erp = eglobal.getStorage('yjerp')
+            _self.erp = global.getStorage('yjerp')
             _self.getTodayBusinessInfo()
             _self.getWeekBusinessInfo()
             _self.getMonthBusinessInfo()
@@ -40,7 +40,7 @@ new Vue({
 
                 }
             }
-            eglobal.ajax(d)
+            global.ajax(d)
         },
         getWeekBusinessInfo:function(){
             var _self = this
@@ -59,7 +59,7 @@ new Vue({
 
                 }
             }
-            eglobal.ajax(d)
+            global.ajax(d)
         },
         getMonthBusinessInfo:function(){
             var _self = this
@@ -78,7 +78,7 @@ new Vue({
 
                 }
             }
-            eglobal.ajax(d)
+            global.ajax(d)
         },
         getYearBusinessInfo:function(){
             var _self = this
@@ -96,7 +96,7 @@ new Vue({
                     }
                 }
             }
-            eglobal.ajax(d)
+            global.ajax(d)
         }
 
     }

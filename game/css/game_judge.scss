@@ -1,0 +1,25 @@
+@import "global";
+@import "btns";
+.main{
+  padding-top: .5rem;
+  .judgeBtns{
+    margin: .2rem auto;
+  }
+  .input {
+    position: relative;
+    background: $gColor1;
+    height: .4rem;
+    line-height: .4rem;
+    color: $gColor16;
+    padding: 0 .15rem;
+    border-radius: 5px;
+    margin-bottom: .3rem;
+    text-align: left;
+    width:50%;
+    margin: 0 auto;
+    border: 1px solid $gColor15;
+    input {
+      color: $gColor16; height:100%; width:100%;
+    }
+  }
+}

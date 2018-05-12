@@ -46,7 +46,7 @@ new Vue({
                     }
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         },
         showGameHistoryDetail:function(event){
             var _self = this
@@ -60,10 +60,10 @@ new Vue({
                     console.log(d)
                     _self.gameHistoryDetail = d
                     _self.gameHistoryDetailInfo = d.gameHistoryDetailInfo
-                    wglobal.layerEnter($(".gameHistoryLayer"))
+                    global.layerEnter($(".gameHistoryLayer"))
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         }
     }
 })

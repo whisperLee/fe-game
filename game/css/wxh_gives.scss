@@ -1,0 +1,40 @@
+@charset "utf-8";
+@import "wx_mine";
+body{
+  .main{
+    padding-bottom: 0;
+    .gives{
+      .barCon{
+        h2{
+          font-size: .16rem; color: $wxColor7; padding: 0 .1rem;
+          .total{
+            color: $wxColor9; font-weight: bold;
+          }
+        }
+        ul{
+          li{
+            position: relative; margin: .1rem auto; background: $wxColor1; overflow: hidden; padding: .1rem;
+            .left{
+              width:.8rem; height:auto; line-height: 0; float: left;
+              img{
+                width:100%; height:auto;
+              }
+            }
+            .right{
+              position: relative; margin-left: 1.1rem; height:.8rem; line-height: .4rem; color: $wxColor7;
+              .name,.num{
+                color: $wxColor9; padding: 0 .05rem; font-size: .2rem; line-height: .4rem;
+              }
+              .data{
+                position: absolute; left:0; bottom:0; width:100%; color: $wxColor5; font-size: .14rem;
+              }
+              .btn{
+                position: absolute; right:0; bottom:.05rem; width:auto; height:.3rem; line-height: .3rem; font-size: .14rem; padding: 0 .1rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

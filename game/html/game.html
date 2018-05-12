@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
         <meta name="format-detection" content="telephone=no">
-        <link href="../css/g_game.css" rel="stylesheet" type="text/css" media="screen" />
+        <link href="../css/game.css" rel="stylesheet" type="text/css" media="screen" />
         <title>遇见狼人杀</title>
     </head>
 <body>
@@ -29,8 +29,8 @@
         <!--<span class="boxName" v-if="boxName && boxName!=''">{{boxName}}</span>-->
         <!--<span class="comName" v-if="combinationName && combinationName!=''">{{combinationName}}</span>-->
       <!--</div>-->
-      <div class="gameTime" style="display: none" v-show="screenCenterMessage.gameTime>0">
-        <p>第<span class="time">{{ screenCenterMessage.gameTime }}</span><span  v-show="screenCenterMessage.nightFlag">晚</span><span  v-show="!screenCenterMessage.nightFlag">天</span></p>
+      <div class="gameTime">
+        <p style="display: none" v-show="screenCenterMessage.gameTime>0">第<span class="time">{{ screenCenterMessage.gameTime }}</span><span  v-show="screenCenterMessage.nightFlag">晚</span><span  v-show="!screenCenterMessage.nightFlag">天</span></p>
       </div>
     </div>
 
@@ -201,6 +201,9 @@
         <div class="content">
         </div>
     </div>
+  <!--游戏结果-->
+    <div class="layer gameResult"><div class="inner"></div></div>
+  <!--游戏结算-->
     <div class="gameEnd" >
     <div class="endInner">
       <p class="resultInfo"><span class="costTime">{{accountInfo.costTime}}</span><span class="endTime">{{accountInfo.endTime}}</span></p>
@@ -231,6 +234,7 @@
       </div>
     </div>
   </div>
+  <!--用户结算-->
     <div class="layer userAccount">
       <div class="inner">
         <div :class="myAccountInfo.mvpFlag? 'mvp' : '' "></div>
@@ -257,6 +261,8 @@
         </ul>
       </div>
     </div>
+  <!--游戏暂停-->
+    <div class="layer pause"><div class="inner">游戏暂停请稍候</div></div>
 </div>
 <script type="application/javascript" src="../../js/zepto.min.js"></script>
 <script type="application/javascript" src="../../js/vue.min.js"></script>

@@ -20,7 +20,7 @@ new Vue({
         checkMobile:function(mobile){
             var _self = this
             var $error = $(".phone .error")
-            if(wglobal.isPoneAvailable($(this).val())){
+            if(global.isPoneAvailable($(this).val())){
                 var d = {
                     url: 'user/checkMobile',
                     data: {
@@ -37,7 +37,7 @@ new Vue({
                         }
                     }
                 }
-                wglobal.ajax(d)
+                global.ajax(d)
             }else{
                 $error.html('请输入正确手机号')
                 $(".validate .send.on").removeClass("on")
@@ -59,13 +59,13 @@ new Vue({
                             console.log(d)
                             if(d.status.code=="OK"){
                                 //global.setCookie("a__b",d.data)
-                                wglobal.router('wx_index.html')
+                                global.router('wx_index.html')
                             }else{
-                                wglobal.pop_tips(d.status.msg)
+                                global.pop_tips(d.status.msg)
                             }
                         }
                     }
-                    wglobal.ajax(d)
+                    global.ajax(d)
                 }else{
                     $(".input input").each(function(){
                         console.log(1)
@@ -113,7 +113,7 @@ new Vue({
                 if($phoneInput.val().length>0){
                     $clear.show()
                     if(mobile.length==11){
-                        if(wglobal.isPoneAvailable($(this).val())){
+                        if(global.isPoneAvailable($(this).val())){
                             $(".validate .send").addClass("on")
                         }else{
                             _self.showError($phone,'请输入正确手机号')

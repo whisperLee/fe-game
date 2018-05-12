@@ -74,9 +74,9 @@ var component = {
                 '</div>'+
             '</div>'+
             '<ul class="infos">'+
-                '<li><span>昵称：</span><p>user.nickName</p></li>'+
-                '<li><span>称号：</span><p>狼里一枝花</p></li>'+
-                '<li><span>MVP：</span><p></p></li>'+
+                '<li><span>昵称：</span><p>{{user.nickName}}</p></li>'+
+                '<li><span>点赞：</span><p>{{user.likeTime || 0}}</p></li>'+
+                '<li><span>MVP：</span><p>{{user.mvpTime || 0}}</p></li>'+
             '</ul>'+
         '</div>'
 

@@ -148,6 +148,9 @@ body {
       width: 100%;
       height: 100%;
       -webkit-transform-origin: center center; }
+    .user-list li.my {
+      background: url("../image/my.png") no-repeat center;
+      background-size: contain; }
   .user-list.choosing .user {
     opacity: 0.5; }
     .user-list.choosing .user.canVote {
@@ -250,8 +253,8 @@ body {
         /**炸弹人**/
         /**白痴超时死亡**/
         /**白狼王开枪带走**/
-        /**白狼王自爆**/
-        /**白狼王自爆**/ }
+        /**狼王自爆**/
+        /**情侣**/ }
         .user .level .userInner .status b.state {
           position: relative;
           z-index: 9;
@@ -291,7 +294,7 @@ body {
         .user .level .userInner .status b.BOMBERMAN {
           background-image: url(../image/state/s10.png); }
         .user .level .userInner .status b.IDIOT_TIMEOUT {
-          background-image: url(../image/state/s11.png); }
+          background-image: url(../image/state/s5.png); }
         .user .level .userInner .status b.WHITE_SHOOT {
           background-image: url(../image/state/s12.png); }
         .user .level .userInner .status b.WHITE_SELF_DESTRUCT {
@@ -414,7 +417,8 @@ body {
   bottom: 0;
   width: 100%;
   height: auto;
-  min-height: .8rem; }
+  min-height: .8rem;
+  z-index: 3; }
   #game .mine .userWrap {
     width: 70%; }
     #game .mine .userWrap .user {
@@ -635,7 +639,7 @@ body {
       bottom: 0;
       width: 100%;
       height: 85%;
-      background: url("../sImage/c0.png") no-repeat center top;
+      background: url("../sImage/c.png") no-repeat center top;
       background-size: 100% 100%;
       -webkit-transform: translateX(-50%); }
       body .main .table .combinationName {
@@ -688,7 +692,8 @@ body {
         position: absolute;
         left: 23%;
         top: 41%;
-        height: 47%; }
+        height: 47%;
+        z-index: 4; }
         body .main .table .messageWrap .day {
           text-align: center;
           width: 100%;

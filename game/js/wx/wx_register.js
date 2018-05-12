@@ -21,7 +21,7 @@ new Vue({
         checkMobile:function(mobile){
             var _self = this
             var $error = $(".phone .error")
-            if(wglobal.isPoneAvailable($(this).val())){
+            if(global.isPoneAvailable($(this).val())){
                 var d = {
                     url: 'user/checkMobile',
                     data: {
@@ -38,7 +38,7 @@ new Vue({
                         }
                     }
                 }
-                wglobal.ajax(d)
+                global.ajax(d)
             }else{
                 $error.html('请输入正确手机号')
                 $(".validate .send.on").removeClass("on")
@@ -69,7 +69,7 @@ new Vue({
                             }
                         }
                     }
-                    wglobal.ajax(d)
+                    global.ajax(d)
                 }else{
                     $(".input input").each(function(){
                         console.log(1)
@@ -107,7 +107,7 @@ new Vue({
                         }
                     }
                 }
-                wglobal.ajax(d)
+                global.ajax(d)
             })
 
             var $phone = $(".phone")
@@ -134,7 +134,7 @@ new Vue({
                 if($phoneInput.val().length>0){
                     $clear.show()
                     if(mobile.length==11){
-                        if(wglobal.isPoneAvailable($(this).val())){
+                        if(global.isPoneAvailable($(this).val())){
                             var d = {
                                 url: 'user/checkMobile',
                                 data: {
@@ -150,7 +150,7 @@ new Vue({
                                     }
                                 }
                             }
-                            wglobal.ajax(d)
+                            global.ajax(d)
                         }else{
                             _self.showError($phone,'请输入正确手机号')
                             $(".validate .send.on").removeClass("on")

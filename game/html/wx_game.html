@@ -16,10 +16,10 @@
         <div class="box" v-if="users.length>0">
             <h2><span class="name">{{boxName}}</span><span class="status">{{gameStatus}}</span></h2>
             <ul>
-                <li v-for="user in users" :uid = "user.userId">
+                <li v-for="user in users" :uid = "user.userId" >
                     <user v-bind:user="user"></user>
                     <p :class="!user.userId?'unsit nick':'nick'"><span>{{user.name}}</span></p>
-                    <!--<p class="give">送礼物</p>-->
+                    <p class="give" v-on:click="gives(user)">送礼物</p>
                 </li>
             </ul>
             <p class="sitTip">{{sitTip}}</p>
@@ -63,6 +63,36 @@
         </div>
         <div class="layerNavBottom">
             <a class="btn" v-on:click="changeCard()">确认</a>
+        </div>
+    </div>
+    <div class="givesWrap">
+        <b class="shade"></b>
+        <div class="gives">
+            <h2>送给 <span class="man">刀狼</span> <b class="balance">余额: <span class="yumi">{{balance}}</span></b></h2>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <ul class="giveList swiper-slide">
+                        <li v-for = "item in gives" v-on:click="chooseGive(item,$event)" :gid = "item.id" :cost="item.cost">
+                            <a>
+                                <img :src="item.img" alt="">
+                                <p><span class="yumi">{{item.cost}}</span></p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <div class="givePay">
+                <a v-if="noBalance" class="btn recharge">充值</a>
+
+                <a v-else class="btn give">赠送</a>
+                <div class="giveNumChoose">
+                    <span>赠送数量：</span>
+                    <select id="giveNum" class="giveNum" v-on:change="onSelected()">
+                        <option v-for = "item in giveNumbers" :value="item">{{item}}</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
 </div>

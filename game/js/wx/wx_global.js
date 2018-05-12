@@ -3,7 +3,7 @@
  */
 var host = 'http://liyn.me:7777/web-api/v1/face/'
 //Vue.config.productionTip = false
-var wglobal = $.extend({},global,{
+global = $.extend({},global,{
 
     footer:function(currType){
         var d = wFooter
@@ -125,12 +125,12 @@ $(function(){
         },
         back:function(){
             $(".header .back").off().on("click",function(){
-                var backUrl = wglobal.urlHash().backUrl
+                var backUrl = global.urlHash().backUrl
                 var href = $(this).attr("href")
                 if(backUrl){
-                    wglobal.router(backUrl)
+                    global.router(backUrl)
                 }else if(href){
-                    wglobal.router(href)
+                    global.router(href)
                 }else{
                     history.go(-1)
                 }
@@ -139,7 +139,7 @@ $(function(){
             $(".layerWrap").each(function(){
                 var w = $(this)
                 w.find(".layerNavTop .back").off().on("click",function(){
-                    wglobal.layerOuter(w)
+                    global.layerOuter(w)
                 })
             })
         },
@@ -198,7 +198,7 @@ $(function(){
                                 _self.validateCountDown(el)
                             }
                         }
-                        wglobal.ajax(d)
+                        global.ajax(d)
                     }
 
                 })

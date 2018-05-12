@@ -49,9 +49,11 @@
       <ul :class="dataList.length<=0?'none':''" v-if="dataList.length>0">
         <li v-for = "(item,idx) in dataList">
           <p class="num">NO.{{idx+1}}</p>
-          <p class="head"><img src="../wxImage/head.png"></p>
-          <p class="name">用户名</p>
-          <p class="value">190</p>
+          <div class="user">
+            <div class="head"><img src="../wxImage/head.png"></div>
+            <span class="name">{{item.userName}}</span>
+          </div>
+          <p class="value">{{item.quantity}}</p>
         </li>
       </ul>
       <p v-else class="defaultMess">{{defaultMess}}</p>

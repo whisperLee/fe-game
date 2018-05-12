@@ -14,14 +14,14 @@ new Vue({
     methods: {
         init:function(){
             var _self = this
-            var urlHash = wglobal.urlHash()
+            var urlHash = global.urlHash()
             _self.orderId = urlHash.orderId
             _self.amount = urlHash.amount
             if(_self.orderId && _self.orderId!='undefined'){
 
             }else{
-                wglobal.pop_tips('页面出错，请重新支付',function(){
-                    wglobal.router('wx_orders.html')
+                global.pop_tips('页面出错，请重新支付',function(){
+                    global.router('wx_orders.html')
                 })
             }
         },
@@ -35,12 +35,12 @@ new Vue({
                 success: function (d) {
                     console.log(d)
                     if(d.status.code=="OK" && d.data){
-                        wglobal.router('wx_orders.html?orderId='+orderId)
+                        global.router('wx_orders.html?orderId='+orderId)
                     }
 
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         }
     }
 })

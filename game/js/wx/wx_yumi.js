@@ -43,7 +43,7 @@ new Vue({
 
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         }
     }
 })

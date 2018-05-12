@@ -417,4 +417,15 @@ video {
     .main.mobile .contain .tableSearch .searchMod {
       width: 100%; }
 
+.top {
+  height: .4rem;
+  border-bottom: 1px solid #f1f5fa; }
+  .top p.logout {
+    float: right;
+    text-align: #2d313f;
+    font-size: .16rem;
+    line-height: .4rem;
+    padding-right: .1rem;
+    cursor: pointer; }
+
 /*# sourceMappingURL=index.css.map */

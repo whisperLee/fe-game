@@ -6,7 +6,7 @@
 var host = 'http://liyn.me:9999/web-api/v1/lair/'
 //var host = 'http://192.168.3.28:8888/web-api/v1/'
 document.write("<script language=javascript src='../../js/init.js'></script>");
-var eglobal = $.extend({},global,{
+global = $.extend({},global,{
     init:function(){
         var _this = this
         _this.navInit()
@@ -130,10 +130,10 @@ var eglobal = $.extend({},global,{
                 }
             }
         }
-        eglobal.ajax(d)
+        global.ajax(d)
     },
     active:function(){
-        var _this = this
+        var _self = this
         /*复选框全选*/
         // $(".js-checkAll").each(function(){
         //     var el = $(this).closest(".tableList")
@@ -192,11 +192,15 @@ var eglobal = $.extend({},global,{
                 el.find(".selected").html($(this).html())
             })
         })
+        // 退出
+        $(".js-logout").off().on("click",function(){
+            _self.logout()
+        })
 
     }
 })
 
 
 $(function(){
-    eglobal.init()
+    global.init()
 })

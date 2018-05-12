@@ -18,7 +18,7 @@ new Vue({
         init:function(){
             var _self = this
             _self.getOrderList()//查询订单信息
-            var orderId = wglobal.urlHash().orderId
+            var orderId = global.urlHash().orderId
             if(orderId && orderId!='undefined'){
                 _self.showOrderDetail(orderId)
             }
@@ -49,7 +49,7 @@ new Vue({
                     }
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         },
         showOrderDetail:function(orderId){
             var _self = this
@@ -61,19 +61,19 @@ new Vue({
                 success: function (d) {
                     console.log(d)
                     if(d.status.code=="OK" && d.data){
-                        var address = wglobal.returnAddress(d.data.userLocationResponse)
+                        var address = global.returnAddress(d.data.userLocationResponse)
                         d.data.statusName = interfaceValue.orderStatus[d.data.status]
                         d.data.payTypeName = interfaceValue['payType'][d.data.payType]
                         d.data.userLocationResponse.address = address
                         _self.orderDatail = d.data
-                        wglobal.layerEnter($(".orderDetailLayer"))
+                        global.layerEnter($(".orderDetailLayer"))
                     }else{
-                        wglobal.pop_tips(d.status.msg)
+                        global.pop_tips(d.status.msg)
                     }
 
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
 
         },
         orderCancel:function(orderId){
@@ -85,21 +85,21 @@ new Vue({
                 },
                 success: function (d) {
                     if(d.status.code=="OK" && d.data){
-                        wglobal.pop_tips("订单取消成功")
+                        global.pop_tips("订单取消成功")
                         _self.orderDatail.status = 70
                         _self.orderDatail.statusName = interfaceValue.orderStatus[_self.orderDatail.status]
                     }else{
-                        wglobal.pop_tips(d.status.msg)
+                        global.pop_tips(d.status.msg)
                     }
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         },
         toPay:function(orderId){
-            wglobal.router('wx_pay.html?orderId='+orderId)
+            global.router('wx_pay.html?orderId='+orderId)
         },
         toShop:function(orderId,type){
-            wglobal.router('wx_shop.html?shopId=1&type='+type)
+            global.router('wx_shop.html?shopId=1&type='+type)
         },
         active:function(){
             $('.container .bar li').each(function(idx){

@@ -17,7 +17,7 @@ new Vue({
     methods: {
         init:function(){
             var _self = this
-            wglobal.footer('appoint')
+            global.footer('appoint')
             _self.getAppointment()
             $(function(){
                 _self.active()
@@ -99,7 +99,7 @@ new Vue({
                     }
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         },
         submit:function(){
             var _self = this
@@ -109,11 +109,11 @@ new Vue({
             var shopId = 1
             var type = $(".radio.on").attr("type")
             if(contacts==''){
-                wglobal.pop_tips('请填写联系人')
+                global.pop_tips('请填写联系人')
                 return
             }
-            if(!wglobal.isPoneAvailable(contactsMobile)){
-                wglobal.pop_tips('请填写正确联系人电话')
+            if(!global.isPoneAvailable(contactsMobile)){
+                global.pop_tips('请填写正确联系人电话')
                 return
             }
 
@@ -133,7 +133,7 @@ new Vue({
                     }
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         },
         active:function(){
             var _self = this

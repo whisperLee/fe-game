@@ -13,7 +13,7 @@ new Vue({
     methods: {
         init:function(){
             var _self = this
-            _self.erp = eglobal.getStorage('yjerp')
+            _self.erp = global.getStorage('yjerp')
             _self.getTodayOrderList()
         },
         getTodayOrderList:function(){
@@ -31,7 +31,7 @@ new Vue({
 
                 }
             }
-            eglobal.ajax(d)
+            global.ajax(d)
         }
     }
 })

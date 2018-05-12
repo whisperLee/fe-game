@@ -42,7 +42,7 @@ new Vue({
 
                     }
                 }
-                wglobal.ajax(d)
+                global.ajax(d)
             }
         },
         getCharmY:function(){ //游戏昨日榜
@@ -66,7 +66,7 @@ new Vue({
 
                     }
                 }
-                wglobal.ajax(d)
+                global.ajax(d)
             }
         },
         getCharmW:function(){ //游戏周榜
@@ -90,7 +90,7 @@ new Vue({
 
                     }
                 }
-                wglobal.ajax(d)
+                global.ajax(d)
             }
         },
         getCharmTt:function(){  //游戏总榜
@@ -114,7 +114,7 @@ new Vue({
 
                     }
                 }
-                wglobal.ajax(d)
+                global.ajax(d)
             }
         },
         getGameT:function(){//游戏实时榜
@@ -138,7 +138,7 @@ new Vue({
 
                     }
                 }
-                wglobal.ajax(d)
+                global.ajax(d)
             }
         },
         getGameY:function(){ //游戏昨日榜
@@ -162,7 +162,7 @@ new Vue({
 
                     }
                 }
-                wglobal.ajax(d)
+                global.ajax(d)
             }
         },
         getGameW:function(){ //游戏周榜
@@ -186,7 +186,7 @@ new Vue({
 
                     }
                 }
-                wglobal.ajax(d)
+                global.ajax(d)
             }
         },
         getGameTt:function(){  //游戏总榜
@@ -210,7 +210,7 @@ new Vue({
 
                     }
                 }
-                wglobal.ajax(d)
+                global.ajax(d)
             }
         },
         getMvpT:function(){//游戏实时榜
@@ -234,7 +234,7 @@ new Vue({
 
                     }
                 }
-                wglobal.ajax(d)
+                global.ajax(d)
             }
         },
         getMvpY:function(){ //游戏昨日榜
@@ -258,7 +258,7 @@ new Vue({
 
                     }
                 }
-                wglobal.ajax(d)
+                global.ajax(d)
             }
         },
         getMvpW:function(){ //游戏周榜
@@ -282,7 +282,7 @@ new Vue({
 
                     }
                 }
-                wglobal.ajax(d)
+                global.ajax(d)
             }
         },
         getMvpTt:function(){  //游戏总榜
@@ -306,7 +306,7 @@ new Vue({
 
                     }
                 }
-                wglobal.ajax(d)
+                global.ajax(d)
             }
         },
         getCharm:function(){

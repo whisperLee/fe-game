@@ -17,7 +17,7 @@ new Vue({
     methods: {
         init:function(){
             var _self = this
-            _self.erp = eglobal.getStorage('yjerp')
+            _self.erp = global.getStorage('yjerp')
             _self.getDataList()
         },
         getDataList:function(){
@@ -53,7 +53,7 @@ new Vue({
                     }
                 }
             }
-            eglobal.ajax(d)
+            global.ajax(d)
         },
         getOrderListUnCom:function(){
             var _self = this
@@ -77,7 +77,7 @@ new Vue({
                     }
                 }
             }
-            eglobal.ajax(d)
+            global.ajax(d)
         },
         paid:function(event,item){ //设置已支付
             var _self = this
@@ -96,7 +96,7 @@ new Vue({
 
                 }
             }
-            eglobal.ajax(d)
+            global.ajax(d)
         },
         delivery:function(event,item){ //设置配送中
             var _self = this
@@ -114,7 +114,7 @@ new Vue({
 
                 }
             }
-            eglobal.ajax(d)
+            global.ajax(d)
         },
         completed:function(event,item){ //设置已完成
             var _self = this
@@ -137,7 +137,7 @@ new Vue({
 
                 }
             }
-            eglobal.ajax(d)
+            global.ajax(d)
         },
         removeItem:function(list,item){
             for(var i=0;i<list.length;i++){
@@ -162,7 +162,7 @@ new Vue({
                     }
                 }
             }
-            eglobal.ajax(d)
+            global.ajax(d)
         },
         returnAddress:function(user){
             var address = ''

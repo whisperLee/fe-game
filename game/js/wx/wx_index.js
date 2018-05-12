@@ -19,7 +19,7 @@ new Vue({
     methods: {
         init:function(){
             var _self = this
-            wglobal.footer('index')
+            global.footer('index')
             _self.getCurrentUser()//查询用户信息
             _self.queryNotice() //获取推送信息
             _self.queryShowBanner()//获取商圈banner
@@ -27,7 +27,7 @@ new Vue({
         },
         getCurrentUser:function(){
             var _self = this
-            //_self.shopId = wglobal.urlHash().shopId || 0
+            //_self.shopId = global.urlHash().shopId || 0
             var d = {
                 url: 'user/getCurrentUser',
                 data: {},
@@ -51,12 +51,12 @@ new Vue({
                         }
                         console.log(_self.user)
                     }else{
-                        wglobal.router("wx_login.html")
+                        global.router("wx_login.html")
                     }
 
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         },
         queryNotice:function(){
             var _self = this
@@ -69,7 +69,7 @@ new Vue({
                     }
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         },
         queryShowBanner:function(){
             var _self = this
@@ -94,7 +94,7 @@ new Vue({
                     }
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         },
         queryShop:function(){
             var _self = this
@@ -115,7 +115,7 @@ new Vue({
 
                 }
             }
-            wglobal.ajax(d)
+            global.ajax(d)
         },
         setCard:function(name,value,unit){
             var _self = this

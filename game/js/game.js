@@ -406,6 +406,11 @@ var game = new Vue({
                         $('.user-list').addClass('choosing')
                     }
                 }
+                if(e=='EVENT_CUPID'){
+                    el.find(".btn .js-withdraw").hide()
+                }else{
+                    el.find(".btn .js-withdraw").show()
+                }
                 _self.setEventLayer(el,info)
             }
         },

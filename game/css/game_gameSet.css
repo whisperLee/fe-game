@@ -25,7 +25,7 @@ html {
 @media screen and (min-width: 320px) and (orientation: portrait) {
   html {
     font-size: 80px; } }
-@media screen and (min-width: 375px) and (orientation: portrait) {
+@media screen and (min-width: 360px) and (orientation: portrait) {
   html {
     font-size: 100px; } }
 @media screen and (min-width: 414px) and (orientation: portrait) {
@@ -343,4 +343,4 @@ body .main {
   background: url("../image/n1.jpg") no-repeat center top;
   background-size: cover; }
 
-/*# sourceMappingURL=game_gameSet.css.mapmap */
+/*# sourceMappingURL=game_gameSet.css.map */

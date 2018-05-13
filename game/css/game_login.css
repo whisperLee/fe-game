@@ -25,7 +25,7 @@ html {
 @media screen and (min-width: 320px) and (orientation: portrait) {
   html {
     font-size: 80px; } }
-@media screen and (min-width: 375px) and (orientation: portrait) {
+@media screen and (min-width: 360px) and (orientation: portrait) {
   html {
     font-size: 100px; } }
 @media screen and (min-width: 414px) and (orientation: portrait) {
@@ -251,4 +251,4 @@ body .main {
       margin: .3rem auto;
       background: #1abc9c; }
 
-/*# sourceMappingURL=game_login.csscss.map */
+/*# sourceMappingURL=game_login.css.map */

@@ -224,10 +224,10 @@ var game = new Vue({
                 i = i || 0
                 i++
                 global.pop_tips('网络连接失败，正在重试，请稍候....')
-                if(i<=3){
+                if(i<=12){
                     setTimeout(function(){
                         _self.connectWebScoket(i)
-                    },3000)
+                    },5000)
                 }else{
                     global.pop_tips('重连失败，请查看您的网络连接，或呼叫法官')
                 }
@@ -454,6 +454,9 @@ var game = new Vue({
                         var el = $('.gameResult')
                         el.addClass(d.gameResult)
                         animate.layerEnter(el)
+                    }
+                    else if(s=='DARK' && !_self.isDead){
+                        animate.layerOuter($('.layer'))
                     }
 
 
@@ -1066,7 +1069,11 @@ var game = new Vue({
             })
 
             $('.layerShenfen .shenfen').off().on(
-                'touchstart',function(){
+                'touchstart',function(e){
+                    if (e && e.preventDefault) {
+                        //阻止默认浏览器动作
+                        e.preventDefault();
+                    }
                     // $('.layerShenfen .shenfen').off().on('touchstart',function(){
                     var el = $(this);
                     if(shenfen_flow == 0){//必须动画执行完成后才能开始查看动画
@@ -1121,7 +1128,11 @@ var game = new Vue({
             $('.layer').each(function(){
                 var el = $(this)
                 el.find('.longPress.btn').off().on(
-                    'touchstart',function(){
+                    'touchstart',function(e){
+                        if (e && e.preventDefault) {
+                            //阻止默认浏览器动作
+                            e.preventDefault();
+                        }
                         if(el.find('.unchoose').length>0){
                             global.pop_tips('还有'+el.find('.unchoose').length+'名玩家没有选择')
                         }else if(el.hasClass("layerEventRobber") && el.find(".voteList li.on").length<=0){

@@ -20,22 +20,22 @@
         var redirect = {
             init:function(){
                 var _self = this
-                _self.boxId = global.urlHash().boxId
-                _self.gameNumber = global.urlHash().gameNumber
+                _self.code = global.urlHash().code
+                _self.state = global.urlHash().state
                 _self.aa()
             },
             aa:function(){
                 var _self = this
                 var d = {
-                    url: 'face/XX',
+                    url: 'face/wechat/redirect',
                     data: {
-                        "boxId": _self.boxId,
-                        "gameNumber": _self.gameNumber
+                        "code": _self.boxId,
+                        "state": _self.state
                     },
                     success: function (d) {
                         if (d.status.code === 'OK') {
                             console.log(d)
-                            window.location.href="xx.html?boxId="+_self.boxId+'&boxid='+_self.boxId
+                            window.location.href=d.data
                         } else {
                             global.pop_tips(d.status.msg)
                         }

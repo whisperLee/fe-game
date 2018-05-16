@@ -2,6 +2,8 @@
 
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","showMsg":"欢迎光临遇见狼人杀俱乐部"}
 
+{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE_AND_EVENT","userInfoList":[{"number":1,"deadFlag":true,"identityStatus":"DEAD"}],"gameInfo":{"gameStatus":"CHANGE_SERGEANT","gameStatusStr":"移交警长"},"personalInfo":{"sergeantFlag":false,"campaignFlag":false,"deadFlag":false,"buttons":["EMPTY"]},"eventInfo":{"eventType":"EVENT_CHANGE_SERGEANT","eventName":"移交警徽","eventDesc":"请选择一位玩家将警徽移交给他.","chooseCount":1}}
+
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"gameStatus":"READY_ROB_IDENTITY","gameStatusStr":"准备抢身份"}}
 
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","identityInfoList":[{"identityId":3,"name":"预言家","cost":1},{"identityId":4,"name":"女巫","cost":1},{"identityId":5,"name":"猎人","cost":1}],"gameInfo":{"gameStatus":"ROB_IDENTITY","gameStatusStr":"开始抢身份"}}

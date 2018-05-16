@@ -120,7 +120,7 @@ var game = new Vue({
                                             global.router('game_set.html?boxId=' + _self.boxId + '&gameNumber='+_self.gameNumber +'&event=add')
                                         } else {
                                             $(".game").show()
-                                            _self.connectWebScoket()
+                                            _self.connectWebScoket(0)
                                         }
                                     }else{
                                         global.pop_tips(d2.status.msg,function(){
@@ -280,11 +280,11 @@ var game = new Vue({
             else if(d.msgType == 'UPDATE_LEADER'){//需要获取leaderInfo
                 _self.setLeaderBtn(d.leaderInfo)
             }
-            else if(d.msgType == 'DEAD'){//该玩家挂了,黑屏,不在接受事件 除了gameover
+            else if(d.msgType == 'DEAD'  && !_self.isDead){//该玩家挂了,黑屏,不在接受事件 除了gameover
                 _self.dead(d)
             }
             else if(d.msgType == 'EVENT_SLEEP' && !_self.isDead){// 闭眼事件
-                animate.layerOuter($('.layer'))
+                _self.layerHide()
             }
             else if(d.msgType == 'EVENT'){ // 游戏事件,需要获取eventInfo
                 _self.eventInfo(d.eventInfo)
@@ -404,12 +404,18 @@ var game = new Vue({
                         }
                         el.find('.content ul').html(h)
                         $('.user-list').addClass('choosing')
+                        if(e == 'EVENT_CHANGE_SERGEANT'){ // 特殊事件---警长移交警徽
+                            el.find('.btn.js-withdraw .text').html('撕掉')
+                        }else{
+                            el.find('.btn.js-withdraw .text').html('放弃')
+                        }
+
                     }
                 }
                 if(e=='EVENT_CUPID'){
-                    el.find(".btn .js-withdraw").hide()
+                    el.find(".btn.js-withdraw").hide()
                 }else{
-                    el.find(".btn .js-withdraw").show()
+                    el.find(".btn.js-withdraw").show()
                 }
                 _self.setEventLayer(el,info)
             }
@@ -461,7 +467,7 @@ var game = new Vue({
                         animate.layerEnter(el)
                     }
                     else if(s=='DARK' && !_self.isDead){
-                        animate.layerOuter($('.layer'))
+                        _self.layerHide()
                     }
 
 
@@ -515,6 +521,11 @@ var game = new Vue({
                 }
 
             }
+        },
+        layerHide:function(){
+            var _self = this
+            animate.layerOuter($('.layer:not(.layerShenfen)'))
+            animate.sfLayerOuter($(".layerShenfen"))
         },
         setEventLayer:function(el,info){
             var _self = this
@@ -763,6 +774,7 @@ var game = new Vue({
                         left: 0,
                         top: $('.main').height(),
                         display:'block',
+                        scale:0,
                         opacity: 0
                     };
             }
@@ -770,18 +782,21 @@ var game = new Vue({
         },
         // event 事件提交websocket
         userEventSubmit:function(el,n,notOuter){
-            if(!notOuter){
-                animate.layerOuter(el)
-            }
-            var e = el.attr('event')
-            if(e){
-                var data = {
-                    targetNumberList:n,
-                    eventType:e
+            if(el.hasClass("lock")){
+                //global.pop_tips("提交中，请勿重复提交")
+            }else{
+                if(!notOuter){
+                    animate.layerOuter(el)
                 }
-                websocket.receiveUserEvent(data)
+                var e = el.attr('event')
+                if(e){
+                    var data = {
+                        targetNumberList:n,
+                        eventType:e
+                    }
+                    websocket.receiveUserEvent(data)
+                }
             }
-
         },
         // 提交用户事件选择 --选人
         userEventForUserChoose: function(el){
@@ -1132,8 +1147,9 @@ var game = new Vue({
             var press_flow = 0
             $('.layer').each(function(){
                 var el = $(this)
-                el.find('.longPress.btn').off().on(
+                el.find('.longPress.js-submit').off().on(
                     'touchstart',function(e){
+                        console.log(press_flow)
                         if (e && e.preventDefault) {
                             //阻止默认浏览器动作
                             e.preventDefault();
@@ -1164,7 +1180,7 @@ var game = new Vue({
                                 }
                             })
                         }
-
+                        console.log(press_flow)
                 }).on('touchend',function(){
                         var _self = $(this)
                         var _pro = _self.find('.process b')
@@ -1179,12 +1195,54 @@ var game = new Vue({
                         press_flow = 0
 
                     })
-                el.find('.js-withdraw').off().on('click',function(){
-                    _self.userEventSubmit(el,[0])
+                el.find('.longPress.js-withdraw').off().on(
+                    'touchstart',function(e){
+                        if (e && e.preventDefault) {
+                            //阻止默认浏览器动作
+                            e.preventDefault();
+                        }
+                        console.log(press_flow)
+                        var _btn = $(this)
+                        var _pro = _btn.find('.process b')
+                        press_flow = 1
+                        _pro.velocity({
+                            width:['100%','0%']
+                        },{
+                            duration: 700,
+                            easing: 'linear',
+                            complete: function(){
+                                press_flow = 2
+                                _pro.width(0)
+                                _btn.addClass('state-success')
+                                //方法提交
+                                _self.userEventSubmit(el,[0],1)
+                            }
+                        })
+
+                    }).on('touchend',function(){
+                    console.log(press_flow)
+                    var _self = $(this)
+                    var _pro = _self.find('.process b')
+                    //console.log(press_flow)
+                    if(press_flow==1){
+                        global.pop_tips('您取消了提交')
+                        animate.stopAll(_pro)
+                        _pro.width(0)
+                    }else if(press_flow==2){
+                        animate.layerOuter(el)
+                    }
+                    press_flow = 0
+                })
+                el.find(".js-withdraw:not(.longPress)").off().on('click',function(){
+                        console.log("click")
+                        if(!$(this).hasClass("longPress")){
+                            _self.userEventSubmit(el,[0])
+                        }
                 })
                 el.find('.js-affirm').off().on('click',function(){
                     _self.userEventSubmit(el,null)
                 })
+
                 el.find('.close').off().on('click',function(){
                     animate.layerOuter(el)
                 })

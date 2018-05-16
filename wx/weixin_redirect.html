@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--forbidden operators-->
+<!--<html><head><title></title></head></body></html>-->
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection"content="telephone=no">
+    <title>签到页面</title>
 </head>
 <body>
+<div class="main"></div>
+<script type="application/javascript" src="../js/zepto.min.js"></script>
+<script type="application/javascript" src="../js/global.js"></script>
+<script>
+    var host = 'http://liyn.me:8888/web-api/v1/'
+    $(function(){
 
+        var redirect = {
+            init:function(){
+                var _self = this
+                _self.boxId = global.urlHash().boxId
+                _self.gameNumber = global.urlHash().gameNumber
+                _self.aa()
+            },
+            aa:function(){
+                var _self = this
+                var d = {
+                    url: 'face/XX',
+                    data: {
+                        "boxId": _self.boxId,
+                        "gameNumber": _self.gameNumber
+                    },
+                    success: function (d) {
+                        if (d.status.code === 'OK') {
+                            console.log(d)
+                            window.location.href="xx.html?boxId="+_self.boxId+'&boxid='+_self.boxId
+                        } else {
+                            global.pop_tips(d.status.msg)
+                        }
+                    }
+                }
+                global.ajax(d)
+            }
+        }
+        redirect.init()
+    })
+</script>
 </body>
 </html>
+<!--<html><head><title></title></head></body></html>-->

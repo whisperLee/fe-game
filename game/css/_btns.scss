@@ -52,7 +52,13 @@
         background: $gColor10;
       }
     }
-
+  }
+  &.btn3{
+    .process{
+      b{
+        background: $gColor16;
+      }
+    }
   }
   &.btn4{
     .process{
@@ -60,7 +66,6 @@
         background: $gColor21;
       }
     }
-
   }
 }
 .userBtns{

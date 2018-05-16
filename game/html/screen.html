@@ -96,36 +96,38 @@
 <script type="application/javascript" src="../../js/sockjs.min.js"></script>
 <script type="application/javascript" src="../../js/stomp.js"></script>
 <script type="application/javascript" src="../../js/global.js"></script>
-<script type="application/javascript" src="../js/gglobal.js?v1"></script>
+<script type="application/javascript" src="../js/gglobal.js"></script>
 <script type="application/javascript" src="../js/websocket.js"></script>
-<script type="application/javascript" src="../js/component.js?v1"></script>
-<script type="application/javascript" src="../js/animate.js?v1"></script>
-<script type="application/javascript" src="../js/screen.js?v2"></script>
-<!--<script>-->
-<!--$(function(){-->
-   <!--var data = {-->
-      <!--body:''-->
-    <!--}-->
-    <!--data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"QUEUE","boxInfo":{"boxName":"ffff"},"userInfoList":[{"userId":201,"nickName":"201","number":1,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1,"likeTime":1,"mvpTime":1},{"userId":202,"nickName":"202","number":2,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":203,"nickName":"203","number":3,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":2},{"userId":204,"nickName":"204","number":4,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1,"likeTime":1},{"userId":205,"nickName":"205","number":5,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":206,"nickName":"206","number":6,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":207,"nickName":"207","number":7,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":208,"nickName":"208","number":8,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":209,"nickName":"209","number":9,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":210,"nickName":"210","number":10,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":211,"nickName":"211","number":11,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":212,"nickName":"212","number":12,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1}],"screeningInfo":{"combinationConfigStr":"预言家 女巫 猎人 守卫 白痴 狼王 白狼王","combinationName":"什么都有","playerCount":12},"message":"游戏准备中..."}'-->
-    <!--screen.socketCallback(data)-->
-
-    <!--setTimeout(function(){-->
-        <!--data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","userInfoList":[{"number":1,"campaignFlag":true},{"number":2,"campaignFlag":true},{"number":3,"campaignFlag":true},{"number":4,"campaignFlag":true}],"gameInfo":{"gameStatus":"CAMPAIGN_SPEAK","gameStatusStr":"竞选警长发言"},"personalInfo":{"sergeantFlag":false,"campaignFlag":false,"deadFlag":false,"buttons":["GIVE_UP"]},"showMsg":"1号,2号,3号,4号玩家参与竞选.请从3号玩家开始,逆序发言.3->2->1->4 发言结束后,由当前存活最小号:1号玩家在游戏终端点击发言结束."}'-->
-        <!--screen.socketCallback(data)-->
-    <!--},1000)-->
-    <!--setTimeout(function(){-->
-      <!--data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT_CAMPAIGN_PK_SPEAK","userInfoList":[{"number":1,"campaignFlag":true},{"number":2,"campaignFlag":true}],"countdownSec":10,"message":"竞选结果","messageExt":"1号,2号玩家平票,进入警上PK环节.请从2号玩家开始,顺序发言.2->1 投票详情可以在游戏终端查看.","voiceUrl":"http://tsn.baidu.com/text2audio?tex=1%E5%8F%B7%212%E5%8F%B7%E7%8E%A9%E5%AE%B6%E5%B9%B3%E7%A5%A8%2C%E8%BF%9B%E5%85%A5%E8%AD%A6%E4%B8%8APK%E7%8E%AF%E8%8A%82.%E8%AF%B7%E4%BB%8E%272%27%E5%8F%B7%E7%8E%A9%E5%AE%B6%E5%BC%80%E5%A7%8B%2C%27%E9%A1%BA%27%E5%BA%8F%E5%8F%91%E8%A8%80.&lan=zh&cuid=yujian&ctp=1&tok=24.073fdbdcf24ccccadb92fecd72428b36.2592000.1528462078.282335-2180146&spd=5&pit=5&vol=15&per=0投票详情可以在游戏终端查看.","voteInfo":{"voteTitle":"选警投票","voteDetailList":[{"votedNumber":1,"voteNumberList":[5],"poll":1.0},{"votedNumber":2,"voteNumberList":[6],"poll":1.0}],"maxNumbers":[1,2],"sergeantNumber":0,"poll":"1"}}'-->
-      <!--screen.socketCallback(data)-->
-    <!--},3000)-->
-
-    <!--setTimeout(function(){-->
-        <!--data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT_GAME_OVER","countdownSec":10,"message":"游戏结束","messageExt":"1号玩家被带走.游戏结束,好人阵营胜利","gameResult":"GOOD_WIN","voiceUrl":"http://tsn.baidu.com/text2audio?tex=1%E5%8F%B7%E7%8E%A9%E5%AE%B6%E8%A2%AB%E5%B8%A6%E8%B5%B0.%E6%B8%B8%E6%88%8F%E7%BB%93%E6%9D%9F%2C%E5%A5%BD%E4%BA%BA%E9%98%B5%E8%90%A5%E8%83%9C%E5%88%A9&lan=zh&cuid=yujian&ctp=1&tok=24.39a2b442af791f890199abe5cbde60ba.2592000.1513160056.282335-2180146&spd=5&pit=5&vol=15&per=0"}'-->
-        <!--screen.socketCallback(data)-->
-    <!--},10000)-->
-
-
-<!--})-->
-<!--</script>-->
+<script type="application/javascript" src="../js/component.js"></script>
+<script type="application/javascript" src="../js/animate.js"></script>
+<script type="application/javascript" src="../js/screen.js"></script>
+<script>
+//$(function(){
+//   var data = {
+//      body:''
+//    }
+//    data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"QUEUE","boxInfo":{"boxName":"ffff"},"userInfoList":[{"userId":201,"nickName":"201","number":1,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1,"likeTime":1,"mvpTime":1},{"userId":202,"nickName":"202","number":2,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":203,"nickName":"203","number":3,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":2},{"userId":204,"nickName":"204","number":4,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1,"likeTime":1},{"userId":205,"nickName":"205","number":5,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":206,"nickName":"206","number":6,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":207,"nickName":"207","number":7,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":208,"nickName":"208","number":8,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":209,"nickName":"209","number":9,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":210,"nickName":"210","number":10,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":211,"nickName":"211","number":11,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1},{"userId":212,"nickName":"212","number":12,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1}],"screeningInfo":{"combinationConfigStr":"预言家 女巫 猎人 守卫 白痴 狼王 白狼王","combinationName":"什么都有","playerCount":12},"message":"游戏准备中..."}'
+//    screen.socketCallback(data)
+//
+//    setTimeout(function(){
+//        data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT_EXILE_RESULT","countdownSec":10,"message":"放逐结果","messageExt":"4号玩家被放逐.投票详情可以在游戏终端查看.","voiceUrl":"http://tsn.baidu.com/text2audio?tex=4%E5%8F%B7%E7%8E%A9%E5%AE%B6%E8%A2%AB%E6%94%BE%E9%80%90.%E6%8A%95%E7%A5%A8%E8%AF%A6%E6%83%85%E5%8F%AF%E4%BB%A5%E5%9C%A8%E6%B8%B8%E6%88%8F%E7%BB%88%E7%AB%AF%E6%9F%A5%E7%9C%8B.&lan=zh&cuid=yujian&ctp=1&tok=24.eaeac2dad2beb54be7bd96fae4330f3a.2592000.1529032898.282335-2180146&spd=5&pit=5&vol=15&per=0","voteInfo":{"voteTitle":"放逐投票","voteDetailList":[{"votedNumber":4,"voteNumberList":[3],"poll":1.0},{"votedNumber":0,"voteNumberList":[1,2,4,5,6],"poll":5.0}],"maxNumbers":[4],"sergeantNumber":0,"poll":"1"}}'
+//        screen.socketCallback(data)
+//    },3000)
+//
+//    setTimeout(function(){
+//      data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT_GAME_OVER","gameInfo":{"gameStatus":"GAME_OVER","gameStatusStr":"游戏结束"},"countdownSec":10,"message":"游戏结束","messageExt":"游戏结束,好人阵营胜利","voiceUrl":"http://tsn.baidu.com/text2audio?tex=%E6%B8%B8%E6%88%8F%E7%BB%93%E6%9D%9F%2C%E5%A5%BD%E4%BA%BA%E9%98%B5%E8%90%A5%E8%83%9C%E5%88%A9&lan=zh&cuid=yujian&ctp=1&tok=24.eaeac2dad2beb54be7bd96fae4330f3a.2592000.1529032898.282335-2180146&spd=5&pit=5&vol=15&per=0","bgmUrl":"http://yujian-test1.oss-cn-beijing.aliyuncs.com/%E5%A4%A7%E9%87%8E%E5%85%8B%E5%A4%AB%20-%20%E5%90%8D%E6%8E%A2%E4%BE%A6%E3%82%B3%E3%83%8A%E3%83%B3%20%E3%83%A1%E3%82%A4%E3%83%B3%E3%83%86%E3%83%BC%E3%83%9E%28%E6%BC%86%E9%BB%92%E3%83%95%E3%83%AB%E3%83%B4%E3%82%A1%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%29.mp3","gameResult":"GOOD_WIN"}'
+//      screen.socketCallback(data)
+//    },13000)
+//    setTimeout(function(){
+//        data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT_GAME_ACCOUNT","gameAccountInfo":{"endTime":"2018-05-16 13:50","costTime":"00:07:51","winUsers":[{"userId":203,"nickName":"203","number":3,"identityName":"平民","deadFlag":false,"identityId":1,"loverNumber":0,"identityStatus":"SURVIVAL","gameIdentityStatusEnum":"SURVIVAL","stage":1,"star":2},{"userId":205,"nickName":"205","number":5,"identityName":"魔术师","deadFlag":false,"identityId":14,"loverNumber":0,"identityStatus":"SURVIVAL","gameIdentityStatusEnum":"SURVIVAL","stage":1,"star":1},{"userId":206,"nickName":"206","number":6,"identityName":"白痴","deadFlag":false,"identityId":9,"loverNumber":0,"identityStatus":"SURVIVAL","gameIdentityStatusEnum":"SURVIVAL","stage":1,"star":1}],"loseUsers":[{"userId":201,"nickName":"201","number":1,"identityName":"平民","deadFlag":true,"identityId":1,"oldIdentityName":"盗贼","oldIdentityId":11,"loverNumber":4,"identityStatus":"LOVE_DEAD","gameIdentityStatusEnum":"DAY_LOVE","stage":1,"star":1,"likeTime":1,"mvpTime":1},{"userId":202,"nickName":"202","number":2,"identityName":"丘比特","deadFlag":false,"identityId":10,"loverNumber":0,"identityStatus":"SURVIVAL","gameIdentityStatusEnum":"SURVIVAL","stage":1,"star":1},{"userId":204,"nickName":"204","number":4,"identityName":"狼人","deadFlag":true,"identityId":2,"loverNumber":1,"identityStatus":"EXILE","gameIdentityStatusEnum":"EXILE","stage":1,"star":2,"likeTime":1}],"gameStatus":"GOOD_WIN","gameStatusStr":"好人阵营胜利","surplusTime":15},"countdownSec":15,"message":"游戏结算","voiceUrl":"http://tsn.baidu.com/text2audio?tex=%E8%AF%B7%E5%A4%A7%E5%AE%B6%E5%9C%A8%E6%B8%B8%E6%88%8F%E7%BB%88%E7%AB%AF%E9%80%89%E5%87%BA%E4%BD%A0%E5%BF%83%E7%9B%AE%E4%B8%AD%E7%9A%84MVP.&lan=zh&cuid=yujian&ctp=1&tok=24.eaeac2dad2beb54be7bd96fae4330f3a.2592000.1529032898.282335-2180146&spd=5&pit=5&vol=15&per=0"}'
+//        screen.socketCallback(data)
+//    },23000)
+//
+//
+//
+//
+//})
+</script>
 </body>
 </html>
 <!--<html><head><title></title></head></body></html>-->

@@ -23,7 +23,8 @@ var screen = new Vue({
         voiceUrl:'',//音频url
         bgmUrl:'',//背景音频url
         countdownSec:0,// 倒计时
-        recoverNumber:1
+        recoverNumber:1,
+        audioIsEnd:1
     },
     created: function () {
         var _self = this
@@ -51,6 +52,11 @@ var screen = new Vue({
                 "fontSize":_self._w/10+'px'
             })
             _self.getBoxId()
+            $(function(){
+                $("#audio").off().on("ended",  function(){
+                    _self.audioIsEnd = 1;
+                });
+            })
 
         },
         getBoxId:function(){
@@ -58,10 +64,10 @@ var screen = new Vue({
             var d = {
                 url: 'game/screen/getBoxId',
                 success: function (d) {
-                    console.log(d)
+                    //console.log(d)
                     if (d.status.code === 'OK') {
                         _self.boxId = d.data
-                        _self.connectWebScoket()
+                        _self.connectWebScoket(0)
                     } else {
                         global.pop_tips(d.status.msg)
                         global.router("screen_login.html")
@@ -81,7 +87,7 @@ var screen = new Vue({
             var d = {
                 url: 'game/screen/logout',
                 success: function (d) {
-                    console.log(d)
+                    //console.log(d)
                     if(d.status.code == "OK"){
                         window.location.href="screen_login.html"
                     }
@@ -90,21 +96,36 @@ var screen = new Vue({
             global.ajax(d)
         },
         // 连接websocket
-        connectWebScoket: function () {
+        connectWebScoket: function (i) {
             var _self = this
 
-            console.log('websocket开始:' + new Date())
+            //console.log('websocket开始:' + new Date())
             var url = '/userTopic/game/screen/' + _self.boxId
-            websocket.connectpc(_self, url , _self.socketCallback)
+            var error = function(i){
+                i = i || 0
+                i++
+                global.pop_tips('网络连接失败，正在重试，请稍候....')
+                if(i<=12){
+                    setTimeout(function(){
+                        _self.connectWebScoket(i)
+                    },5000)
+                }else{
+                    global.pop_tips('重连失败，请查看您的网络连接，或呼叫法官')
+                }
+            }
+            websocket.connectpc(_self, url , _self.socketCallback,function(){
+                error(i)
+            })
         },
         // socket 接收方法
         socketCallback: function (data) {
             var _self = this
             var d = JSON.parse(data.body)
-            var bgmUrl = document.getElementById('bgMusic');
+            var bgMusic = document.getElementById('bgMusic');
+            var audio = document.getElementById('audio');
             if(d.msgType == 'EVENT_PAUSE'){
-                if(!bgmUrl.paused){
-                    bgmUrl.pause()
+                if(!bgMusic.paused){
+                    bgMusic.pause()
                 }
                 clearInterval(timer)
                 d.countdownSec = 0;
@@ -112,8 +133,8 @@ var screen = new Vue({
 
             }
             else if(d.msgType == 'EVENT_CONTINUE'){
-                if(bgmUrl && bgmUrl.paused){
-                    bgmUrl.play();
+                if(bgMusic && bgMusic.paused && $("#bgMusic").attr("src")!="" && typeof($("#bgmUrl").attr("src"))!="undefined"){
+                    bgMusic.play();
                 }
 
             }else if(d.msgType == 'QUEUE'){
@@ -122,6 +143,28 @@ var screen = new Vue({
             else if(d.msgType == 'EVENT_SCREENING_OVER' || d.msgType == 'EVENT_RESTART' || d.msgType == 'EVENT_NEW'){
                 websocket.disconnect()
                 location.reload() // 游戏开始，重新刷新页面
+            }
+            if(global.isExit(d.gameInfo)){
+                if(global.isExit(d.gameInfo.nightFlag)){
+                    var n = d.gameInfo.nightFlag?1:0
+                    _self.$set(_self.screenCenterMessage,'nightFlag',n)
+                    //_self.screenCenterMessage.nightFlag = d.gameInfo.nightFlag?1:0
+                }
+            }
+            //console.log(_self.screenCenterMessage.nightFlag)
+            if(_self.screenCenterMessage.nightFlag==1 && _self.audioIsEnd!=1){
+                $("#audio").off().on("ended", function(){
+                    // console.log(new Date())
+                    // console.log("end"+d.message)
+                    _self.audioIsEnd = 1;
+                    _self.socketCallback(data)
+                });
+                return
+            }else{
+                $("#audio").off().on("ended",  function(){
+                    _self.audioIsEnd = 1;
+                    //console.log("normal end")
+                });
             }
 
 
@@ -164,11 +207,6 @@ var screen = new Vue({
             }
 
             if(global.isExit(d.gameInfo)){
-                if(global.isExit(d.gameInfo.nightFlag)){
-                    var n = d.gameInfo.nightFlag?1:0
-                    _self.$set(_self.screenCenterMessage,'nightFlag',n)
-                    //_self.screenCenterMessage.nightFlag = d.gameInfo.nightFlag?1:0
-                }
                 if(global.isExit(d.gameInfo.gameTime)){
                     //_self.screenCenterMessage.gameTime = d.gameInfo.gameTime
                     _self.$set(_self.screenCenterMessage,'gameTime',d.gameInfo.gameTime)
@@ -180,25 +218,17 @@ var screen = new Vue({
 
             if(d.message){ // 提示消息
                 _self.$set(_self.screenCenterMessage,'message',d.message)
-                // if(d.messageExt){
-                //     var m = d.messageExt
-                //     if(d.msgType == 'EVENT_RESULT'){
-                //         m =  m.replace(d.eventResultInfo.targetNumber,'<b>'+d.eventResultInfo.targetNumber+'</b>')
-                //     }
-                //     $('.message p').html(m)
-                // }
                 _self.screenCenterMessage.messageExt = d.messageExt?d.messageExt:''
                 _self.$set(_self.screenCenterMessage,'messageExt',_self.screenCenterMessage.messageExt)
             }
             if(d.bgmUrl || d.bgmUrl==''){ // 背景音频播放
                 _self.$set(_self,'bgmUrl',d.bgmUrl)
-                var bgmUrl = document.getElementById('bgMusic');
-                bgmUrl.currentTime = 0;
+                bgMusic.currentTime = 0;
             }
             if(d.voiceUrl){ // 音频播放
                 _self.$set(_self,'voiceUrl',d.voiceUrl)
-                var voiceUrl = document.getElementById('audio');
-                voiceUrl.currentTime = 0;
+                _self.audioIsEnd = 0;
+                audio.currentTime = 0;
 
 
                 // voiceUrl.addEventListener("canplaythrough",
@@ -247,7 +277,7 @@ var screen = new Vue({
                         _self.recoverNumber = 1;
                     }
                 }
-                console.log("recoverType:"+_self.recoverType +",thisType"+_self.thisType)
+                //console.log("recoverType:"+_self.recoverType +",thisType:"+_self.thisType)
                 if(a.msgType=='EVENT_CONTINUE') {
                     data = {
                         'eventType': _self.recoverType,
@@ -259,10 +289,14 @@ var screen = new Vue({
                         'eventType': _self.thisType
                     }
                 }
-                //console.log(data)
+                console.log(a.countdownSec + '倒计时开始：'+  new Date())
+                console.log(data)
                 _self.countDown(a.countdownSec,function(){
+                    console.log("倒计时结束："+ new Date())
                     setTimeout(function(){
-                        _self.nowDate = {}
+                        //_self.nowDate = {}
+                        console.log("发送事件：" + new Date())
+                        console.log(data)
                         websocket.receiveScreenEvent(data)
                     },2000)
                 },a)
@@ -271,9 +305,10 @@ var screen = new Vue({
         countDown: function (time,callback,a) {
             var _self = this
             clearTimeout(timer);
-            console.log(time)
+            //console.log(time)
             callback = callback || function () { }
             timer = setInterval(function () {
+                console.log("倒计时："+time+','+new Date())
                 time--
                 _self.countdownSec = time
                 if (time <= 0) {
@@ -320,7 +355,7 @@ var screen = new Vue({
             $('.user-list li').each(function (idx) {
                 var left = _self._w/2 - r   *   Math.cos((ao*idx+20)   *   3.14   /180   )
                 var top =  _self._w/2 - r   *   Math.sin((ao*idx+20)   *   3.14   /180   )
-                console.log(top)
+                //console.log(top)
                 // x1   =   x0   +   r   *   cos(ao   *   3.14   /180   ) 
                 // y1   =   y0   +   r   *   sin(ao   *   3.14   /180   )
                 $(this).css({

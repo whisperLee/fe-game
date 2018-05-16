@@ -141,7 +141,7 @@ body {
   border-radius: 5px;
   margin: .1rem auto;
   line-height: .4rem;
-  background: rgba(36, 74, 111, 0.8);
+  background: rgba(23, 69, 116, 0.8);
   text-align: center;
   font-size: .16rem;
   color: #f1f5fa; }
@@ -179,6 +179,8 @@ body {
     -webkit-transition: all .5s ease-in-out; }
   .longPress.btn2 .process b {
     background: #1abc9c; }
+  .longPress.btn3 .process b {
+    background: #174574; }
   .longPress.btn4 .process b {
     background: #d34132; }
 
@@ -239,7 +241,7 @@ body {
     background: #ffffff;
     height: .4rem;
     line-height: .4rem;
-    color: #244a6f;
+    color: #174574;
     padding: 0 .15rem;
     border-radius: 5px;
     margin-bottom: .3rem;
@@ -248,7 +250,7 @@ body {
     margin: 0 auto;
     border: 1px solid #34495e; }
     .main .input input {
-      color: #244a6f;
+      color: #174574;
       height: 100%;
       width: 100%; }
 

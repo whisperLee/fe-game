@@ -22,15 +22,19 @@ var websocket = {
         stompClient.disconnect();
     },
     // 大屏连接
-    connectpc: function (vue, url, callback) {
+    connectpc: function (vue, url, callback,error) {
         var _self = this
         var socket = new SockJS(_self.host+'stompEndpoints');
+        error = error || function(msg){
+                console.log('msg: ' + msg)
+            }
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function (frame) {
             stompClient.subscribe(url, callback)
             _self.screenJustEnter()
         }, function (msg) {
-            console.log('msg: ' + msg)
+            //console.log('msg: ' + msg)
+            error()
         })
     },
     // 法官连接

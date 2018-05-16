@@ -46,6 +46,7 @@ var animate = {
     layerEnter: function(el,time){
         var _self = this
         $('.layer').hide()  //隐藏其它弹层
+        $('.layer').removeClass("lock") //作用 控制按钮重复点击
         el.css({
             display:'block',
             opacity:0
@@ -93,9 +94,8 @@ var animate = {
     },
     layerOuter: function(el){
         var $time = el.find('.countDown span')
-
-        el.find('.longPress.state-success').removeClass('state-success')
         el.removeClass('active')
+        el.addClass("lock") //作用 控制按钮重复点击
         $('.user-list.choosing').removeClass('choosing')
         if($time && $time.attr('time')>0){
             $time.attr('time'==-1)
@@ -107,6 +107,8 @@ var animate = {
             easing: 'ease-in-out',
             complete: function() {
                 el.hide()
+                el.find('.longPress.state-success').removeClass('state-success')
+                el.removeClass("lock") //作用 控制按钮重复点击
             }
         })
     },

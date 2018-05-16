@@ -962,7 +962,7 @@ body {
             content: "";
             position: absolute;
             right: 0;
-            bottom: 25%;
+            bottom: .4rem;
             width: 60%;
             height: 25%;
             background: url("../image/mvp2.png") no-repeat right bottom;

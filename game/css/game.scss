@@ -62,7 +62,7 @@ body{
       &[nightFlag="0"]{
         background-image:url(../image/d.jpg); background-color:#68d6f6; background-size: 100% auto;
         .top{
-          background: url("../image/d_tbg.jpg") no-repeat center bottom; background-size: cover;
+          background: url("../image/d_tbg.jpg") no-repeat center bottom; background-size: 100% 100%;
           .gameTime{
             background: url("../image/d_t.png") no-repeat center bottom; background-size: contain;
           }
@@ -71,7 +71,7 @@ body{
       &[nightFlag="1"]{
         background-image:url(../image/n.jpg); background-color:#565fd4; background-size: 100% auto;
         .top{
-          background: url("../image/n_tbg.jpg") no-repeat center bottom; background-size: cover;
+          background: url("../image/n_tbg.jpg") no-repeat center bottom; background-size: 100% 100%;
           .gameTime{
             background: url("../image/n_t.png") no-repeat center bottom; background-size: contain;
           }

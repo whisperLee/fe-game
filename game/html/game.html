@@ -133,13 +133,16 @@
         <div class="content">
           <p class="info"></p>
           <ul class="voteList"></ul>
-          <p class="tips">请长按提交按钮进行提交</p>
+          <p class="tips">请长按按钮进行提交</p>
           <div class="btnWrap">
-            <div class="btn btn2 longPress js-longPress">
+            <div class="btn btn2 longPress js-submit">
               <span class="process"><b></b></span>
               <span class="text">提交</span>
             </div>
-            <div class="btn btn3 js-withdraw" >放弃</div>
+            <div class="btn btn3 longPress js-withdraw" >
+              <span class="process"><b></b></span>
+              <span class="text">放弃</span>
+            </div>
           </div>
         </div>
       </div>
@@ -153,17 +156,20 @@
         <ul class="voteList">
           <li class="unchoose"></li>
         </ul>
-        <p class="tips">请长按救人/毒人按钮进行提交</p>
+        <p class="tips">请长按按钮进行提交</p>
         <div class="btnWrap">
-          <div class="btn btn2 longPress" event="EVENT_SAVE">
+          <div class="btn btn2 longPress js-submit" event="EVENT_SAVE">
             <span class="process"><b></b></span>
             <span class="text">救人</span>
           </div>
-          <div class="btn btn4 longPress" event="EVENT_POISON">
+          <div class="btn btn4 longPress js-submit" event="EVENT_POISON">
             <span class="process"><b></b></span>
             <span class="text">毒人</span>
           </div>
-          <div class="btn btn3 js-withdraw" event="EVENT_WITCH">放弃</div>
+          <div class="btn btn3 longPress js-withdraw" event="EVENT_WITCH">
+            <span class="process"><b></b></span>
+            <span class="text">放弃</span>
+          </div>
         </div>
       </div>
     </div>
@@ -176,9 +182,9 @@
         <p class="info"></p>
         <ul class="voteList">
         </ul>
-        <p class="tips">请长按提交按钮进行提交</p>
+        <p class="tips">请长按按钮进行提交</p>
         <div class="btnWrap">
-          <div class="btn btn2 longPress js-longPress">
+          <div class="btn btn2 longPress js-submit">
             <span class="process"><b></b></span>
             <span class="text">提交</span>
           </div>

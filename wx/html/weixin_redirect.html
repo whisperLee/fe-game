@@ -14,7 +14,7 @@
 <script type="application/javascript" src="../../js/zepto.min.js"></script>
 <script type="application/javascript" src="../../js/global.js"></script>
 <script>
-    var host = 'http://liyn.me:8888/web-api/v1/'
+    var host = 'http://liyn.me:7777/web-api/v1/'
     $(function(){
 
         var redirect = {
@@ -29,7 +29,7 @@
                 var d = {
                     url: 'face/wechat/redirect',
                     data: {
-                        "code": _self.boxId,
+                        "code": _self.code,
                         "state": _self.state
                     },
                     success: function (d) {

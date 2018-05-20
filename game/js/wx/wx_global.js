@@ -3,8 +3,114 @@
  */
 var host = 'http://liyn.me:7777/web-api/v1/face/'
 //Vue.config.productionTip = false
+var shareData = {
+    title: "遇见狼人杀",
+    desc: "遇见知己,看见自己",
+    img: "../wxImage/logo.jpg", //分享图
+    link: window.location.href.split("?")[0]
+};
 global = $.extend({},global,{
+    wxReady:false,
+    getConfig:function(callback,error){
+        var _self = this
+        jsApiList = [
+            'checkJsApi',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'scanQRCode',
+            'getNetworkType',
+            'openLocation',
+            'getLocation'
+        ]
+        callback = callback || function(){}
+        error = error || function(){}
+        var d = {
+            url: 'wechat/jsApiConfig',
+            data: {
+                "string": location.href.split('?')[0],
+            },
+            success: function (d) {
+                console.log(d)
+                if(d.appId){
+                    //config接口注入权限验证配置
+                    wx.config({
+                        debug: false,
+                        appId: d.appId,
+                        timestamp: d.timestamp,
+                        nonceStr: d.nonce,
+                        signature: d.signature,
+                        jsApiList: jsApiList
+                    });
 
+                    wx.ready(function(){
+                        _self.wxReady = true;
+                        _self.wxShare()
+                        callback()
+                    });
+                    wx.error(function (res) {
+                        console.log(res)
+                        error()
+                    });
+                }
+            }
+        }
+        global.ajax(d)
+    },
+    wxShare:function(){
+        // 分享到朋友圈
+        wx.onMenuShareTimeline({
+            title: shareData.title, // 分享标题
+            link: shareData.link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: shareData.img, // 分享图标
+            success: function () {
+                // 用户点击了分享后执行的回调函数
+                console.log("share success")
+            },
+        });
+        // 分享给朋友
+        wx.onMenuShareAppMessage({
+            title: shareData.title, // 分享标题
+            desc: shareData.desc, // 分享描述
+            link: shareData.link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: shareData.img, // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                // 用户点击了分享后执行的回调函数
+                console.log("share success")
+            }
+        });
+    },
+    wxGetNet:function(){
+        var _self = global
+        if(_self.wxReady){
+            wx.getNetworkType({
+                success: function (res) {
+                    console.log("网络状态"+res.networkType)
+                    return res.networkType // 返回网络类型2g，3g，4g，wifi
+                }
+            });
+        }else{
+            _self.getConfig(_self.saoyisao)
+        }
+
+    },
+    saoyisao: function () {
+        var _self = global
+        console.log('调扫一扫功能')
+        if(_self.wxReady){
+            wx.scanQRCode({
+                needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+                success: function (res) {
+                    console.log(res)
+                    var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                }
+            });
+        }else{
+            _self.getConfig(_self.saoyisao)
+        }
+    },
     footer:function(currType){
         var d = wFooter
         var h = ''

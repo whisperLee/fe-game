@@ -63,14 +63,14 @@ service nginx reload
 重新开始流程后，丘比特原来的情侣请去掉，
 暂停过程中用户不能操作，需要加一个遮罩，并且out其他layer。游戏恢复时去掉暂停弹层
 
-//警长湿掉警徽
-//大屏语音必须播放完成才能播放下一个
-大屏结果走不完，卡住
+1.女巫使用解药的时候不选人 json
+
+{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_WITCH","witchStatusEnum":"POISON","eventName":"女巫救人/毒人","eventDesc":"昨天狼队空刀,是否使用毒药,要毒谁?","chooseCount":1,"eventSurplusTime":15}}
+
+{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_WITCH","witchStatusEnum":"PAPA","eventName":"女巫救人/毒人","eventDesc":"昨天中刀的是:2号,是否使用解药,是否使用毒药,要毒谁?","chooseCount":1,"eventSurplusTime":15}}
 
 
-移交警徽事件，
-
-
+https://weui.io/#
 
 
 

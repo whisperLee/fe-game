@@ -6,10 +6,6 @@ var staticUrl = '..'
 global = $.extend({},global,{
   tipsTime: '',
   countDowmTime: '',
-
-    saoyisao: function () {
-      console.log('调去扫一扫功能')
-    },
     countDown: function (time,el,fun1,fun2) {
         var _self = this;
         fun1 = fun1 || function () { }

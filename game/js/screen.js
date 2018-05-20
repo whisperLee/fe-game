@@ -153,6 +153,11 @@ var screen = new Vue({
             }
             //console.log(_self.screenCenterMessage.nightFlag)
             if(_self.screenCenterMessage.nightFlag==1 && _self.audioIsEnd!=1){
+                if(audio.paused){ // 对于上次没有播放的音频，直接忽略，继续下一音频
+                    _self.audioIsEnd = 1;
+                    _self.socketCallback(data)
+                    console.log("音乐不播放")
+                }
                 $("#audio").off().on("ended", function(){
                     // console.log(new Date())
                     // console.log("end"+d.message)
@@ -211,14 +216,17 @@ var screen = new Vue({
                     //_self.screenCenterMessage.gameTime = d.gameInfo.gameTime
                     _self.$set(_self.screenCenterMessage,'gameTime',d.gameInfo.gameTime)
                 }
-                if(global.isExit(d.gameInfo.gameStatusStr)){
-                    _self.$set(_self.screenCenterMessage,'message',d.gameInfo.gameStatusStr)
-                }
+                // if(global.isExit(d.gameInfo.gameStatusStr)){
+                //     _self.$set(_self.screenCenterMessage,'message',d.gameInfo.gameStatusStr)
+                // }
             }
 
             if(d.message){ // 提示消息
                 _self.$set(_self.screenCenterMessage,'message',d.message)
                 _self.screenCenterMessage.messageExt = d.messageExt?d.messageExt:''
+                if(global.isExit(d.eventResultInfo) && global.isExit(d.eventResultInfo.eventResult)){
+                    _self.screenCenterMessage.messageExt+=d.eventResultInfo.eventResult
+                }
                 _self.$set(_self.screenCenterMessage,'messageExt',_self.screenCenterMessage.messageExt)
             }
             if(d.bgmUrl || d.bgmUrl==''){ // 背景音频播放

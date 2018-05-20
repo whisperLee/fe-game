@@ -136,7 +136,13 @@ var game = new Vue({
                         }
 
 
-                    } else {
+                    }
+                    else if(d.status.code === 'UnLoginError'){
+                        global.pop_tips(d.status.msg,function(){
+                            global.router("game_login.html")
+                        })
+                    }
+                    else {
                         global.pop_tips(d.status.msg)
                     }
                 }
@@ -362,10 +368,13 @@ var game = new Vue({
                 }
                 else if(e == 'EVENT_WITCH') {// 特殊事件----女巫
                         el = $('.layerEventWitch')
+                        var saveNum
                         if (count > 0) {
                             el.find('.content ul').html('<li class="unchoose"></li>')
                         }
                         if (info.witchStatusEnum == 'PAPA') {
+                            saveNum = info.saveNum || info.eventDesc.split(":")[1].split("号")[0]
+                            el.attr("saveNum",saveNum)
                             el.find('.btn[event="EVENT_SAVE"]').show()
                             el.find('.btn[event="EVENT_POISON"]').show()
                             $('.user-list').addClass('choosing')//?????
@@ -376,6 +385,8 @@ var game = new Vue({
                             $('.user-list').addClass('choosing')//?????
                         }
                         else if (info.witchStatusEnum == 'SAVE') {
+                            saveNum = info.saveNum || info.eventDesc.split(":")[1].split("号")[0]
+                            el.attr("saveNum",saveNum)
                             el.find('.btn[event="EVENT_SAVE"]').show()
                             el.find('.btn[event="EVENT_POISON"]').hide()
                             $('.user-list').addClass('choosing')//?????
@@ -790,6 +801,9 @@ var game = new Vue({
                 }
                 var e = el.attr('event')
                 if(e){
+                    if(e=='EVENT_SAVE'){
+                        n = el.attr("saveNum")
+                    }
                     var data = {
                         targetNumberList:n,
                         eventType:e
@@ -1154,14 +1168,16 @@ var game = new Vue({
                             //阻止默认浏览器动作
                             e.preventDefault();
                         }
+                        var _btn = $(this)
                         if(el.find('.unchoose').length>0){
-                            global.pop_tips('还有'+el.find('.unchoose').length+'名玩家没有选择')
+                            if(_btn.attr("event")!='EVENT_SAVE'){
+                                global.pop_tips('还有'+el.find('.unchoose').length+'名玩家没有选择')
+                            }
                         }else if(el.hasClass("layerEventRobber") && el.find(".voteList li.on").length<=0){
                             global.pop_tips('你还没有选择身份')
                         }else if(!el.hasClass("layerEventRobber") && el.find(".voteList li").length==2 && el.find(".voteList li").eq(0).find(".user").attr("num")==el.find(".voteList li").eq(1).find(".user").attr("num") ){ // 非盗贼选择身份的时候，所选的玩家不能是一个人
                             global.pop_tips('同一玩家不能被选择两次，请重新选择')
                         }else{
-                            var _btn = $(this)
                             var _pro = _btn.find('.process b')
                             press_flow = 1
                             _pro.velocity({

@@ -6,7 +6,7 @@ var host = 'http://liyn.me:7777/web-api/v1/face/'
 var shareData = {
     title: "遇见狼人杀",
     desc: "遇见知己,看见自己",
-    img: "../wxImage/logo.jpg", //分享图
+    img: "http://www.yujianyule.com/fe-game/game/wxImage/logo.jpg", //分享图
     link: window.location.href.split("?")[0]
 };
 global = $.extend({},global,{
@@ -100,11 +100,12 @@ global = $.extend({},global,{
         console.log('调扫一扫功能')
         if(_self.wxReady){
             wx.scanQRCode({
-                needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
                 scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
                 success: function (res) {
                     console.log(res)
                     var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                    alert(res)
                 }
             });
         }else{

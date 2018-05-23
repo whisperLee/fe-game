@@ -153,15 +153,34 @@
       <h2 class="title">女巫</h2>
       <div class="content">
         <p class="info"></p>
-        <ul class="voteList">
-          <li class="unchoose"></li>
-        </ul>
-        <p class="tips">请长按按钮进行提交</p>
-        <div class="btnWrap">
+        <div class="saveAndPoison mod">
+          <div class="chooseBtn">
+            <a class="save" v-on:click="witchChoose(1)"><b>救</b></a>
+            <a class="poison" v-on:click="witchChoose(0)"><b>毒</b></a>
+          </div>
+          <p class="tips">请长按放弃按钮进行放弃</p>
+          <div class="btn btn3 longPress js-withdraw" event="EVENT_WITCH">
+            <span class="process"><b></b></span>
+            <span class="text">放弃</span>
+          </div>
+        </div>
+        <div class="mod save">
+          <p class="tips">请长按救人按钮进行提交</p>
           <div class="btn btn2 longPress js-submit" event="EVENT_SAVE">
             <span class="process"><b></b></span>
             <span class="text">救人</span>
           </div>
+          <div class="btn btn3 longPress js-withdraw" event="EVENT_WITCH">
+            <span class="process"><b></b></span>
+            <span class="text">放弃</span>
+          </div>
+          <div class="btn btn5 js-witchChoose"  v-on:click="witchChoose(-1)">放弃选择</div>
+        </div>
+        <div class="mod poison">
+          <ul class="voteList">
+            <li class="unchoose"></li>
+          </ul>
+          <p class="tips">请长按毒人按钮进行提交</p>
           <div class="btn btn4 longPress js-submit" event="EVENT_POISON">
             <span class="process"><b></b></span>
             <span class="text">毒人</span>
@@ -170,6 +189,7 @@
             <span class="process"><b></b></span>
             <span class="text">放弃</span>
           </div>
+          <div class="btn btn5 js-witchChoose"  v-on:click="witchChoose(-1)">放弃选择</div>
         </div>
       </div>
     </div>

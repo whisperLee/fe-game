@@ -1,7 +1,8 @@
 /**
  * Created by nielinlin on 2018/1/21.
  */
-var host = 'http://liyn.me:7777/web-api/v1/face/'
+var host = 'http://www.yujianyule.com:7777/web-api/v1/face/'
+document.write("<script language=javascript src='http://res.wx.qq.com/open/js/jweixin-1.2.0.js'></script>");
 //Vue.config.productionTip = false
 var shareData = {
     title: "遇见狼人杀",
@@ -110,6 +111,28 @@ global = $.extend({},global,{
             });
         }else{
             _self.getConfig(_self.saoyisao)
+        }
+    },
+    chooseWXPay:function(d,callback){
+        var _self = global
+        console.log('调支付功能')
+        callback = callback || function(){}
+        if(_self.wxReady){
+            wx.chooseWXPay({
+                timestamp: d.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+                nonceStr: d.nonce, // 支付签名随机串，不长于 32 位
+                package: d.pack, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
+                signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+                paySign: d.signature, // 支付签名
+                success: function (res) {
+                    console.log(res)
+                    callback()
+                }
+            });
+        }else{
+            _self.getConfig(function(){
+                _self.chooseWXPay(d,callback)
+            })
         }
     },
     footer:function(currType){

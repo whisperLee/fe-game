@@ -1,7 +1,7 @@
 /**
  * Created by nielinlin on 2018/4/23.
  */
-var host = 'http://liyn.me:8888/web-api/v1/'
+var host = 'http://www.yujianyule.com:8888/web-api/v1/'
 Vue.component('user',wcomponent.user)
 new Vue({
     el: '#wx_game',
@@ -168,7 +168,7 @@ new Vue({
         queryShowBanner:function(){
             var _self = this
             var d = {
-                url: 'http://liyn.me:7777/web-api/v1/face/banner/queryShowBanner',
+                url: 'http://www.yujianyule.com:7777/web-api/v1/face/banner/queryShowBanner',
                 data: {
                     "showAreaId": 1,
                     "type": 0 //0:首页,1:订单支付页,2:订单支付成功页

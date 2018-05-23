@@ -11,7 +11,7 @@
     background: rgba(0,0,0,0.8);
   }
   .inner{
-    position: absolute; left:10%; top:50%; width:80%; height:auto;z-index: 99;
+    position: absolute; left:10%; top:50%; width:80%; height:auto;z-index: 99; box-sizing: border-box;
     -webkit-transform:translateY(-50%); background: #fff; border:2px solid $gColor10; border-radius: 10px;
     .title{
       background: $gColor10; color: $gColor2; text-align: center;
@@ -82,14 +82,14 @@
 }
 
 .layer.layerSixCenter{
-  position: absolute; left:20%; top:50%; width:60%; height:auto; background: none;
-  -webkit-transform:translateY(-50%);
+  position: absolute; left:20%; top:.8rem; width:60%; height:auto; background: none;
   .inner{
+    position: relative;
+    -webkit-transform: translateY(0);
     width:100%;
     height:auto;
-    top:50%;
+    top:0;
     left:0;
-    -webkit-transform:translateY(-50%);
   }
 }
 
@@ -138,6 +138,74 @@
         }
         &.unchoose{
           opacity: 0.5;
+        }
+      }
+    }
+  }
+}
+//女巫事件
+.layer.layerEventWitch{
+  .content{
+    .mod{
+      display: none; min-height: 2.1rem; overflow: hidden;
+    }
+  }
+  &[witchtype='PAPA']{
+    .content{
+      .mod.saveAndPoison{
+        display: block;
+        .chooseBtn{
+          position: relative; width:100%; height:.7rem; text-align: center; margin: .2rem 0 .1rem;
+          a{
+            display: inline-block;
+            margin: 0 .1rem;
+            width: .56rem;
+            height: .56rem;
+            line-height: .56rem;
+            border-radius: 50%;
+            font-size: .3rem;
+            text-align: center;
+            font-weight: bold;
+            &.save{
+              border: .04rem solid $gColor10; color: $gColor10;
+            }
+            &.poison{
+              border: .04rem solid $gColor20;  color: $gColor20;
+            }
+          }
+
+        }
+
+      }
+      .mod.save .tips{
+        .tips{
+          padding-top: .3rem;
+        }
+      }
+      .mod.save,.mod.poison{
+        .btn.js-withdraw{
+          display: none;
+        }
+      }
+
+    }
+  }
+  &[witchtype='POISON']{
+    .content{
+      .mod.poison{
+        display: block;
+        .js-witchChoose{
+          display: none;
+        }
+      }
+    }
+  }
+  &[witchtype='SAVE']{
+    .content{
+      .mod.save{
+        display: block;
+        .js-witchChoose{
+          display: none;
         }
       }
     }
@@ -275,7 +343,7 @@
 .layer.pause{
   background:$gColor9; z-index: 101;
   .inner{
-    background: none; border: none; text-align: center; font-size: .2rem; color: $gColor10;
+    background: none; border: none; text-align: center; font-size: .3rem; color: $gColor10;
   }
 }
 

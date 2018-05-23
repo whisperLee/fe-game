@@ -152,6 +152,10 @@ body {
     background: #34495e; }
   .btn.btn4 {
     background: #e74c3c; }
+  .btn.btn5 {
+    background: #666; }
+  .btn.hide {
+    display: none; }
 
 .btnWrap.twoCol {
   text-align: center; }
@@ -678,6 +682,7 @@ body {
     width: 80%;
     height: auto;
     z-index: 99;
+    box-sizing: border-box;
     -webkit-transform: translateY(-50%);
     background: #fff;
     border: 2px solid #1abc9c;
@@ -746,17 +751,17 @@ body {
 .layer.layerSixCenter {
   position: absolute;
   left: 20%;
-  top: 50%;
+  top: .8rem;
   width: 60%;
   height: auto;
-  background: none;
-  -webkit-transform: translateY(-50%); }
+  background: none; }
   .layer.layerSixCenter .inner {
+    position: relative;
+    -webkit-transform: translateY(0);
     width: 100%;
     height: auto;
-    top: 50%;
-    left: 0;
-    -webkit-transform: translateY(-50%); }
+    top: 0;
+    left: 0; }
 
 .layer.layerEventChoose .content .info {
   padding-bottom: .1rem; }
@@ -815,6 +820,47 @@ body {
       opacity: 1; }
     .layer.layerEventRobber .content .voteList li.unchoose {
       opacity: 0.5; }
+
+.layer.layerEventWitch .content .mod {
+  display: none;
+  min-height: 2.1rem;
+  overflow: hidden; }
+.layer.layerEventWitch[witchtype='PAPA'] .content .mod.saveAndPoison {
+  display: block; }
+  .layer.layerEventWitch[witchtype='PAPA'] .content .mod.saveAndPoison .chooseBtn {
+    position: relative;
+    width: 100%;
+    height: .7rem;
+    text-align: center;
+    margin: .2rem 0 .1rem; }
+    .layer.layerEventWitch[witchtype='PAPA'] .content .mod.saveAndPoison .chooseBtn a {
+      display: inline-block;
+      margin: 0 .1rem;
+      width: .56rem;
+      height: .56rem;
+      line-height: .56rem;
+      border-radius: 50%;
+      font-size: .3rem;
+      text-align: center;
+      font-weight: bold; }
+      .layer.layerEventWitch[witchtype='PAPA'] .content .mod.saveAndPoison .chooseBtn a.save {
+        border: 0.04rem solid #1abc9c;
+        color: #1abc9c; }
+      .layer.layerEventWitch[witchtype='PAPA'] .content .mod.saveAndPoison .chooseBtn a.poison {
+        border: 0.04rem solid #e74c3c;
+        color: #e74c3c; }
+.layer.layerEventWitch[witchtype='PAPA'] .content .mod.save .tips .tips {
+  padding-top: .3rem; }
+.layer.layerEventWitch[witchtype='PAPA'] .content .mod.save .btn.js-withdraw, .layer.layerEventWitch[witchtype='PAPA'] .content .mod.poison .btn.js-withdraw {
+  display: none; }
+.layer.layerEventWitch[witchtype='POISON'] .content .mod.poison {
+  display: block; }
+  .layer.layerEventWitch[witchtype='POISON'] .content .mod.poison .js-witchChoose {
+    display: none; }
+.layer.layerEventWitch[witchtype='SAVE'] .content .mod.save {
+  display: block; }
+  .layer.layerEventWitch[witchtype='SAVE'] .content .mod.save .js-witchChoose {
+    display: none; }
 
 .layer.layerEventVoteResult .content .result {
   position: relative;
@@ -956,7 +1002,7 @@ body {
     background: none;
     border: none;
     text-align: center;
-    font-size: .2rem;
+    font-size: .3rem;
     color: #1abc9c; }
 
 @-webkit-keyframes fadeIn {
@@ -1606,6 +1652,8 @@ body .main {
     height: .4rem; }
   body .main.min .game .messageCenter {
     margin-top: .4rem; }
+  body .main.min .layerSixCenter {
+    top: .4rem; }
 body .messageCenter {
   position: absolute;
   left: 20%;

@@ -15,7 +15,7 @@ body{
       }
       ul{
         li{
-          border-top:.5px solid $wxColor3; height:.5rem; line-height: .5rem; background: url("../wxImage/r.png") no-repeat center right; background-size: .3rem; margin: 0 .1rem;
+          border-top:.5px solid $wxColor3; height:.5rem; line-height: .5rem; background: url("../wxImage/r.png") no-repeat center right; background-size: .3rem; margin: 0 .1rem; float: none; padding: 0;
           img{
             float: left; width:auto; height:.4rem; margin: .05rem 0;
           }

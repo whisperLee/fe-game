@@ -19,10 +19,13 @@
     </div>
     <div class="payType">
       <p>还需支付：<b>￥{{amount}}</b></p>
-      <ul>
-        <li class="on">
+      <ul class="radios">
+        <li class="radio on" type="1">
           <img src="../wxImage/wx.png" alt="">
         </li>
+        <!--<li class="radio" type="2">-->
+          <!--<img src="../wxImage/zfb.png" alt="">-->
+        <!--</li>-->
       </ul>
     </div>
     <a class="btn" v-on:click="pay()">确认支付</a>

@@ -28,10 +28,22 @@ $(function(){
     data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"CUR_GAME_STATUS","leaderInfo":{"leaderFlag":true,"leaderButton":[]},"boxInfo":{"boxName":"遇见未来"},"userInfoList":[{"userId":401,"nickName":"401","number":1,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1}],"screeningInfo":{"combinationConfigStr":"预言家 女巫 猎人 守卫 白痴 魔术师 盗贼 丘比特 狼王 白狼王","combinationName":"什么都有","playerCount":15},"gameInfo":{"nightFlag":false,"gameTime":0,"gameStatus":"LOOK_IDENTITY","gameStatusStr":"查看身份"},"personalInfo":{"userId":401,"nickName":"401","number":1,"sergeantFlag":false,"campaignFlag":false,"identityName":"平民","identityId":1,"deadFlag":false,"identityStatus":"SURVIVAL","stage":1,"star":1,"consumptionScore":100,"buttons":[]}}'
     game.socketCallback(data)
 
-    // setTimeout(function(){
-    //     console.log("2222")
-    //     data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"UPDATE","gameInfo":{"nightFlag":true,"gameTime":1,"gameStatus":"DARK","gameStatusStr":"天黑请闭眼"}}'
-    //     game.socketCallback(data)
-    // },2000)
+    setTimeout(function(){
+        console.log("2222")
+        data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_WITCH","witchStatusEnum":"PAPA","eventName":"女巫救人/毒人","eventDesc":"昨天中刀的是:3号,是否使用解药,是否使用毒药,要毒谁?","chooseCount":1,"eventSurplusTime":1500}}'
+        game.socketCallback(data)
+    },1000)
+
+    setTimeout(function(){
+        console.log("2222")
+        data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_WITCH","witchStatusEnum":"POISON","eventName":"女巫救人/毒人","eventDesc":"你已经使用过解药,不再告知刀型,是否使用毒药,要毒谁?","chooseCount":1,"eventSurplusTime":15}}'
+        game.socketCallback(data)
+    },5000)
+
+    setTimeout(function(){
+        console.log("2222")
+        data.body = '{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_WITCH","witchStatusEnum":"SAVE","eventName":"女巫救人/毒人","eventDesc":"你已经使用过解药,不再告知刀型,是否使用毒药,要毒谁?","chooseCount":1,"eventSurplusTime":15}}'
+        game.socketCallback(data)
+    },10000)
 
 });

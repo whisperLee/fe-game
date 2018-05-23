@@ -1,6 +1,6 @@
 
 // 配置API接口地址
-var host = 'http://liyn.me:8888/web-api/v1/'
+var host = 'http://www.yujianyule.com:8888/web-api/v1/'
 //var host = 'http://192.168.3.28:8888/web-api/v1/'
 var staticUrl = '..'
 global = $.extend({},global,{

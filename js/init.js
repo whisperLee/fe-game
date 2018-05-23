@@ -2,7 +2,7 @@
  * Created by nielinlin on 2018/4/19.
  */
 window.codeType='test'//host本地环境 test测试环境,online线上环境
-window.http = 'http://liyn.me:8000/fe-game/game/html/'
+window.http = 'http://www.yujianyule.com:8000/fe-game/game/html/'
 //用户端footer配置
 window.wFooter = [
     {
@@ -46,7 +46,7 @@ window.interfaceValue = {
         '70':'已取消'
     },
     payType :{ //支付类型
-        '0':'微信','1':'支付宝','50':'线下'
+        '0':'线上支付','1':'微信','2':'支付宝','50':'线下支付'
     },
     orderWarn : { //订单预警状态
         'NORMAL':'正常',

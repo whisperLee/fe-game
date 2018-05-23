@@ -12,7 +12,7 @@
         .user-list li{position: relative; width:25%; float:left; opacity: 1;}
         .layerDead .content{width:80%; height:100%; margin: 0 auto; background: url(../image/dead1.png) no-repeat center; background-size: contain;}
         .layer .countDown{position: absolute; left:0; top:-.2rem; color: #f00;line-height: .2rem;}
-          .gameResult{display: block}
+        .layerEventWitch{display: block}
         </style>
     </head>
 <body>
@@ -161,20 +161,32 @@
       <h2 class="title">女巫</h2>
       <div class="content">
         <p class="info"></p>
-        <ul class="voteList">
-          <li class="unchoose"></li>
-        </ul>
-        <p class="tips">请长按救人/毒人按钮进行提交</p>
-        <div class="btnWrap">
+        <div class="saveAndPoison mod">
+          <div class="save">救</div>
+          <div class="save">毒</div>
+          <p class="tips">请长按放弃按钮进行放弃</p>
+          <div class="btn btn3 js-withdraw" event="EVENT_WITCH">放弃</div>
+        </div>
+        <div class="mod save">
+          <p class="tips">请长按救人按钮进行提交</p>
           <div class="btn btn2 longPress" event="EVENT_SAVE">
             <span class="process"><b></b></span>
             <span class="text">救人</span>
           </div>
+          <div class="btn btn3 js-withdraw" event="EVENT_WITCH">放弃</div>
+          <div class="btn btn5 js-witchChoose">放弃选择</div>
+        </div>
+        <div class="mod poison">
+          <ul class="voteList">
+            <li class="unchoose"></li>
+          </ul>
+          <p class="tips">请长按毒人按钮进行提交</p>
           <div class="btn btn4 longPress" event="EVENT_POISON">
             <span class="process"><b></b></span>
             <span class="text">毒人</span>
           </div>
           <div class="btn btn3 js-withdraw" event="EVENT_WITCH">放弃</div>
+          <div class="btn btn5 js-witchChoose" >放弃选择</div>
         </div>
       </div>
     </div>

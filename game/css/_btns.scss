@@ -19,6 +19,12 @@
   &.btn4{
     background: $gColor20;
   }
+  &.btn5{
+    background: $gColor3;
+  }
+  &.hide{
+    display: none;
+  }
 }
 
 .btnWrap.twoCol{

@@ -61,7 +61,6 @@ service nginx reload
 
 ============ 个人bug
 重新开始流程后，丘比特原来的情侣请去掉，
-暂停过程中用户不能操作，需要加一个遮罩，并且out其他layer。游戏恢复时去掉暂停弹层
 
 1.女巫使用解药的时候不选人 json
 
@@ -69,7 +68,7 @@ service nginx reload
 
 {"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_WITCH","witchStatusEnum":"PAPA","eventName":"女巫救人/毒人","eventDesc":"昨天中刀的是:2号,是否使用解药,是否使用毒药,要毒谁?","chooseCount":1,"eventSurplusTime":15}}
 
-
+3.订单支付
 https://weui.io/#
 
 

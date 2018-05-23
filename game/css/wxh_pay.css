@@ -449,7 +449,9 @@ body .main .payType {
     line-height: .5rem;
     background: url("../wxImage/r.png") no-repeat center right;
     background-size: .3rem;
-    margin: 0 .1rem; }
+    margin: 0 .1rem;
+    float: none;
+    padding: 0; }
     body .main .payType ul li img {
       float: left;
       width: auto;

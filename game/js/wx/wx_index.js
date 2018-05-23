@@ -50,6 +50,10 @@ new Vue({
                             "levelPro":parseInt(d.totalGameScore*100/(d.nextNeedScore-d.preNeedScore))
                         }
                         console.log(_self.user)
+                    }else if (d.status.code=="1011"){
+                        global.router("wx_login.html")
+                    }else if (d.status.code=="1009"){
+                        global.pop_tips("请在微信中打开本页面")
                     }else{
                         global.router("wx_login.html")
                     }

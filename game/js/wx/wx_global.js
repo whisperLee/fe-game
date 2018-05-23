@@ -28,7 +28,7 @@ global = $.extend({},global,{
         var d = {
             url: 'wechat/jsApiConfig',
             data: {
-                "string": location.href.split('?')[0],
+                "string": location.href,
             },
             success: function (d) {
                 console.log(d)

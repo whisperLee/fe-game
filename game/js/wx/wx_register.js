@@ -54,7 +54,7 @@ new Vue({
                 }
                 global.ajax(d)
             }else{
-                $error.html('请输入正确手机号')
+                $error.html('请输入正确的手机号')
                 $(".validate .send.on").removeClass("on")
             }
         },

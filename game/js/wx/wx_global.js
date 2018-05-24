@@ -23,7 +23,7 @@ global = $.extend({},global,{
         //     'openLocation',
         //     'getLocation'
         // ]
-        jsApiList = jsApiList.push("checkJsApi")
+        jsApiList.push("checkJsApi")
         callback = callback || function(){}
         error = error || function(){}
         var d = {

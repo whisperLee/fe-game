@@ -1290,7 +1290,8 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: 9; }
+  z-index: 9;
+  display: none; }
   .givesWrap .shade {
     position: absolute;
     left: 0;

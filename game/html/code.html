@@ -32,7 +32,7 @@
         init:function(){
             var _self = this
             var urlHash = global.urlHash()
-            _self.shopId = urlHash.shopId
+            _self.shopId = urlHash.shopId || 1
             _self.qrcode()
         },
         getTimestamp:function(){

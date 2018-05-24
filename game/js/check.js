@@ -22,7 +22,7 @@ new Vue({
         check_in: function (shopId) {
             var _self = this
             var d = {
-                url: 'game/play/checkin',
+                url: http+':8888/web-api/v1/game/play/checkin',
                 data: {shopId: shopId},
                 success: function (d) {
                     if (d.status.code === 'OK') {

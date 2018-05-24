@@ -1,13 +1,13 @@
 /**
  * Created by nielinlin on 2018/1/21.
  */
-var host = 'http://www.yujianyule.com:7777/web-api/v1/face/'
+var host = http+':7777/web-api/v1/face/'
 document.write("<script language=javascript src='http://res.wx.qq.com/open/js/jweixin-1.2.0.js'></script>");
 //Vue.config.productionTip = false
 var shareData = {
     title: "遇见狼人杀",
     desc: "遇见知己,看见自己",
-    img: "http://www.yujianyule.com/fe-game/game/wxImage/logo.jpg", //分享图
+    img: http+"/fe-game/game/wxImage/logo.jpg", //分享图
     link: window.location.href.split("?")[0]
 };
 global = $.extend({},global,{

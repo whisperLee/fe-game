@@ -2,7 +2,9 @@
  * Created by nielinlin on 2018/4/19.
  */
 window.codeType='test'//host本地环境 test测试环境,online线上环境
-window.http = 'http://www.yujianyule.com:8000/fe-game/game/html/'
+window.http = 'http://www.yujianyule.com'
+window.htmlPath = http+'/fe-game/game/html/'
+
 //用户端footer配置
 window.wFooter = [
     {

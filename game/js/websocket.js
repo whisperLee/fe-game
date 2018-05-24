@@ -1,6 +1,6 @@
 var stompClient
 var websocket = {
-    host: 'http://www.yujianyule.com:8888/',
+    host: http+':8888/',
     //host: 'http://192.168.3.28:8888/',
     // 用户连接
     connect: function (vue, url, callback,error) {

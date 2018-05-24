@@ -171,7 +171,7 @@ body{background: #072038; color: #fff; font-size: .16rem; line-height: 150%;}
                 getAllCombination: function () {
                     var _self = this;
                     var d = {
-                        url:"http://www.yujianyule.com:8888/web-api/v1/game/play/getAllCombination",
+                        url:http+":8888/web-api/v1/game/play/getAllCombination",
                         data:{prefabricateFlag: true},
                         success:function(d){
                             if(d.status.code=="OK"){
@@ -202,7 +202,7 @@ body{background: #072038; color: #fff; font-size: .16rem; line-height: 150%;}
                 getAllIdentity: function () {
                     var _self = this;
                     var d = {
-                        url:'http://www.yujianyule.com:8888/web-api/v1/game/play/getAllIdentity',
+                        url:http+':8888/web-api/v1/game/play/getAllIdentity',
                         data:{},
                         success:function(d){
                             if(d.status.code === 'OK'){
@@ -320,7 +320,7 @@ body{background: #072038; color: #fff; font-size: .16rem; line-height: 150%;}
                 addScreeningByUser: function () {
                     console.log(this.postData)
                     var d = {
-                      url: 'http://www.yujianyule.com:8888/web-api/v1/game/play/addScreeningByUser',
+                      url: http+':8888/web-api/v1/game/play/addScreeningByUser',
                       data: this.postData,
                       success: function (d) {
                         if (d.status.code === 'OK') {

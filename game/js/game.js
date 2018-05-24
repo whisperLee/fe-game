@@ -185,7 +185,7 @@ var game = new Vue({
         },
         qrcode:function(){
             var _self = this
-            var url = http+'wx_game.html?boxId='+_self.boxId+'&gameNumber='+_self.gameNumber+'&timestamp='+_self.getTimestamp()
+            var url = htmlPath+'wx_game.html?boxId='+_self.boxId+'&gameNumber='+_self.gameNumber+'&timestamp='+_self.getTimestamp()
             $("#code").qrcode({
                 render: "canvas", //table方式
                 width: 400, //宽度

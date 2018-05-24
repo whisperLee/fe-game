@@ -40,7 +40,9 @@ var global = {
             dataType: 'json',
             success: function () {}
         }, data)
-        d.url = host + d.url
+        if(d.url.substr(0,4).toLowerCase() != "http"){
+            d.url = host + d.url
+        }
         // if(codeType=="test" && this.urlHash().gameNumber){ // 测试环境执行
         //       if(this.urlHash().gameNumber<10){
         //           d.data.userToken = '20'+ this.urlHash().gameNumber

@@ -1,7 +1,7 @@
 /**
  * Created by nielinlin on 2018/4/23.
  */
-var host = 'http://www.yujianyule.com:8888/web-api/v1/'
+var host = http+':8888/web-api/v1/'
 Vue.component('user',wcomponent.user)
 new Vue({
     el: '#wx_game',
@@ -172,15 +172,11 @@ new Vue({
         queryShowBanner:function(){
             var _self = this
             var d = {
-                url: 'http://www.yujianyule.com:7777/web-api/v1/face/banner/queryShowBanner',
+                url: http+':7777/web-api/v1/face/banner/queryShowBanner',
                 data: {
                     "showAreaId": 1,
                     "type": 0 //0:首页,1:订单支付页,2:订单支付成功页
                 },
-                contentType: 'application/json',
-                timeout: 30000,
-                type: 'POST',
-                dataType: 'json',
                 success: function (d) {
                     console.log(d)
                     if(d.status.code=="OK" && d.data.length>0){
@@ -198,8 +194,7 @@ new Vue({
                     }
                 }
             }
-            d.data = JSON.stringify(d.data)
-            $.ajax(d)
+            global.ajax(d)
         },
         sit:function(){
             var _self = this

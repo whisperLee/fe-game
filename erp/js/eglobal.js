@@ -3,7 +3,7 @@
  */
 
 // 配置API接口地址
-var host = 'http://www.yujianyule.com:9999/web-api/v1/lair/'
+var host = http+':9999/web-api/v1/lair/'
 //var host = 'http://192.168.3.28:8888/web-api/v1/'
 document.write("<script language=javascript src='../../js/init.js'></script>");
 global = $.extend({},global,{

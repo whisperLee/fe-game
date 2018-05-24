@@ -46,6 +46,11 @@ service nginx reload
   start nginx
   nginx -s reload
 
+  ======上传到线上
+  打开Xshell
+  双击 服务
+  ./build + TAB(./build_fe.sh)
+
 
   http://nll.com//game/html/screen.html
 
@@ -55,21 +60,34 @@ service nginx reload
 
 
 
-大屏 背景音乐报错
+大屏音乐不播放
 ====== 检查内容
 
 
 ============ 个人bug
 重新开始流程后，丘比特原来的情侣请去掉，
 
-1.女巫使用解药的时候不选人 json
+1.用户端测试，商铺默认shopId=1===============ok
+4.微信登录输入样式=====ok
+5.异常=================ok
+10.支付页面增加order详情查询，返回到订单详情页，并显示倒计时============ok
 
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_WITCH","witchStatusEnum":"POISON","eventName":"女巫救人/毒人","eventDesc":"昨天狼队空刀,是否使用毒药,要毒谁?","chooseCount":1,"eventSurplusTime":15}}
 
-{"statusResponse":{"retcode":0,"code":"OK"},"msgType":"EVENT","eventInfo":{"eventType":"EVENT_WITCH","witchStatusEnum":"PAPA","eventName":"女巫救人/毒人","eventDesc":"昨天中刀的是:2号,是否使用解药,是否使用毒药,要毒谁?","chooseCount":1,"eventSurplusTime":15}}
-
+6.微信js单独引用
+2.所有扫一扫在手机上跑通
 3.订单支付
-https://weui.io/#
+
+7.所有用户端页面在手机上测试
+
+8.大屏音乐不播放
+    开始播放音乐之后，加一个定时软件，判断播放状态，如果是playing，则清除定时，否者再次加载音频，并播放，直到下一个事件进来
+    $("audio").off().on("playing", function(){
+                    audioStatus = "playing";});
+
+9.登录状态判断
+
+
+
 
 
 

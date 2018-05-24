@@ -206,7 +206,7 @@ var game = new Vue({
                 success: function (d) {
                     if (d.status.code === 'OK') {
                         global.pop_tips('退座成功', function () {
-                            global.saoyisao()
+                            global.getConfig(['scanQRCode'],global.saoyisao)
                         })
                     } else {
                         global.pop_tips(d.status.msg)

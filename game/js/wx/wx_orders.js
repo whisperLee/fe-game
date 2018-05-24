@@ -46,6 +46,8 @@ new Vue({
                             _self.defaultMess = '暂无数据'
                         }
 
+                    }else{
+                        global.codeError(d.status.code)
                     }
                 }
             }
@@ -68,7 +70,7 @@ new Vue({
                         _self.orderDatail = d.data
                         global.layerEnter($(".orderDetailLayer"))
                     }else{
-                        global.pop_tips(d.status.msg)
+                        global.codeError(d.status.code)
                     }
 
                 }
@@ -89,7 +91,7 @@ new Vue({
                         _self.orderDatail.status = 70
                         _self.orderDatail.statusName = interfaceValue.orderStatus[_self.orderDatail.status]
                     }else{
-                        global.pop_tips(d.status.msg)
+                        global.codeError(d.status.code)
                     }
                 }
             }

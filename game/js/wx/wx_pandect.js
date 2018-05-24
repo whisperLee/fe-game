@@ -25,15 +25,20 @@ new Vue({
                 },
                 success: function (d) {
                     console.log(d)
-                    if(d.data.totalScreeningCount>0){
-                        for(var k in d.data.identityCountMap){
-                            d.data.identityCountMap[k].name = interfaceValue.shenfen[k].name
-                            d.data.identityCountMap[k].head = interfaceValue.shenfen[k].head
+                    if(d.status.code=="OK" && d.data){
+                        if(d.data.totalScreeningCount>0){
+                            for(var k in d.data.identityCountMap){
+                                d.data.identityCountMap[k].name = interfaceValue.shenfen[k].name
+                                d.data.identityCountMap[k].head = interfaceValue.shenfen[k].head
+                            }
+                            _self.record = d.data
+                        }else{
+                            _self.defaultMess = '暂无数据'
                         }
-                        _self.record = d.data
                     }else{
-                        _self.defaultMess = '暂无数据'
+                        global.codeError(d.status.code)
                     }
+
 
                 }
             }

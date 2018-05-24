@@ -38,7 +38,8 @@ new Vue({
                         }else{
                             _self.defaultMess = '暂无数据'
                         }
-
+                    }else{
+                        global.codeError(d.status.code)
                     }
 
                 }

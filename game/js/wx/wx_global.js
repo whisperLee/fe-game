@@ -12,17 +12,18 @@ var shareData = {
 };
 global = $.extend({},global,{
     wxReady:false,
-    getConfig:function(callback,error){
+    getConfig:function(jsApiList,callback,error){
         var _self = this
-        jsApiList = [
-            'checkJsApi',
-            'onMenuShareTimeline',
-            'onMenuShareAppMessage',
-            'scanQRCode',
-            'getNetworkType',
-            'openLocation',
-            'getLocation'
-        ]
+        // jsApiList = [
+        //     'checkJsApi',
+        //     'onMenuShareTimeline',
+        //     'onMenuShareAppMessage',
+        //     'scanQRCode',
+        //     'getNetworkType',
+        //     'openLocation',
+        //     'getLocation'
+        // ]
+        jsApiList = jsApiList.push("checkJsApi")
         callback = callback || function(){}
         error = error || function(){}
         var d = {
@@ -45,7 +46,7 @@ global = $.extend({},global,{
 
                     wx.ready(function(){
                         _self.wxReady = true;
-                        _self.wxShare()
+                        //_self.wxShare()
                         callback()
                     });
                     wx.error(function (res) {
@@ -59,6 +60,7 @@ global = $.extend({},global,{
     },
     wxShare:function(){
         // 分享到朋友圈
+
         wx.onMenuShareTimeline({
             title: shareData.title, // 分享标题
             link: shareData.link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
@@ -66,9 +68,9 @@ global = $.extend({},global,{
             success: function () {
                 // 用户点击了分享后执行的回调函数
                 console.log("share success")
-            },
+            }
         });
-        // 分享给朋友
+            // 分享给朋友
         wx.onMenuShareAppMessage({
             title: shareData.title, // 分享标题
             desc: shareData.desc, // 分享描述
@@ -81,59 +83,75 @@ global = $.extend({},global,{
                 console.log("share success")
             }
         });
+        //global.getConfig(['onMenuShareTimeline','onMenuShareAppMessage'],global.wxShare)
     },
     wxGetNet:function(){
-        var _self = global
-        if(_self.wxReady){
-            wx.getNetworkType({
-                success: function (res) {
-                    console.log("网络状态"+res.networkType)
-                    return res.networkType // 返回网络类型2g，3g，4g，wifi
-                }
-            });
-        }else{
-            _self.getConfig(_self.saoyisao)
-        }
-
+        wx.getNetworkType({
+            success: function (res) {
+                console.log("网络状态"+res.networkType)
+                return res.networkType // 返回网络类型2g，3g，4g，wifi
+            }
+        });
+        //global.getConfig(['getNetworkType'],global.wxGetNet)
     },
     saoyisao: function () {
-        var _self = global
         console.log('调扫一扫功能')
-        if(_self.wxReady){
-            wx.scanQRCode({
-                needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
-                scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
-                success: function (res) {
-                    console.log(res)
-                    var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-                    alert(res)
-                }
-            });
-        }else{
-            _self.getConfig(_self.saoyisao)
-        }
+
+        wx.scanQRCode({
+            needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+            scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+            success: function (res) {
+            }
+        });
+
+        //global.getConfig(['scanQRCode'],global.saoyisao)
+
     },
     chooseWXPay:function(d,callback){
-        var _self = global
         console.log('调支付功能')
         callback = callback || function(){}
-        if(_self.wxReady){
-            wx.chooseWXPay({
-                timestamp: d.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
-                nonceStr: d.nonce, // 支付签名随机串，不长于 32 位
-                package: d.pack, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
-                signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-                paySign: d.signature, // 支付签名
+        wx.chooseWXPay({
+            timestamp: d.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+            nonceStr: d.nonce, // 支付签名随机串，不长于 32 位
+            package: d.pack, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
+            signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+            paySign: d.signature, // 支付签名
+            success: function (res) {
+                console.log(res)
+                callback()
+            }
+        });
+
+            // global.getConfig(['chooseWXPay'],function(){
+            //     global.chooseWXPay(d,callback)
+            // })
+
+    },
+    wxGetLocation:function(){
+            wx.getLocation({
+                type: 'gcj02', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
                 success: function (res) {
-                    console.log(res)
-                    callback()
+                    var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                    var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                    return {"lat": latitude, "lon": latitude}
                 }
             });
-        }else{
-            _self.getConfig(function(){
-                _self.chooseWXPay(d,callback)
-            })
-        }
+
+           // global.getConfig(['getLocation'],global.wxGetLocation)
+
+    },
+    wxOpenLocation:function(latitude,longitude){
+            wx.getLocation({
+                type: 'gcj02', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+                success: function (res) {
+                    var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                    var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                    return {"lat": latitude, "lon": latitude}
+                }
+            });
+
+            //global.getConfig(['openLocation'],global.wxGetLocation)
+
     },
     footer:function(currType){
         var d = wFooter
@@ -237,6 +255,7 @@ global = $.extend({},global,{
         var el = $(event.currentTarget).closest(".layerWrap")
         animate.layerOuter(el)
     }
+
 })
 
 $(function(){

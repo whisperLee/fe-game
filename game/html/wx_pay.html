@@ -15,7 +15,9 @@
   <div class="header"><div><a class="back" href="wx_orders.html"></a> <h1 class="pageName"><span>线上支付</span></h1></div></div>
   <div class="container">
     <div class="orderInfo">
-      <p>请在下单后30分钟之内支付</p>
+      <p v-if="minutes<0">订单支付超时，请重新下单</p>
+      <p v-else-if="minutes>0">请在{{minutes}}分钟之内支付</p>
+      <p v-else>&nbsp;</p>
     </div>
     <div class="payType">
       <p>还需支付：<b>￥{{amount}}</b></p>
@@ -37,6 +39,7 @@
 <script type="application/javascript" src="../../js/global.js"></script>
 <script type="application/javascript" src="../../game/js/wx/wx_global.js"></script>
 <script type="application/javascript" src="../../game/js/wx/wx_pay.js"></script>
+<script language=javascript src='http://res.wx.qq.com/open/js/jweixin-1.2.0.js'></script>
 </body>
 </html>
 <!--<html><head><title></title></head></body></html>-->

@@ -26,7 +26,7 @@ new Vue({
 
             var urlHash = global.urlHash()
             _self.type = urlHash.type
-            _self.shopId = urlHash.shopId
+            _self.shopId = urlHash.shopId || 1
             if(_self.type && _self.type!='undefined'){
                 _self.getGoods();
             }else{
@@ -77,6 +77,8 @@ new Vue({
                         },10)
 
                         _self.getCart()
+                    }else{
+                        global.codeError(d.status.code)
                     }
                 }
             }

@@ -50,6 +50,8 @@ new Vue({
                             d[i] = _self.returnData(d.data[i])
                         }
                         _self.orderListCom =d.data
+                    }else{
+                        global.codeError(d.status.code)
                     }
                 }
             }
@@ -74,6 +76,8 @@ new Vue({
                             d[i] = _self.returnData(d.data[i])
                         }
                         _self.orderListUnCom =d.data
+                    }else{
+                        global.codeError(d.status.code)
                     }
                 }
             }
@@ -92,6 +96,8 @@ new Vue({
                         item.status = 30
                         item = _self.returnData(item)
                         console.log(item)
+                    }else{
+                        global.codeError(d.status.code)
                     }
 
                 }
@@ -110,6 +116,8 @@ new Vue({
                     if(d.status.code=="OK" && d.data){
                         item.status = 35
                         item = _self.returnData(item)
+                    }else{
+                        global.codeError(d.status.code)
                     }
 
                 }
@@ -133,6 +141,8 @@ new Vue({
                             //已完成订单数据清除该数据
                             _self.removeItem(_self.orderListUnCom,item)
                         },1000)
+                    }else{
+                        global.codeError(d.status.code)
                     }
 
                 }
@@ -159,6 +169,8 @@ new Vue({
                     if(d.status.code=="OK" && d.data){
                         item.status = 51
                         item = _self.returnData(item)
+                    }else{
+                        global.codeError(d.status.code)
                     }
                 }
             }

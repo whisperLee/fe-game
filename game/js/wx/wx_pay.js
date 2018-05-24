@@ -1,11 +1,13 @@
 /**
  * Created by nielinlin on 2018/4/16.
  */
+var timer
 new Vue({
     el: '#wx_pay',
     data: {
         orderId:0,
-        amount:0
+        amount:0,
+        minutes:0,
     },
     created: function () {
         var _self = this
@@ -16,12 +18,64 @@ new Vue({
             var _self = this
             var urlHash = global.urlHash()
             _self.orderId = urlHash.orderId
-            _self.amount = urlHash.amount
             if(_self.orderId && _self.orderId!='undefined'){
-
+                _self.getOrderDetail()
+                $(".header .back").attr("href","wx_orders.html?orderId="+_self.orderId)
             }else{
                 global.pop_tips('页面出错，请重新支付',function(){
                     global.router('wx_orders.html')
+                })
+            }
+        },
+        getOrderDetail:function(){
+            var _self = this
+            var d = {
+                url: 'order/orderDetail',
+                data: {
+                    "orderId": _self.orderId
+                },
+                success: function (d) {
+                    console.log(d)
+                    if(d.status.code=="OK" && d.data){
+                        _self.amount = d.data.actualAmount
+                        _self.shopId = d.data.shopId
+                        var orderDate = d.data.placeTime
+                        _self.countTime = (new Date(orderDate).getTime()+60*60*1000-new Date().getTime())/1000
+                        if(_self.countTime>0){
+                            _self.minutes = parseInt(_self.countTime/60)
+                            _self.countDown()
+                        }else{
+                            _self.minutes = -1
+                            global.pop_tips('订单支付超时，请重新下单',function(){
+                                global.router('wx_shop.html?shopId='+_self.shopId)
+                            })
+                        }
+                    }else{
+                        global.codeError(d.status.code)
+                    }
+
+                }
+            }
+            global.ajax(d)
+
+        },
+        countDown:function(){
+            var _self = this
+            if (_self.minutes > 0) {
+
+                timer = setTimeout(function(){
+                    _self.minutes--;
+                    // if(_self.minutes<=10){
+                    //     _self.minutes = "0"+(_self.minutes-1)
+                    // }else{
+                    //     _self.minutes--;
+                    // }
+                    _self.countDown()
+                }, 60000);
+            } else{
+                clearInterval(timer);
+                global.pop_tips('订单支付超时，请重新下单',function(){
+                    global.router('wx_shop.html?shopId='+_self.shopId)
                 })
             }
         },
@@ -41,23 +95,16 @@ new Vue({
                                 global.router('wx_orders.html?orderId='+orderId)
                             })
                         }else{
-                            global.chooseWXPay(d.data,function(){
-                                global.pop_tips("支付成功",function(){
-                                    global.router('wx_orders.html?orderId='+orderId)
+                            global.getConfig(['chooseWXPay'],function(){
+                                global.chooseWXPay(d.data,function(){
+                                    global.pop_tips("支付成功",function(){
+                                        global.router('wx_orders.html?orderId='+orderId)
+                                    })
                                 })
                             })
-                            // wx.chooseWXPay({
-                            //     timestamp: d.data.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
-                            //     nonceStr: d.data.nonce, // 支付签名随机串，不长于 32 位
-                            //     package: d.data.pack, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
-                            //     signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-                            //     paySign: d.data.signature, // 支付签名
-                            //     success: function (res) {
-                            //
-                            //     }
-                            // });
                         }
-
+                    }else{
+                        global.codeError(d.status.code)
                     }
 
                 }
@@ -75,6 +122,8 @@ new Vue({
                     console.log(d)
                     if(d.status.code=="OK" && d.data){
                         global.router('wx_orders.html?orderId='+orderId)
+                    }else{
+                        global.codeError(d.status.code)
                     }
 
                 }

@@ -13,7 +13,9 @@ new Vue({
             global.pop_tips('签到中，请稍候...')
             _self.check_in(shopId)
         }else{
-            global.pop_tips('签到失败，请重新扫码签到！',global.saoyisao)
+            global.pop_tips('签到失败，请重新扫码签到！',function(){
+                global.getConfig(['scanQRCode'],global.saoyisao)
+            })
         }
     },
     methods: {
@@ -26,7 +28,7 @@ new Vue({
                     if (d.status.code === 'OK') {
                         global.pop_tips('签到成功,即将为您跳转首页...',function(){global.router('wx_index.html')})
                     } else {
-                        global.pop_tips('签到失败，即将为您拉取扫一扫',function(){global.saoyisao()})
+                        global.pop_tips('签到失败，即将为您拉取扫一扫',function(){global.getConfig(['scanQRCode'],global.saoyisao)})
                     }
                 }
             }

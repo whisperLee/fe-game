@@ -50,14 +50,9 @@ new Vue({
                             "levelPro":parseInt(d.totalGameScore*100/(d.nextNeedScore-d.preNeedScore))
                         }
                         console.log(_self.user)
-                    }else if (d.status.code=="1011"){
-                        global.router("wx_login.html")
-                    }else if (d.status.code=="1009"){
-                        global.pop_tips("请在微信中打开本页面")
                     }else{
-                        global.router("wx_login.html")
+                       global.codeError(d.status.code)
                     }
-
                 }
             }
             global.ajax(d)
@@ -70,6 +65,8 @@ new Vue({
                 success: function (d) {
                     if(d.status.code=="OK" && d.data){
                         _self.importantMess = d.data
+                    }else{
+                        global.codeError(d.status.code)
                     }
                 }
             }
@@ -95,6 +92,8 @@ new Vue({
                                 },
                             })
                         },10)
+                    }else{
+                        global.codeError(d.status.code)
                     }
                 }
             }
@@ -115,6 +114,8 @@ new Vue({
                     console.log(d)
                     if(d.status.code=="OK" && d.data){
                         _self.shops = d.data
+                    }else{
+                        global.codeError(d.status.code)
                     }
 
                 }

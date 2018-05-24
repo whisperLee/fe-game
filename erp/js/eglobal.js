@@ -197,7 +197,8 @@ global = $.extend({},global,{
             _self.logout()
         })
 
-    }
+    },
+
 })
 
 

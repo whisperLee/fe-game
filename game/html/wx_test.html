@@ -31,7 +31,7 @@
     $(function(){
 
         $(".btn1").off().on("click",function(){
-            global.saoyisao()
+            global.getConfig(['scanQRCode'],global.saoyisao)
         })
         $(".btn2").off().on("click",function(){
             wx.getLocation({
@@ -45,7 +45,7 @@
                         longitude: longitude, // 经度，浮点数，范围为180 ~ -180。
                         name: '遇见狼人杀', // 位置名
                         address: '重庆市渝北区建东一村', // 地址详情说明
-                        scale: 1, // 地图缩放级别,整形值,范围从1~28。默认为最大
+                        scale: 14, // 地图缩放级别,整形值,范围从1~28。默认为最大
                         infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
                     });
                 }

@@ -77,6 +77,8 @@ new Vue({
                                 _self.saoyisao()
                             }
                         }
+                    }else{
+                        global.codeError(d.status.code)
                     }
                 }
             }
@@ -160,6 +162,8 @@ new Vue({
                                 })
                             })
                         },10)
+                    }else{
+                        global.codeError(d.status.code)
                     }
                 }
             }
@@ -189,6 +193,8 @@ new Vue({
                                 },
                             })
                         },10)
+                    }else{
+                        global.codeError(d.status.code)
                     }
                 }
             }
@@ -224,8 +230,8 @@ new Vue({
                         console.log('入座成功:' + new Date())
                         //_self.queueFlow = 1
                         window.location.reload() //刷新当前页面
-                    } else {
-                        global.pop_tips(d.status.msg)
+                    } else{
+                        global.codeError(d.status.code)
                     }
                 }
             }
@@ -241,8 +247,8 @@ new Vue({
                         global.pop_tips('退座成功', function () {
                             _self.saoyisao()
                         })
-                    } else {
-                        global.pop_tips(d.status.msg)
+                    } else{
+                        global.codeError(d.status.code)
                     }
                 }
             }
@@ -254,7 +260,7 @@ new Vue({
             global.router('wx_shop.html?shopId=1&type=0')
         },
         saoyisao:function () {
-            console.log('saoyisao')
+            global.getConfig(['scanQRCode'],global.saoyisao)
         },
         getGives:function(){
             var _self = this

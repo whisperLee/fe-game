@@ -43,6 +43,8 @@ new Vue({
                         }else{
                             _self.defaultMess = '暂无数据'
                         }
+                    }else{
+                        global.codeError(d.status.code)
                     }
                 }
             }
@@ -58,9 +60,14 @@ new Vue({
                 },
                 success: function (d) {
                     console.log(d)
-                    _self.gameHistoryDetail = d
-                    _self.gameHistoryDetailInfo = d.gameHistoryDetailInfo
-                    global.layerEnter($(".gameHistoryLayer"))
+                    if(d && d.gameHistoryDetailInfo){
+                        _self.gameHistoryDetail = d
+                        _self.gameHistoryDetailInfo = d.gameHistoryDetailInfo
+                        global.layerEnter($(".gameHistoryLayer"))
+                    }else{
+                        _self.pop_tips("网络异常，请重试")
+                    }
+
                 }
             }
             global.ajax(d)

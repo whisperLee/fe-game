@@ -13,10 +13,27 @@ new Vue({
     methods: {
         init:function(){
             var _self = this
+            // var a__b = _self.getCookie("a__b")
+            // console.log(a__b)
             $(function(){
                 _self.active()
             })
         },
+        // getCookie:function(c_name)
+        // {
+        //     if (document.cookie.length>0)
+        //     {
+        //         c_start=document.cookie.indexOf(c_name + "=")
+        //         if (c_start!=-1)
+        //         {
+        //             c_start=c_start + c_name.length+1
+        //             c_end=document.cookie.indexOf(";",c_start)
+        //             if (c_end==-1) c_end=document.cookie.length
+        //             return unescape(document.cookie.substring(c_start,c_end))
+        //         }
+        //     }
+        //     return ""
+        // },
         checkMobile:function(mobile){
             var _self = this
             var $error = $(".phone .error")
@@ -28,12 +45,26 @@ new Vue({
                     },
                     success: function (d) {
                         console.log(d)
-                        if(d.status.code!="OK"){
-                            $error.html(d.status.msg)
-                            $(".validate .send.on").removeClass("on")
-                        }else{
+                        // 特殊情况 ,不用做codeError通用处理
+                        if(d.status.code=="OK"){
                             $error.html('')
                             $(".validate .send").addClass("on")
+                        }else{
+                            $(".validate .send.on").removeClass("on")
+                            if(d.status.code=="1009"){
+                                $error.html("请在微信中打开本页面")
+                                global.pop_tips("请在微信中打开本页面")
+                            }else if(d.status.code=="1011"){
+                                $error.html("您还没有注册，即将为您跳转到注册页面")
+                                global.pop_tips("您还没有注册，即将为您跳转到注册页面",function(){
+                                    global.router("wx_register.html")
+                                })
+                            }else if(d.status.code=='1001'){
+                                $error.html("网络异常，请重试")
+                                _self.pop_tips("网络异常，请重试")
+                            }else{
+                                $error.html(d.status.msg)
+                            }
                         }
                     }
                 }
@@ -61,7 +92,7 @@ new Vue({
                                 //global.setCookie("a__b",d.data)
                                 global.router('wx_index.html')
                             }else{
-                                global.pop_tips(d.status.msg)
+                                global.codeError(d.status.code)
                             }
                         }
                     }

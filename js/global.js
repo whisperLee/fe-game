@@ -107,6 +107,20 @@ var global = {
         }else{
             return "pc"
         }
+    },
+    codeError:function(code){
+        var _self = global
+        if(code=='1002'){
+            _self.router("wx_login.html")
+        }else if(code=='1009'){
+            global.pop_tips("请在微信中打开本页面")
+        }else if(code=='1011'){
+            global.pop_tips("您还没有注册，即将为您跳转到注册页面",function(){
+                global.router("wx_register.html")
+            })
+        }else{
+            _self.pop_tips("网络异常，请重试")
+        }
     }
 
 }

@@ -30,8 +30,22 @@ new Vue({
                     success: function (d) {
                         console.log(d)
                         if(d.status.code!="OK"){
-                            $error.html(d.status.msg)
                             $(".validate .send.on").removeClass("on")
+                            if(d.status.code=="1009"){
+                                $error.html("请在微信中打开本页面")
+                                global.pop_tips("请在微信中打开本页面")
+                            }else if(d.status.code=="1011"){
+                                $error.html("您还没有注册，即将为您跳转到注册页面")
+                                global.pop_tips("您还没有注册，即将为您跳转到注册页面",function(){
+                                    global.router("wx_register.html")
+                                })
+                            }else if(d.status.code=='1001'){
+                                $error.html("网络异常，请重试")
+                                _self.pop_tips("网络异常，请重试")
+                            }else{
+                                $error.html(d.status.msg)
+                            }
+
                         }else{
                             $error.html('')
                             $(".validate .send").addClass("on")
@@ -63,9 +77,9 @@ new Vue({
                         success: function (d) {
                             console.log(d)
                             if(d.status.code=="OK"){
-
+                                global.router('wx_login.html')
                             }else{
-
+                                global.codeError(d.status.code)
                             }
                         }
                     }

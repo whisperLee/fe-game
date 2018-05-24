@@ -39,7 +39,7 @@ new Vue({
                     if(d.status.code=="OK" && d.data){
                         _self.amount = d.data.actualAmount
                         _self.shopId = d.data.shopId
-                        var orderDate = d.data.placeTime
+                        var orderDate = d.data.placeTime.replace(/\-/g, "/"); // 在ios中日期必须转换为x/x/x 格式才可以
                         _self.countTime = (new Date(orderDate).getTime()+60*60*1000-new Date().getTime())/1000
                         if(_self.countTime>0){
                             _self.minutes = parseInt(_self.countTime/60)

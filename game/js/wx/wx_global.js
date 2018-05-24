@@ -2,7 +2,6 @@
  * Created by nielinlin on 2018/1/21.
  */
 var host = http+':7777/web-api/v1/face/'
-document.write("<script language=javascript src='http://res.wx.qq.com/open/js/jweixin-1.2.0.js'></script>");
 //Vue.config.productionTip = false
 var shareData = {
     title: "遇见狼人杀",

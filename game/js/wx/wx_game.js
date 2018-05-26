@@ -3,6 +3,7 @@
  */
 var host = http+':8888/web-api/v1/'
 Vue.component('user',wcomponent.user)
+var timer
 new Vue({
     el: '#wx_game',
     data: {
@@ -52,7 +53,7 @@ new Vue({
                             _self.getGives()
                             if(_self.gameStatus=="队列中"){
                                 _self.sitTip = '请使用桌面上的游戏终端等待游戏开始'
-                                setTimeout(function () {
+                                timer = setTimeout(function () {
                                     _self.getSeat()
                                 },5000)
                             }else{
@@ -241,7 +242,9 @@ new Vue({
                 data: {},
                 success: function (d) {
                     if (d.status.code === 'OK') {
-                        global.pop_tips('退座成功', function () {
+                        _self.showTips('请打开微信扫一扫，扫描座位上的二维码')
+                        clearTimeout(timer)
+                        global.pop_tips('退座成功,即将为您拉取扫一扫功能', function () {
                             //_self.saoyisao()
                             window.location.href=window.location.href.split("?")[0] //重新加载当前页面
                         })
@@ -258,7 +261,14 @@ new Vue({
             global.router('wx_shop.html?shopId=1&type=0')
         },
         saoyisao:function () {
+            var _self = this
+            _self.showTips('请打开微信扫一扫，扫描座位上的二维码')
             global.getConfig(['scanQRCode'],global.saoyisao)
+        },
+        showTips:function(tips){
+            var _self = this
+            $(".box,.pay").hide()
+            $(".defaultMess").html(tips)
         },
         getGives:function(){
             var _self = this

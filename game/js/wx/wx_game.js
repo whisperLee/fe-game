@@ -60,7 +60,8 @@ new Vue({
                                 _self.sitTip = '请使用桌面上的游戏终端进行游戏'
                             }
                             console.log(_self.sitTip)
-                        }else if(_self.gameStatus=="游戏结束"){
+                        }
+                        else if(_self.gameStatus=="游戏结束"){
                             if(timestamp && _self.boxId && _self.gameNumber){ // 判断当前也没面有没有参数 ，boxId，gameNumber,时间戳
                                 if(nowtimestamp-timestamp>0){
                                     //二维码无效需要重新调取扫一扫接口
@@ -240,7 +241,8 @@ new Vue({
                 success: function (d) {
                     if (d.status.code === 'OK') {
                         global.pop_tips('退座成功', function () {
-                            _self.saoyisao()
+                            //_self.saoyisao()
+                            window.reload()
                         })
                     } else{
                         global.codeError(d)

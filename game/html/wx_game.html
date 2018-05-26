@@ -43,9 +43,10 @@
             <div class="payType">
                 <h2>支付方式</h2>
                 <ul class="payType radios">
-                    <li :class="`radio ${item.on?'on':''}`" :typeId ="key"  v-for="(item,key) in balance" :isLess="item.less?'less':''">{{item.name}} <span>{{item.info}}</span></li>
+                    <li :class="`radio ${item.on?'on':''}`" :typeId ="key"  v-for="(item,key) in balances" :isLess="item.less?'less':''">{{item.name}} <span>{{item.info}}</span></li>
                 </ul>
             </div>
+            <p class="tips">注：开始游戏后才进行扣费</p>
             <a v-if="!mustBuy" class="btn sit" v-on:click="sit">确定入座</a>
             <a v-else class="btn mustBuy" v-on:click="shop">余额不足，去商城购买</a>
         </div>

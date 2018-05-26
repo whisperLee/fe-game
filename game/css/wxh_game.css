@@ -1387,6 +1387,12 @@ body .main .pay {
           color: #cccccc; }
         body .main .pay .payType .radios .radio span {
           float: right; }
+  body .main .pay .tips {
+    color: #e74c3c;
+    font-size: .14rem;
+    line-height: 200%;
+    text-align: left;
+    padding-left: .2rem; }
   body .main .pay .btn {
     margin: .2rem auto; }
   body .main .pay .mustBuy {

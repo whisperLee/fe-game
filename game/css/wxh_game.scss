@@ -81,7 +81,9 @@ body{
         }
 
       }
-
+      .tips{
+        color: $gColor20; font-size: .14rem; line-height: 200%; text-align: left; padding-left: .2rem;
+      }
       .btn{
         margin: .2rem auto;
       }

@@ -9,7 +9,7 @@ new Vue({
         boxId:0,
         userId:0,
         users:[],
-        balance:{},//用户余额
+        balances:{},//用户余额
         mustBuy:false,
         banners:[],
         sitTip:'',
@@ -64,9 +64,10 @@ new Vue({
                         else if(_self.gameStatus=="游戏结束"){
                             if(timestamp && _self.boxId && _self.gameNumber){ // 判断当前也没面有没有参数 ，boxId，gameNumber,时间戳
                                 if(nowtimestamp-timestamp>0){
-                                    //二维码无效需要重新调取扫一扫接口
-                                    console.log('二维码无效需要重新调取扫一扫接口')
-                                    _self.saoyisao()
+                                    global.pop_tips("二维码无效需要重新调取扫一扫接口",function(){
+                                        _self.saoyisao()
+                                    })
+
                                 }else{
                                     //调取用户余额接口，显示支付和购买界面
                                     $(".pay").show()
@@ -94,7 +95,7 @@ new Vue({
                     console.log(d)
                     if(d.status.code=="OK" && d.data){
 
-                        var balance = {
+                        var balances = {
                             0:{
                                 name:"体验券"
                             },
@@ -109,36 +110,36 @@ new Vue({
                         }
 
                         if(d.data.expiredTimestamp>0){
-                            balance["2"].info = '有效期：'+global.timestampToTime(d.data.expiredTimestamp)
+                            balances["2"].info = '有效期：'+global.timestampToTime(d.data.expiredTimestamp)
                         }else{
-                            balance["2"].info = '无'
+                            balances["2"].info = '无'
                         }
                         if(d.data.minute>0){
-                            balance["1"].info = '剩余'+d.data.minute+'分'
+                            balances["1"].info = '剩余'+d.data.minute+'分'
                         }else{
-                            balance["1"].info = '无'
+                            balances["1"].info = '无'
                         }
                         if(d.data.voucherList.length>0){
-                            balance["0"].info = '共'+d.data.voucherList.length+'张可用'
+                            balances["0"].info = '共'+d.data.voucherList.length+'张可用'
                             $(".voucherListLayer .enabledVoucher").html(global.returnVoucherList(d.data.voucherList))
                         }else{
-                            balance["0"].info = "无可用"
-                            balance["0"].less = true
+                            balances["0"].info = "无可用"
+                            balances["0"].less = true
                         }
 
                         if(!d.data.expiredTimestampLess){
-                            balance["2"].on = true
+                            balances["2"].on = true
                         }else if(!d.data.minuteLess){
-                            balance["1"].on = true
+                            balances["1"].on = true
                         }else{
                             if(d.data.voucherList.length>0){
-                                balance["1"].on = true // 优惠券有的情况下暂时不处理
+                                balances["1"].on = true // 优惠券有的情况下暂时不处理
 
                             }else{
                                 _self.mustBuy = true // 三种情况都没有的话，显示余额不足，去商城购买
                             }
                         }
-                        _self.balance = balance
+                        _self.balances = balances
                         setTimeout(function(){
                             $(".radios").each(function(){
                                 var el = $(this)

@@ -243,7 +243,7 @@ new Vue({
                     if (d.status.code === 'OK') {
                         global.pop_tips('退座成功', function () {
                             //_self.saoyisao()
-                            window.reload()
+                            window.location.href=window.location.href.split("?")[0] //刷新当前页面
                         })
                     } else{
                         global.codeError(d)

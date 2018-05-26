@@ -172,9 +172,9 @@
       position: relative;
       height: .4rem; line-height: .4rem; margin: .1rem;
       span{
-        display: inline-block;
-        width:.7rem;
-        float: left;
+        position: absolute;
+        left: 0;
+        top:0;
       }
       .input{
         display: block;

@@ -71,6 +71,7 @@ new Vue({
                             "authCode": authCode,
                             "mobile": mobile,
                             "name": name,
+                            "openId":"",
                             "sex": $(".radios li.on").attr("type")
                         },
                         success: function (d) {

@@ -288,7 +288,7 @@ new Vue({
         active:function () {
             var _self = this
             var h = $(window).height()
-            $(".cartList .bd").css("maxHeight",h/2)
+            $(".cartList .bd").css("maxHeight",h*2/3)
             $('.cart .cartIcon').off().on('click',function(){
 
                 if($('.cartList').hasClass('on')){

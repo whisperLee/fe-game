@@ -40,7 +40,7 @@ new Vue({
                         d.consumptionScore && _self.setCard('遇米',d.consumptionScore,'')
                         _self.user = {
                             "nickName":d.name,
-                            "headImgUrl":d.weixinHeadImg,
+                            "headImgUrl":d.headImg,
                             "stage":1,
                             "star":1,
                             "likeTime":d.likeTime,

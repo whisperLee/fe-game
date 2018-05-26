@@ -12,11 +12,11 @@ window.wFooter = [
         link:'wx_index.html',
         name:'首页'
     },
-    {
-        type:'appoint',
-        link:'wx_appoint.html',
-        name:'预约'
-    },
+    // {
+    //     type:'appoint',
+    //     link:'wx_appoint.html',
+    //     name:'预约'
+    // },
     {
         type:'game',
         link:'wx_game.html',

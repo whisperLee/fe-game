@@ -47,7 +47,7 @@ new Vue({
 
                         _self.user = {
                             "nickName":d.name,
-                            "headImgUrl":d.weixinHeadImg,
+                            "headImgUrl":d.headImg,
                             "stage":1,
                             "star":1,
                             "likeTime":d.likeTime,

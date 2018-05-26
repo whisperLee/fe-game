@@ -40,7 +40,7 @@ body {
   overflow: auto;
   font-size: .16rem;
   line-height: 150%;
-  font-family: Microsoft YaHei, Helvetica, STHeiti, Droid Sans Fallback; }
+  font-family: Microsoft YaHei, SimSun, Helvetica, STHeiti, Droid Sans Fallback; }
 
 textarea {
   resize: none; }
@@ -98,7 +98,7 @@ video {
   -webkit-transform: translateY(-50%); }
 
 body {
-  font-family: Microsoft YaHei, Helvetica, STHeiti, Droid Sans Fallback;
+  font-family: Microsoft YaHei, SimSun, Helvetica, STHeiti, Droid Sans Fallback;
   color: #f1f5fa; }
   body .main {
     overflow-y: auto; }
@@ -397,7 +397,7 @@ body {
     background-position: center center; }
     .user.userBack .level .userInner {
       width: 46%;
-      padding: 5%; }
+      padding: 5.5%; }
   .user.userBack .level1 {
     background-image: url(../image/newLevel/1_0.png); }
   .user.userBack .level2 {

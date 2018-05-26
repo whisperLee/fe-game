@@ -3,6 +3,7 @@
  */
 var host = http+':7777/web-api/v1/face/'
 //Vue.config.productionTip = false
+document.title='遇见狼人杀'
 var shareData = {
     title: "遇见狼人杀",
     desc: "遇见知己,看见自己",

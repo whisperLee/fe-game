@@ -7,7 +7,7 @@ body{
     .header{
       margin-bottom: 0;
       .type{
-        position: absolute; right:0; top:0; height: .55rem; width:.5rem;
+        position: absolute; right:0; top:0; height: .45rem; width:.45rem;
         &.type0{
           background: url("../wxImage/st0_1.png") no-repeat center; background-size: .4rem .4rem;
         }
@@ -168,7 +168,7 @@ body{
           line-height: 150%; font-size: .18rem; color: $wxColor11; font-weight: bold;
         }
         .goodOp{
-          position: absolute; right:.05rem; bottom:0;
+          position: absolute; right:.05rem; bottom:.05rem;
 
           .goodNum,.goodSub{
             display: none;

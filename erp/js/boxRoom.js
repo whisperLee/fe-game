@@ -38,7 +38,7 @@ new Vue({
                         }
                         _self.roomList = d.data
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }
@@ -60,7 +60,7 @@ new Vue({
                         item.status = 'APPOINTMENT'
                         item.roomStatus =_self.roomStatus[item.status]
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }
@@ -82,7 +82,7 @@ new Vue({
                         item.status = 'IDLE'
                         item.roomStatus =_self.roomStatus[item.status]
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }
@@ -122,7 +122,7 @@ new Vue({
                         if(d.status.code=="OK" && d.data){
                             item.callOutFlag = false
                         }else{
-                            global.codeError(d.status.code)
+                            global.codeError(d)
                         }
 
                     }

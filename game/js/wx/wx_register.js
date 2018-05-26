@@ -79,7 +79,7 @@ new Vue({
                             if(d.status.code=="OK"){
                                 global.router('wx_login.html')
                             }else{
-                                global.codeError(d.status.code)
+                                global.codeError(d)
                             }
                         }
                     }

@@ -78,7 +78,7 @@ new Vue({
 
                         _self.getCart()
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
                 }
             }

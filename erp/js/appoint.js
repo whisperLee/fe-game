@@ -56,7 +56,7 @@ new Vue({
                         },10)
 
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
                 }
             }

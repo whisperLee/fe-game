@@ -761,7 +761,7 @@ body .main {
     overflow: hidden;
     padding: .1rem; }
     body .main .gives .barCon ul li .left {
-      width: .8rem;
+      width: .9rem;
       height: auto;
       line-height: 0;
       float: left; }
@@ -770,15 +770,19 @@ body .main {
         height: auto; }
     body .main .gives .barCon ul li .right {
       position: relative;
-      margin-left: 1.1rem;
-      height: .8rem;
-      line-height: .4rem;
+      margin-left: 1rem;
+      height: .9rem;
+      line-height: .3rem;
       color: #2d313f; }
+      body .main .gives .barCon ul li .right .info {
+        line-height: .25rem;
+        height: .5rem;
+        margin-bottom: .1rem;
+        overflow: hidden; }
       body .main .gives .barCon ul li .right .name, body .main .gives .barCon ul li .right .num {
         color: #00bea1;
         padding: 0 .05rem;
-        font-size: .2rem;
-        line-height: .4rem; }
+        font-size: .2rem; }
       body .main .gives .barCon ul li .right .data {
         position: absolute;
         left: 0;
@@ -789,7 +793,7 @@ body .main {
       body .main .gives .barCon ul li .right .btn {
         position: absolute;
         right: 0;
-        bottom: .05rem;
+        bottom: 0rem;
         width: auto;
         height: .3rem;
         line-height: .3rem;

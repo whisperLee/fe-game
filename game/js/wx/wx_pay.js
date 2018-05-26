@@ -51,7 +51,7 @@ new Vue({
                             })
                         }
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }
@@ -104,7 +104,7 @@ new Vue({
                             })
                         }
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }
@@ -123,7 +123,7 @@ new Vue({
                     if(d.status.code=="OK" && d.data){
                         global.router('wx_orders.html?orderId='+orderId)
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }

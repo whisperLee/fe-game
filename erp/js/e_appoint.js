@@ -28,7 +28,7 @@ new Vue({
                     if(d.status.code=="OK" && d.data){
                         _self.appoint = d.data
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }

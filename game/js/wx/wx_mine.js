@@ -57,7 +57,7 @@ new Vue({
                             "levelPro":parseInt(d.totalGameScore*100/(d.nextNeedScore-d.preNeedScore))
                         }
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }
@@ -81,7 +81,7 @@ new Vue({
                         var d = d.data
                         global.router('wx_login.html')
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }

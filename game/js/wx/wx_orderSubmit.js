@@ -83,8 +83,8 @@ new Vue({
                         },10)
 
                     }else{
-                        global.codeError(d.status.code)
-                        if(d.status.code!='1002' && d.status.code!='1009' && d.status.code!='1011'){
+                        global.codeError(d)
+                        if(d.status.retcode!='1002' && d.status.retcode!='1009' && d.status.retcode!='1011'){
                             global.pop_tips("网络异常,请重新下单",function(){
                                 global.router('wx_shop.html?shopId='+_self.shopId)
                             })
@@ -113,7 +113,7 @@ new Vue({
                             _self.changeVoucherOrConsume()
                         })
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }
@@ -135,7 +135,7 @@ new Vue({
                         _self.amount.voucherDiscounts   = d.data.voucherDiscounts
                         isGetConScore && _self.getOrderConsumptionScore(d.data.actualAmount) //获取可用遇米数
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }
@@ -206,7 +206,7 @@ new Vue({
                             global.router('wx_orders.html?orderId='+d.data.orderId)
                         }
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }

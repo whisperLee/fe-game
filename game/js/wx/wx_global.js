@@ -26,7 +26,7 @@ global = $.extend({},global,{
         callback = callback || function(){}
         error = error || function(){}
         var d = {
-            url: 'wechat/jsApiConfig',
+            url: http+':7777/web-api/v1/face/wechat/jsApiConfig',
             data: {
                 "string": location.href,
             },
@@ -95,7 +95,7 @@ global = $.extend({},global,{
     },
     saoyisao: function () {
         console.log('调扫一扫功能')
-
+        alert("sao")
         wx.scanQRCode({
             needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
             scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有

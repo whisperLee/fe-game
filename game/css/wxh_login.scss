@@ -7,7 +7,7 @@ body{
     .container{
       padding: .1rem .2rem; text-align: center;
       .input,.gender{
-        position: relative; background: $wxColor1; height:.44rem; line-height: .44rem; color: $wxColor7; padding: 0 .15rem; border-radius: .22rem; margin-bottom: .3rem; text-align: left;
+        position: relative; background: $wxColor1; height:.44rem;  color: $wxColor7; padding: 0 .15rem; border-radius: .22rem; margin-bottom: .3rem; text-align: left;
 
         .msg{
           display: none;

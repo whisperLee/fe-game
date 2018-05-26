@@ -36,7 +36,7 @@ new Vue({
                             global.router("wx_shop.html")
                         })
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }
@@ -65,7 +65,7 @@ new Vue({
                             global.router("game.html")
                         })
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }

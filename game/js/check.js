@@ -28,8 +28,8 @@ new Vue({
                     if (d.status.code === 'OK') {
                         global.pop_tips('签到成功,即将为您跳转首页...',function(){global.router('wx_index.html')})
                     }else{
-                        global.codeError(d.status.code)
-                        if(d.status.code=='1001'){
+                        global.codeError(d)
+                        if(d.status.retcode=='1001'){
                             global.getConfig(['scanQRCode'],global.saoyisao)
                         }
                     }

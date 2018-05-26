@@ -78,7 +78,7 @@ new Vue({
                             }
                         }
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
                 }
             }
@@ -163,7 +163,7 @@ new Vue({
                             })
                         },10)
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
                 }
             }
@@ -190,7 +190,7 @@ new Vue({
                             })
                         },10)
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
                 }
             }
@@ -226,7 +226,7 @@ new Vue({
                         //_self.queueFlow = 1
                         window.location.reload() //刷新当前页面
                     } else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
                 }
             }
@@ -243,7 +243,7 @@ new Vue({
                             _self.saoyisao()
                         })
                     } else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
                 }
             }

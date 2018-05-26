@@ -18,8 +18,8 @@
             <h1 class="pageName"><span>订单提交</span></h1>
         </div>
     </div>
-    <div class="orderDetail orderSubmit">
-        <div class="bd">
+    <div class="orderDetail orderSubmit" >
+        <div class="bd" v-if="user.userName">
             <div class="address">
                 <div><span>收货人:</span><div class="input"><input type="text" :value="user.userName"></div></div>
                 <div><span>联系方式:</span><div class="input"><input type="text" :value="user.mobile"></div></div>
@@ -83,6 +83,7 @@
             </div>
 
         </div>
+        <p class="defaultMess" v-else>加载中，请稍候</p>
     </div>
     <div class="footer">
         <span class="total">实付款：￥{{amount.actualAmount}}</span>

@@ -47,7 +47,7 @@ new Vue({
                         }
 
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
                 }
             }
@@ -70,7 +70,7 @@ new Vue({
                         _self.orderDatail = d.data
                         global.layerEnter($(".orderDetailLayer"))
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }
@@ -91,7 +91,7 @@ new Vue({
                         _self.orderDatail.status = 70
                         _self.orderDatail.statusName = interfaceValue.orderStatus[_self.orderDatail.status]
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
                 }
             }

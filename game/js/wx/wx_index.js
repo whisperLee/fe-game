@@ -51,7 +51,7 @@ new Vue({
                         }
                         console.log(_self.user)
                     }else{
-                       global.codeError(d.status.code)
+                       global.codeError(d)
                     }
                 }
             }
@@ -66,7 +66,7 @@ new Vue({
                     if(d.status.code=="OK" && d.data){
                         _self.importantMess = d.data
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
                 }
             }
@@ -93,7 +93,7 @@ new Vue({
                             })
                         },10)
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
                 }
             }
@@ -115,7 +115,7 @@ new Vue({
                     if(d.status.code=="OK" && d.data){
                         _self.shops = d.data
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }

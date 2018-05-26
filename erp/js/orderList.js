@@ -51,7 +51,7 @@ new Vue({
                         }
                         _self.orderListCom =d.data
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
                 }
             }
@@ -77,7 +77,7 @@ new Vue({
                         }
                         _self.orderListUnCom =d.data
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
                 }
             }
@@ -97,7 +97,7 @@ new Vue({
                         item = _self.returnData(item)
                         console.log(item)
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }
@@ -117,7 +117,7 @@ new Vue({
                         item.status = 35
                         item = _self.returnData(item)
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }
@@ -142,7 +142,7 @@ new Vue({
                             _self.removeItem(_self.orderListUnCom,item)
                         },1000)
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }
@@ -170,7 +170,7 @@ new Vue({
                         item.status = 51
                         item = _self.returnData(item)
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
                 }
             }

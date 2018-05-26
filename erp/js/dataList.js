@@ -37,7 +37,7 @@ new Vue({
                     if(d.status.code=="OK" && d.data){
                         _self.todayData = d.data
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }
@@ -58,7 +58,7 @@ new Vue({
                         _self.weekList = d.data.dateInfoList
                         _self.weekTotal = d.data.totalInfo
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }
@@ -79,7 +79,7 @@ new Vue({
                         _self.monthList = d.data.dateInfoList
                         _self.monthTotal = d.data.totalInfo
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
 
                 }
@@ -100,7 +100,7 @@ new Vue({
                         _self.yearList = d.data.dateInfoList
                         _self.yearTotal = d.data.totalInfo
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
                 }
             }

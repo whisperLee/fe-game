@@ -97,7 +97,7 @@ new Vue({
                             $(".cannotAppoint").show()
                         }
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
                 }
             }
@@ -133,7 +133,7 @@ new Vue({
                     console.log(d)
                     if (d.status.code == "OK") {
                     }else{
-                        global.codeError(d.status.code)
+                        global.codeError(d)
                     }
                 }
             }

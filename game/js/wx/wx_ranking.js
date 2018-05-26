@@ -39,7 +39,7 @@ new Vue({
                             _self.charmT = d.data.dataList
                             _self.setData(_self.charmT)
                         }else{
-                            global.codeError(d.status.code)
+                            global.codeError(d)
                         }
 
                     }
@@ -65,7 +65,7 @@ new Vue({
                             _self.charmY = d.data.dataList
                             _self.setData(_self.charmY)
                         }else{
-                            global.codeError(d.status.code)
+                            global.codeError(d)
                         }
 
                     }
@@ -91,7 +91,7 @@ new Vue({
                             _self.charmW = d.data.dataList
                             _self.setData(_self.charmW)
                         }else{
-                            global.codeError(d.status.code)
+                            global.codeError(d)
                         }
 
                     }
@@ -117,7 +117,7 @@ new Vue({
                             _self.charmTt = d.data.dataList
                             _self.setData(_self.charmTt)
                         }else{
-                            global.codeError(d.status.code)
+                            global.codeError(d)
                         }
 
                     }
@@ -143,7 +143,7 @@ new Vue({
                             _self.gameT = d.data.dataList
                             _self.setData(_self.gameT)
                         }else{
-                            global.codeError(d.status.code)
+                            global.codeError(d)
                         }
 
                     }
@@ -169,7 +169,7 @@ new Vue({
                             _self.gameY = d.data.dataList
                             _self.setData(_self.gameY)
                         }else{
-                            global.codeError(d.status.code)
+                            global.codeError(d)
                         }
 
                     }
@@ -195,7 +195,7 @@ new Vue({
                             _self.gameW = d.data.dataList
                             _self.setData(_self.gameW)
                         }else{
-                            global.codeError(d.status.code)
+                            global.codeError(d)
                         }
 
                     }
@@ -221,7 +221,7 @@ new Vue({
                             _self.gameTt = d.data.dataList
                             _self.setData(_self.gameTt)
                         }else{
-                            global.codeError(d.status.code)
+                            global.codeError(d)
                         }
 
                     }
@@ -247,7 +247,7 @@ new Vue({
                             _self.mvpT = d.data.dataList
                             _self.setData(_self.mvpT)
                         }else{
-                            global.codeError(d.status.code)
+                            global.codeError(d)
                         }
 
                     }
@@ -273,7 +273,7 @@ new Vue({
                             _self.mvpY = d.data.dataList
                             _self.setData(_self.mvpY)
                         }else{
-                            global.codeError(d.status.code)
+                            global.codeError(d)
                         }
 
                     }
@@ -299,7 +299,7 @@ new Vue({
                             _self.mvpW = d.data.dataList
                             _self.setData(_self.mvpW)
                         }else{
-                            global.codeError(d.status.code)
+                            global.codeError(d)
                         }
 
                     }
@@ -325,7 +325,7 @@ new Vue({
                             _self.mvpTt = d.data.dataList
                             _self.setData(_self.mvpTt)
                         }else{
-                            global.codeError(d.status.code)
+                            global.codeError(d)
                         }
 
                     }

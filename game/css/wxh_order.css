@@ -994,7 +994,8 @@ ul.goodList {
 body {
   background: #ebedf2; }
   body .layerWrap .orderDetail {
-    bottom: .6rem; }
+    bottom: .6rem;
+    overflow: hidden; }
     body .layerWrap .orderDetail .hd {
       height: .4rem;
       line-height: .4rem;

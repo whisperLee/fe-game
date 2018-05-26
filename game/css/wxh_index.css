@@ -791,8 +791,8 @@ body .main .shops {
         width: 100%; }
       body .main .shops ul li a .info {
         position: relative;
-        font-size: .14rem;
-        line-height: .24rem;
+        font-size: .15rem;
+        line-height: .3rem;
         padding-left: .05rem; }
         body .main .shops ul li a .info .local {
           background: url("../wxImage/local.png") no-repeat left center;
@@ -805,22 +805,23 @@ body .main .shops {
           top: 0;
           color: #00bea1; }
         body .main .shops ul li a .info .status {
-          font-size: .1rem;
+          font-size: .12rem;
+          line-height: 200%;
           color: #2d313f;
           padding-left: .03rem; }
           body .main .shops ul li a .info .status span {
-            padding-left: .15rem;
+            padding-left: .18rem;
             margin-right: .15rem; }
             body .main .shops ul li a .info .status span b {
               color: #00bea1; }
             body .main .shops ul li a .info .status span.gaming {
               background: url("../wxImage/1.png") no-repeat left center;
-              background-size: .15rem .15rem; }
+              background-size: .18rem .18rem; }
             body .main .shops ul li a .info .status span.lineUp {
               background: url("../wxImage/2.png") no-repeat left center;
-              background-size: .15rem .15rem; }
+              background-size: .18rem .18rem; }
             body .main .shops ul li a .info .status span.notBeginning {
               background: url("../wxImage/3.png") no-repeat left center;
-              background-size: .15rem .15rem; }
+              background-size: .18rem .18rem; }
 
 /*# sourceMappingURL=wxh_index.css.map */

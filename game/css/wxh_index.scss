@@ -84,8 +84,8 @@ body{
             }
             .info{
               position: relative;
-              font-size: .14rem;
-              line-height: .24rem;
+              font-size: .15rem;
+              line-height: .3rem;
               padding-left: .05rem;
               .local{
                 background: url("../wxImage/local.png") no-repeat left center;
@@ -100,26 +100,27 @@ body{
                 color: $wxColor9;
               }
               .status{
-                font-size: .1rem;
+                font-size: .12rem;
+                line-height: 200%;
                 color: $wxColor7;
                 padding-left: .03rem;
                 span{
-                  padding-left: .15rem;
+                  padding-left: .18rem;
                   margin-right: .15rem;
                   b{
                     color: $wxColor9;
                   }
                   &.gaming{
                     background: url("../wxImage/1.png") no-repeat left center;
-                    background-size: .15rem .15rem;
+                    background-size: .18rem .18rem;
                   }
                   &.lineUp{
                     background: url("../wxImage/2.png") no-repeat left center;
-                    background-size: .15rem .15rem;
+                    background-size: .18rem .18rem;
                   }
                   &.notBeginning{
                     background: url("../wxImage/3.png") no-repeat left center;
-                    background-size: .15rem .15rem;
+                    background-size: .18rem .18rem;
                   }
                 }
 

@@ -1,6 +1,7 @@
 /**
  * Created by nielinlin on 2018/1/21.
  */
+var detailScroll;
 new Vue({
     el: '#wx_orders',
     data: {
@@ -69,6 +70,11 @@ new Vue({
                         d.data.userLocationResponse.address = address
                         _self.orderDatail = d.data
                         global.layerEnter($(".orderDetailLayer"))
+
+                        setTimeout(function(){
+                            detailScroll = new IScroll(".orderDetail", {click:true});
+                        },10)
+
                     }else{
                         global.codeError(d)
                     }

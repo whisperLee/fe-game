@@ -245,8 +245,8 @@ new Vue({
                         _self.showTips('请打开微信扫一扫，扫描座位上的二维码')
                         clearTimeout(timer)
                         global.pop_tips('退座成功,即将为您拉取扫一扫功能', function () {
-                            //_self.saoyisao()
-                            window.location.href=window.location.href.split("?")[0] //重新加载当前页面
+                            _self.saoyisao()
+                            //window.location.href=window.location.href.split("?")[0] //重新加载当前页面
                         })
                     } else{
                         global.codeError(d)
@@ -267,7 +267,8 @@ new Vue({
         },
         showTips:function(tips){
             var _self = this
-            $(".box,.pay").hide()
+            _self.users=[]
+            $(".pay").hide()
             $(".defaultMess").html(tips)
         },
         getGives:function(){

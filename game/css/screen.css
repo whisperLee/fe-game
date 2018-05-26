@@ -223,14 +223,17 @@ body {
         background-image: url("../image/newLevel/n15.png"); }
       .user .level .userInner .head {
         width: 100%;
-        height: 100%;
-        position: relative; }
+        height: 0;
+        position: relative;
+        padding-top: 100%; }
         .user .level .userInner .head img {
           width: 100%;
-          height: auto;
-          margin: 0 auto;
+          height: 100%;
           z-index: 2;
-          position: relative; }
+          position: absolute;
+          border-radius: 50%;
+          left: 0;
+          top: 0; }
       .user .level .userInner .status {
         position: absolute;
         right: 2%;

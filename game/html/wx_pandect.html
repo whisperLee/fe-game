@@ -22,45 +22,10 @@
       </div>
       <ul >
         <li v-for = "item in record.identityCountMap">
-          <img :src="item.head" alt="">
+          <img :src="item.head" onerror=javascript:this.src="../wxImage/default.jpg" alt="">
           <p>
             <span class="fl">获胜:{{item.winCount}}</span>
             <span class="fr">场次:{{item.totalCount}}</span>
-          </p>
-        </li>
-        <li >
-          <img src="../shenfen/h_5.jpg" alt="">
-          <p>
-            <span class="fl">获胜:1</span>
-            <span class="fr">场次:2</span>
-          </p>
-        </li>
-        <li >
-          <img src="../shenfen/h_9.jpg" alt="">
-          <p>
-            <span class="fl">获胜:1</span>
-            <span class="fr">场次:2</span>
-          </p>
-        </li>
-        <li >
-          <img src="../shenfen/h_8.jpg" alt="">
-          <p>
-            <span class="fl">获胜:1</span>
-            <span class="fr">场次:2</span>
-          </p>
-        </li>
-        <li >
-          <img src="../shenfen/h_7.jpg" onerror=javascript:this.src="../shenfen/h_7.jpg" alt="">
-          <p>
-            <span class="fl">获胜:1</span>
-            <span class="fr">场次:2</span>
-          </p>
-        </li>
-        <li >
-          <img src="../shenfen/h_6.jpg" alt="">
-          <p>
-            <span class="fl">获胜:1</span>
-            <span class="fr">场次:2</span>
           </p>
         </li>
       </ul>

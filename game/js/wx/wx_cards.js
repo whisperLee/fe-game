@@ -40,6 +40,7 @@ new Vue({
                         $(".cards .cash").off().on("click",function(){
                             global.router("wx_shop.html")
                         })
+                        //global.cIscroll()
                     }else{
                         global.codeError(d)
                     }
@@ -69,6 +70,7 @@ new Vue({
                         $(".cards .experience").off().on("click",function(){
                             global.router("game.html")
                         })
+                        //global.cIscroll()
                     }else{
                         global.codeError(d)
                     }

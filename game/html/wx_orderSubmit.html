@@ -85,7 +85,7 @@
         </div>
         <p class="defaultMess" v-else>加载中，请稍候</p>
     </div>
-    <div class="footer">
+    <div class="footer" v-if="amount.actualAmount">
         <span class="total">实付款：￥{{amount.actualAmount}}</span>
         <a class="btn btn1" v-on:click="orderSubmit()">确认购买</a>
     </div>
@@ -94,13 +94,11 @@
             <a class="back"></a>
             <h2>使用抵价券</h2>
         </div>
-        <div class="layerNavContent voucherList barWrap">
-            <div class="hd">
-                <ul class="flexBar">
-                    <li class="enabled on"><a></a></li>
-                    <li class="disabled"><a></a></li>
-                </ul>
-            </div>
+        <div class="layerNavContent voucherList barWrap fixedBar">
+            <ul class="hd flexBar">
+                <li class="enabled on"><a></a></li>
+                <li class="disabled"><a></a></li>
+            </ul>
             <div class="bd">
                 <ul class="cards barCon enabledVoucher on">
 
@@ -122,7 +120,7 @@
 <script type="application/javascript" src="../../js/global.js"></script>
 <script type="application/javascript" src="../../game/js/wx/wx_global.js"></script>
 <script type="application/javascript" src="../../game/js/wx/wx_component.js"></script>
-<script type="application/javascript" src="../js/wx/wx_orderSubmit.js"></script>
+<script type="application/javascript" src="../js/wx/wx_orderSubmit.js?0"></script>
 </body>
 </html>
 <!--<html><head><title></title></head></body></html>-->

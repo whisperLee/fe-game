@@ -225,12 +225,14 @@ new Vue({
             global.setStorage('carts',carts)
         },
         cartListHide:function(){
+            global.layerBeforeClose()
             $('.cartList').removeClass('on')
             $('.j-mask').hide()
         },
         cartListShow:function(){
             $('.cartList').addClass('on')
             $('.j-mask').show()
+            global.layerAfterOpen()
         },
         scrollInit:function(){
             var _self = this
@@ -299,8 +301,7 @@ new Vue({
             })
 
             $('.j-mask').off().on('click',function(){
-                $('.cartList').removeClass('on')
-                $('.j-mask').hide()
+               _self.cartListHide()
             })
 
             $(".shopType .types li").off().on("click",function(){

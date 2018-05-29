@@ -35,6 +35,9 @@ new Vue({
                                 d.data.dataList[i].typeName = interfaceValue.yumiType[d.data.dataList[i].type]
                             }
                             _self.yumi = d.data.dataList
+                            setTimeout(function(){
+                                new IScroll(".container .yumis");
+                            },10)
                         }else{
                             _self.defaultMess = '暂无数据'
                         }

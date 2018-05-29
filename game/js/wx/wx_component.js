@@ -21,9 +21,7 @@ var wcomponent = {
                 '</div>'+
             '</div>'+
         '</div>'
-    },
-
-   
+    }
 }
 
 

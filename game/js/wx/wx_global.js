@@ -179,18 +179,21 @@ global = $.extend({},global,{
     layerEnter:function(el,callback){
         var _self = this
         callback = callback || function(){}
-        $('.layer').hide()  //隐藏其它弹层
+        el.addClass("lock") //作用 控制按钮重复点击
         el.css({
             display:'block',
             opacity:1
         })
+        el.velocity('stop', true)
         el.velocity({
             translateX:[0,"100%"]
         }, {
-            duration: 500,
+            duration: 400,
             easing: 'ease-in-out',
             complete:function(){
                 el.addClass('active')
+                el.removeClass("lock")
+                //el.attr("lock",1)
                 callback()
             }
         })
@@ -198,10 +201,11 @@ global = $.extend({},global,{
     layerOuter:function(el,callback){
         var _self = this
         callback = callback || function(){}
+        el.removeClass("lock")
         el.velocity({
             translateX:["100%",0]
         }, {
-            duration: 500,
+            duration: 400,
             easing: 'ease-in-out',
             complete:function(){
                 el.hide();
@@ -253,12 +257,33 @@ global = $.extend({},global,{
     hideLayer:function(el){
         var el = $(event.currentTarget).closest(".layerWrap")
         animate.layerOuter(el)
+    },
+    layerAfterOpen:function(){ // 解决滚动穿透问题
+        window.scrollTop = document.scrollingElement.scrollTop;
+        document.body.classList.add("bodyLayer");
+        document.body.style.top = -window.scrollTop + 'px';
+    },
+    layerBeforeClose: function() {// 解决滚动穿透问题
+        if($("body").hasClass("bodyLayer")){
+            $("body").removeClass("bodyLayer")
+            document.body.style.top = '0px';
+            document.scrollingElement.scrollTop = window.scrollTop;
+        }
+        // scrollTop lost after set position:fixed, restore it back.
+
     }
+    // cIscroll:function(dom,option){
+    //     dom = dom || ".iscrollWrap"
+    //     option = option || {click:true}
+    //     setTimeout(function(){
+    //         new IScroll(dom,option );
+    //     },10)
+    // }
 
 })
-
+var pageInit
 $(function(){
-    var pageInit = {
+     pageInit = {
         init:function(){
             this.barActive()
             this.back()
@@ -287,6 +312,7 @@ $(function(){
             $(".layerWrap").each(function(){
                 var w = $(this)
                 w.find(".layerNavTop .back").off().on("click",function(){
+                    global.layerBeforeClose()
                     global.layerOuter(w)
                 })
             })

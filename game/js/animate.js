@@ -47,6 +47,7 @@ var animate = {
         var _self = this
         $('.layer').hide()  //隐藏其它弹层
         $('.layer').removeClass("lock") //作用 控制按钮重复点击
+
         el.css({
             display:'block',
             opacity:0
@@ -58,6 +59,7 @@ var animate = {
             duration: 500,
             easing: 'ease-in-out',
             complete:function(){
+                el.removeClass("lock")
                 el.addClass('active')
             }
         })

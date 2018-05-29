@@ -6,15 +6,27 @@
 body{
   .main{
     background: $wxColor2;
-    .orderSubmit{
-      position: absolute; left:0; top:.55rem; bottom:.55rem; overflow-y: auto; width:100%; background: $wxColor2;
-    }
+    //.orderSubmit{
+    //  position: absolute; left:0; top:.55rem; bottom:.55rem; overflow-y: auto; width:100%; background: $wxColor2;
+    //}
     .footer{
       text-align: right;
       .btn.btn1{
-        height:.55rem; line-height: .55rem; width:1rem; text-align: center; color: $wxColor1; background: $wxColor11; display: inline-block;
+        height:.55rem; line-height: .55rem; width:1rem; text-align: center; color: $wxColor1; background: $wxColor11; display: inline-block; border-radius: 0;
       }
       .total{font-size: .16rem; color: $wxColor11; padding-right: .1rem;}
+    }
+    .voucherListLayer{
+      position: fixed;
+      .layerNavContent{
+        bottom:.55rem;
+      }
+      .layerNavBottom{
+        background: $wxColor2; box-shadow: 0px 0px 5px $wxColor3;
+        .btn{
+          margin: .075rem auto;
+        }
+      }
     }
   }
 

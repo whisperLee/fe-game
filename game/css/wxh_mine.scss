@@ -1,18 +1,58 @@
 @charset "utf-8";
 @import "wx_mine";
-.userCenter{
-  width:80%;
-  margin: 0 auto;
-  padding-bottom: .12rem;
-  .top{
-    width:55%;
-    margin:0 auto;
-    padding: .1rem 0;
-    .nickname{
-      text-align: center;
+body{
+  .main{
+    padding-bottom: .55rem;
+
+  }
+}
+.userCenterWrap{
+  min-height: 1.5rem;
+  .userCenter{
+    width:80%;
+    margin: 0 auto;
+    padding-bottom: .12rem;
+
+    .top{
+      width:55%;
+      margin:0 auto;
+      padding: .1rem 0;
+      .nickname{
+        text-align: center;
+      }
     }
   }
 }
+
 .btn.logout{
   width:90%; height:.4rem; margin: .3rem auto; line-height: .4rem; color: $wxColor1; background: $wxColor11; text-align: center; display: block; border-radius: 5px;
 }
+.list{
+  a{
+    b{
+      width:.25rem; height:100%; display: block; float: left; margin-right: .08rem; background: url("../wxImage/m1.png") no-repeat center right; background-size: contain;
+    }
+    b.order{
+      background-image: url("../wxImage/m3.png");
+    }
+    b.card{
+      background-image: url("../wxImage/m4.png");
+    }
+    b.ranking{
+      background-image: url("../wxImage/m5.png");
+    }
+    b.record{
+      background-image: url("../wxImage/m7.png");
+    }
+    b.pandect{
+      background-image: url("../wxImage/m2.png");
+    }
+    b.gives{
+      background-image: url("../wxImage/m6.png");
+    }
+    b.yumi{
+      background-image: url("../wxImage/m1.png");
+    }
+  }
+}
+

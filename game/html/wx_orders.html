@@ -30,7 +30,7 @@
           </div>
           <div class="info">
             <p>共{{item.goodsTotalCount}}件商品 实付款：￥{{item.actualAmount}}元</p>
-            <a v-if="item.status==0" class="btn pay" v-on:click="toPay(item.id)">去支付</a>
+            <a v-if="item.status==0 && item.payType!=50" class="btn pay" v-on:click="toPay(item.id)">去支付</a>
             <a v-else class="btn" v-on:click="toShop(item.id,item.type)">继续购买</a>
           </div>
 
@@ -44,13 +44,13 @@
       <a class="back"></a>
       <h2>订单详情</h2>
     </div>
-    <div class="layerNavContent orderDetail">
-      <div class="scroll">
+    <div class="layerNavContent orderDetail" >
+      <div class="scroll" v-if="orderDatail.userLocationResponse">
         <div class="hd">
           <p class="fl">订单号：{{orderDatail.name}}</p>
           <span class="orderSatus">{{orderDatail.statusName}}</span>
         </div>
-        <div class="bd">
+        <div class="bd" >
           <ul class="goodList">
             <li v-for = "(item,key) in orderDatail.orderItemInfoResponseList">
               <a>
@@ -70,25 +70,28 @@
               </a>
             </li>
           </ul>
+          <div class="userResponse">
+            <p><span class="label">收货人：</span>{{orderDatail.userLocationResponse.userName}}</p>
+            <p><span class="label">联系电话：</span>{{orderDatail.userLocationResponse.mobile}}</p>
+            <p><span class="label">收货地址：</span>{{orderDatail.userLocationResponse.address}}</p>
+            <p><span class="label">支付方式：</span>{{orderDatail.payTypeName}}</p>
+            <p><span class="label">下单时间：</span>{{orderDatail.placeTime}}</p>
+          </div>
           <div class="amount">
             <p>商品金额：<span>￥{{orderDatail.amount}}</span></p>
             <p v-if="orderDatail.consumeScoreAmount!=0">遇米：<span class="sub">-￥{{orderDatail.consumeScoreAmount}}</span></p>
             <p v-if="orderDatail.promotionAmount!=0">商品优惠：<span class="sub">-￥{{orderDatail.promotionAmount}}</span></p>
             <p class="total">应付总额：<span>￥{{orderDatail.actualAmount}}</span></p>
           </div>
-          <div class="userResponse">
-            <p><span class="label">收货人：</span>{{orderDatail.userLocationResponse.userName}}</p>
-            <p><span class="label">联系电话：</span>{{orderDatail.userLocationResponse.mobile}}</p>
-            <p><span class="label">收货地址</span>{{orderDatail.userLocationResponse.address}}</p>
-            <p><span class="label">支付方式</span>{{orderDatail.payTypeName}}</p>
-            <p><span class="label">下单时间：</span>{{orderDatail.placeTime}}</p>
-          </div>
         </div>
       </div>
+      <p class="defaultMess" v-else>{{defaultMess}}</p>
     </div>
+
+
     <div class="layerNavBottom">
       <div class="btns" v-if="orderDatail.status==0">
-        <a class="btn pay" v-on:click="toPay(orderDatail.id)">去支付</a>
+        <a class="btn pay" v-if="orderDatail.payType!=50"  v-on:click="toPay(orderDatail.id)">去支付</a>
         <a class="btn" v-on:click="orderCancel(orderDatail.id)">取消订单</a>
       </div>
       <div class="btns" v-else>
@@ -102,11 +105,9 @@
 <script type="application/javascript" src="../../js/vue.js"></script>
 <script type="application/javascript" src="../../js/velocity.min.js"></script>
 <script type="application/javascript" src="../../js/iscroll5.js"></script>
-<script type="application/javascript" src="../../game/js/animate.js"></script>
 <script type="application/javascript" src="../../js/global.js"></script>
 <script type="application/javascript" src="../../game/js/wx/wx_global.js"></script>
-<script type="application/javascript" src="../../game/js/wx/wx_component.js"></script>
-<script type="application/javascript" src="../../game/js/wx/wx_orders.js"></script>
+<script type="application/javascript" src="../../game/js/wx/wx_orders.js?07"></script>
 </body>
 </html>
 <!--<html><head><title></title></head></body></html>-->

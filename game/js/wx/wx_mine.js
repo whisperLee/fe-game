@@ -31,6 +31,7 @@ new Vue({
             var _self = this
             global.footer('mine')
             _self.getCurrentUser()//查询用户信息
+
         },
         getCurrentUser:function(){
             var _self = this
@@ -56,6 +57,7 @@ new Vue({
                             "totalGameScore":d.totalGameScore,
                             "levelPro":parseInt(d.totalGameScore*100/(d.nextNeedScore-d.preNeedScore))
                         }
+                        //global.cIscroll()
                     }else{
                         global.codeError(d)
                     }

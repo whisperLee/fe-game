@@ -15,7 +15,7 @@
 <div class="main" id="wx_index" v-cloak>
     <div class="userCenterWrap" >
         <div class="topMessage" v-if="tips!=''"><p>{{tips}}</p></div>
-        <div class="userCenter">
+        <div class="userCenter" v-if="user.nickName">
             <div class="left">
                 <user v-bind:user="user"></user>
                 <p class="nickname">{{user.nickName}}</p>
@@ -84,7 +84,6 @@
 <script type="application/javascript" src="../../game/js/wx/wx_global.js"></script>
 <script type="application/javascript" src="../../game/js/wx/wx_component.js"></script>
 <script type="application/javascript" src="../../js/swiper.js"></script>
-
 <script type="application/javascript" src="../../game/js/wx/wx_index.js"></script>
 </body>
 </html>

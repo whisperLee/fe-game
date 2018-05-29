@@ -79,6 +79,7 @@ new Vue({
                                     }
                                 })
                             })
+                            pageInit.init()
 
                         },10)
 
@@ -150,13 +151,17 @@ new Vue({
             }else{
                 _self.orderConfirmDate.voucherId = null
             }
+            global.layerBeforeClose()
             global.layerOuter($(".voucherListLayer"))
+
             //遇米数置为0
             _self.conScoreClose()
             _self.changeVoucherOrConsume(true)
         },
         showVoucher:function(){
-            global.layerEnter($(".voucherListLayer"))
+            global.layerEnter($(".voucherListLayer"),function(){
+                global.layerAfterOpen()
+            })
         },
         conScoreClose:function(){
             var _self = this

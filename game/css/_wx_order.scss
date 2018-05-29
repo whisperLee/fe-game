@@ -24,7 +24,7 @@
       }
       .goods{
         width:100%;
-        height:.36rem;
+        height:.48rem;
         ul{
           width:100%;
           height: 100%;
@@ -32,11 +32,10 @@
           li{
             float: left;
             width:.48rem;
-            height:.36rem;
+            height:.48rem;
             margin-right: .1rem;
             border: .5px solid $wxColor3;
             box-sizing: border-box;
-
             img{
               width:100%;
               height:auto;
@@ -98,7 +97,9 @@
         padding:.1rem;
         .picWrap {
           float: left;
-          width: .8rem; line-height: 0; border: 1px solid $wxColor2;
+          width: .8rem;
+          height:.8rem;
+          line-height: 0; border: 1px solid $wxColor2;
           img {
             width: 100%;
             height: auto;

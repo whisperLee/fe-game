@@ -22,6 +22,14 @@ new Vue({
             var orderId = global.urlHash().orderId
             if(orderId && orderId!='undefined'){
                 _self.showOrderDetail(orderId)
+                // $('.layerWrap .layerNavTop .back').off().on('click',function(){
+                //     window.location.href=window.location.href.split("?")[0]
+                // })
+            }else{
+                _self.getOrderList()//查询订单信息
+                // $('.layerWrap .layerNavTop .back').off().on('click',function(){
+                //     $('.layerWrap').hide()
+                // })
             }
         },
         getOrderList:function(){
@@ -56,32 +64,40 @@ new Vue({
         },
         showOrderDetail:function(orderId){
             var _self = this
-            var d = {
-                url: 'order/orderDetail',
-                data: {
-                    "orderId": orderId
-                },
-                success: function (d) {
-                    console.log(d)
-                    if(d.status.code=="OK" && d.data){
-                        var address = global.returnAddress(d.data.userLocationResponse)
-                        d.data.statusName = interfaceValue.orderStatus[d.data.status]
-                        d.data.payTypeName = interfaceValue['payType'][d.data.payType]
-                        d.data.userLocationResponse.address = address
-                        _self.orderDatail = d.data
-                        global.layerEnter($(".orderDetailLayer"))
+            var el = $(".orderDetailLayer")
+            _self.orderDatail = {}
+            if(!el.hasClass("lock")){
+                global.layerEnter($(".orderDetailLayer"))
+                var d = {
+                    url: 'order/orderDetail',
+                    data: {
+                        "orderId": orderId
+                    },
+                    success: function (d) {
+                        console.log(d)
+                        if(d.status.code=="OK" && d.data){
+                            var address = global.returnAddress(d.data.userLocationResponse)
+                            d.data.statusName = interfaceValue.orderStatus[d.data.status]
+                            d.data.payTypeName = interfaceValue['payType'][d.data.payType]
+                            d.data.userLocationResponse.address = address
+                            _self.orderDatail = d.data
+                            _self.orderDatail.userLocationResponse.userName = '张三'
 
-                        setTimeout(function(){
-                            detailScroll = new IScroll(".orderDetail", {click:true});
-                        },10)
 
-                    }else{
-                        global.codeError(d)
+                            setTimeout(function(){
+
+                                detailScroll = new IScroll(".orderDetail", {click:true});
+                            },10)
+
+                        }else{
+                            global.codeError(d)
+                        }
+
                     }
-
                 }
+                global.ajax(d)
             }
-            global.ajax(d)
+
 
         },
         orderCancel:function(orderId){
@@ -110,16 +126,12 @@ new Vue({
             global.router('wx_shop.html?shopId=1&type='+type)
         },
         active:function(){
-            $('.container .bar li').each(function(idx){
-                $(this).off().on('click',function(){
-                    $('.bar li').removeClass('on').eq(idx).addClass('on')
-                    $('.container .mycon').removeClass('on').eq(idx).addClass('on')
-                })
-            })
-
-            $('.layerWrap .layerNavTop .back').off().on('click',function(){
-                $('.layerWrap').hide()
-            })
+            // $('.container .bar li').each(function(idx){
+            //     $(this).off().on('click',function(){
+            //         $('.bar li').removeClass('on').eq(idx).addClass('on')
+            //         $('.container .mycon').removeClass('on').eq(idx).addClass('on')
+            //     })
+            // })
         }
     }
 })

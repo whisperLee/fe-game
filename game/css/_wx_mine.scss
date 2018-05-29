@@ -3,17 +3,15 @@
 @import "wx";
 body{
   .main{
-    padding-top: 0;
+    padding-bottom: 0;
     .header{
       margin-bottom: 0;
     }
-
-
     .list{
       li{
         width:100%; background: $wxColor1;
         a{
-          display: block;  height:.5rem; line-height: .5rem; font-size: .16rem; color: $wxColor7; border-bottom: 1px solid $wxColor3; padding-left: .1rem; background: url("../wxImage/list.png") no-repeat right center; background-size: .4rem .4rem;
+          display: block;  height:.5rem; line-height: .5rem; font-size: .16rem; color: $wxColor7; border-bottom: 1px solid $wxColor3; padding-left: .12rem; background: url("../wxImage/list.png") no-repeat right center; background-size: .4rem .4rem;
         }
       }
     }

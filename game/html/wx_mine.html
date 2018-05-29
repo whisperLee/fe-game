@@ -13,19 +13,19 @@
 <body>
 <div class="main" id="wx_mine" v-cloak>
     <div class="userCenterWrap">
-        <div class="userCenter">
+        <div class="userCenter" v-if="user.nickName">
             <div class="top">
                 <user class="userBack" v-bind:user="user"></user>
                 <p class="nickname">{{user.nickName}}</p>
             </div>
 
             <div class="levelWrap">
-                <span class="level">lv.{{user.stage}}</span>
-                <div class="levelPro">
-                    <b v-bind:style="`width:${user.levelPro || 0 }%`"></b>
-                    <i>{{user.totalGameScore}}/{{user.nextNeedScore}}</i>
-                </div>
-            </div>
+                        <span class="level">lv.{{user.stage}}</span>
+                        <div class="levelPro">
+                            <b v-bind:style="`width:${user.levelPro || 0 }%`"></b>
+                            <i>{{user.totalGameScore}}/{{user.nextNeedScore}}</i>
+                        </div>
+                    </div>
             <div class="card">
                 <b v-for = "item in card">{{item.name}}:{{item.value}}{{item.unit}}</b>
             </div>
@@ -35,32 +35,31 @@
         <ul class="list">
 
             <li>
-                <a href="wx_orders.html">订单</a>
+                <a href="wx_orders.html"><b class="order"></b>订单</a>
             </li>
             <!--<li>-->
-                <!--<a href="wx_achievement.html">成就</a>-->
+            <!--<a href="wx_achievement.html">成就</a>-->
             <!--</li>-->
             <li>
-                <a href="wx_cards.html">优惠券</a>
+                <a href="wx_cards.html"><b class="card"></b>优惠券</a>
             </li>
             <li>
-                <a href="wx_ranking.html">排行榜</a>
+                <a href="wx_ranking.html"><b class="ranking"></b>排行榜</a>
             </li>
             <li>
-                <a href="wx_records.html">游戏记录</a>
+                <a href="wx_records.html"><b class="record"></b>游戏记录</a>
             </li>
             <li>
-                <a href="wx_pandect.html">游戏战绩</a>
+                <a href="wx_pandect.html"><b class="pandect"></b>游戏战绩</a>
             </li>
             <li>
-                <a href="wx_gives.html">礼物中心</a>
+                <a href="wx_gives.html"><b class="gives"></b>礼物中心</a>
             </li>
             <li>
-                <a href="wx_yumi.html">遇米明细</a>
+                <a href="wx_yumi.html"><b class="yumi"></b>遇米明细</a>
             </li>
         </ul>
         <a class="btn logout" v-on:click="logout()">退出</a>
-
     </div>
     <div class="footer">
         <ul>

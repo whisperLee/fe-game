@@ -267,7 +267,7 @@
   height: 8px;
   display: inline-block;
   border-radius: 100%;
-  background: #000;
+  background: #009881;
   opacity: 0.2;
 }
 button.swiper-pagination-bullet {
@@ -285,7 +285,7 @@ button.swiper-pagination-bullet {
 }
 .swiper-pagination-bullet-active {
   opacity: 1;
-  background: #007aff;
+  background: #00bea1;
 }
 .swiper-container-vertical > .swiper-pagination-bullets {
   right: 10px;

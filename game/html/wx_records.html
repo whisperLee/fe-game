@@ -13,8 +13,8 @@
 <body>
 <div class="main" id="wx_records" v-cloak>
   <div class="header"><div><a class="back"></a> <h1 class="pageName"><span>游戏记录</span></h1></div></div>
-  <div class="container iscrollWrap">
-    <div class="records iscroll" :total="getGameHistoryList.totalCount" >
+  <div class="container">
+    <div class="records" :total="getGameHistoryList.totalCount" >
       <ul v-if="gameHistoryList.dataList && gameHistoryList.dataList.length>0">
         <li v-on:click="showGameHistoryDetail($event)" v-for = "item in gameHistoryList.dataList" :gameId="item.id" >
           <div class="fl"><img :src="item.head" alt=""></div>
@@ -61,7 +61,6 @@
 <script type="application/javascript" src="../../js/vue.js"></script>
 <script type="application/javascript" src="../../js/velocity.min.js"></script>
 <script type="application/javascript" src="../../js/iscroll5.js"></script>
-<script type="application/javascript" src="../../game/js/animate.js"></script>
 <script type="application/javascript" src="../../js/global.js"></script>
 <script type="application/javascript" src="../../game/js/wx/wx_global.js"></script>
 <script type="application/javascript" src="../../game/js/wx/wx_component.js"></script>

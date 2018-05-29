@@ -29,6 +29,7 @@ body{
         }
       }
       .bd{
+        padding-bottom: .1rem;
         .cards{
           display: none;
           &.active{
@@ -39,29 +40,6 @@ body{
 
     }
   }
-
-  //.layerWrap{
-  //  .layerNavContent{
-  //    .hd{
-  //      height:.4rem;
-  //      ul{
-  //        li{
-  //          float: left; width:50%; line-height: .4rem; font-size: .14rem; text-align: center;
-  //          &.active{color: $wxColor11;}
-  //        }
-  //      }
-  //    }
-  //    .bd{
-  //      .cards{
-  //        display: none;
-  //        &.active{
-  //          display: block;
-  //        }
-  //      }
-  //    }
-  //  }
-  //}
-
   .consumptionScoreChoose{
     height:.4rem; width:100%; display: none; border-top:0.5px solid $wxColor3;
   }

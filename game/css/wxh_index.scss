@@ -15,28 +15,32 @@ body{
 
       }
     }
-    
-    .userCenter{
-      position: relative;
-      padding: .1rem 0;
-      overflow: hidden;
-      .left{
-        float: left;
-        width:30%;
-        .user{
-          width:100%;
-        }
-      }
-      .right{
-        position: absolute;
-        top:50%;
-        left:30%;
-        right:.1rem;
-        -webkit-transform: translateY(-50%);
+   .userCenterWrap{
+     min-height: 1rem;
+     .userCenter{
+       position: relative;
+       padding: .1rem 0;
+       overflow: hidden;
+
+       .left{
+         float: left;
+         width:30%;
+         .user{
+           width:100%;
+         }
+       }
+       .right{
+         position: absolute;
+         top:50%;
+         left:30%;
+         right:.1rem;
+         -webkit-transform: translateY(-50%);
 
 
-      }
-    }
+       }
+     }
+   }
+
     .imgScroll{
       margin: .1rem;
       overflow: hidden;

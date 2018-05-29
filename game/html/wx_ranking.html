@@ -13,8 +13,8 @@
 <body>
 <div class="main" id="wx_ranking" v-cloak>
   <div class="header"><div><a class="back"></a> <h1 class="pageName"><span>排行榜</span></h1></div></div>
-  <div class="container iscrollWrap">
-    <div class="rankings barWrap">
+  <div class="container">
+    <div class="rankings barWrap fixedBar">
       <ul class="hd flexBar">
         <!--<li v-on:click="getCharm()">魅力</li>-->
         <li class="on" v-on:click="getGame()">积分</li>
@@ -65,7 +65,6 @@
 <script type="application/javascript" src="../../js/zepto.min.js"></script>
 <script type="application/javascript" src="../../js/vue.js"></script>
 <script type="application/javascript" src="../../js/velocity.min.js"></script>
-<script type="application/javascript" src="../../game/js/animate.js"></script>
 <script type="application/javascript" src="../../js/global.js"></script>
 <script type="application/javascript" src="../../game/js/wx/wx_global.js"></script>
 <script type="application/javascript" src="../../game/js/wx/wx_component.js"></script>

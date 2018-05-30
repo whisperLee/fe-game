@@ -292,8 +292,9 @@ new Vue({
         },
         account:function(){
             var _self = this
+            global.loading()
             if(_self.cartNum>0){
-                global.loading()
+                global.loaded()
                 global.router('wx_orderSubmit.html?shopId='+_self.shopId+'&type='+_self.type)
             }
         },

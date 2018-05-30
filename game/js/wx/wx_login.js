@@ -15,9 +15,29 @@ new Vue({
             var _self = this
             // var a__b = _self.getCookie("a__b")
             // console.log(a__b)
+            _self.getCurrentUser()
             $(function(){
                 _self.active()
             })
+        },
+        getCurrentUser:function(){
+            var _self = this
+            var d = {
+                url: 'user/getCurrentUser',
+                data: {},
+                success: function (d) {
+                    console.log(d)
+                    if(d.status.code=="OK" && d.data){
+                        global.router("wx_index.html")
+                    }else if(d.status.retcode=="1002"){
+
+                    }else{
+                        global.codeError(d)
+                    }
+
+                }
+            }
+            global.ajax(d)
         },
         checkMobile:function(mobile){
             var _self = this
@@ -74,6 +94,7 @@ new Vue({
                         },
                         success: function (d) {
                             console.log(d)
+                            global.loaded()
                             if(d.status.code=="OK"){
                                 //global.setCookie("a__b",d.data)
                                 global.router('wx_index.html')

@@ -199,6 +199,7 @@ new Vue({
                     "voucherId": _self.orderConfirmDate.voucherId || null
                 },
                 success: function (d) {
+                    global.loaded()
                     if(d.status.code=="OK"){
                         //清空购物车
                         var shopId = _self.shopId

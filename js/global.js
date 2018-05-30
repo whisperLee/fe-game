@@ -131,7 +131,6 @@ var global = {
     },
     codeError:function(d){
         var _self = global
-        global.loaded()
         if(d.status.retcode=='1001'){
             global.pop_tips(d.status.msg)
         }

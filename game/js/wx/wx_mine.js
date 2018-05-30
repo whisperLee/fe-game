@@ -80,6 +80,7 @@ new Vue({
                 url: 'user/logout',
                 data: {},
                 success: function (d) {
+                    global.loaded()
                     if(d.status.code=="OK"){
                         var d = d.data
                         global.router('wx_login.html')

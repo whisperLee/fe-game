@@ -90,13 +90,13 @@ new Vue({
                 },
                 success: function (d) {
                     console.log(d)
+                    global.loaded()
                     if(d.status.code=="OK" && d.data){
                         if(d.data.pack=="prepay_id=0"){  // 进一步验证
                             global.pop_tips("支付成功",function(){
                                 global.router('wx_orders.html?orderId='+orderId)
                             })
                         }else{
-                            global.loaded()
                             global.getConfig(['chooseWXPay'],function(){
                                 global.chooseWXPay(d.data,function(){
                                     global.pop_tips("支付成功",function(){

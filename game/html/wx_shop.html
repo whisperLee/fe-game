@@ -53,12 +53,12 @@
     <div class="menuWrap">
         <div class="asideWrap">
             <ul>
-                <li v-for = "(items,key) in goods" :type="key"><a>{{items.classifyName}}</a></li>
+                <li v-for = "items in asideType" :type="items.classifyId"><a>{{items.classifyName}}</a></li>
             </ul>
         </div>
         <div class="mainWrap">
-            <ul v-for = "(items,key) in goods" :type="key">
-                <li v-for = "(item,key) in items.goodsList" class="goodList js-goodList" :isSoldOut="item.soldOutFlag" :goodId="item.id">
+            <ul v-for = "(items,key) in asideType" :type="key">
+                <li v-for = "(item,key) in goods[items.classifyId].goodsList" class="goodList js-goodList" :isSoldOut="item.soldOutFlag" :goodId="item.id">
                     <a>
                         <div class="picWrap">
                             <img :src="item.smallImgUrl">

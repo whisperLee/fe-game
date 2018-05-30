@@ -39,6 +39,10 @@ var global = {
             type: 'POST',
             dataType: 'json',
             success: function () {}
+
+            // error:function () {
+            //     $.ajax(d)
+            // }
         }, data)
         if(d.url.substr(0,4).toLowerCase() != "http"){
             d.url = host + d.url
@@ -59,6 +63,7 @@ var global = {
         clearTimeout(this.tipsTime)
         if ($('.simple_tips').length > 0) {
             $('.simple_tips .tips_inner').html(msg)
+            $('.simple_tips').show()
         } else {
             $('body').append('<div class="simple_tips"><div class="tips_inner">' + msg + '</div></div>')
         }
@@ -74,6 +79,20 @@ var global = {
             }, 2000)
         }
 
+    },
+    loading:function(msg){
+        msg = msg || '提交中，请稍候'
+        if ($('.loadlayer').length > 0) {
+            $('.loadlayer .p').html(msg)
+            $('.loadlayer').show()
+        } else {
+            $('body').append('<div class="loadlayer"><div class="loading"></div><p>' + msg + '</p></div>')
+        }
+    },
+    loaded:function(){
+        if ($('.loadlayer').length > 0) {
+            $('.loadlayer').remove()
+        }
     },
     router: function (path) {
         window.location.href = path
@@ -112,7 +131,11 @@ var global = {
     },
     codeError:function(d){
         var _self = global
-        if(d.status.retcode=='1002'){
+        global.loaded()
+        if(d.status.retcode=='1001'){
+            global.pop_tips(d.status.msg)
+        }
+        else if(d.status.retcode=='1002'){
             _self.router("wx_login.html")
         }else if(d.status.retcode=='1009'){
             global.pop_tips("请在微信中打开本页面")

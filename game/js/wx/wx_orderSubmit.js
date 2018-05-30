@@ -183,6 +183,7 @@ new Vue({
         },
         orderSubmit:function(){
             var _self = this
+            global.loading()
             var payType = $(".payType li.on").attr("type")
             var d = {
                 url: 'order/orderSubmit',

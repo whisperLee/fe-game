@@ -655,7 +655,7 @@ body {
   position: absolute;
   left: 0;
   bottom: 0;
-  top: .5rem;
+  top: .45rem;
   width: 100%; }
   .iscrollWrap .iscroll {
     position: relative;
@@ -747,6 +747,40 @@ body {
   margin: .4rem auto;
   width: 100%; }
 
+.loadlayer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  bottom: 0;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.8); }
+  .loadlayer .loading {
+    width: .6rem;
+    height: .6rem;
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    margin-left: -.3rem;
+    background: url(../wxImage/loading.png);
+    background-size: auto 100%;
+    -webkit-animation: loading 1.5s steps(12) infinite; }
+  .loadlayer p {
+    position: absolute;
+    left: 0;
+    top: 45%;
+    width: 100%;
+    margin-top: .6rem;
+    font-size: .16rem;
+    line-height: .3rem;
+    text-align: center;
+    color: #ffffff; }
+
+@-webkit-keyframes loading {
+  0% {
+    background-position: -0% 0%; }
+  100% {
+    background-position: -1200% 0%; } }
 body .main {
   padding-bottom: 0; }
   body .main .header {
@@ -782,6 +816,7 @@ body .main {
       position: relative;
       float: left;
       width: 30%;
+      min-height: .25rem;
       margin-left: 2.5%;
       margin-top: .1rem;
       font-size: .12rem;
@@ -791,6 +826,8 @@ body .main {
       .pandect ul li img {
         width: 100%;
         height: auto; }
+        .pandect ul li img.default {
+          visibility: hidden; }
       .pandect ul li p {
         position: absolute;
         left: 0;

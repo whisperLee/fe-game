@@ -12,6 +12,7 @@ new Vue({
         cartListD:{},// 购物车数据,不做展示，做数据调取用
         goods:{}, // 商品列表
         cartList:{},// 购物车
+        asideType:[],
         cartNum:0,
         cartTotal:0,
         type:-1
@@ -48,7 +49,7 @@ new Vue({
                     'type':_self.type, //0:虚拟,1:现实,不传为全部 ,
                 },
                 success: function (d) {
-                    console.log(d)
+                    //console.log(d)
                     if(d.status.code == 'OK' && d.data){
                         for(var i=0; i<d.data.length; i++){
                             if(d.data[i].classifyId == '-1'){
@@ -62,11 +63,15 @@ new Vue({
                                 _self.topList =  obj
                             }else{
                                 var g = d.data[i]
+                                _self.asideType.push({
+                                    classifyName:g.classifyName,
+                                    classifyId:g.classifyId
+                                })
                                 _self.goodsD[g.classifyId] = {
                                     classifyName:g.classifyName,
                                     goodsList:{}
                                 }
-                                console.log(_self.goodsD)
+
                                 for(var j=0; j<g.goodsList.length; j++){
                                     _self.goodsD[g.classifyId].goodsList[g.goodsList[j].id] = g.goodsList[j]
                                 }
@@ -106,7 +111,11 @@ new Vue({
                             cartTotal+=parseFloat(price*num);
                             cartNum+=num;
                             _self.goodsD[classifyId].goodsList[goodId].num = num
+
+                            _self.setRepeatGood(goodId,num)
                             _self.cartListD[goodId] = _self.goodsD[classifyId].goodsList[goodId]
+
+
                         }
 
                     }
@@ -135,6 +144,16 @@ new Vue({
             },1000)
 
         },
+        setRepeatGood:function (goodId,num) {
+            var _self = this
+            if(_self.goodsD[-2] && _self.goodsD[-2].goodsList[goodId]){ // 设置左侧导航热销数据（因为热销数据和其他数据又重复，所以需要单独设置）
+                _self.$set(_self.goodsD[-2].goodsList[goodId],'num',num)
+            }
+
+            if(_self.goods[-2] && _self.goods[-2].goodsList[goodId]){ // 设置左侧导航热销数据（因为热销数据和其他数据又重复，所以需要单独设置）
+                _self.$set(_self.goods[-2].goodsList[goodId],'num',num)
+            }
+        },
         changeGood:function(event,item,type){
             var _self = this
             var el = $(event.currentTarget)
@@ -152,7 +171,10 @@ new Vue({
                 item.num = _self.goods[classifyId].goodsList[goodId].num || 0
                 item.num++
             }
-            _self.setData(classifyId,goodId,item.num)
+
+            _self.setRepeatGood(goodId,item.num)
+            _self.setData(classifyId,goodId,item.num) //设置购物车数据
+            //_self.setData()
 
         },
         setData:function(classifyId,goodId,num){

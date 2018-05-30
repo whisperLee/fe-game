@@ -81,6 +81,7 @@ new Vue({
         },
         pay:function(orderId){
             var _self = this
+            global.loading()
             var d = {
                 url: 'order/orderWxPay',
                 data: {

@@ -65,6 +65,7 @@ new Vue({
             var name = $(".nick input").val()
             if($(".input.error").length<=0){
                 if(authCode!='' && mobile!="" && name!=""){
+                    global.loading()
                     var d = {
                         url: 'user/register',
                         data: {
@@ -110,18 +111,23 @@ new Vue({
             $(".nick input").off().on("input",function(){
                 $nick.removeClass("error")
             }).on("blur",function(){
-                var d = {
-                    url: 'user/checkName',
-                    data: {
-                        "name": $(".nick input").val()
-                    },
-                    success: function (d) {
-                        if(d.status.code!="OK"){
-                            _self.showError($nick,d.status.msg)
+                if($(".nick input").val()!=''){
+                    var d = {
+                        url: 'user/checkName',
+                        data: {
+                            "name": $(".nick input").val()
+                        },
+                        success: function (d) {
+                            if(d.status.code!="OK"){
+                                _self.showError($nick,d.status.msg)
+                            }
                         }
                     }
+                    global.ajax(d)
+                }else{
+
                 }
-                global.ajax(d)
+
             })
 
             var $phone = $(".phone")

@@ -75,6 +75,7 @@ new Vue({
             })
         },
         logout:function(){
+            global.loading()
             var d = {
                 url: 'user/logout',
                 data: {},

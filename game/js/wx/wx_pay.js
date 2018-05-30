@@ -96,6 +96,7 @@ new Vue({
                                 global.router('wx_orders.html?orderId='+orderId)
                             })
                         }else{
+                            global.loaded()
                             global.getConfig(['chooseWXPay'],function(){
                                 global.chooseWXPay(d.data,function(){
                                     global.pop_tips("支付成功",function(){

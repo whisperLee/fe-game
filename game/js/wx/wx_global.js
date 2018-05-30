@@ -118,6 +118,9 @@ global = $.extend({},global,{
             success: function (res) {
                 console.log(res)
                 callback()
+            },
+            error:function(){
+                alert("shibai")
             }
         });
 

@@ -1,0 +1,128 @@
+@charset "utf-8";
+@import "global";
+@import "animate";
+/*菜品*/
+.goods{
+  //.hd{
+  //  height:.4rem; line-height: .4rem; background: $wxColor2; font-size: .14rem; color: $wxColor6; padding: 0 .1rem;
+  //  p{
+  //    height:100%; display: block; float: left; text-align: left;
+  //  }
+  //}
+
+  .tr,.th{
+    p{
+      overflow: hidden;
+      &:nth-child(1){width:10%;}
+      &:nth-child(2){width:15%;}
+      &:nth-child(3){width:15%;}
+      &:nth-child(4){width:15%;}
+      &:nth-child(5){width:10%;}
+      &:nth-child(6){width:15%;}
+      &:nth-child(7){width:20%;}
+      img{
+        width:auto; height:.6rem; margin: 0 auto;
+      }
+
+    }
+
+  }
+  .tr{
+    height:.6rem; line-height: .2rem; padding: .1rem 0; border-bottom: 1px solid $wxColor3;
+    &[type='out']{
+      background: $wxColor2;
+      p{
+        color: $wxColor10;
+        .b{color: $wxColor10;}
+      }
+      img{
+        opacity: 0.8;
+      }
+    }
+  }
+
+}
+.btns{
+  padding: 0 0 .2rem 0; overflow: hidden; background: $wxColor1;
+  .btn{
+    float: right; margin: 0 .1rem;
+    &.delete{
+      background: $wxColor10;
+    }
+    &.modify{
+      background: $wxColor7;
+    }
+  }
+}
+.layerWrap.layerGood{
+  display: block;
+  .layerCon{
+    .goodPro{
+      float: left; width:100%; line-height: .4rem; margin-bottom: .1rem;
+      label{
+        width:1rem; float: left;
+      }
+      .labelCon{
+        margin-left: 1rem; margin-right: .1rem;
+        .imgWrap{
+          width:.8rem; height:.8rem; float: left;
+          img{
+            width:100%;
+          }
+        }
+        .upload_btn{
+          position: relative; float: left; margin: .2rem; background: $wxColor7;
+          #uploadfile{
+            position: absolute; left:0; top:0; width:100%; height:100%; opacity: 0;
+          }
+        }
+        .input{
+          background: $wxColor1; border: 1px solid $wxColor3; border-radius: 5px; height:.3rem; line-height: .3rem; margin: .05rem auto;
+          input{
+            background: none; border: none; width:100%; height:100%;
+          }
+        }
+        .check{
+          float: left; margin-right: .1rem; width:auto; line-height: .3rem;
+        }
+        .radios{
+          display: block; overflow: hidden;
+          .radio{
+            width:auto;
+          }
+        }
+        .radioCon{
+          display: none; overflow: hidden; clear: both;
+          &.on{
+            display: block;
+          }
+        }
+        .tabs{
+          .tab{
+            display: inline-block; padding: 0 .1rem; border: 1px solid $wxColor5; border-radius: 5px; height:.25rem; line-height: .25rem; color: $wxColor5; cursor: pointer; font-size: .14rem;
+            &.on{
+              border: 1px solid $wxColor11; color: $wxColor11;
+            }
+          }
+        }
+      }
+
+    }
+  }
+}
+
+.main.mobile{
+  .tabBar,.btns,.th{position: fixed; left:0; top:0; width:100%;
+    z-index:2;}
+
+  .btns{
+   top:.4rem; padding: .1rem 0;
+  }
+  .th{
+    top:.9rem;
+  }
+  .trs{
+    padding-top: 1.4rem;
+  }
+}
+

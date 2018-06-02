@@ -34,22 +34,11 @@ var screen = new Vue({
     methods: {
         init:function(){
             var _self = this
-            var W = $(window).width()
-            var H = $(window).height()
-            var n_w = 1920,n_h = 1200;
-            var i = W / H,
-                r = n_w / n_h;
-            t = i < r ? W / n_w:H / n_h
-            _self._w = parseInt(n_w*t)
-            _self._h = parseInt(n_h*t)
+            _self.resize()
 
-            $('.main').css({
-                "width":_self._w,
-                "height":parseInt(n_h*t)
-            })
-
-            $('html').css({
-                "fontSize":_self._w/10+'px'
+            $(window).resize(function(){
+                _self.resize()
+                _self.setUserQueueStyle()
             })
             _self.getBoxId()
             $(function(){
@@ -357,18 +346,18 @@ var screen = new Vue({
         setUserQueueStyle: function () {
             var _self = this
             var total = _self.users.length
-            var r = _self._w*0.95/2
-            var ao = 140/(total-1) //20-160度之间
+            var r = _self._w*0.86/2
+            var ao = 160/(total-1) //10-170度之间
 
             $('.user-list li').each(function (idx) {
-                var left = _self._w/2 - r   *   Math.cos((ao*idx+20)   *   3.14   /180   )
-                var top =  _self._w/2 - r   *   Math.sin((ao*idx+20)   *   3.14   /180   )
+                var left = _self._w/2 - r   *   Math.cos((ao*idx+10)   *   3.14   /180   )
+                var top =  _self._w/2 - r   *   Math.sin((ao*idx+10)   *   3.14   /180   )
                 //console.log(top)
                 // x1   =   x0   +   r   *   cos(ao   *   3.14   /180   ) 
                 // y1   =   y0   +   r   *   sin(ao   *   3.14   /180   )
                 $(this).css({
                     left: left+'px',
-                    top: top+_self._h*0.05+'px',
+                    top: top-_self._h*0.035+'px',
                     opacity:1
                 })
             })
@@ -472,6 +461,26 @@ var screen = new Vue({
             }
             return {'style':style,'className':className}
         },
+        resize:function(){
+            var _self = this
+            var W = $(window).width()
+            var H = $(window).height()
+            var n_w = 1920,//n_h = 1200;
+                n_h = 1080;
+            var i = W / H,
+                r = n_w / n_h;
+            t = i < r ? W / n_w:H / n_h
+            _self._w = parseInt(n_w*t)
+            _self._h = parseInt(n_h*t)
 
+            $('.main').css({
+                "width":_self._w,
+                "height":parseInt(n_h*t)
+            })
+
+            $('html').css({
+                "fontSize":_self._w/10+'px'
+            })
+        }
     }
 });

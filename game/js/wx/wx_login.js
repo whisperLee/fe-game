@@ -28,7 +28,9 @@ new Vue({
                 success: function (d) {
                     console.log(d)
                     if(d.status.code=="OK" && d.data){
-                        global.router("wx_index.html")
+                        global.pop_tips("您已经登录，即将为您跳转到首页",function(){
+                            global.router("wx_index.html")
+                        })
                     }else if(d.status.retcode=="1002"){
 
                     }else{

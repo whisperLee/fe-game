@@ -65,36 +65,38 @@
               <p>收货信息</p>
               <p>状态</p>
             </div>
-            <div class="order" v-for = "(order,key) in orderListUnCom">
-              <div class="hd">
-                <p class="orderNum">订单号：{{order.name}}</p>
-                <p class="orderData" v-if="order.payTime">支付时间：{{order.payTime}}</p>
-                <p :class="`warn ${order.orderWarningEnum}`">{{order.orderWarningT}}</p>
-                <p class="orderStatus">状态：{{order.statusT}}</p>
-              </div>
-              <div class="bd">
-                <div class="tr">
-                  <p>
-                    <span v-for="(good,dKey) in order.orderItemInfoResponseList">{{good.goodsName}} * {{good.quantity}}</span>
-                  </p>
-                  <p>
-                    <span>共{{order.goodsTotalCount}}件</span>
-                    <span>应付：<b class="b">￥{{order.actualAmount}}</b></span>
-                  </p>
-                  <p>{{order.payT}}支付</p>
-                  <p>{{order.remark || '无'}}</p>
-                  <p>
-                    <span>收货人：{{order.userLocationResponse.userName}}</span>
-                    <span>电话：{{order.userLocationResponse.mobile}}</span>
-                    <span>地址：{{order.address}}</span>
-                  </p>
-                  <p v-if="order.btn">
-                    <span v-if="order.btn === 'paid'"><a class='btn paid' v-on:click="paid($event,order)">确认已支付</a></span>
-                    <span v-else-if="order.btn === 'delivery'"><a class='btn delivery' v-on:click="delivery($event,order)">确认配送</a></span>
-                    <span v-else-if="order.btn === 'completed'"><a class='btn completed' v-on:click="completed($event,order)">确认完成</a></span>
-                    <span v-else-if="order.btn === 'invoiced'"><a class='btn invoiced' v-on:click="invoiced($event,order)">确认已开票</a></span>
-                    <span v-else></span>
-                  </p>
+            <div class="trs">
+              <div class="order" v-for = "(order,key) in orderListUnCom">
+                <div class="hd">
+                  <p class="orderNum">订单号：{{order.name}}</p>
+                  <p class="orderData" v-if="order.payTime">支付时间：{{order.payTime}}</p>
+                  <p :class="`warn ${order.orderWarningEnum}`">{{order.orderWarningT}}</p>
+                  <p class="orderStatus">状态：{{order.statusT}}</p>
+                </div>
+                <div class="bd">
+                  <div class="tr">
+                    <p>
+                      <span v-for="(good,dKey) in order.orderItemInfoResponseList">{{good.goodsName}} * {{good.quantity}}</span>
+                    </p>
+                    <p>
+                      <span>共{{order.goodsTotalCount}}件</span>
+                      <span>应付：<b class="b">￥{{order.actualAmount}}</b></span>
+                    </p>
+                    <p>{{order.payT}}支付</p>
+                    <p>{{order.remark || '无'}}</p>
+                    <p>
+                      <span>收货人：{{order.userLocationResponse.userName}}</span>
+                      <span>电话：{{order.userLocationResponse.mobile}}</span>
+                      <span>地址：{{order.address}}</span>
+                    </p>
+                    <p v-if="order.btn">
+                      <span v-if="order.btn === 'paid'"><a class='btn paid' v-on:click="paid($event,order)">确认已支付</a></span>
+                      <span v-else-if="order.btn === 'delivery'"><a class='btn delivery' v-on:click="delivery($event,order)">确认配送</a></span>
+                      <span v-else-if="order.btn === 'completed'"><a class='btn completed' v-on:click="completed($event,order)">确认完成</a></span>
+                      <span v-else-if="order.btn === 'invoiced'"><a class='btn invoiced' v-on:click="invoiced($event,order)">确认已开票</a></span>
+                      <span v-else></span>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -144,39 +146,42 @@
               <p>收货信息</p>
               <p>状态</p>
             </div>
-            <div class="order" v-for = "(order,key) in orderListCom">
-              <div class="hd">
-                <p class="orderNum">订单号：{{order.name}}</p>
-                <p class="orderData" v-if="order.payTime">支付时间：{{order.payTime}}</p>
-                <!--<p :class="`warn ${order.orderWarningEnum}`">{{order.orderWarningT}}</p>-->
-                <p class="orderStatus">状态：{{order.statusT}}</p>
-              </div>
-              <div class="bd">
-                <div class="tr">
-                  <p>
-                    <span v-for="(good,dKey) in order.orderItemInfoResponseList">{{good.goodsName}} * {{good.quantity}}</span>
-                  </p>
-                  <p>
-                    <span>共{{order.goodsTotalCount}}件</span>
-                    <span>应付：<b class="b">￥{{order.actualAmount}}</b></span>
-                  </p>
-                  <p>{{order.payT}}支付</p>
-                  <p>{{order.remark || '无'}}</p>
-                  <p>
-                    <span>收货人：{{order.userLocationResponse.userName}}</span>
-                    <span>电话：{{order.userLocationResponse.mobile}}</span>
-                    <span>地址：{{order.address}}</span>
-                  </p>
-                  <p v-if="order.btn">
-                    <span v-if="order.btn === 'paid'"><a class='btn paid' v-on:click="paid($event,order)">确认已支付</a></span>
-                    <span v-else-if="order.btn === 'delivery'"><a class='btn delivery' v-on:click="delivery($event,order)">确认配送</a></span>
-                    <span v-else-if="order.btn === 'completed'"><a class='btn completed' v-on:click="completed($event,order)">确认完成</a></span>
-                    <span v-else-if="order.btn === 'invoiced'"><a class='btn invoiced' v-on:click="invoiced($event,order)">确认已开票</a></span>
-                    <span v-else></span>
-                  </p>
+            <div class="trs">
+              <div class="order" v-for = "(order,key) in orderListCom">
+                <div class="hd">
+                  <p class="orderNum">订单号：{{order.name}}</p>
+                  <p class="orderData" v-if="order.payTime">支付时间：{{order.payTime}}</p>
+                  <!--<p :class="`warn ${order.orderWarningEnum}`">{{order.orderWarningT}}</p>-->
+                  <p class="orderStatus">状态：{{order.statusT}}</p>
+                </div>
+                <div class="bd">
+                  <div class="tr">
+                    <p>
+                      <span v-for="(good,dKey) in order.orderItemInfoResponseList">{{good.goodsName}} * {{good.quantity}}</span>
+                    </p>
+                    <p>
+                      <span>共{{order.goodsTotalCount}}件</span>
+                      <span>应付：<b class="b">￥{{order.actualAmount}}</b></span>
+                    </p>
+                    <p>{{order.payT}}支付</p>
+                    <p>{{order.remark || '无'}}</p>
+                    <p>
+                      <span>收货人：{{order.userLocationResponse.userName}}</span>
+                      <span>电话：{{order.userLocationResponse.mobile}}</span>
+                      <span>地址：{{order.address}}</span>
+                    </p>
+                    <p v-if="order.btn">
+                      <span v-if="order.btn === 'paid'"><a class='btn paid' v-on:click="paid($event,order)">确认已支付</a></span>
+                      <span v-else-if="order.btn === 'delivery'"><a class='btn delivery' v-on:click="delivery($event,order)">确认配送</a></span>
+                      <span v-else-if="order.btn === 'completed'"><a class='btn completed' v-on:click="completed($event,order)">确认完成</a></span>
+                      <span v-else-if="order.btn === 'invoiced'"><a class='btn invoiced' v-on:click="invoiced($event,order)">确认已开票</a></span>
+                      <span v-else></span>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>

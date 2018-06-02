@@ -18,6 +18,9 @@ new Vue({
         init:function(){
             var _self = this
             _self.erp = global.getStorage('yjerp')
+            if(global.getMenuType()!="MOBILE"){
+                $(".tableList .trs").css({"height":($(window).height()-$(".tabBar").height()*5.8)+"px","overflow":"auto"})
+            }
             _self.getDataList()
         },
         getDataList:function(){

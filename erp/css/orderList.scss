@@ -88,3 +88,17 @@
     }
   }
 }
+.main.mobile{
+  .tabBar,.tableSearch,.th{position: fixed; left:0; top:0; width:100%;
+    z-index:2;}
+
+  .tableSearch{
+    top:.4rem; padding: .1rem 0;
+  }
+  .th{
+    top:2.2rem;
+  }
+  .trs{
+    padding-top: 2.7rem;
+  }
+}

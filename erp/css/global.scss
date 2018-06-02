@@ -3,11 +3,11 @@
 @import "_variable";
 .main{
   position: absolute; left:0; top:0; width:100%; height:100%;
-  .contain{position: absolute; left: 1.2rem; right:0; top: .1rem; bottom:.1rem; min-width: 8rem; overflow: auto;}
+  .contain{padding:.1rem .1rem .1rem 1.2rem; min-width: 8rem; overflow: auto;}
 }
 /*导航*/
 .nav{
-  position: absolute; left:0; top:0; width:1.2rem; bottom:0; background: #262d33; overflow-y: auto;
+  position: fixed; left:0; top:0; width:1.2rem; bottom:0; background: #262d33; overflow-y: auto;
   .user{
     margin-top: .3rem;
     .head{
@@ -56,7 +56,7 @@
 }
 /*多选框*/
 .check{
-  background: url("../image/i11.png") no-repeat center; background-size: .3rem .3rem; cursor:pointer;
+  background: url("../image/i11.png") no-repeat left center; background-size: contain; cursor:pointer; padding-left: .3rem; font-size: .16rem; line-height: .3rem; height:.3rem;
   &.on{
     background-image: url("../image/i12.png")
   }
@@ -85,11 +85,14 @@
       cursor: pointer;
     }
   }
+  .trs{
+    overflow-y: auto; overflow-x: hidden;
+  }
 }
 .tabWrap {
   .tabBar {
     background: $wxColor1;
-    border-bottom: 3px solid $wxColor11;
+    border-bottom: .03rem solid $wxColor11;
     ul {
       overflow: hidden;
       display: -webkit-box;
@@ -129,7 +132,7 @@
   }
 }
 .tableSearch{
-  margin: .2rem 0;
+  padding: 0 0 .2rem 0; background: $wxColor1;
   .searchMod{
     float: left; position: relative; width:50%; line-height: .4rem;
     span.label{color: $wxColor9; float: left}
@@ -222,10 +225,24 @@
   font-size:0.14rem;
   text-align:center;
 }
-
+.radios{
+  .radio{
+    float: left;
+    margin-right: .2rem;
+    padding-left: .2rem;
+    line-height: .4rem;
+    background: url(../image/r.png) no-repeat center left;
+    background-size: 0.18rem;
+    cursor: pointer;
+    &.on{
+      background-image: url(../image/r_on.png);
+      color: $wxColor11;
+    }
+  }
+}
 .main.mobile{
   .nav{
-   z-index: 9; bottom:0; height:.6rem; position: fixed; left:0; width: 100%; top:initial;
+   z-index: 9; bottom:0; height:.45rem; position: fixed; left:0; width: 100%; top:initial;
     .user{
       display: none;
     }
@@ -240,26 +257,21 @@
         box-flex: 1;
         text-align: center;
         a{
-          padding-top: .3rem; line-height: .2rem; margin-top: 0; background-size: .3rem .3rem;
+          padding-top: .2rem; line-height: .15rem; margin-top: 0; background-size: .2rem .2rem; font-size: .12rem;
 
         }
       }
     }
   }
   .contain{
-    min-width:auto; left:0; top:0; bottom:.6rem;
-    .tableList{
-      .th{
-        font-size: .13rem;
-      }
-      .tr{
-        border-top: .5px solid $wxColor2
-      }
-    }
+    min-width:0; padding: 0 0 .45rem 0;
     .tabWrap{
       .tabBar{
         ul{
           padding: 0;
+          li{
+            height:.37rem; line-height:.37rem;
+          }
         }
       }
       .tabCon{
@@ -267,8 +279,22 @@
       }
     }
     .tableSearch{
-      margin: .1rem;
-      .searchMod{width:100%;}
+      padding: .1rem;
+      .searchMod{
+        width:100%;
+        line-height: .3rem;
+        .labelCon .radioSelect li{
+          line-height: .3rem;
+        }
+      }
+    }
+    .tableList{
+      .th{
+        font-size: .13rem;
+      }
+      .tr{
+        border-top: .5px solid $wxColor2
+      }
     }
   }
 }

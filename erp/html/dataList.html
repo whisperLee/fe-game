@@ -56,73 +56,82 @@
             </li>
           </ul>
           <ul class="tabCon tableList">
-            <li class="th">
+            <div class="th">
               <p>日期</p>
               <p>消费人数</p>
               <p>订单数<b>(实物/虚拟)</b></p>
               <p>游戏人数<b>(场次)</b></p>
               <p>营业额</p>
-            </li>
-            <li v-for = "(item,key) in weekList" class="tr">
-              <p>{{item.dateStr}}</p>
-              <p>{{item.buyCount}}人</p>
-              <p> <b class="b">{{item.orderCount}}单</b> ( {{item.entityOrderCount}}单 / {{item.virtualOrderCount}}单 )</p>
-              <p><b class="b">{{item.gamerCount}}人</b>({{item.screeningCount}}场)</p>
-              <p>{{item.turnover}}元</p>
-            </li>
-            <li class="tr total">
-              <p>总计：</p>
-              <p><b class="b">{{weekTotal.buyCount}}人</b></p>
-              <p> <b class="b">{{weekTotal.orderCount}}单</b> ( {{weekTotal.entityOrderCount}}单 / {{weekTotal.virtualOrderCount}}单 )</p>
-              <p><b class="b">{{weekTotal.gamerCount}}人</b>({{weekTotal.screeningCount}}场)</p>
-              <p><b class="b">{{weekTotal.turnover}}元</b></p>
-            </li>
+            </div>
+            <div class="trs">
+              <li v-for = "(item,key) in weekList" class="tr">
+                <p>{{item.dateStr}}</p>
+                <p>{{item.buyCount}}人</p>
+                <p> <b class="b">{{item.orderCount}}单</b> ( {{item.entityOrderCount}}单 / {{item.virtualOrderCount}}单 )</p>
+                <p><b class="b">{{item.gamerCount}}人</b>({{item.screeningCount}}场)</p>
+                <p>{{item.turnover}}元</p>
+              </li>
+              <li class="tr total">
+                <p>总计：</p>
+                <p><b class="b">{{weekTotal.buyCount}}人</b></p>
+                <p> <b class="b">{{weekTotal.orderCount}}单</b> ( {{weekTotal.entityOrderCount}}单 / {{weekTotal.virtualOrderCount}}单 )</p>
+                <p><b class="b">{{weekTotal.gamerCount}}人</b>({{weekTotal.screeningCount}}场)</p>
+                <p><b class="b">{{weekTotal.turnover}}元</b></p>
+              </li>
+            </div>
+
           </ul>
           <ul class="tabCon tableList">
-            <li class="th">
+            <div class="th">
               <p>日期</p>
               <p>消费人数</p>
               <p>订单数<b>(实物/虚拟)</b></p>
               <p>游戏人数<b>(场次)</b></p>
               <p>营业额</p>
-            </li>
-            <li v-for = "(item,key) in monthList" class="tr">
-              <p>{{item.dateStr}}</p>
-              <p>{{item.buyCount}}人</p>
-              <p> <b class="b">{{item.orderCount}}单</b> ( {{item.entityOrderCount}}单 / {{item.virtualOrderCount}}单 )</p>
-              <p><b class="b">{{item.gamerCount}}人</b>({{item.screeningCount}}场)</p>
-              <p>{{item.turnover}}元</p>
-            </li>
-            <li class="tr total">
-              <p>总计：</p>
-              <p><b class="b">{{monthTotal.buyCount}}人</b></p>
-              <p> <b class="b">{{monthTotal.orderCount}}单</b> ( {{monthTotal.entityOrderCount}}单 / {{monthTotal.virtualOrderCount}}单 )</p>
-              <p><b class="b">{{monthTotal.gamerCount}}人</b>({{monthTotal.screeningCount}}场)</p>
-              <p><b class="b">{{monthTotal.turnover}}元</b></p>
-            </li>
+            </div>
+            <div class="trs">
+              <li v-for = "(item,key) in monthList" class="tr">
+                <p>{{item.dateStr}}</p>
+                <p>{{item.buyCount}}人</p>
+                <p> <b class="b">{{item.orderCount}}单</b> ( {{item.entityOrderCount}}单 / {{item.virtualOrderCount}}单 )</p>
+                <p><b class="b">{{item.gamerCount}}人</b>({{item.screeningCount}}场)</p>
+                <p>{{item.turnover}}元</p>
+              </li>
+              <li class="tr total">
+                <p>总计：</p>
+                <p><b class="b">{{monthTotal.buyCount}}人</b></p>
+                <p> <b class="b">{{monthTotal.orderCount}}单</b> ( {{monthTotal.entityOrderCount}}单 / {{monthTotal.virtualOrderCount}}单 )</p>
+                <p><b class="b">{{monthTotal.gamerCount}}人</b>({{monthTotal.screeningCount}}场)</p>
+                <p><b class="b">{{monthTotal.turnover}}元</b></p>
+              </li>
+            </div>
+
           </ul>
           <ul class="tabCon tableList">
-            <li class="th">
+            <div class="th">
               <p>日期</p>
               <p>消费人数</p>
               <p>订单数<b>(实物/虚拟)</b></p>
               <p>游戏人数<b>(场次)</b></p>
               <p>营业额</p>
-            </li>
-            <li v-for = "(item,key) in yearList" class="tr">
-              <p>{{item.dateStr}}</p>
-              <p>{{item.buyCount}}人</p>
-              <p> <b class="b">{{item.orderCount}}单</b> ( {{item.entityOrderCount}}单 / {{item.virtualOrderCount}}单 )</p>
-              <p><b class="b">{{item.screeningCount}}人</b>({{item.gamerCount}}场)</p>
-              <p>{{item.turnover}}元</p>
-            </li>
-            <li class="tr total">
-              <p>总计：</p>
-              <p><b class="b">{{yearTotal.buyCount}}人</b></p>
-              <p> <b class="b">{{yearTotal.orderCount}}单</b> ( {{yearTotal.entityOrderCount}}单 / {{yearTotal.virtualOrderCount}}单 )</p>
-              <p><b class="b">{{yearTotal.gamerCount}}人</b>({{yearTotal.screeningCount}}场)</p>
-              <p><b class="b">{{yearTotal.turnover}}元</b></p>
-            </li>
+            </div>
+            <div class="trs">
+              <li v-for = "(item,key) in yearList" class="tr">
+                <p>{{item.dateStr}}</p>
+                <p>{{item.buyCount}}人</p>
+                <p> <b class="b">{{item.orderCount}}单</b> ( {{item.entityOrderCount}}单 / {{item.virtualOrderCount}}单 )</p>
+                <p><b class="b">{{item.screeningCount}}人</b>({{item.gamerCount}}场)</p>
+                <p>{{item.turnover}}元</p>
+              </li>
+              <li class="tr total">
+                <p>总计：</p>
+                <p><b class="b">{{yearTotal.buyCount}}人</b></p>
+                <p> <b class="b">{{yearTotal.orderCount}}单</b> ( {{yearTotal.entityOrderCount}}单 / {{yearTotal.virtualOrderCount}}单 )</p>
+                <p><b class="b">{{yearTotal.gamerCount}}人</b>({{yearTotal.screeningCount}}场)</p>
+                <p><b class="b">{{yearTotal.turnover}}元</b></p>
+              </li>
+            </div>
+
           </ul>
         </div>
       </div>

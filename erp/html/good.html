@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<!--forbidden operators-->
+<!--<html><head><title></title></head></body></html>-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no">
+    <link href="../css/good.css" rel="stylesheet" type="text/css" media="screen" />
+    <title>菜品管理</title>
+</head>
+<body>
+<div class="main" id="e_good" v-cloak>
+    <div class="contain">
+        <div class="goods">
+            <div class="tabWrap">
+                <div class="tabBar">
+                    <ul>
+                        <li class="on"><a>酒水小吃</a></li>
+                        <li><a>游戏点卡</a></li>
+                    </ul>
+                </div>
+                <div class="tabCons">
+                    <div class="tabCon on">
+                        <div class="btns">
+                            <a class="btn delete">删除</a>
+                            <a class="btn modify">修改</a>
+                            <a class="btn">增加</a>
+                        </div>
+                        <div class="tableList">
+                            <div class="th">
+                                <p><i class="check js-checkAll"></i></p>
+                                <p>图片</p>
+                                <p>名称</p>
+                                <p>价格</p>
+                                <p>状态</p>
+                                <p>分类</p>
+                                <p>促销内容</p>
+                            </div>
+                            <ul class="trs">
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>正常</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>正常</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>赠送咖啡，牛奶</p>
+                                </li>
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>正常</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>正常</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr" type="out">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>售罄</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>正常</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>正常</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>正常</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>正常</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>正常</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>正常</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr" type="out">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>售罄</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                            </ul>
+
+
+                        </div>
+                    </div>
+                    <div class="tabCon">
+                        <div class="btns">
+                            <a class="btn delete">删除</a>
+                            <a class="btn modify">修改</a>
+                            <a class="btn">增加</a>
+                        </div>
+                        <div class="tableList">
+                            <div class="th">
+                                <p><i class="check js-checkAll"></i></p>
+                                <p>图片</p>
+                                <p>名称</p>
+                                <p>价格</p>
+                                <p>分类</p>
+                                <p>库存（状态）</p>
+                                <p>是否推荐</p>
+                                <p>促销内容</p>
+                            </div>
+                            <ul class="trs">
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>100（正常）</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>是</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>正常</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>赠送咖啡，牛奶</p>
+                                </li>
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>正常</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>正常</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr" type="out">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>售罄</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>正常</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>正常</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>正常</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>正常</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>正常</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>正常</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                                <li class="tr" type="out">
+                                    <p><i class="check js-check"></i></p>
+                                    <p><img class="goodImg" src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg"></p>
+                                    <p>咖啡</p>
+                                    <p><b class="b">12.00</b></p>
+                                    <p>售罄</p>
+                                    <p>酒水饮料，促销</p>
+                                    <p>满50-10</p>
+                                </li>
+                            </ul>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="layerWrap layerGood">
+        <b class="close"></b>
+        <div class="layer">
+            <div class="tableList">
+                <h2>增加菜品/修改菜品</h2>
+                <div class="layerCon">
+                    <ul class="goodPros">
+                        <li class="goodPro">
+                            <label>商品图片：</label>
+                            <div class="labelCon">
+                                <a class="btn upload_btn" href="javascript:void(0)">点击上传照片<input type="file" id="uploadfile" name="file" v-on:change="uploadImg"></a>
+                                <div class="imgWrap">
+                                    <img src="http://p0.meituan.net/210.0/wmproduct/84048d9e09c11bb07d688d1a72bed042112263.jpg">
+                                </div>
+                            </div>
+                        </li>
+                        <li  class="goodPro">
+                            <label>商品名称：</label>
+                            <div class="labelCon">
+                                <div class="input">
+                                    <input type="text"  name="name" value="" maxlength="10">
+                                </div>
+                            </div>
+                        </li>
+                        <li  class="goodPro">
+                            <label>商品价格：</label>
+                            <div class="labelCon">
+                                <div class="input">
+                                    <input type="text"  name="price" value="" maxlength="10">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="goodPro">
+                            <label>商品库存：</label>
+                            <div class="labelCon">
+                                <div class="input">
+                                    <input type="text"  name="num" value="" maxlength="10">
+                                </div>
+                            </div>
+                        </li>
+                        <li class="goodPro">
+                            <label>商品分类：</label>
+                            <div class="labelCon">
+                                <ul class="radios">
+                                    <li class="radio on">饮料小吃</li>
+                                    <li class="radio">游戏点卡</li>
+                                    <ul class="checks radioCon on">
+                                        <li class="check js-check">酒水饮料</li>
+                                        <li class="check js-check">美食小吃</li>
+                                        <li class="check js-check">周边精品</li>
+                                    </ul>
+                                    <ul class="checks radioCon">
+                                        <li class="check js-check">游戏时间</li>
+                                    </ul>
+                                    <!--<ul class="tabs radioCon on">-->
+                                        <!--<span class="tab">酒水饮料</span>-->
+                                        <!--<span class="tab">美食小吃</span>-->
+                                        <!--<span class="tab">周边精品</span>-->
+                                        <!--<span class="tab">热销推荐</span>-->
+                                    <!--</ul>-->
+                                    <!--<ul class="tabs radioCon">-->
+                                        <!--<span class="tab">游戏时间</span>-->
+                                        <!--<span class="tab">热销推荐</span>-->
+                                    <!--</ul>-->
+                                </ul>
+
+                            </div>
+                        </li>
+                        <li class="goodPro">
+                            <label>商品属性</label>
+                            <div class="labelCon">
+                                <ul class="checks">
+                                    <li class="check js-check">置顶推荐</li>
+                                    <li class="check js-check">热销推荐</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="goodPro">
+                            <label>促销类型：</label>
+                            <input type="text" class="input-2" name="price" value="" maxlength="6">
+                        </li>
+                        <li class="goodPro">
+                            <label></label>
+                            <input type="text" class="input-2" name="price" value="" maxlength="6">
+                        </li>
+                    </ul>
+                    <a class="btn confirm js-confirm">提交</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="application/javascript" src="../../js/zepto.min.js"></script>
+<script type="application/javascript" src="../../js/vue.js"></script>
+<script type="application/javascript" src="../../js/velocity.min.js"></script>
+<script type="application/javascript" src="../../js/global.js"></script>
+<script type="application/javascript" src="../js/eglobal.js"></script>
+<script type="application/javascript" src="../js/good.js"></script>
+</body>
+</html>
+<!--<html><head><title></title></head></body></html>-->

@@ -56,8 +56,8 @@ body{
       -webkit-transform:translateX(-50%);
       .combinationName{
         position: absolute;
-        left: 75%;
-        top: -6.5%;
+        left: 72%;
+        top: -7%;
         width: 24%;
         height: 20%;
         background: url(../sImage/num.png) no-repeat left bottom;
@@ -66,9 +66,9 @@ body{
         box-sizing: border-box;
         text-align: center;
         font-size: .14rem;
-        line-height: .35rem;
+        line-height: .2rem;
         .count{
-          position: absolute; left:35%; top:36%; width:65%; height:50%;
+          position: absolute; left:35%; top:32%; width:65%; height:50%;
         }
       }
       .user-list{
@@ -77,10 +77,10 @@ body{
           position: absolute;
           left:0;
           top:0;
-          width:.9rem;
-          height:.9rem;
-          margin-left: -.45rem;
-          margin-top: -.45rem;
+          width:.8rem;
+          height:.8rem;
+          margin-left: -.4rem;
+          margin-top: -.4rem;
         }
         .user{
           position: absolute;
@@ -104,11 +104,11 @@ body{
         }
       }
       .messageWrap{
-        width: 54%;
+        width: 48%;
         position: absolute;
-        left: 23%;
+        left: 26%;
         top: 41%;
-        height: 47%;
+        height: 55%;
         z-index: 4;
         .day{
           text-align: center;
@@ -132,12 +132,12 @@ body{
             }
             &:before{
               right:100%;
-              background: url("../simage/t_l.png") no-repeat right center;
+              background: url("../sImage/t_l.png") no-repeat right center;
               background-size: contain;
             }
             &:after{
               left:100%;
-              background: url("../simage/t_r.png") no-repeat left center;
+              background: url("../sImage/t_r.png") no-repeat left center;
               background-size: contain;
             }
           }
@@ -146,13 +146,13 @@ body{
           position: absolute;
           left:0;
           bottom:0;
+          top: .6rem;
           background: url(../sImage/m.png) no-repeat center;
           background-size: 100% 100%;
           width: 100%;
           height: 1.9rem;
           padding: .12rem .25rem;
           box-sizing: border-box;
-          margin-top: .2rem;
           h2{
             font-size: .21rem;
             line-height: 200%;

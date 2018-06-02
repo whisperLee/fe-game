@@ -33,3 +33,23 @@
     }
   }
 }
+.main.mobile{
+  .tabBar,.th{position: fixed; left:0; top:0; width:100%;
+    z-index:2;}
+
+  .th{
+    top:.4rem;
+  }
+  .trs{
+    padding-top: .9rem;
+  }
+  .tabCons{
+    .tabCon:nth-child(1){
+      padding-top: .4rem;
+      .th{
+        position: relative; top:0;
+      }
+    }
+  }
+
+}

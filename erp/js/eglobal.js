@@ -100,6 +100,11 @@ global = $.extend({},global,{
                 name:"游戏管理",
                 link:"game.html",
                 className:"game"
+            },
+            "菜品管理":{
+                name:"菜品管理",
+                link:"good.html",
+                className:"good"
             }
 
         }
@@ -135,19 +140,19 @@ global = $.extend({},global,{
     active:function(){
         var _self = this
         /*复选框全选*/
-        // $(".js-checkAll").each(function(){
-        //     var el = $(this).closest(".tableList")
-        //     $(this).off().on("click",function(){
-        //         if($(this).hasClass("on")){
-        //             el.find(".js-check").removeClass("on")
-        //             $(this).removeClass("on")
-        //         }else{
-        //             el.find(".js-check").addClass("on")
-        //             $(this).addClass("on")
-        //         }
-        //
-        //     })
-        // })
+        $(".js-checkAll").each(function(){
+            var el = $(this).closest(".tableList")
+            $(this).off().on("click",function(){
+                if($(this).hasClass("on")){
+                    el.find(".js-check").removeClass("on")
+                    $(this).removeClass("on")
+                }else{
+                    el.find(".js-check").addClass("on")
+                    $(this).addClass("on")
+                }
+
+            })
+        })
         /*复选框*/
         $(".js-check").off().on("click",function(){
             if($(this).hasClass("on")){

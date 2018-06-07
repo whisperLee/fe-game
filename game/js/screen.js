@@ -228,8 +228,10 @@ var screen = new Vue({
                 //$("#audio")[0].currentTime = 0;
                 if(_self.screenCenterMessage.messageExt && _self.screenCenterMessage.messageExt!=""){
                     var text = _self.screenCenterMessage.messageExt
-                }else{
-                    var text="啦啦啦"
+                }else if(_self.screenCenterMessage.message && _self.screenCenterMessage.message!=""){
+                    var text = _self.screenCenterMessage.message
+                } else{
+                    var text="没啥可说的了，赶紧改接口吧"
                 }
                 _self.addVioce(text)
             }

@@ -141,12 +141,12 @@ body {
   border-radius: 5px;
   margin: .1rem auto;
   line-height: .4rem;
-  background: rgba(23, 69, 116, 0.8);
+  background: rgba(30, 48, 65, 0.8);
   text-align: center;
   font-size: .16rem;
   color: #f1f5fa; }
   .btn.btn2 {
-    background: #16a085; }
+    background: #1abc9c; }
   .btn.btn3 {
     background: #34495e; }
   .btn.btn4 {
@@ -182,11 +182,11 @@ body {
     padding-left: .25rem;
     -webkit-transition: all .5s ease-in-out; }
   .longPress.btn2 .process b {
-    background: #1abc9c; }
+    background: #16a085; }
   .longPress.btn3 .process b {
-    background: #174574; }
+    background: #1e3041; }
   .longPress.btn4 .process b {
-    background: #d34132; }
+    background: #cb3728; }
 
 .userBtns {
   position: absolute;
@@ -222,7 +222,7 @@ body {
       height: .3rem;
       line-height: .3rem;
       margin: .05rem 3%;
-      background: rgba(22, 160, 130, 0.8);
+      background: rgba(15, 150, 125, 0.8);
       color: #f1f5fa;
       text-align: center;
       font-size: .14rem;
@@ -245,7 +245,7 @@ body {
     background: #ffffff;
     height: .4rem;
     line-height: .4rem;
-    color: #174574;
+    color: #1e3041;
     padding: 0 .15rem;
     border-radius: 5px;
     margin-bottom: .3rem;
@@ -254,7 +254,7 @@ body {
     margin: 0 auto;
     border: 1px solid #34495e; }
     .main .input input {
-      color: #174574;
+      color: #1e3041;
       height: 100%;
       width: 100%; }
 

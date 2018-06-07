@@ -134,7 +134,7 @@
           //&:before{
           //  content:" "; position: absolute; width:.2rem; height:.2rem; right:0; bottom:0; background: url("../image/sf_select.png") no-repeat center; background-size: 100%;
           //}
-          border-color: $gColor11; opacity: 1;
+          border-color: $gColor10; opacity: 1;
         }
         &.unchoose{
           opacity: 0.5;
@@ -289,7 +289,7 @@
       li{
         font-size: .12rem; color: $gColor4;
         span{
-          width:.8rem; display: inline-block; text-align: left; color: $gColor11; text-align: right;
+          width:.8rem; display: inline-block; text-align: left; color: $gColor10; text-align: right;
         }
         p{
           display: inline-block; color: $gColor15;

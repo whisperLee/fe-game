@@ -45,7 +45,9 @@ var animate = {
     },
     layerEnter: function(el,time){
         var _self = this
-        $('.layer').hide()  //隐藏其它弹层
+        if(!el.hasClass("layerUserInfo ")){
+            $('.layer').hide()  //隐藏其它弹层
+        }
         $('.layer').removeClass("lock") //作用 控制按钮重复点击
 
         el.css({

@@ -78,7 +78,7 @@
             b{
               font-size: .13rem;
               font-weight: normal;
-              color: $gColor11;
+              color: $gColor10;
             }
           }
           &.mvp:before{
@@ -160,7 +160,7 @@
           margin-left: .5rem;
           margin-right: .3rem;
           height:100%;
-          color: $gColor11;
+          color: $gColor10;
           .star{
             width:.2rem;
             height:.4rem;
@@ -178,7 +178,7 @@
             top: .1rem;
             box-sizing: border-box;
             b {
-              background: $gColor11;
+              background: $gColor10;
               width:0;
               height:100%;
               position: absolute;
@@ -203,7 +203,7 @@
                 width:1px;
                 margin-left: -1px;
                 top:0;
-                background: $gColor11;
+                background: $gColor10;
               }
               &.pre{
                 left:10%;
@@ -233,7 +233,7 @@
             top:-.15rem;
             font-size: .12rem;
             line-height: .15rem;
-            color: $gColor11;
+            color: $gColor10;
             opacity: 0;
           }
           .subcount{

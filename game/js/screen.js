@@ -10,6 +10,7 @@ Vue.component('userwin',component.user)
 Vue.component('userlose',component.user)
 Vue.component('userend',component.userend)
 var timer
+var voiceTimer,audio
 var screen = new Vue({
     el: '#screen',
     data :{
@@ -20,11 +21,11 @@ var screen = new Vue({
             nightFlag: -1
         },
         accountInfo:{},
-        voiceUrl:'',//音频url
+       // voiceUrl:'',//音频url
         bgmUrl:'',//背景音频url
         countdownSec:0,// 倒计时
         recoverNumber:1,
-        audioIsEnd:1
+        audioStatus:"end"
     },
     created: function () {
         var _self = this
@@ -42,9 +43,7 @@ var screen = new Vue({
             })
             _self.getBoxId()
             $(function(){
-                $("#audio").off().on("ended",  function(){
-                    _self.audioIsEnd = 1;
-                });
+                _self.voiceEvent()
             })
 
         },
@@ -111,7 +110,7 @@ var screen = new Vue({
             var _self = this
             var d = JSON.parse(data.body)
             var bgMusic = document.getElementById('bgMusic');
-            var audio = document.getElementById('audio');
+
             if(d.msgType == 'EVENT_PAUSE'){
                 if(!bgMusic.paused){
                     bgMusic.pause()
@@ -141,25 +140,20 @@ var screen = new Vue({
                 }
             }
             //console.log(_self.screenCenterMessage.nightFlag)
-            if(_self.screenCenterMessage.nightFlag==1 && _self.audioIsEnd!=1){
-                if(audio.paused){ // 对于上次没有播放的音频，直接忽略，继续下一音频
-                    _self.audioIsEnd = 1;
-                    _self.socketCallback(data)
-                    console.log("音乐不播放")
-                }
-                $("#audio").off().on("ended", function(){
-                    // console.log(new Date())
-                    // console.log("end"+d.message)
-                    _self.audioIsEnd = 1;
-                    _self.socketCallback(data)
-                });
+            if(_self.screenCenterMessage.nightFlag==1 && $("#audio").length>0 && _self.audioStatus!="end" && d.msgType != 'EVENT_PAUSE'){  // 晚上的时候，判断上一个音频文件是否播放完成，如果没有播放完成，则等待音频播放完成之后再执行事件
+                // if(audio && audio.paused){ // 对于上次没有播放的音频，直接忽略，继续下一音频
+                //     console.log("音乐非法暂停")
+                //     _self.audioStatus = 1;
+                //     _self.socketCallback(data)
+                // }else{
+                //     _self.voiceEvent(data)
+                //}
+                _self.voiceEvent(data)
                 return
-            }else{
-                $("#audio").off().on("ended",  function(){
-                    _self.audioIsEnd = 1;
-                    //console.log("normal end")
-                });
             }
+            // else{
+            //     _self.voiceEvent()
+            // }
 
 
             if( d.userInfoList && d.userInfoList.length>0) { // 玩家信息
@@ -223,17 +217,21 @@ var screen = new Vue({
                 bgMusic.currentTime = 0;
             }
             if(d.voiceUrl){ // 音频播放
-                _self.$set(_self,'voiceUrl',d.voiceUrl)
-                _self.audioIsEnd = 0;
-                audio.currentTime = 0;
+                clearTimeout(voiceTimer)
+                /*if($("#audio").length>0){
+                    $("#audio").remove()
+                }
+                $("body").append('<audio class="audio" id="audio" autoplay="autoplay" src="'+d.voiceUrl+'" controls="controls"></audio>')
+                _self.voiceEvent()
+                //_self.$set(_self,'voiceUrl',d.voiceUrl)*/
 
-
-                // voiceUrl.addEventListener("canplaythrough",
-                //     function() {
-                //         console.log('sc'+voiceUrl.duration);
-                //     },
-                //     false);
-                // console.log(_self.voiceUrl)
+                //$("#audio")[0].currentTime = 0;
+                if(_self.screenCenterMessage.messageExt && _self.screenCenterMessage.messageExt!=""){
+                    var text = _self.screenCenterMessage.messageExt
+                }else{
+                    var text="啦啦啦"
+                }
+                _self.addVioce(text)
             }
             // 发送倒计时事件
             _self.sendEventForScreen(d)
@@ -256,6 +254,72 @@ var screen = new Vue({
                 }
             }
         },
+        isVoicePlaying:function(text){
+            var _self = this
+            if($("#audio").length>0 && _self.audioStatus=="pause"){
+                if(codeType=="test"){
+                    console.log("没有监测到音乐播放"+text)
+                    //alert("没有监测到音乐播放"+text)
+                }
+                //_self.addVioce(text)
+                voiceTimer = setTimeout(function(){
+                    _self.isVoicePlaying(text)
+                },2000)
+            }
+        },
+        addVioce:function(text){
+            var _self = this
+            _self.audioStatus = "pause";
+            if ($("#audio").length>0) {
+                $("#audio").remove()
+            }
+            audio = null;
+            // 参数含义请参考 https://ai.baidu.com/docs#/TTS-API/41ac79a6
+            audio = btts({
+                tex: text,
+                tok: '24.7199c9cbb1c2eebf9c7bbf624fe612a3.2592000.1530804987.282335-2180146',
+                spd: 5,pit: 5,vol: 9, per: 0
+            }, {
+                volume: 1,
+                autoplay:true,
+                autoDestory: false,
+                timeout: 10000,
+                hidden: false,
+                onSuccess: function(htmlAudioElement) { //远程语音合成完成，并且返回音频文件后调用
+                    _self.voiceEvent() // 绑定事件
+                    setTimeout(function(){ //判断饮品是否已播放
+                        _self.isVoicePlaying(text)
+                    },1000)
+                },
+                onError: function(t) {
+                    if(codeType=="test"){
+                        alert("baidu:"+t)
+                    }
+                    console.log("百度:"+t)
+                    _self.addVioce(text)
+                },
+                onTimeout: function () {
+                    console.log("百度：timeout")
+                    _self.addVioce(text)
+                }
+            });
+        },
+        voiceEvent:function(data){
+            var _self = this
+            $("#audio").off().on("ended",  function(){
+
+                console.log("end")
+                _self.audioStatus = "end";
+                $("#audio").remove()
+                if(data){
+                    console.log("callback End")
+                    _self.socketCallback(data)
+                }
+            }).on("playing",  function(){
+                console.log("playig")
+                _self.audioStatus = "playing";
+            });
+        },
         sendEventForScreen:function(a){
             var _self = this
             if(a.countdownSec && a.countdownSec>0) {
@@ -274,7 +338,6 @@ var screen = new Vue({
                         _self.recoverNumber = 1;
                     }
                 }
-                //console.log("recoverType:"+_self.recoverType +",thisType:"+_self.thisType)
                 if(a.msgType=='EVENT_CONTINUE') {
                     data = {
                         'eventType': _self.recoverType,
@@ -286,26 +349,27 @@ var screen = new Vue({
                         'eventType': _self.thisType
                     }
                 }
-                console.log(a.countdownSec + '倒计时开始：'+  new Date())
-                console.log(data)
+                //console.log(a.countdownSec + '倒计时开始：'+  new Date())
+                //console.log(data)
                 _self.countDown(a.countdownSec,function(){
                     console.log("倒计时结束："+ new Date())
                     setTimeout(function(){
                         //_self.nowDate = {}
-                        console.log("发送事件：" + new Date())
-                        console.log(data)
+                        //console.log("发送事件：" + new Date())
+                        //console.log(data)
                         websocket.receiveScreenEvent(data)
                     },2000)
                 },a)
             }
         },
+
         countDown: function (time,callback,a) {
             var _self = this
             clearTimeout(timer);
             //console.log(time)
             callback = callback || function () { }
             timer = setInterval(function () {
-                console.log("倒计时："+time+','+new Date())
+                //console.log("倒计时："+time+','+new Date())
                 time--
                 _self.countdownSec = time
                 if (time <= 0) {

@@ -246,6 +246,10 @@ var game = new Vue({
         socketCallback: function (data) {
             var _self = this
             console.log('得到返回数据:' + new Date())
+            if(codeType=="test"){
+                $(".json .content").append("<p>get:>>>>>>>>></p>")
+                $(".json .content").append("<p>"+data.body+"</p>")
+            }
             var d = JSON.parse(data.body)
 
             if(d.statusResponse.retcode!=0){ //所有错误消息
@@ -286,10 +290,10 @@ var game = new Vue({
             else if(d.msgType == 'UPDATE_LEADER'){//需要获取leaderInfo
                 _self.setLeaderBtn(d.leaderInfo)
             }
-            else if(d.msgType == 'EVENT_PAUSE'){// 暂停事件
+            else if(d.msgType == 'EVENT_PAUSE' && !_self.isDead){// 暂停事件
                 animate.layerEnter($(".pause.layer"))
             }
-            else if(d.msgType == 'EVENT_CONTINUE'){//继续事件
+            else if(d.msgType == 'EVENT_CONTINUE' && !_self.isDead){//继续事件
                 animate.layerOuter($(".pause.layer"))
             }
             else if(d.msgType == 'DEAD'  && !_self.isDead){//该玩家挂了,黑屏,不在接受事件 除了gameover
@@ -796,6 +800,21 @@ var game = new Vue({
                     var data = {
                         targetNumberList:n,
                         eventType:e
+                    }
+
+                    if(codeType=="test"){
+                        if($(".json").length<=0){
+                            $("body").append('<div class="json"><b class="close"></b><div class="content"></div></div>')
+                            $(".json").off().on("click",function(){
+                                $(this).addClass("on")
+                            })
+                            $(".json .close").off().on("click",function(e){
+                                e.stopPropagation()
+                                $(".json").removeClass("on")
+                            })
+                        }
+                        $(".json .content").append("<p>send:<<<<<<<<<<< </p>")
+                        $(".json .content").append("<p>"+data.body+"</p>")
                     }
 
                     websocket.receiveUserEvent(data)

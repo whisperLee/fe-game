@@ -111,4 +111,20 @@ body{
   }
 }
 
+.json{
+  position: absolute; right:.2rem; top:.2rem; width:.4rem; height:.4rem; background: $gColor20; overflow: auto; z-index: 9999999;
+  .content{
+    display: none; padding: .2rem; word-wrap: break-word; overflow-y: auto;
+  }
+  .close{
+    position: fixed; right:.2rem; top:.2rem; width:.4rem; height:.4rem; background: url("../image/close.png") no-repeat center; background-size: contain; display: none;
+  }
+  &.on{
+    top:0;right:0;  width:100%; height:100%; background:$gColor9; color: $gColor1;
+    .close,.content{
+      display: block;
+    }
+  }
+}
+
 
